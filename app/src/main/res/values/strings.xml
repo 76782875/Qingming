@@ -1,0 +1,188 @@
+<resources>
+    <string-array name="date">
+        <item>阿妹</item>
+        <item>阿郎</item>
+        <item>陈奕迅</item>
+        <item>周杰伦</item>
+        <item>曾一鸣</item>
+        <item>成龙</item>
+        <item>王力宏</item>
+        <item>汪峰</item>
+        <item>王菲</item>
+        <item>那英</item>
+        <item>张伟</item>
+        <item>张学友</item>
+        <item>李德华</item>
+        <item>郑源</item>
+        <item>白水水</item>
+        <item>白天不亮</item>
+        <item>陈龙</item>
+        <item>陈丽丽</item>
+        <item>哈林</item>
+        <item>高进</item>
+        <item>高雷</item>
+        <item>阮今天</item>
+        <item>龚琳娜</item>
+        <item>苏醒</item>
+        <item>苏永康</item>
+        <item>陶喆</item>
+        <item>沙宝亮</item>
+        <item>宋冬野</item>
+        <item>宋伟</item>
+        <item>袁成杰</item>
+        <item>戚薇</item>
+        <item>齐大友</item>
+        <item>齐天大圣</item>
+        <item>品冠</item>
+        <item>吴克群</item>
+        <item>BOBO</item>
+        <item>Jobs</item>
+        <item>动力火车</item>
+        <item>伍佰</item>
+        <item>#蔡依林</item>
+        <item>$797835344$</item>
+        <item>Jack</item>
+        <item>~夏先生</item>
+    </string-array>
+
+    <string-array name="one">
+        <item>合同纠纷案件</item>
+        <item>侵权纠纷案件</item>
+        <item>婚姻家庭纠纷案件</item>
+        <item>继承纠纷案件</item>
+        <item>劳动争议案件</item>
+        <item>涉及农民工案件</item>
+        <item>涉及未成年人案件</item>
+        <item>知识产权案件</item>
+        <item>交通事故纠纷</item>
+        <item>物权纠纷</item>
+        <item>涉外与海事海商纠纷</item>
+        <item>医疗事故纠纷</item>
+        <item>环境保护纠纷</item>
+        <item>不正当竞争、垄断纠纷</item>
+        <item>无因管理、不当得利纠纷</item>
+        <item>人格权纠纷</item>
+        <item>国家赔偿案件</item>
+        <item>民商事执行案件</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="two">
+        <item>公诉案件辩护</item>
+        <item>自诉案件辩护</item>
+        <item>提供咨询、代为申诉、控告</item>
+        <item>申请取保候审</item>
+        <item>死刑案件辩护</item>
+        <item>被告人委托辩护</item>
+        <item>法律援助辩护</item>
+        <item>公诉案件附带民事诉讼代理</item>
+        <item>自诉案件代理</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="three">
+        <item>代理原告</item>
+        <item>代理被告</item>
+        <item>代理第三人</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="four">
+        <item>知识产权</item>
+        <item>房地产</item>
+        <item>公司业务</item>
+        <item>金融</item>
+        <item>证券</item>
+        <item>期货</item>
+        <item>税务代理</item>
+        <item>重大建设项目合计</item>
+        <item>国家赔偿纠纷</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="five">
+        <item>政府法律顾问</item>
+        <item>企业法律顾问</item>
+        <item>事业单位法律顾问</item>
+        <item>社会团体法律顾问</item>
+        <item>公民个人法律顾问</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="six">
+        <item>合同纠纷案件</item>
+        <item>侵权纠纷案件</item>
+        <item>婚姻家庭纠纷案件</item>
+        <item>继承纠纷案件</item>
+        <item>劳动争议案件</item>
+        <item>涉及农民工案件</item>
+        <item>涉及未成年人案件</item>
+        <item>知识产权案件</item>
+        <item>交通事故纠纷</item>
+        <item>物权纠纷</item>
+        <item>涉外与海事海商纠纷</item>
+        <item>医疗事故纠纷</item>
+        <item>环境保护纠纷</item>
+        <item>不正当竞争、垄断纠纷</item>
+        <item>无因管理、不当得利纠纷</item>
+        <item>人格权纠纷</item>
+        <item>国家赔偿案件</item>
+        <item>民商事执行案件</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="seven">
+        <item>国内仲裁</item>
+        <item>劳动争议仲裁</item>
+        <item>涉外仲裁</item>
+    </string-array>
+    <string-array name="eight">
+        <item>破产管理人</item>
+        <item>债权人代理人</item>
+        <item>政府委托人</item>
+        <item>破产和解</item>
+        <item>破产重整</item>
+        <item>破产清算</item>
+        <item>其他代理人</item>
+    </string-array>
+    <string-array name="nine">
+        <item>口头法律咨询（人次）</item>
+        <item>书面法律咨询（人次）</item>
+        <item>代写法律文书（件）</item>
+    </string-array>
+
+    <string name="app_name">亲民</string>
+    <string name="qinmin">亲民</string>
+    <string name="company_name">重庆铭轩科技发展有限公司</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint_name">请输入手机号</string>
+    <string name="hint_password">请输入密码</string>
+    <string name="forget_password">忘记密码？</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="judicial_address_book">司法通讯录</string>
+    <string name="law_journal">律所通讯录</string>
+    <string name="customer_address_book">客户通讯录</string>
+    <string name="search">搜索</string>
+    <string name="contacts">常用联系人</string>
+    <string name="messagecenter">消息中心</string>
+    <string name="applicationtools">应用工具</string>
+    <string name="personcenter">个人中心</string>
+    <string name="input_name">请输入姓名</string>
+    <string name="case_details">案件详情</string>
+    <string name="case_introduction">案件简介</string>
+    <string name="counsel">法律顾问</string>
+    <string name="person_center">个人中心</string>
+    <string name="my_blannce">我的收支</string>
+    <string name="modify_password">修改密码</string>
+    <string name="quiet_hours">勿扰模式</string>
+    <string name="about_our">关于我们</string>
+
+    <string name="calendar">日历</string>
+    <string name="conflict_of_interest">利益冲突审查</string>
+    <string name="addcase">新增案件</string>
+    <string name="minecase">我的案件</string>
+    <string name="work_log">工作日志</string>
+    <string name="court_trial">庭审提醒</string>
+    <string name="public_security">公安/检察</string>
+    <string name="judicial_case">全所案件</string>
+    <string name="examine_and_approve">审批</string>
+    <string name="income_and_expenses">律所收支</string>
+    <string name="collection">代收款案件</string>
+    <string name="customer_management">客户管理</string>
+    <string name="sign_in">签到</string>
+</resources>

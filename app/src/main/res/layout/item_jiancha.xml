@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/yinying">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/blue"
+            android:layout_marginBottom="5dp"/>
+        <TextView
+            android:id="@+id/case_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="离婚后财产纠纷"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:alpha="0.1"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="办案机关："
+                android:drawableLeft="@mipmap/llist_0011"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/case_item_banan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公安局"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:alpha="0.1"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="部       门："
+                android:drawableLeft="@mipmap/bann_05"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/case_item_bumeng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017（民）第 0070 号"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:alpha="0.1"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/bann_04"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="承  办  人："
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/case_item_chengbanren"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017（民）第 0070 号"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:alpha="0.1"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/llist_0013"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="联系电话："
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/case_item_xingjuren"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017（民）第 0070 号"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:alpha="0.1"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/llist_004"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="审查起诉日期："
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017"
+                android:textSize="12sp"/>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="---"/>
+            <TextView
+                android:id="@+id/finish_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

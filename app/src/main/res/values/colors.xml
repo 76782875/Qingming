@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green">#008000</color>
+    <color name="blue">#2a88f0</color>
+    <color name="cyan">#FFC1C1C1</color>  <!--青色-->
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <color name="red">#FF0000</color>
+    <color name="pink">#FFC0CB</color>  <!--粉红-->
+    <color name="yellow">#FFFF00</color>
+    <color name="orange">#FFA500</color>  <!--橙色-->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#0000FF</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="lightgrey">#ccc</color>
+    <color name="darkgrey">#666</color>
+    <color name="transparent80">#80000000</color>
+    <color name="colorStartProgress">#3014C908</color>
+    <color name="colorEndProgress">#14C908</color>
+    <color name="bluedark">#FF0C82AC</color>
+    </resources>
