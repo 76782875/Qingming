@@ -71,10 +71,8 @@ public class AddCaseActivity extends Activity {
                         Bundle bundle = new Bundle();
                         bundle.putInt("index",101);
                         bundle.putInt("ajlx",ajlx);
-                        bundle.putInt("ajfl",ajfl);
-                        bundle.putString("word",""+wordsize);
-                        bundle.putString("num",""+num);
-                        bundle.putString("name",""+name);
+                        bundle.putInt("ajfl",ajfl+1);
+                        bundle.putString("name",name);
                         intent.putExtras(bundle);
                         Log.e("ajlx====》",""+ajlx);
                         Log.e("ajfl=======》",""+ajfl);
@@ -104,71 +102,51 @@ public class AddCaseActivity extends Activity {
                     case 0:
                         ajlx = 1;
                         name = "民事案件";
-                        wordsize = "(民)";
-                        num ="第 0071 号";
                         cfl= getResources().getStringArray(R.array.one);
                         break;
                     case 1:
                         ajlx = 2;
                         name = "刑事案件";
-                        wordsize = "(刑)";
-                        num ="第 0011 号";
                         cfl= getResources().getStringArray(R.array.two);
                         break;
                     case 2:
                         ajlx = 3;
                         name = "行政案件";
-                        wordsize = "(行)";
-                        num ="第 0007 号";
                         cfl= getResources().getStringArray(R.array.three);
                         break;
                     case 3:
                         ajlx = 4;
                         name = "非诉讼法律事务";
-                        wordsize = "(非)";
-                        num ="第 0003 号";
                         cfl= getResources().getStringArray(R.array.four);
                         break;
                     case 4:
                         ajlx = 5;
                         name = "法律顾问";
-                        wordsize = "(顾)";
-                        num ="第 0004 号";
                         cfl= getResources().getStringArray(R.array.five);
                         break;
                     case 5:
                         ajlx = 6;
                         name = "法律援助";
-                        wordsize = "(援)";
-                        num ="第 0001 号";
                         cfl= getResources().getStringArray(R.array.six);
                         break;
                     case 6:
                         ajlx = 7;
                         name = "执行案件";
-                        wordsize = "(执)";
-                        num ="第 0002 号";
                         cfl= getResources().getStringArray(R.array.six);
                         break;
                     case 7:
                         ajlx = 8;
                         name = "中保案件";
-                        wordsize = "(保)";
-                        num ="第 0001 号";
                         cfl= getResources().getStringArray(R.array.six);
                         break;
                     case 8:
                         ajlx = 9;
                         name = "仲裁案件";
-                        wordsize = "(仲)";
-                        num ="第 0001 号";
                         cfl= getResources().getStringArray(R.array.seven);
                         break;
                     case 9:
                         ajlx = 10;
                         name = "破产案件";
-                        wordsize = "(破)";
-                        num ="第 0001 号";
                         cfl= getResources().getStringArray(R.array.eight);
                         break;
                     case 10:
@@ -193,16 +171,13 @@ public class AddCaseActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 casecontent.setText(cfl[i]);
-                ajfl = i+1;
+                ajfl = i;
                 Log.e("ajfl",""+ajfl);
-                Log.e("casecontent",""+casecontent.getText().toString());
                 casecontent.setTextColor(getResources().getColor(R.color.black));
             }
         });
         builder.show();
     }
 
-    private void post(){
-//        MainApi.getInstance(this).getqiandaoApi();
-    }
+
 }

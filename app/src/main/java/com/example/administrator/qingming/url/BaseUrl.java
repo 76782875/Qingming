@@ -39,11 +39,7 @@ public class BaseUrl {
 
     public final static String mycase = baseurl+"mycase?";//我的案件
 
-    public final static String anhao = baseurl+"anhao?";//查询案号
-
-    public final static String xgha = baseurl+"xgha?";//修改案号
-
-    public final static String postanhao = baseurl+"postanhao?";//添加案号
+    public final static String anhao = "http://192.168.188.122:8080/955tao/mobile/web/getCaseNo?";//查询案号
 
     public final static String lscase = baseurl+"lscase?";//律所案件
 
@@ -90,4 +86,10 @@ public class BaseUrl {
     public final static String xgshoufeixq = baseurl+"xgshoufeixq?";//收费记录
 
     public final static String falvs = baseurl+"falvs?";//法律列表
+
+    public final static String pjgz = baseurl+"pjgz?";//平均工资
+
+    public final static String gspc = baseurl+"gspc?";//伤残等级
+
+    public final static String lsf = baseurl+"lsf?";//律师费
 }

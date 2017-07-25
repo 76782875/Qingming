@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@color/cyan">
+        android:background="@color/blue">
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="收费详情"
             android:textSize="22sp"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>

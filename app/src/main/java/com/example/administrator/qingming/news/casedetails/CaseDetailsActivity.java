@@ -49,6 +49,8 @@ public class CaseDetailsActivity extends Activity{
     private LinearLayout sasq;
     private Button sabtn,ja_btn,zzbtn,agree_btn,noagree_btn;
     int mYear,mMonth,mDay;
+    int ajlx,mdlf,jzf;
+    String sffs,mname,sarq,court,detention,police,procuratorate,slbm,bzsm,ssbd,ssjd,ssdw;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,20 @@ public class CaseDetailsActivity extends Activity{
         wtr = bundle.getString("wtr","");
         dfdsr = bundle.getString("dfdsr","");
         id = bundle.getString("id","");
+        mdlf = bundle.getInt("dlf");
+        jzf = bundle.getInt("jzf");
+        sffs = bundle.getString("sffs",sffs);
+        mname =bundle.getString("name",mname);
+        sarq =bundle.getString("sarq",sarq);
+        court =bundle.getString("court",court);
+        detention =bundle.getString("detention",detention);
+        police =bundle.getString("police",police);
+        procuratorate =bundle.getString("procuratorate",procuratorate);
+        slbm =bundle.getString("slbm",slbm);
+        bzsm =bundle.getString("bzsm",bzsm);
+        ssdw =bundle.getString("ssdw",ssdw);
+        ssbd =bundle.getString("ssbd",ssbd);
+        ssjd =bundle.getString("ssjd",ssjd);
         Log.e("id---------->",""+id);
         String case_state = bundle.getString("case_state","");
         Log.e("case_state---------->",""+case_state);
@@ -103,6 +119,7 @@ public class CaseDetailsActivity extends Activity{
             ja_btn.setOnClickListener(onClickListener);
         }
 
+        ajlx = bundle.getInt("ajlx");
         int mdlf = bundle.getInt("dlf");
         String sffs = bundle.getString("sffs","");
         String lsname = bundle.getString("name","");
@@ -241,11 +258,29 @@ public class CaseDetailsActivity extends Activity{
                     intent = new Intent(CaseDetailsActivity.this,CaseRegisterActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putInt("index",102);
-//                    bundle.putInt("ajlx",ajlx);
-//                    bundle.putInt("ajfl",ajfl);
+                    bundle.putInt("ajlx",ajlx);
+                    bundle.putString("id",id);
+                    bundle.putString("ay",ay);
+                    bundle.putString("ah_number",ah_number);
+                    bundle.putString("wtr",wtr);
+                    bundle.putString("dfdsr",dfdsr);
+                    bundle.putString("sffs",sffs);
+                    bundle.putString("name",mname);
+                    bundle.putString("sarq",sarq);
+                    bundle.putString("court",court);
+                    bundle.putString("detention",detention);
+                    bundle.putString("police",police);
+                    bundle.putString("procuratorate",procuratorate);
+                    bundle.putString("slbm",slbm);
+                    bundle.putString("bzsm",bzsm);
+                    bundle.putString("ssdw",ssdw);
+                    bundle.putString("ssbd",ssbd);
+                    bundle.putString("ssjd",ssjd);
+                    bundle.putInt("dlf",mdlf);
+                    bundle.putInt("jzf",jzf);
+                    bundle.putInt("ajlx",ajlx);
                     intent.putExtras(bundle);
-//                    Log.e("ajlx====》",""+ajlx);
-//                    Log.e("ajfl=======》",""+ajfl);
+                    Log.e("ajlx====》",""+ajlx);
                     startActivity(intent);
                     break;
 //                case R.id.xuigai://跳转到案件简介页面

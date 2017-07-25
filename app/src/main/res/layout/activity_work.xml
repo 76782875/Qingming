@@ -32,48 +32,56 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/gj_banner"
         android:scaleType="centerCrop"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="2dp">
+
         <TextView
-            android:layout_weight="1"
+            android:id="@+id/dk"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:drawablePadding="10dp"
+            android:drawableTop="@mipmap/gj_01"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
             android:text="贷款利息"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:drawableTop="@mipmap/gj_01"
-            android:drawablePadding="10dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:layout_marginRight="1dp"
-            android:gravity="center"/>
+            android:textSize="16sp" />
+
         <View
             android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:background="@color/black"/>
+            android:background="@color/black" />
+
         <TextView
-            android:layout_weight="1"
+            android:id="@+id/gs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="工伤赔偿"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
             android:drawablePadding="10dp"
             android:drawableTop="@mipmap/gj_02"
-            android:paddingTop="15dp"
+            android:gravity="center"
             android:paddingBottom="15dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginLeft="1dp"
-            android:gravity="center"/>
+            android:paddingTop="15dp"
+            android:text="工伤赔偿"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
         <View
             android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:background="@color/black"/>
+            android:background="@color/black" />
+
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/rs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
@@ -87,6 +95,7 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
@@ -98,7 +107,7 @@
         android:padding="2dp">
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/ls"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="1dp"
@@ -116,6 +125,7 @@
             android:layout_height="match_parent"
             android:background="@color/black"/>
         <TextView
+            android:id="@+id/ss"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -134,7 +144,7 @@
             android:layout_height="match_parent"
             android:background="@color/black"/>
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/wyj"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"

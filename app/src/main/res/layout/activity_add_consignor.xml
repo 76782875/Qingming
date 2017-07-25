@@ -13,7 +13,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="@color/cyan">
+                android:background="@color/blue">
                 <ImageView
                     android:id="@+id/back_btn"
                     android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
                     android:text="添加委托人"
                     android:layout_centerInParent="true"
                     android:textSize="22sp"
-                    android:textColor="@color/blue"/>
+                    android:textColor="@color/white"/>
             </RelativeLayout>
             <TextView
                 android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:hint="多个委托人请用逗号分隔"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:hint="多个当事人请用逗号分隔"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请填写业务联系人"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请填写职务"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请填写主要负责人"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -199,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请填写地区影响力"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -228,7 +228,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请填写手机号码"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -257,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请填写固定电话"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -286,7 +286,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请填写邮箱"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -315,7 +315,7 @@
                     android:layout_height="wrap_content"
                     android:hint="身份证号/组织代码证号"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -499,7 +499,7 @@
                     android:layout_height="wrap_content"
                     android:hint="请填写详细地址"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -531,7 +531,7 @@
                     android:gravity="left"
                     android:padding="5dp"
                     android:textSize="14sp"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@drawable/input_black"
                     android:layout_marginTop="5dp"/>
             </LinearLayout>

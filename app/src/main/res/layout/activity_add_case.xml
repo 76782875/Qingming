@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@color/bluedark">
+        android:background="@color/blue">
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"

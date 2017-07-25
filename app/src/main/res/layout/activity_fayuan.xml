@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cyan"
+        android:background="@color/blue"
         android:padding="10dp">
         <ImageView
             android:id="@+id/back_btn"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="编辑法院机关"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="20sp" />
     </RelativeLayout>
 
@@ -177,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写审判程序"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -204,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="请选择立案日期"
-                        android:textColor="@color/cyan"
+                        android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
 
                 </LinearLayout>
@@ -230,7 +230,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="请选择开庭日期"
-                        android:textColor="@color/cyan"
+                        android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
 
                 </LinearLayout>
@@ -256,7 +256,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="请选择宣判日期"
-                        android:textColor="@color/cyan"
+                        android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
 
                 </LinearLayout>
@@ -282,7 +282,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="请选择上诉日期"
-                        android:textColor="@color/cyan"
+                        android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
 
                 </LinearLayout>
@@ -308,7 +308,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写审判机关"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -335,7 +335,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写法庭"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -362,7 +362,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写主审法官"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -389,7 +389,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写法官电话"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:inputType="number"
                         android:textSize="12sp"
                         android:background="@null"/>
@@ -417,7 +417,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写书记员"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -445,7 +445,7 @@
                         android:layout_weight="1"
                         android:hint="请填写书记员电话"
                         android:inputType="number"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -473,7 +473,7 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_weight="1"-->
             <!--android:hint="0"-->
-            <!--android:textColorHint="@color/cyan"-->
+            <!--android:textColorHint="@color/transparent80"-->
             <!--android:gravity="center_horizontal"-->
             <!--android:paddingTop="10dp"-->
             <!--android:paddingBottom="10dp"-->
@@ -488,7 +488,7 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_weight="1"-->
             <!--android:hint="0"-->
-            <!--android:textColorHint="@color/cyan"-->
+            <!--android:textColorHint="@color/transparent80"-->
             <!--android:gravity="center_horizontal"-->
             <!--android:paddingTop="10dp"-->
             <!--android:paddingBottom="10dp"-->
@@ -529,7 +529,7 @@
                     android:gravity="left"
                     android:hint="请填写备注"
                     android:padding="10dp"
-                    android:textColorHint="@color/cyan" />
+                    android:textColorHint="@color/transparent80" />
             </LinearLayout>
 
             <Button

@@ -153,6 +153,7 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
                 String dfdsr= list4.get(i).getDfdsr();
                 int dlf= list4.get(i).getDlf();
                 int jzf= list4.get(i).getJzf();
+                int ajlx = list4.get(i).getAjlx();
                 Log.e("id----->>",""+id);
                 String sffs = null;
                 if(list4.get(i).getSffs().equals("0")){
@@ -166,9 +167,17 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
                 }else if(list4.get(i).getSffs().equals("4")){
                     sffs = "固定+风险代理收费";
                 }
-
                 String name = list4.get(i).getName();
                 String sarq =  list4.get(i).getSarq();
+                String court =  list4.get(i).getCourt();
+                String detention =  list4.get(i).getDetention();
+                String police =  list4.get(i).getPolice();
+                String procuratorate =  list4.get(i).getProcuratorate();
+                String slbm =  list4.get(i).getSlbm();
+                String bzsm =  list4.get(i).getBzsm();
+                String ssdw =  list4.get(i).getSsdw();
+                String ssbd =  list4.get(i).getSsbd();
+                String ssjd =  list4.get(i).getSsjd();
 
                 Intent intent = new Intent(MyCaseActivity.this, CaseDetailsActivity.class);
                 Bundle bundle = new Bundle();
@@ -180,8 +189,18 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
                 bundle.putString("sffs",sffs);
                 bundle.putString("name",name);
                 bundle.putString("sarq",sarq);
+                bundle.putString("court",court);
+                bundle.putString("detention",detention);
+                bundle.putString("police",police);
+                bundle.putString("procuratorate",procuratorate);
+                bundle.putString("slbm",slbm);
+                bundle.putString("bzsm",bzsm);
+                bundle.putString("ssdw",ssdw);
+                bundle.putString("ssbd",ssbd);
+                bundle.putString("ssjd",ssjd);
                 bundle.putInt("dlf",dlf);
                 bundle.putInt("jzf",jzf);
+                bundle.putInt("ajlx",ajlx);
                 bundle.putString("case_state",case_state);
                 intent.putExtras(bundle);
                 startActivity(intent);

@@ -33,6 +33,10 @@ import com.example.administrator.qingming.api.MainApi;
 import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
+import com.example.administrator.qingming.model.ModelCaseNo;
+import com.example.administrator.qingming.qinminutils.GsonUtil;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.lljjcoder.citypickerview.widget.CityPicker;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -40,10 +44,15 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -53,7 +62,7 @@ import java.util.Date;
 public class CaseRegisterActivity extends Activity {
     private static final int DATE_DIALOG = 1005;
     private static final int DATE_DIALOY = 1006;
-    private TextView date_of_cognizance,timecase,wordsize,numb,lawsuit,locus_standi,shen,city,textView,shi,shoufei;
+    private TextView date_of_cognizance,lawsuit,locus_standi,shen,city,textView,shi,shoufei;
     private EditText brief,agency_fee,grant,consignor,dfdsr,slbm,ssbd,public_security,procuratorate,court,
             detention_house,remark;
     private EditText stime,sfwrc,snumb,swtr,sbzsm;
@@ -62,6 +71,8 @@ public class CaseRegisterActivity extends Activity {
     private LinearLayout choose_city,xinshi,zong,wenshu;
     private CityPicker cityPicker ;
     LoadingDialog loadingDialog;
+    private List<ModelCaseNo> list;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,41 +85,170 @@ public class CaseRegisterActivity extends Activity {
         initView();
         Bundle bundle = this.getIntent().getExtras();
         int index = bundle.getInt("index");
+        ajlx = bundle.getInt("ajlx");
         Log.e("index",""+index);
-        if(index == 101){
-            String word = bundle.getString("word");
-            String num = bundle.getString("num");
-            String name = bundle.getString("name");
-            ajfl = ""+bundle.getInt("ajfl");
-            ajlx = ""+bundle.getInt("ajlx");
-            Log.e("ajlx====》",""+ajlx);
-            Log.e("ajfl=======》",""+ajfl);
-            if(ajlx.equals("11")){
-                wenshu.setVisibility(View.VISIBLE);
-                zong.setVisibility(View.GONE);
-                if(ajfl.equals("0")){
-                    shi.setText("口头法律咨询（人次）");
-                }else if(ajfl.equals("1")){
-                    shi.setText("书面法律咨询（人次）");
-                }else if(ajfl.equals("2")){
-                    shi.setText("代写法律文书");
-                }else {
-                    shi.setText("口头法律咨询（人次）");
-                }
+        if(ajlx == 1){
+            textView.setText("民事案件");
+        }else if(ajlx == 2){
+            textView.setText("刑事案件");
+            xinshi.setVisibility(View.VISIBLE);
+        }else if(ajlx == 3){
+            textView.setText("行政案件");
+        }else if(ajlx == 4){
+            textView.setText("非诉讼法律事务");
+        }else if(ajlx == 5){
+            textView.setText("法律顾问");
+        }else if(ajlx == 6){
+            textView.setText("法律援助");
+        }else if(ajlx == 7){
+            textView.setText("执行案件");
+        }else if(ajlx == 8){
+            textView.setText("中保案件");
+        }else if(ajlx == 9){
+            textView.setText("仲裁案件");
+        }else if(ajlx == 10){
+            textView.setText("破产案件");
+        }else if(ajlx == 11){
+            textView.setText("咨询代写文书");
+            wenshu.setVisibility(View.VISIBLE);
+            zong.setVisibility(View.GONE);
+            if(ajfl == 0){
+                shi.setText("口头法律咨询（人次）");
+            }else if(ajfl == 1){
+                shi.setText("书面法律咨询（人次）");
+            }else if(ajfl == 2){
+                shi.setText("代写法律文书");
+            }else {
+                shi.setText("口头法律咨询（人次）");
             }
-            if(word.equals("(刑)")){
-                xinshi.setVisibility(View.VISIBLE);
-            }
-            wordsize.setText(word);
-            numb.setText(num);
-            textView.setText(name);
-            ah_number = timecase.getText().toString()+wordsize.getText().toString()+numb.getText().toString();
-            Log.i("ah_number",""+ah_number);
-        }else {
-
         }
 
+        if(index == 101){
+            ajfl = bundle.getInt("ajfl");
+        }else {
+            ajfl = bundle.getInt("ajfl");
+            ay = bundle.getString("ay","");
+            ah_number = bundle.getString("ah_number","");
+            wtr = bundle.getString("wtr","");
+            mdfdsr = bundle.getString("dfdsr","");
+            id = bundle.getString("id","");
+            dlf = ""+bundle.getInt("dlf");
+            zjf = ""+bundle.getInt("jzf");
+            sffs = bundle.getString("sffs","");
+            sarq =bundle.getString("sarq","");
+            mcourt =bundle.getString("court","");
+            detention =bundle.getString("detention","");
+            police =bundle.getString("police","");
+            mprocuratorate =bundle.getString("procuratorate","");
+            mslbm =bundle.getString("slbm","");
+            bzsm =bundle.getString("bzsm","");
+            ssdw =bundle.getInt("ssdw");
+            mssbd =bundle.getString("ssbd","");
+            ssjd =bundle.getInt("ssjd");
 
+            if( sffs.equals("0")){
+                shoufei.setText("免费");
+            }else if(sffs.equals("1")){
+                shoufei.setText("计件收费");
+            }else if(sffs.equals("2")){
+                shoufei.setText("按标的比例收费");
+            }else if(sffs.equals("3")){
+                shoufei.setText("风险代理收费");
+            }else if(sffs.equals("4")){
+                shoufei.setText("固定+风险代理收费");
+            }
+
+            if(ajlx == 2 ){
+                if(ssjd == 0){
+                    lawsuit.setText("侦查阶段");
+                }else if(ssjd == 1){
+                    lawsuit.setText("审查起诉");
+                }else if(ssjd == 2){
+                    lawsuit.setText("一审审理");
+                }else if(ssjd == 3){
+                    lawsuit.setText("二审审理");
+                }else if(ssjd == 4){
+                    lawsuit.setText("死刑复核");
+                }else if(ssjd == 5){
+                    lawsuit.setText("再审");
+                }
+
+                if( ssdw == 1){
+                    locus_standi.setText("原告人");
+                }else if(ssdw == 2){
+                    locus_standi.setText("犯罪嫌疑人");
+                }else if(ssdw == 3){
+                    locus_standi.setText("被告人/附带民事诉讼被告人");
+                }else if(ssdw == 4){
+                    locus_standi.setText("上诉人");
+                }else if(ssdw == 5){
+                    locus_standi.setText("被上诉人");
+                }else if(ssdw == 6){
+                    locus_standi.setText("自诉人");
+                }else if(ssdw == 7){
+                    locus_standi.setText("申诉人");
+                }else if(ssdw == 8){
+                    locus_standi.setText("被害人");
+                }else if(ssdw == 9){
+                    locus_standi.setText("其他");
+                }
+
+                public_security.setText(police);
+                procuratorate.setText(mprocuratorate);
+                court.setText(mcourt);
+                detention_house.setText(detention);
+
+            }else if(ajlx != 2 || ajlx != 11  ){
+                if (ssjd == 0) {
+                    lawsuit.setText("调查取证");
+                } else if (ssjd == 1) {
+                    lawsuit.setText("一审");
+                } else if (ssjd == 2) {
+                    lawsuit.setText("二审");
+                } else if (ssjd == 3) {
+                    lawsuit.setText("执行");
+                } else if (ssjd == 4) {
+                    lawsuit.setText("再审");
+                }
+
+                if (ssdw == 0) {
+                    locus_standi.setText("原告");
+                } else if (ssdw == 1) {
+                    locus_standi.setText("被告");
+                } else if (ssdw == 2) {
+                    locus_standi.setText("上诉人");
+                } else if (ssdw == 3) {
+                    locus_standi.setText("被上诉人");
+                } else if (ssdw == 4) {
+                    locus_standi.setText("申请执行人");
+                } else if (ssdw == 5) {
+                    locus_standi.setText("被执行人");
+                } else if (ssdw == 6) {
+                    locus_standi.setText("申请人");
+                } else if (ssdw == 7) {
+                    locus_standi.setText("被申请人");
+                } else if (ssdw == 8) {
+                    locus_standi.setText("第三人");
+                } else if (ssdw == 9) {
+                    locus_standi.setText("其他");
+                }
+            }
+
+            date_of_cognizance.setText(sarq);
+            brief.setText(ay);
+            consignor.setText(wtr);
+            dfdsr.setText(mdfdsr);
+            slbm.setText(mslbm);
+            ssbd.setText(mssbd);
+            shoufei.setText(sffs);
+            agency_fee.setText(dlf);
+            grant.setText(zjf);
+            remark.setText(bzsm);
+            date_of_cognizance.setTextColor(getResources().getColor(R.color.black));
+            shoufei.setTextColor(getResources().getColor(R.color.black));
+            lawsuit.setTextColor(getResources().getColor(R.color.black));
+            locus_standi.setTextColor(getResources().getColor(R.color.black));
+        }
         //获取日期
         final Calendar ca = Calendar.getInstance();
         mYear = ca.get(Calendar.YEAR);
@@ -117,12 +257,10 @@ public class CaseRegisterActivity extends Activity {
     }
 
     private void initView(){
+        list = new ArrayList<>();
         loadingDialog = new LoadingDialog(this);
         shoufei = (TextView) findViewById(R.id.sffs);
         textView = (TextView) findViewById(R.id.textView);
-        timecase = (TextView) findViewById(R.id.time_case);
-        wordsize = (TextView) findViewById(R.id.word_size);
-        numb = (TextView) findViewById(R.id.numb);
         date_of_cognizance = (TextView) findViewById(R.id.date_of_cognizance);//收案日期
         brief = (EditText) findViewById(R.id.brief);//案由
         consignor = (EditText) findViewById(R.id.consignor);//委托人
@@ -160,7 +298,6 @@ public class CaseRegisterActivity extends Activity {
         swtr.addTextChangedListener(new newtextwatch(swtr));
         sbzsm.addTextChangedListener(new newtextwatch(sbzsm));
 
-        timecase.setOnClickListener(onClickListener);
         date_of_cognizance.setOnClickListener(onClickListener);
         dfdsr.addTextChangedListener(new newtextwatch(dfdsr));
         slbm.addTextChangedListener(new newtextwatch(slbm));
@@ -186,9 +323,6 @@ public class CaseRegisterActivity extends Activity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.time_case:
-                    showTimeDialog();
-                    break;
                 case R.id.back_btn:
                     finish();
                     break;
@@ -208,7 +342,7 @@ public class CaseRegisterActivity extends Activity {
                     break;
                 case R.id.lawsuit:
                     str = "请填写诉讼阶段";
-                    if(ajlx.equals("2")){
+                    if(ajlx ==2 ){
                         final String[] jd = {"侦查阶段", "审查起诉", "一审审理", "二审审理", "死刑复核", "再审"};
                         showsDialog();
                         builder.setItems(jd, new DialogInterface.OnClickListener()
@@ -239,7 +373,7 @@ public class CaseRegisterActivity extends Activity {
                     break;
                 case R.id.locus_standi:
                     str = "请选择诉讼地位";
-                    if(ajlx.equals("2")){
+                    if(ajlx==2){
                         final String[] dw = {"原告人", "犯罪嫌疑人", "被告人", "上诉人", "被上诉人",
                                 "自诉人", "申诉人", "被害人", "其他"};
                         showsDialog();
@@ -273,13 +407,12 @@ public class CaseRegisterActivity extends Activity {
                     showDialog(DATE_DIALOG);
                     break;
                 case R.id.submit_btn:
-                    if(ajlx.equals("11")){
+                    if(ajlx == 11){
                         if(!TextUtils.isEmpty(stime.getText())){
                             if(!TextUtils.isEmpty(sfwrc.getText())){
                                 if(!TextUtils.isEmpty(snumb.getText())){
                                     if(!TextUtils.isEmpty(swtr.getText())){
                                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
-//                                        fwdate = stime.getText().toString();
                                         fwdate = format.format(new java.util.Date());
                                         tgfwrc = sfwrc.getText().toString();
                                         fwfy = snumb.getText().toString();
@@ -309,25 +442,8 @@ public class CaseRegisterActivity extends Activity {
                                             if(!TextUtils.isEmpty(ssbd.getText())){
                                                 if(!TextUtils.isEmpty(agency_fee.getText())){
                                                     fangfa();
-                                                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
-                                                    create_date = format.format(new java.util.Date());//创建时间
-                                                    sarq = date_of_cognizance.getText().toString();//收案日期
-                                                    ay = brief.getText().toString();//案由
-                                                    wtr = consignor.getText().toString();//委托人
-                                                    mdfdsr = dfdsr.getText().toString();//对方当事人
-                                                    mslbm = slbm.getText().toString();//受理部门
-                                                    mssbd = ssbd.getText().toString();//诉讼标的
-                                                    dlf = agency_fee.getText().toString();//代理费
-                                                    zjf = grant.getText().toString();//杂费
-//                                                    ssjd= lawsuit.getText().toString();//诉讼阶段
-//                                                    ssdw= locus_standi.getText().toString();//诉讼地位
-                                                    badq= shen.getText().toString()+city.getText().toString();//办案地区
-                                                    police= public_security.getText().toString();//公安
-                                                    mprocuratorate= procuratorate.getText().toString();//检查院
-                                                    mcourt= court.getText().toString();//法院
-                                                    detention= detention_house.getText().toString();//看守所
-                                                    remarks= remark.getText().toString();//备注说明
-                                                    postCaseRegister();
+                                                    getHttp();
+
                                                 }else {
                                                     Toast.makeText(CaseRegisterActivity.this,"代理费不能为空",Toast.LENGTH_SHORT).show();
                                                 }
@@ -375,7 +491,7 @@ public class CaseRegisterActivity extends Activity {
             }
         }
 
-        if(ajlx.equals("2")){
+        if(ajlx == 2 ){
             Log.e("","我是3");
             if(!lawsuit.getText().toString().equals("请选择诉讼阶段")){
                 if(lawsuit.getText().toString().equals("侦查阶段")){
@@ -459,8 +575,8 @@ public class CaseRegisterActivity extends Activity {
 
     }
 
-    String ajlx;
-    String ajfl;
+    int ajlx;
+    int ajfl;
     String id;
     String cid;
     String ah_number;
@@ -499,10 +615,10 @@ public class CaseRegisterActivity extends Activity {
 
     String fwnr;//服务内容
     String fwdate;//服务时间
-    String fwtype;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
+    int fwtype;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
     String tgfwrc;//提供服务人次
     String fwfy;//服务费用
-    String bzsm = "";//备注说明
+    String bzsm ;//备注说明
     String create_date;//创建时间
     public void postCase(){
         loadingDialog.show();
@@ -521,6 +637,43 @@ public class CaseRegisterActivity extends Activity {
         });
     }
 
+    /**
+     * 查询案号（有则+1，无则创建）
+     */
+    private void getHttp(){
+        MainApi.getInstance(this).getanhaoApi(cid, ajlx,new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                if(type== Constants.TYPE_SUCCESS){
+                    Toast.makeText(CaseRegisterActivity.this,"获取成功",Toast.LENGTH_SHORT).show();
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+                        ah_number =jsonObject.getString("caseNo");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Log.e("ah_number====>",""+ah_number);
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
+                    create_date = format.format(new java.util.Date());//创建时间
+                    sarq = date_of_cognizance.getText().toString();//收案日期
+                    ay = brief.getText().toString();//案由
+                    wtr = consignor.getText().toString();//委托人
+                    mdfdsr = dfdsr.getText().toString();//对方当事人
+                    mslbm = slbm.getText().toString();//受理部门
+                    mssbd = ssbd.getText().toString();//诉讼标的
+                    dlf = agency_fee.getText().toString();//代理费
+                    zjf = grant.getText().toString();//杂费
+                    badq= shen.getText().toString()+city.getText().toString();//办案地区
+                    police= public_security.getText().toString();//公安
+                    mprocuratorate= procuratorate.getText().toString();//检查院
+                    mcourt= court.getText().toString();//法院
+                    detention= detention_house.getText().toString();//看守所
+                    remarks= remark.getText().toString();//备注说明
+                    postCaseRegister();
+                }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
+            }
+        });
+    }
 
     String str;
     AlertDialog.Builder builder;
@@ -528,20 +681,6 @@ public class CaseRegisterActivity extends Activity {
         builder = new AlertDialog.Builder(CaseRegisterActivity.this,AlertDialog.THEME_HOLO_LIGHT);
         builder.setTitle(str);
     }
-
-
-//    只显示年份的时间选择器
-    Calendar calendar = Calendar.getInstance();
-    private void showTimeDialog(){
-        new YearDialog(CaseRegisterActivity.this,AlertDialog.THEME_HOLO_LIGHT,new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(Calendar.YEAR, year);
-                timecase.setText(DateUtils.clanderTodatetime(calendar, "yyyy"));
-            }
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE)).show();
-    }
-
 
     int mYear,mMonth,mDay;
 

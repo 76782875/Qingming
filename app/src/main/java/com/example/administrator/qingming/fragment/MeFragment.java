@@ -1,5 +1,6 @@
 package com.example.administrator.qingming.fragment;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,6 +31,8 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
  * Created by Administrator on 2017/4/20.
@@ -160,6 +163,7 @@ public class MeFragment extends Fragment {
                 case R.id.tuichu_btn:
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
+                    getActivity().finish();
                     break;
             }
         }

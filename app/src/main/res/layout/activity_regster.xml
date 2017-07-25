@@ -8,19 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@color/cyan">
+        android:background="@color/blue">
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/arraw_left"/>
+            android:src="@mipmap/arraw_left"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register"
             android:layout_centerInParent="true"
             android:textSize="24sp"
-            android:textColor="@color/blue"/>
+            android:textColor="@color/white"/>
 
 
     </RelativeLayout>

@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@color/cyan">
+        android:background="@color/blue">
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
             android:text="新增事件"
             android:layout_centerInParent="true"
             android:textSize="24sp"
-            android:textColor="@color/blue"/>
+            android:textColor="@color/white"/>
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="请选择事件类型"
-                    android:textColor="@color/cyan"/>
+                    android:textColor="@color/transparent80"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="请选择工作类型"
-                    android:textColor="@color/cyan"/>
+                    android:textColor="@color/transparent80"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                     android:id="@+id/edit_calendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@null"/>
             </LinearLayout>
             <View
@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="请选择开始时间"
-                    android:textColor="@color/cyan"/>
+                    android:textColor="@color/transparent80"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="请选择结束时间"
-                    android:textColor="@color/cyan"/>
+                    android:textColor="@color/transparent80"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:hint="请填写备注"
-                    android:textColorHint="@color/cyan"
+                    android:textColorHint="@color/transparent80"
                     android:background="@drawable/input_box"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"

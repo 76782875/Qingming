@@ -210,7 +210,7 @@ public class MainApi extends BaseApi {
     /**
      * 添加案件
      */
-    public void getpostcaseApi(String id,String cid,String ajlx,String ajfl,String ah_number,String sarq,
+    public void getpostcaseApi(String id,String cid,int ajlx,int ajfl,String ah_number,String sarq,
                                String ay,String remarks, String wtr, String dfdsr,String slbm,
                                String ssbd,String sffs,String dlf,String zjf, int ssjd, int ssdw,
                                String badq, String police, String mprocuratorate, String mcourt,
@@ -246,7 +246,7 @@ public class MainApi extends BaseApi {
      * 添加案件(咨询代写文书)
      */
     public void getpostcasezxApi(String id,String cid,String fwnr,String fwdate,String ah_number,
-                                 String fwtype,String tgfwrc,String fwfy, String wtr,
+                                 int fwtype,String tgfwrc,String fwfy, String wtr,
                                String bzsm,String create_date,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("create_id", id + "");
@@ -814,11 +814,39 @@ public class MainApi extends BaseApi {
     /**
      * 案号
      */
-    public void getanhaoApi(int cons_type,GetResultCallBack callBack) {
+    public void getanhaoApi(String company_id,int ajlx,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
-        map.put("cons_type", cons_type + "");
+        map.put("companyId", company_id + "");
+        map.put("ajlx", ajlx + "");
         postLoad(BaseUrl.anhao, map, callBack);
     }
 
+    /**
+     * 平均工资
+     */
+    public void getpjgzApi(GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        postLoad(BaseUrl.pjgz, map, callBack);
+    }
 
+    /**
+     * 伤残等级
+     */
+    public void getgspcApi(int qmarea_id,int scdj,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("qmarea_id", qmarea_id + "");
+        map.put("scdj", scdj + "");
+        postLoad(BaseUrl.gspc, map, callBack);
+    }
+
+
+    /**
+     * 伤残等级
+     */
+    public void getlsfApi(int df,int fyflag,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("df", df + "");
+        map.put("fyflag", fyflag + "");
+        postLoad(BaseUrl.lsf, map, callBack);
+    }
 }

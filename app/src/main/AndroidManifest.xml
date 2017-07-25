@@ -80,6 +80,9 @@
         <activity android:name=".activity.LszsActivity"/><!--律师助手页面-->
         <activity android:name=".activity.FaLvActivity"/>
         <activity android:name=".activity.LsszActivity"/>
+        <activity android:name=".activity.WorkJusuanActivity"/>
+        <activity android:name=".activity.LsfjsActivity"/>
+        <activity android:name=".activity.SsfJsActivity"/>
 
         <!--百度定位-->
         <service android:name="com.baidu.location.f"

@@ -46,7 +46,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="5dp"
-            android:textColorHint="@color/cyan"
+            android:textColorHint="@color/transparent80"
             android:textSize="14sp" />
 
         <TextView

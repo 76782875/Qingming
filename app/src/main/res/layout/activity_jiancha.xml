@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cyan"
+        android:background="@color/blue"
         android:padding="10dp">
         <ImageView
             android:id="@+id/back_btn"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="编辑检查机关"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="20sp" />
     </RelativeLayout>
 
@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写办案地点"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -202,7 +202,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写办案机关"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -229,7 +229,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写部门"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -256,7 +256,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写承办人"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"/>
 
@@ -283,7 +283,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="请填写联系电话"
-                        android:textColorHint="@color/cyan"
+                        android:textColorHint="@color/transparent80"
                         android:textSize="12sp"
                         android:background="@null"
                         android:inputType="number"/>
@@ -311,13 +311,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="起始时间"
-                        android:textColor="@color/cyan"
+                        android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="--"
-                        android:textColor="@color/cyan"
+                        android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
                     <TextView
                         android:id="@+id/time_finish"
@@ -325,7 +325,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="截止时间"
-                        android:textColor="@color/cyan"
+                        android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
 
                 </LinearLayout>
@@ -360,7 +360,7 @@
                     android:gravity="left"
                     android:hint="请填写备注"
                     android:padding="10dp"
-                    android:textColorHint="@color/cyan" />
+                    android:textColorHint="@color/transparent80" />
             </LinearLayout>
 
             <Button

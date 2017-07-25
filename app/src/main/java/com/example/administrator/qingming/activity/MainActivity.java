@@ -109,8 +109,8 @@ public class MainActivity extends Activity {
             Intent intent;
             switch (v.getId()){
                 case R.id.login_btn:
-                    intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
-                    startActivity(intent);
+//                    intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
+//                    startActivity(intent);
                     //通过
                     boolean CheckBoxLogin = checkBox.isChecked();
                     //按钮被选中，下次进入时会显示账号和密码
@@ -128,18 +128,18 @@ public class MainActivity extends Activity {
                         editor.putBoolean("checkboxBoolean", false);
                         editor.commit();
                     }
-//                    new Thread(){
-//                    @Override
-//                    public void run() {
-//                        try {
-//                            Looper.prepare();
-//                            getString();
-//                            Looper.loop();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }.start();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Looper.prepare();
+                                getString();
+                                Looper.loop();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }.start();
                     break;
                 case R.id.regster_btn:
                     intent = new Intent(MainActivity.this,RegsterActivity.class);
