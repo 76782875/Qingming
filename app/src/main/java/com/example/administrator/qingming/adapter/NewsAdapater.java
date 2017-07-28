@@ -20,7 +20,7 @@ import java.util.List;
 
 public class NewsAdapater extends BaseAdapter {
     private Context context;
-    private List<ModelNews.ListBean> list = null;
+    private List<ModelNews.ListBean> list;
     public NewsAdapater(Context context,List<ModelNews.ListBean> list){
         this.context=context;
         this.list= list ;

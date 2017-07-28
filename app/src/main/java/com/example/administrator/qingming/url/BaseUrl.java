@@ -33,9 +33,11 @@ public class BaseUrl {
 
     public final static String insert_data = baseurl+"insert_data?";//修改个人资料
 
-    public final static String postcase = baseurl+"postcase?";//修改个人资料
+    public final static String postcase = baseurl+"postcase?";//添加案件
 
-    public final static String postcasezx = baseurl+"postcasezx?";//修改个人资料
+    public final static String postcasezx = baseurl+"postcasezx?";//添加案件(咨询)
+
+    public final static String xgmycase = baseurl+"xgmycase?";//修改案件
 
     public final static String mycase = baseurl+"mycase?";//我的案件
 
@@ -75,6 +77,8 @@ public class BaseUrl {
 
     public final static String fayuan = baseurl+"fayuan?";//法院开庭
 
+    public final static String newsfayuan = baseurl+"newsfayuan?";//法院开庭
+
     public final static String xgzjzt = baseurl+"xgzjzt?";//修改案件状态
 
     public final static String postqiandao = baseurl+"postqiandao?";//添加打卡
@@ -92,4 +96,14 @@ public class BaseUrl {
     public final static String gspc = baseurl+"gspc?";//伤残等级
 
     public final static String lsf = baseurl+"lsf?";//律师费
+
+    public final static String addxxtz = baseurl+"addxxtz?";//消息保存案件状态
+
+    public final static String xiaoxi ="http://192.168.188.122:8080/955tao/mobile/web/news?";//消息
+
+    public final static String mycases = baseurl+"mycases?";//消息下个页面
+
+    public final static String cls = baseurl+"cls?";//查询律师
+
+    public final static String xgls = baseurl+"xgls?";//查询律师
 }

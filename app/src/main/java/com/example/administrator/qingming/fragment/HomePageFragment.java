@@ -26,6 +26,7 @@ import com.example.administrator.qingming.activity.NewsActivity;
 import com.example.administrator.qingming.activity.PressActivity;
 import com.example.administrator.qingming.activity.ShoufeiActivity;
 import com.example.administrator.qingming.adapter.PressAdater;
+import com.example.administrator.qingming.adapter.PressHomeAdapter;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
@@ -60,7 +61,6 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_homepage,null);
-
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("qinmin", Context.MODE_PRIVATE);
         id = sharedPreferences.getString("id","");
@@ -115,6 +115,8 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
 
         pressAdater = new PressAdater(list,getActivity());
         listView.setAdapter(pressAdater);
+//        PressHomeAdapter pressHomeAdapter = new PressHomeAdapter(list,getActivity());
+//        listView.setAdapter(pressHomeAdapter);
 //                    setListViewHeightBasedOnChildren(listView);//计算listview的高度
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -231,7 +233,7 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
     private String cid;
     PressAdater pressAdater;
     public void getString(){
-        MainApi.getInstance(getActivity()).getNewsApi(gsid,product_brand,new GetResultCallBack() {
+        MainApi.getInstance(getActivity()).getNewsApi(gsid,new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 pullToRefreshView.onHeaderRefreshComplete();

@@ -47,7 +47,7 @@ public class CaseDetailsActivity extends Activity{
     private String ah_number,id,wtr,dfdsr,ay;
     private int ysje;
     private LinearLayout sasq;
-    private Button sabtn,ja_btn,zzbtn,agree_btn,noagree_btn;
+    private Button sabtn,ja_btn,zzbtn,agree_btn,noagree_btn,cwsp_btn;
     int mYear,mMonth,mDay;
     int ajlx,mdlf,jzf;
     String sffs,mname,sarq,court,detention,police,procuratorate,slbm,bzsm,ssbd,ssjd,ssdw;
@@ -58,83 +58,85 @@ public class CaseDetailsActivity extends Activity{
 
         init();
         Bundle bundle = getIntent().getExtras();
-        ay = bundle.getString("ay","");
-        ah_number = bundle.getString("ah_number","");
-        wtr = bundle.getString("wtr","");
-        dfdsr = bundle.getString("dfdsr","");
-        id = bundle.getString("id","");
-        mdlf = bundle.getInt("dlf");
-        jzf = bundle.getInt("jzf");
-        sffs = bundle.getString("sffs",sffs);
-        mname =bundle.getString("name",mname);
-        sarq =bundle.getString("sarq",sarq);
-        court =bundle.getString("court",court);
-        detention =bundle.getString("detention",detention);
-        police =bundle.getString("police",police);
-        procuratorate =bundle.getString("procuratorate",procuratorate);
-        slbm =bundle.getString("slbm",slbm);
-        bzsm =bundle.getString("bzsm",bzsm);
-        ssdw =bundle.getString("ssdw",ssdw);
-        ssbd =bundle.getString("ssbd",ssbd);
-        ssjd =bundle.getString("ssjd",ssjd);
-        Log.e("id---------->",""+id);
-        String case_state = bundle.getString("case_state","");
-        Log.e("case_state---------->",""+case_state);
+        if(bundle != null){
+            ay = bundle.getString("ay","");
+            ah_number = bundle.getString("ah_number","");
+            wtr = bundle.getString("wtr","");
+            dfdsr = bundle.getString("dfdsr","");
+            id = bundle.getString("id","");
+            mdlf = bundle.getInt("dlf");
+            jzf = bundle.getInt("jzf");
+            sffs = bundle.getString("sffs",sffs);
+            mname =bundle.getString("name",mname);
+            sarq =bundle.getString("sarq",sarq);
+            court =bundle.getString("court",court);
+            detention =bundle.getString("detention",detention);
+            police =bundle.getString("police",police);
+            procuratorate =bundle.getString("procuratorate",procuratorate);
+            slbm =bundle.getString("slbm",slbm);
+            bzsm =bundle.getString("bzsm",bzsm);
+            ssdw =bundle.getString("ssdw",ssdw);
+            ssbd =bundle.getString("ssbd",ssbd);
+            ssjd =bundle.getString("ssjd",ssjd);
+            Log.e("id---------->",""+id);
+            String case_state = bundle.getString("case_state","");
+            Log.e("case_state---------->",""+case_state);
 
-        if(case_state.equals("-1")){
-            sabtn.setVisibility(View.VISIBLE);
-            zzbtn.setVisibility(View.VISIBLE);
-            sabtn.setOnClickListener(onClickListener);
-            zzbtn.setOnClickListener(onClickListener);
-        }else if(case_state.equals("1")){
-            sabtn.setVisibility(View.VISIBLE);
-            zzbtn.setVisibility(View.VISIBLE);
-            sabtn.setOnClickListener(onClickListener);
-            zzbtn.setOnClickListener(onClickListener);
-        }else if(case_state.equals("2")){
-            zzbtn.setVisibility(View.VISIBLE);
-            zzbtn.setOnClickListener(onClickListener);
-        }else if(case_state.equals("3")){
-            zzbtn.setVisibility(View.VISIBLE);
-            zzbtn.setOnClickListener(onClickListener);
-        }else if(case_state.equals("4")){
-            zzbtn.setVisibility(View.VISIBLE);
-            zzbtn.setOnClickListener(onClickListener);
-            ja_btn.setVisibility(View.VISIBLE);
-            ja_btn.setOnClickListener(onClickListener);
-        }else if(case_state.equals("5")){
-            zzbtn.setVisibility(View.VISIBLE);
-            zzbtn.setOnClickListener(onClickListener);
-        }else if(case_state.equals("6")){
-            zzbtn.setVisibility(View.VISIBLE);
-            zzbtn.setOnClickListener(onClickListener);
-        }else if(case_state.equals("7")){
-            Log.e("case_state---------->","没有按钮");
-        }else if(case_state.equals("0")){
-            Log.e("case_state---------->","没有按钮");
-        }else if(case_state.equals("-4")){
-            zzbtn.setVisibility(View.VISIBLE);
-            zzbtn.setOnClickListener(onClickListener);
-            ja_btn.setVisibility(View.VISIBLE);
-            ja_btn.setOnClickListener(onClickListener);
+            if(case_state.equals("-1")){
+                sabtn.setVisibility(View.VISIBLE);
+                zzbtn.setVisibility(View.VISIBLE);
+                sabtn.setOnClickListener(onClickListener);
+                zzbtn.setOnClickListener(onClickListener);
+            }else if(case_state.equals("1")){
+                sabtn.setVisibility(View.VISIBLE);
+                zzbtn.setVisibility(View.VISIBLE);
+                sabtn.setOnClickListener(onClickListener);
+                zzbtn.setOnClickListener(onClickListener);
+            }else if(case_state.equals("2")){
+                zzbtn.setVisibility(View.VISIBLE);
+                zzbtn.setOnClickListener(onClickListener);
+            }else if(case_state.equals("3")){
+                zzbtn.setVisibility(View.VISIBLE);
+                zzbtn.setOnClickListener(onClickListener);
+            }else if(case_state.equals("4")){
+                zzbtn.setVisibility(View.VISIBLE);
+                zzbtn.setOnClickListener(onClickListener);
+                ja_btn.setVisibility(View.VISIBLE);
+                ja_btn.setOnClickListener(onClickListener);
+            }else if(case_state.equals("5")){
+                zzbtn.setVisibility(View.VISIBLE);
+                zzbtn.setOnClickListener(onClickListener);
+            }else if(case_state.equals("6")){
+                zzbtn.setVisibility(View.VISIBLE);
+                zzbtn.setOnClickListener(onClickListener);
+            }else if(case_state.equals("7")){
+                Log.e("case_state---------->","没有按钮");
+            }else if(case_state.equals("0")){
+                Log.e("case_state---------->","没有按钮");
+            }else if(case_state.equals("-4")){
+                zzbtn.setVisibility(View.VISIBLE);
+                zzbtn.setOnClickListener(onClickListener);
+                ja_btn.setVisibility(View.VISIBLE);
+                ja_btn.setOnClickListener(onClickListener);
+            }
+
+            ajlx = bundle.getInt("ajlx");
+            int mdlf = bundle.getInt("dlf");
+            String sffs = bundle.getString("sffs","");
+            String lsname = bundle.getString("name","");
+            String sarq = bundle.getString("sarq","");
+            int jzf = bundle.getInt("jzf");
+
+            ysje = mdlf + jzf ;
+            Log.e("---------->",""+ysje);
+
+            name.setText(ay);
+            ah.setText(ah_number);
+            dlf.setText(""+mdlf);
+            jssf.setText(sffs);
+            ls.setText(lsname);
+            time.setText(sarq);
         }
-
-        ajlx = bundle.getInt("ajlx");
-        int mdlf = bundle.getInt("dlf");
-        String sffs = bundle.getString("sffs","");
-        String lsname = bundle.getString("name","");
-        String sarq = bundle.getString("sarq","");
-        int jzf = bundle.getInt("jzf");
-
-        ysje = mdlf + jzf ;
-        Log.e("---------->",""+ysje);
-
-        name.setText(ay);
-        ah.setText(ah_number);
-        dlf.setText(""+mdlf);
-        jssf.setText(sffs);
-        ls.setText(lsname);
-        time.setText(sarq);
 
         //获取日期
         final Calendar ca = Calendar.getInstance();
@@ -164,6 +166,7 @@ public class CaseDetailsActivity extends Activity{
         sabtn = (Button) findViewById(R.id.sa_btn);
         zzbtn = (Button) findViewById(R.id.zz_btn);
         ja_btn = (Button) findViewById(R.id.ja_btn);
+        cwsp_btn = (Button) findViewById(R.id.cwsp_btn);
 
         backbtn.setOnClickListener(onClickListener);
         modifybtn.setOnClickListener(onClickListener);
@@ -348,15 +351,15 @@ public class CaseDetailsActivity extends Activity{
                     startActivity(intent);
                     break;
                 case R.id.sa_btn://收案申请按钮
-                    case_state = "2";
+                    case_state = 2;
                     postHttp();
                     break;
                 case R.id.ja_btn://结案案件按钮
-                    case_state = "5";
+                    case_state = 5;
                     postHttp();
                     break;
                 case R.id.zz_btn://中止案件按钮
-                    case_state = "0";
+                    case_state = 0;
                     postHttp();
                     break;
             }
@@ -365,7 +368,7 @@ public class CaseDetailsActivity extends Activity{
 
     LoadingDialog loadingDialog;
     String update_date;
-    String case_state;
+    int case_state;
     private void postHttp(){
         loadingDialog.show();
         loadingDialog.setLoadingContent("上传中...");

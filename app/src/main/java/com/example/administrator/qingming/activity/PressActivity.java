@@ -36,6 +36,9 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
     private TextView examine1,examine2,examine3;
     private View examine_line1,examine_line2,examine_line3;
     private List<ModelPress.ResultBean> list;
+    private List<ModelPress.ResultBean> list1;
+    private List<ModelPress.ResultBean> list2;
+    private List<ModelPress.ResultBean> list3;
     private ListView listView;
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -52,6 +55,9 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
 
     private void initView() {
         list = new ArrayList<>();
+        list1 = new ArrayList<>();
+        list2 = new ArrayList<>();
+        list3 = new ArrayList<>();
         backbtn = (ImageView) findViewById(R.id.back_btn);
         examine1 = (TextView) findViewById(R.id.examine1);
         examine2 = (TextView) findViewById(R.id.examine2);
@@ -62,6 +68,21 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
         listView = (ListView) findViewById(R.id.listview);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);//刷新接口
+
+        pressAdater = new PressAdater(list,PressActivity.this);
+        listView.setAdapter(pressAdater);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                cid = list.get(position).getId();
+                Log.i("cid","+++++"+cid);
+                Intent intent = new Intent(PressActivity.this,IntoPressActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("cid",cid);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         backbtn.setOnClickListener(onClickListener);
         examine1.setOnClickListener(onClickListener);
@@ -77,8 +98,8 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
                     finish();
                     break;
                 case R.id.examine1:
-                    product_brand = 14;
-                    getString();
+                    index = 0;
+                    setListData();
                     examine_line1.setVisibility(View.VISIBLE);
                     examine_line2.setVisibility(View.INVISIBLE);
                     examine_line3.setVisibility(View.INVISIBLE);
@@ -87,8 +108,8 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
                     examine3.setTextColor(getResources().getColor(R.color.blue));
                     break;
                 case R.id.examine2:
-                    product_brand = 15;
-                    getString();
+                    index = 1;
+                    setListData();
                     examine_line1.setVisibility(View.INVISIBLE);
                     examine_line2.setVisibility(View.VISIBLE);
                     examine_line3.setVisibility(View.INVISIBLE);
@@ -97,8 +118,8 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
                     examine3.setTextColor(getResources().getColor(R.color.blue));
                     break;
                 case R.id.examine3:
-                    product_brand = 16;
-                    getString();
+                    index = 2;
+                    setListData();
                     examine_line3.setVisibility(View.VISIBLE);
                     examine_line1.setVisibility(View.INVISIBLE);
                     examine_line2.setVisibility(View.INVISIBLE);
@@ -110,12 +131,24 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
         }
     };
 
+    private int index = 0;
+    private void setListData(){
+        list.clear();
+        if (index == 0)
+            list .addAll(list1);
+        else if(index == 1)
+            list.addAll(list2);
+        else if(index == 2)
+            list.addAll(list3);
+        pressAdater.notifyDataSetChanged();
+    }
+
     private String gsid ;
-    private int product_brand =14 ;
+
     private String cid;
     PressAdater pressAdater;
     public void getString(){
-        MainApi.getInstance(this).getNewsApi(gsid,product_brand,new GetResultCallBack() {
+        MainApi.getInstance(this).getNewsApi(gsid,new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipeRefreshLayout.setRefreshing(false);//刷新完成
@@ -124,21 +157,17 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
                             result,ModelPress.ResultBean.class);
                     list.clear();
                     list.addAll(resultBeanList);
-
-                    pressAdater = new PressAdater(list,PressActivity.this);
-                    listView.setAdapter(pressAdater);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            cid = list.get(position).getId();
-                            Log.i("cid","+++++"+cid);
-                            Intent intent = new Intent(PressActivity.this,IntoPressActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("cid",cid);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
+                    for (int i =0;i<resultBeanList.size();i++){
+                        if(resultBeanList.get(i).getProduct_brand().equals("14")){
+                            list1.add(resultBeanList.get(i));
+                        }else if(resultBeanList.get(i).getProduct_brand().equals("15")){
+                            list2.add(resultBeanList.get(i));
+                        }else if(resultBeanList.get(i).getProduct_brand().equals("16")){
+                            list3.add(resultBeanList.get(i));
                         }
-                    });
+                    }
+
+                   setListData();
                 }else BaseApi.showErrMsg(PressActivity.this,result);
             }
         });

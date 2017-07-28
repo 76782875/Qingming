@@ -83,7 +83,7 @@ public class MeActivity extends Activity implements View.OnClickListener{
 
     private void initView() {
         loadingDialog = new LoadingDialog(this);
-        imageView = (ImageView) findViewById(R.id.imageview);
+        imageView = (ImageView) findViewById(R.id.head_image);
         backbtn = (ImageView) findViewById(R.id.back_btn);
         submitbtn = (TextView) findViewById(R.id.submit_btn);
         gender= (EditText) findViewById(R.id.gender);
@@ -194,7 +194,7 @@ public class MeActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.imageview://从相册里面取照片
+            case R.id.head_image://从相册里面取照片
                 intent= new Intent(Intent.ACTION_PICK, null);
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                 startActivityForResult(intent, 1);

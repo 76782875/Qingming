@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:button="@null"
             android:text="办公"
-            android:drawableTop="@mipmap/work"
+            android:drawableTop="@drawable/btn_application"
             android:drawablePadding="5dp"
             android:gravity="center_horizontal"/>
         <RadioButton
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:button="@null"
             android:text="通讯录"
-            android:drawableTop="@drawable/btn_application"
+            android:drawableTop="@drawable/btn_phone"
             android:drawablePadding="5dp"
             android:gravity="center_horizontal"/>
 

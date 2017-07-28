@@ -434,18 +434,25 @@ public class CaseRegisterActivity extends Activity {
                             Toast.makeText(CaseRegisterActivity.this,"服务时间不能为空",Toast.LENGTH_SHORT).show();
                         }
                     }else{
-                        if(!TextUtils.isEmpty( date_of_cognizance.getText())){
+                        if(!date_of_cognizance.getText().toString().equals("请填写收案日期")){
                             if(!TextUtils.isEmpty(brief.getText())){
                                 if(!TextUtils.isEmpty(consignor.getText())){
                                     if(!TextUtils.isEmpty(dfdsr.getText())){
                                         if(!TextUtils.isEmpty(slbm.getText())){
                                             if(!TextUtils.isEmpty(ssbd.getText())){
-                                                if(!TextUtils.isEmpty(agency_fee.getText())){
-                                                    fangfa();
-                                                    getHttp();
-
+                                                if(!shoufei.getText().toString().equals("请选择收费方式")){
+                                                    if(!TextUtils.isEmpty(agency_fee.getText())){
+                                                        if(!TextUtils.isEmpty(grant.getText())){
+                                                            fangfa();
+                                                            getHttp();
+                                                        }else {
+                                                            Toast.makeText(CaseRegisterActivity.this,"杂费不能为空",Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }else {
+                                                        Toast.makeText(CaseRegisterActivity.this,"代理费不能为空",Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }else {
-                                                    Toast.makeText(CaseRegisterActivity.this,"代理费不能为空",Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(CaseRegisterActivity.this,"收费方式不能为空",Toast.LENGTH_SHORT).show();
                                                 }
                                             }else {
                                                 Toast.makeText(CaseRegisterActivity.this,"诉讼标的不能为空",Toast.LENGTH_SHORT).show();
@@ -611,6 +618,22 @@ public class CaseRegisterActivity extends Activity {
                 }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
             }
         });
+    }
+
+    public void postxgmycase(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("上传中...");
+        MainApi.getInstance(this).getxgmycaseApi(id, cid, ajlx,ajfl,ah_number,sarq,ay,remarks, wtr,
+                mdfdsr, mslbm, mssbd,sffs , dlf,zjf,ssjd,ssdw,badq,police,mprocuratorate,mcourt,detention,create_date, new GetResultCallBack() {
+                    @Override
+                    public void getResult(String result, int type) {
+                        if(type== Constants.TYPE_SUCCESS){
+                            loadingDialog.dismiss();
+                            Toast.makeText(CaseRegisterActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
+                    }
+                });
     }
 
     String fwnr;//服务内容

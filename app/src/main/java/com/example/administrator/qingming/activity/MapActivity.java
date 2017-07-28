@@ -25,11 +25,14 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
+import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.CircleOptions;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.Stroke;
 import com.baidu.mapapi.model.LatLng;
 import com.example.administrator.qingming.R;
@@ -54,6 +57,7 @@ public class MapActivity extends Activity{
     private LinearLayout sb,xb;
     public MapView mapView = null;
     public BaiduMap baiduMap = null;
+    public BaiduMap baiduMapcril = null;
     // 定位相关声明
     public LocationClient locationClient = null;
     //自定义图标
@@ -105,7 +109,7 @@ public class MapActivity extends Activity{
 //        getHttp();
 
         //获取日期
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd  hh:mm:ss");
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd  HH:mm:ss");
         String date = sDateFormat.format(new java.util.Date());
 
         create_date = sDateFormat.format(new java.util.Date());
@@ -116,7 +120,7 @@ public class MapActivity extends Activity{
         mMonth = ca.get(Calendar.MONTH);
         mDay = ca.get(Calendar.DAY_OF_MONTH);
         mWeek = String.valueOf(ca.get(Calendar.DAY_OF_WEEK));
-        HH = ca.get(Calendar.HOUR);
+        HH = ca.get(Calendar.HOUR_OF_DAY);
         NN = ca.get(Calendar.MINUTE);
         SS = ca.get(Calendar.SECOND);
 
@@ -176,6 +180,7 @@ public class MapActivity extends Activity{
         longitude = (TextView) findViewById(R.id.longitude);
         mapView = (MapView) this.findViewById(R.id.baidu_map); // 获取地图控件引用
         baiduMap = mapView.getMap();
+        baiduMapcril = mapView.getMap();
         //开启定位图层
         baiduMap.setMyLocationEnabled(true);
 
@@ -204,9 +209,10 @@ public class MapActivity extends Activity{
                     break;
                 case R.id.sb:
                     if(!issb){
+                        Log.e("===>",""+HH);
                         index =0;
                         dakalx = "1";
-                        if(HH<=9){
+                        if(HH <= 9){
                             dakafl = ""+1;
                         }else {
                             dakafl = ""+2;
@@ -223,9 +229,14 @@ public class MapActivity extends Activity{
                         index = 1;
                         dakalx = "2";
                         minuteOfDay = HH * 60 + NN;// 从0:00分开是到目前为止的分钟数
-                        if(minuteOfDay>=start){
+                        Log.e("===>",""+HH);
+                        Log.e("===>",""+start);
+                        Log.e("===>",""+minuteOfDay);
+                        if(minuteOfDay >= start){
+                            Log.e("===>","正常");
                             dakafl = ""+1;
                         }else {
+                            Log.e("===>","早退");
                             dakafl = ""+5;
                         }
                         postHttp();
@@ -300,16 +311,12 @@ public class MapActivity extends Activity{
             SharedPreferences.Editor editor = sharedPreferences1.edit();
             editor.putInt("date", dkday);//打卡时间
             editor.putInt("sb", sdkdate);//是否上班签到
-            Log.e("=======>", "sdkdate========" + sdkdate);
-            Log.e("=======>", "dkday========" + dkday);
             editor.commit();
         }else {
             SharedPreferences sharedPreferences2 = getSharedPreferences("xdaka", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor1 = sharedPreferences2.edit();
             editor1.putInt("date", dkday);//打卡时间
             editor1.putInt("xb", xddate);//是否下班签到
-            Log.e("=======>", "xddate=========" + xddate);
-            Log.e("=======>", "dkday========" + dkday);
             editor1.commit();
         }
     }
@@ -331,19 +338,19 @@ public class MapActivity extends Activity{
             if (isFirstLoc) {
                 isFirstLoc = false;
                 LatLng ll = new LatLng(location.getLatitude(),location.getLongitude());
-
+                LatLng llcir = new LatLng(29.58929,106.47305);//圆心坐标
                 //地图标注
-//                BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.mipmap.adress);
-//                OverlayOptions options = new MarkerOptions().position(ll).icon(bitmapDescriptor);
-//                baiduMap.addOverlay(options);
+                BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromResource(R.mipmap.adress);
+                OverlayOptions options = new MarkerOptions().position(ll).icon(bitmapDescriptor);
+                baiduMap.addOverlay(options);
                 //标绘圆
                 CircleOptions circleOptions = new CircleOptions();
-                circleOptions.center(ll);//设置圆心坐标
+                circleOptions.center(llcir);//设置圆心坐标
                 circleOptions.fillColor(0Xaafaa355);//圆的填充颜色
                 circleOptions.fillColor(0Xaafaa355);//圆的填充颜色
                 circleOptions.radius(500);//设置半径
                 circleOptions.stroke(new Stroke(2, 0xAA00FF00));//设置边框
-                baiduMap.addOverlay(circleOptions);
+                baiduMapcril.addOverlay(circleOptions);
 
                 MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll, 16);	//设置地图中心点以及缩放级别
 //				MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);

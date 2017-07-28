@@ -289,7 +289,7 @@ public class AddChargeActivity extends Activity {
     String mfylx;
     String create_time;
     String create_name;
-    String bz = "";
+    String bz ;
     private void postHttp(){
         loading.show();
         loading.setLoadingContent("上传中...");

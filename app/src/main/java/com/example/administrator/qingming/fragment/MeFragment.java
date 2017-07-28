@@ -40,8 +40,8 @@ import static android.content.Context.ACTIVITY_SERVICE;
 
 public class MeFragment extends Fragment {
     private List<PersonalDataModel.ResultBean> list1;
-    private EditText officename,consignor,weight,phone_num,gender;
-    private TextView submit_btn,tuichu_btn;
+    private EditText consignor,weight,phone_num,gender;
+    private TextView officename,submit_btn,tuichu_btn;
     String myofficename,myconsignor,myemail,myphone_num,bz;
     View view;
     private LoadingDialog loadingDialog;
@@ -61,7 +61,7 @@ public class MeFragment extends Fragment {
     private void initView() {
         list1 = new ArrayList<>();
         loadingDialog = new LoadingDialog(getActivity());
-        officename= (EditText) view.findViewById(R.id.officename);
+        officename= (TextView) view.findViewById(R.id.officename);
         consignor= (EditText) view.findViewById(R.id.consignor);
         weight= (EditText) view.findViewById(R.id.weight);
         phone_num= (EditText) view.findViewById(R.id.phone_num);
@@ -71,22 +71,22 @@ public class MeFragment extends Fragment {
 
         submit_btn.setOnClickListener(onclick);
         tuichu_btn.setOnClickListener(onclick);
-        officename.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                myofficename = s.toString();
-            }
-        });//所属公司
+//        officename.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                myofficename = s.toString();
+//            }
+//        });//所属公司
         consignor.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

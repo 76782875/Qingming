@@ -24,7 +24,7 @@ public class GsonUtil {
     }
 
     public static <T> T fromJSONData(Gson gson, String json, Class<T> cls) {
-        return gson.fromJson(new JsonParser().parse(json).getAsJsonObject().getAsJsonObject("result").toString(), cls);
+        return gson.fromJson(new JsonParser().parse(json).getAsJsonObject().toString(), cls);
     }
 
 }

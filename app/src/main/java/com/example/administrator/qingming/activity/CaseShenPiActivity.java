@@ -1,7 +1,9 @@
 package com.example.administrator.qingming.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -40,6 +42,10 @@ public class CaseShenPiActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_case_shenpi);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("qinmin", Context.MODE_PRIVATE);
+        create_id = sharedPreferences.getString("id","");
+        company_id = sharedPreferences.getString("cid","");
+
         initView();
         Bundle bundle = getIntent().getExtras();
         ay = bundle.getString("ay","");
@@ -48,19 +54,34 @@ public class CaseShenPiActivity extends Activity {
         dfdsr = bundle.getString("dfdsr","");
         id = bundle.getString("id","");
         Log.e("id---------->",""+id);
-        String case_state = bundle.getString("case_state","");
-        if(case_state.equals("2")  || case_state.equals("5")){
+        case_state = bundle.getInt("case_state");
+        String createid = bundle.getString("createid","");
+        Log.e("case_state===>",""+case_state);
+        if(case_state==2){
+            Log.e("case_state===>>","这是主任审批");
             //主任审批
             caiwu_btn.setVisibility(View.VISIBLE);
             caiwu_btn.setOnClickListener(onclicklisten);
             agree_btn.setOnClickListener(onclicklisten);
             noagree_btn.setOnClickListener(onclicklisten);
-        }else {
+        }else if(case_state == 5){
+            Log.e("case_state===>>","这是主任审批");
+            //主任审批
+            caiwu_btn.setVisibility(View.VISIBLE);
+            caiwu_btn.setOnClickListener(onclicklisten);
+            agree_btn.setOnClickListener(onclicklisten);
+            noagree_btn.setOnClickListener(onclicklisten);
+        }else if(case_state==3){
+            Log.e("case_state===>|||","这是财务审批");
+            //财务审批
+            agree_btn.setOnClickListener(onclicklisten);
+            noagree_btn.setOnClickListener(onclicklisten);
+        }else if(case_state==6){
+            Log.e("case_state===>|||","这是财务审批");
             //财务审批
             agree_btn.setOnClickListener(onclicklisten);
             noagree_btn.setOnClickListener(onclicklisten);
         }
-        Log.e("case_state---------->",""+case_state);
 
         int mdlf = bundle.getInt("dlf");
         String sffs = bundle.getString("sffs","");
@@ -70,6 +91,9 @@ public class CaseShenPiActivity extends Activity {
 
         ysje = mdlf + jzf ;
         Log.e("---------->",""+ysje);
+
+        accepter_id = createid;
+        create_name = lsname;
 
         name.setText(ay);
         ah.setText(ah_number);
@@ -87,6 +111,7 @@ public class CaseShenPiActivity extends Activity {
         //获取日期
         SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd  hh:mm:ss");
         update_date = sDateFormat.format(new java.util.Date());
+        create_date = sDateFormat.format(new java.util.Date());
     }
 
     private void initView() {
@@ -167,15 +192,15 @@ public class CaseShenPiActivity extends Activity {
                     startActivity(intent);
                     break;
                 case R.id.agree_btn:
-                    case_state = "4";
+                    case_state = 4;
                     postHttp();
                     break;
                 case R.id.noagree_btn:
-                    case_state = "-1";
+                    case_state = -1;
                     postHttp();
                     break;
                 case R.id.caiwu_btn:
-                    case_state = "3";
+                    case_state = 3;
                     postHttp();
                     break;
             }
@@ -184,7 +209,7 @@ public class CaseShenPiActivity extends Activity {
 
 
     String update_date;
-    String case_state;
+    int case_state;
     private void postHttp(){
         loadingDialog.show();
         loadingDialog.setLoadingContent("上传中...");
@@ -193,10 +218,66 @@ public class CaseShenPiActivity extends Activity {
             public void getResult(String result, int type) {
                 if(type == Constants.TYPE_SUCCESS){
                     loadingDialog.dismiss();
-                    Toast.makeText(CaseShenPiActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                    xxtz();
+                    xxHttp();
+                }else BaseApi.showErrMsg(CaseShenPiActivity.this,result);
+            }
+        });
+    }
+
+    String theme;
+    String mcontent;
+    String company_id;
+    String glid;
+    String accepter_id;
+    String create_id;
+    String create_name;
+    String create_date;
+    private void xxHttp(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("上传中...");
+        MainApi.getInstance(this).getaddxxtzApi(theme,mcontent,company_id,glid,accepter_id, create_id,
+                create_name,create_date,new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                if(type == Constants.TYPE_SUCCESS){
+                    loadingDialog.dismiss();
                     finish();
                 }else BaseApi.showErrMsg(CaseShenPiActivity.this,result);
             }
         });
+    }
+
+    private void xxtz(){
+        if (case_state==3) {
+            theme ="主任收案审批通过";
+            mcontent="您办理的《"+ah_number+"》主任收案审批通过！将移交财务审批！";
+            glid = id ;
+        }
+        if (case_state==4) {
+            theme ="财务收案审批通过";
+            mcontent="您办理的《"+ah_number+"》财务收案审批通过！案件已收案！";
+            glid = id ;
+        }
+        if (case_state==-1) {
+            theme ="收案审批未通过";
+            mcontent="您办理的《"+ah_number+"》收案审批未通过！请注意查看！";
+            glid = id ;
+        }
+        if (case_state==-4) {
+            theme ="结案审批未通过";
+            mcontent="您办理的《"+ah_number+"》结案审批未通过！请注意查看！";
+            glid = id ;
+        }
+        if (case_state==7) {
+            theme ="财务结案审批通过";
+            mcontent="您办理的《"+ah_number+"》财务结案审批通过！案件已结案！";
+            glid = id ;
+        }
+        if (case_state==6) {
+            theme ="主任结案审批通过";
+            mcontent="您办理的 《"+ah_number+"》主任结案审批通过！将移交财务审批！";
+            glid = id ;
+        }
     }
 }

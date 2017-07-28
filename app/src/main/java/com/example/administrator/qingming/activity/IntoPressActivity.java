@@ -48,7 +48,7 @@ public class IntoPressActivity extends Activity implements SwipeRefreshLayout.On
         webView = (WebView) findViewById(webview);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);
-        list =new ArrayList<ModelIntoPress.ResultBean>();
+        list =new ArrayList<>();
 
         //启用支持javascript
         WebSettings webSettings = webView.getSettings();
@@ -56,7 +56,7 @@ public class IntoPressActivity extends Activity implements SwipeRefreshLayout.On
         // 设置可以被显示的屏幕控制
         webSettings.setDisplayZoomControls(true);
         // 设置默认字体大小
-        webSettings.setDefaultFontSize(14);
+        webSettings.setDefaultFontSize(16);
         // 支持缩放(适配到当前屏幕)
         webSettings.setSupportZoom(true);
         // 将图片调整到合适的大小

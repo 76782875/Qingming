@@ -314,7 +314,7 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
                             startActivity(intent);
                         }
                     });
-                    jianChaAdapter.notifyDataSetChanged();
+                    faYuanAdapter.notifyDataSetChanged();
                 }else BaseApi.showErrMsg(CreateWorkActivity.this,result);
             }
         });

@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.administrator.qingming.R;
@@ -30,6 +32,7 @@ public class KaoQinActivity extends Activity implements SwipeRefreshLayout.OnRef
     private List<ModelQianDao.ResultBean> list;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ListView listview;
+    private ImageView back_btn;
     QianDaoAdapter qiandao;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,10 +49,18 @@ public class KaoQinActivity extends Activity implements SwipeRefreshLayout.OnRef
     private void initView() {
         list = new ArrayList<>();
         listview = (ListView) findViewById(R.id.listview);
+        back_btn = (ImageView) findViewById(R.id.back_btn);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
         qiandao = new QianDaoAdapter(KaoQinActivity.this,list);
         listview.setAdapter(qiandao);
         swipeRefreshLayout.setOnRefreshListener(this);
+
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     String id;

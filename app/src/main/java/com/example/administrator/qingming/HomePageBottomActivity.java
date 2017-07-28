@@ -62,7 +62,7 @@ public class HomePageBottomActivity extends FragmentActivity{
         work = (RadioButton) findViewById(R.id.work);
         viewPager = (ViewPager) findViewById(R.id.id_viewpage);
 
-        fragmentArrayList = new ArrayList<Fragment>();
+        fragmentArrayList = new ArrayList<>();
         homePageFragment = new HomePageFragment();
         applicationFragment = new ApplicationFragment();
         judicialAddressFragment=new LawJournalFragment();
@@ -101,6 +101,7 @@ public class HomePageBottomActivity extends FragmentActivity{
             return fragmentArrayList.size();
         }
     }
+
     ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int i1) {

@@ -290,7 +290,7 @@
                     android:background="@drawable/edit_blue"
                     android:text="收案申请"
                     android:textColor="@color/white"
-                    android:textSize="24px"
+                    android:textSize="24sp"
                     android:visibility="gone"/>
                 <Button
                     android:id="@+id/ja_btn"
@@ -301,7 +301,7 @@
                     android:background="@drawable/edit_blue"
                     android:text="结案申请"
                     android:textColor="@color/white"
-                    android:textSize="24px"
+                    android:textSize="24sp"
                     android:visibility="gone"/>
                 <Button
                     android:id="@+id/zz_btn"
@@ -312,7 +312,18 @@
                     android:background="@drawable/edit_blue"
                     android:text="中止案件"
                     android:textColor="@color/white"
-                    android:textSize="24px"
+                    android:textSize="24sp"
+                    android:visibility="gone"/>
+                <Button
+                    android:id="@+id/cwsp_btn"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/edit_blue"
+                    android:text="财务审批"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
                     android:visibility="gone"/>
                 <Button
                     android:id="@+id/agree_btn"
@@ -323,7 +334,7 @@
                     android:background="@drawable/edit_blue"
                     android:text="通过"
                     android:textColor="@color/white"
-                    android:textSize="24px"
+                    android:textSize="24sp"
                     android:visibility="gone"/>
                 <Button
                     android:id="@+id/noagree_btn"
@@ -334,7 +345,7 @@
                     android:background="@drawable/edit_blue"
                     android:text="不通过"
                     android:textColor="@color/white"
-                    android:textSize="24px"
+                    android:textSize="24sp"
                     android:visibility="gone"/>
             </LinearLayout>
 

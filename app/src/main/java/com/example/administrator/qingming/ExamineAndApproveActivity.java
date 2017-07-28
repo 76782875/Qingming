@@ -79,14 +79,12 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 String id1 = list.get(i).getId();
-                String case_state= list.get(i).getCase_state();
                 String ay= list.get(i).getAy();
                 String ah_number= list.get(i).getAh_number();
                 String wtr= list.get(i).getWtr();
                 String dfdsr= list.get(i).getDfdsr();
                 int dlf= list.get(i).getDlf();
                 int jzf= list.get(i).getJzf();
-                Log.e("id----->>",""+id1);
                 String sffs = null;
                 if(list.get(i).getSffs().equals("0")){
                     sffs = "免费";
@@ -102,6 +100,7 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
 
                 String name = list.get(i).getName();
                 String sarq =  list.get(i).getSarq();
+                String createid = list.get(i).getCreate_id();
 
                 Intent intent = new Intent(ExamineAndApproveActivity.this, CaseShenPiActivity.class);
                 Bundle bundle = new Bundle();
@@ -115,9 +114,10 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
                 bundle.putString("sarq",sarq);
                 bundle.putInt("dlf",dlf);
                 bundle.putInt("jzf",jzf);
-                bundle.putString("case_state",case_state);
+                bundle.putInt("case_state",case_state);
+                bundle.putString("createid",createid);
                 intent.putExtras(bundle);
-                Log.e("","+"+id1+"+"+ay+"+"+ah_number+"+"+wtr+"+"+dfdsr+"+"+sffs+"+"+name+"+"+sarq+"+"+dlf+"+"+jzf);
+                Log.e("bundle===>","+"+case_state);
                 startActivity(intent);
             }
         });

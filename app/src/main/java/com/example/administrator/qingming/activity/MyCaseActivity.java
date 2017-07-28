@@ -21,6 +21,7 @@ import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.adapter.MyCaseAdapter;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.news.casedetails.CaseDetailsActivity;
@@ -46,6 +47,7 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
     private SwipeRefreshLayout swipeRefreshLayout;
     private int index = 0;
     String cc;
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
         create_id = sharedPreferences.getString("id","");
         company_id = sharedPreferences.getString("cid","");
 
+        initView();
         Bundle bundle = getIntent().getExtras();
         cc = bundle.getString("cc",""); //获取上个页面传递的值，
         if(cc.equals("1")){
@@ -66,7 +69,6 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
             getHttps();
         }
 
-        initView();
         index = bundle.getInt("index");
         if(index == 0){
             ex1.setTextColor(getResources().getColor(R.color.black));
@@ -121,6 +123,7 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
         list2 = new ArrayList<>();
         list3 = new ArrayList<>();
         list4 = new ArrayList<>();
+        loadingDialog = new LoadingDialog(this);
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
         ex1 = (TextView) findViewById(R.id.examine);
         ex2 = (TextView) findViewById(R.id.examine1);
@@ -282,10 +285,13 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
 
     private String create_id;
     private void getHttp(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("加载中...");
         MainApi.getInstance(this).getmycaseApi(create_id, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipeRefreshLayout.setRefreshing(false);
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<MyCaseModel.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result, MyCaseModel.ResultBean.class);
                     list.clear();
@@ -320,10 +326,13 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
 
     private String company_id;
     private void getHttps(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("加载中...");
         MainApi.getInstance(this).getlscaseApi(company_id, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipeRefreshLayout.setRefreshing(false);
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<MyCaseModel.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result, MyCaseModel.ResultBean.class);
                     list.clear();

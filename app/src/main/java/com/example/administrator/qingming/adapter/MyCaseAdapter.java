@@ -70,15 +70,15 @@ public class MyCaseAdapter extends RecyclerView.Adapter<MyCaseAdapter.ViewHolder
                 viewHolder.party.setText("收案返回");
             }else if(caseModel.getCase_state().equals("1")){
                 viewHolder.party.setText("预收案");
-            }else if(caseModel.getCase_state().equals("2")){
-                viewHolder.party.setText("财务审批收案 ");
             }else if(caseModel.getCase_state().equals("3")){
+                viewHolder.party.setText("财务审批收案 ");
+            }else if(caseModel.getCase_state().equals("2")){
                 viewHolder.party.setText("主任审批收案");
             }else if(caseModel.getCase_state().equals("4")){
                 viewHolder.party.setText("办案中");
-            }else if(caseModel.getCase_state().equals("5")){
-                viewHolder.party.setText("财务审批结案");
             }else if(caseModel.getCase_state().equals("6")){
+                viewHolder.party.setText("财务审批结案");
+            }else if(caseModel.getCase_state().equals("5")){
                 viewHolder.party.setText("主任审批结案 ");
             }else if(caseModel.getCase_state().equals("7")){
                 viewHolder.party.setText("已结案");

@@ -563,7 +563,7 @@ public class PullToRefreshView extends LinearLayout {
 		setHeaderTopMargin(-mHeaderViewHeight);
 		mFooterImageView.setVisibility(View.VISIBLE);
 //		mFooterImageView.setImageResource(R.mipmap.ic_pulltorefresh_arrow_up);
-		mFooterTextView.setText("上拉加载更多");
+		mFooterTextView.setText("没有更多数据了");
 		mFooterProgressBar.setVisibility(View.GONE);
 		// mHeaderUpdateTextView.setText("");
 		mFooterState = PULL_TO_REFRESH;

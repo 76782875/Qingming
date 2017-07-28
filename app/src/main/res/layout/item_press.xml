@@ -2,58 +2,92 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/yinying"
         android:orientation="vertical"
-        android:background="@drawable/edit_blue"
-        android:padding="10dp"
-        android:layout_margin="5dp">
+        android:padding="10dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/blue" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:text="法法"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:gravity="center_vertical" />
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="发布人："
-                android:textColor="@color/white"
-                android:textSize="14sp"/>
+                android:textColor="@color/transparent80"
+                android:textSize="14sp"
+                android:drawableLeft="@mipmap/bann_03"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"/>
+
             <TextView
                 android:id="@+id/work_item_people"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="后台管理员"
-                android:textColor="@color/white"
-                android:textSize="14sp"/>
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="发布时间："
-                android:textColor="@color/white"
-                android:textSize="14sp"/>
+                android:textColor="@color/transparent80"
+                android:textSize="14sp"
+                android:drawableLeft="@mipmap/bann_05"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"/>
+
             <TextView
                 android:id="@+id/item_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1204124"
-                android:textColor="@color/white"
-                android:textSize="14sp"/>
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

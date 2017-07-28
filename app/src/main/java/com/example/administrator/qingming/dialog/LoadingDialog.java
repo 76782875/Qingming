@@ -17,7 +17,7 @@ public class LoadingDialog extends Dialog {
 
     private Activity mActivity;
 
-    public LoadingDialog( Activity mActivity) {
+    public LoadingDialog(Activity mActivity) {
         super(mActivity, R.style.dialog);
         this.mActivity = mActivity;
         setCanceledOnTouchOutside(true);
@@ -32,7 +32,6 @@ public class LoadingDialog extends Dialog {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
                     LoadingDialog.super.dismiss();
                 }
             },200);

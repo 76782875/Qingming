@@ -56,10 +56,9 @@ public class MainApi extends BaseApi {
     /**
      * 新闻
      */
-    public void getNewsApi(String gsid,int product_brand,GetResultCallBack callBack) {
+    public void getNewsApi(String gsid,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("gsid", gsid + "");
-        map.put("product_brand", product_brand + "");
         getLoad(BaseUrl.news, map, callBack);
     }
 
@@ -240,6 +239,41 @@ public class MainApi extends BaseApi {
         map.put("detention",detention + "");
         map.put("create_date",create_date + "");
         postLoad(BaseUrl.postcase, map, callBack);
+    }
+
+    /**
+     * 修改案件
+     */
+    public void getxgmycaseApi(String id,String cid,int ajlx,int ajfl,String ah_number,String sarq,
+                               String ay,String remarks, String wtr, String dfdsr,String slbm,
+                               String ssbd,String sffs,String dlf,String zjf, int ssjd, int ssdw,
+                               String badq, String police, String mprocuratorate, String mcourt,
+                               String detention,String create_date,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", id + "");
+        map.put("company_id",cid + "");
+        map.put("ajlx", ajlx + "");
+        map.put("ajfl",ajfl + "");
+        map.put("ah_number",ah_number + "");
+        map.put("sarq",sarq + "");
+        map.put("ay",ay + "");
+        map.put("bzsm",remarks + "");
+        map.put("wtr",wtr + "");
+        map.put("dfdsr",dfdsr + "");
+        map.put("slbm",slbm + "");
+        map.put("ssbd",ssbd + "");
+        map.put("sffs",sffs + "");
+        map.put("dlf",dlf + "");
+        map.put("jzf",zjf + "");
+        map.put("ssjd",ssjd + "");
+        map.put("ssdw",ssdw + "");
+        map.put("badq",badq + "");
+        map.put("police",police + "");
+        map.put("procuratorate",mprocuratorate + "");
+        map.put("court",mcourt + "");
+        map.put("detention",detention + "");
+        map.put("create_date",create_date + "");
+        postLoad(BaseUrl.xgmycase, map, callBack);
     }
 
     /**
@@ -491,6 +525,15 @@ public class MainApi extends BaseApi {
     }
 
     /**
+     * 法院(消息通知)
+     */
+    public void getnewsfayuanApi(String create_id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", create_id + "");
+        postLoad(BaseUrl.newsfayuan, map, callBack);
+    }
+
+    /**
      * 检查列表
      */
     public void getjianchaApi(String id,GetResultCallBack callBack) {
@@ -737,7 +780,7 @@ public class MainApi extends BaseApi {
     /**
      * 修改案件状态
      */
-    public void getxgzjztApi(String id, String case_state,String update_date,GetResultCallBack callBack) {
+    public void getxgzjztApi(String id, int case_state,String update_date,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("id", id + "");
         map.put("case_state",case_state + "");
@@ -767,7 +810,7 @@ public class MainApi extends BaseApi {
     }
 
     /**
-     * 添加签到
+     * 签到
      */
     public void getqiandaoApi(String id, GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
@@ -848,5 +891,61 @@ public class MainApi extends BaseApi {
         map.put("df", df + "");
         map.put("fyflag", fyflag + "");
         postLoad(BaseUrl.lsf, map, callBack);
+    }
+
+    /**
+     * 创建消息通知
+     */
+    public void getaddxxtzApi(String theme,String content,String company_id,String glid,
+                              String accepter_id,String create_id, String create_name,String create_date,
+                              GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("theme", theme + "");
+        map.put("content", content + "");
+        map.put("company_id", company_id + "");
+        map.put("glid", glid + "");
+        map.put("accepter_id", accepter_id + "");
+        map.put("create_id", create_id + "");
+        map.put("create_name", create_name + "");
+        map.put("create_date", create_date + "");
+        postLoad(BaseUrl.addxxtz, map, callBack);
+    }
+
+    /**
+     * 消息
+     */
+    public void getxiaoxiApi(String accepterId,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("accepterId", accepterId + "");
+        getLoad(BaseUrl.xiaoxi, map, callBack);
+    }
+
+    /**
+     * 消息下个页面
+     */
+    public void getmycasesApi(int id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id + "");
+        getLoad(BaseUrl.mycases, map, callBack);
+    }
+
+    /**
+     * 查询律师
+     */
+    public void getclsApi(String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("company_id", id + "");
+        getLoad(BaseUrl.cls, map, callBack);
+    }
+
+    /**
+     * 修改律师
+     */
+    public void postxglsApi(String id,String create_id,String update_date,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id + "");
+        map.put("create_id", create_id + "");
+        map.put("update_date", update_date + "");
+        postLoad(BaseUrl.xgls, map, callBack);
     }
 }

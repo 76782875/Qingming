@@ -25,7 +25,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    android:src="@mipmap/arraw_left" />
+                    android:src="@mipmap/arrow_down" />
 
                 <TextView
                     android:id="@+id/name"

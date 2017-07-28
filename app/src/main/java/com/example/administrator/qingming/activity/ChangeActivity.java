@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,6 +42,7 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
     List<ModelChange.ResultBean> list;
     private EditText edit;
     private TextView search,choose;
+    private ImageView back_btn;
     String gjc;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,10 +65,29 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
         search = (TextView) findViewById(R.id.search);
         choose = (TextView) findViewById(R.id.choose);
         edit = (EditText) findViewById(R.id.edit);
+        back_btn = (ImageView) findViewById(R.id.back_btn);
 
         swipe.setOnRefreshListener(this);
         choose.setOnClickListener(onClick);
         search.setOnClickListener(onClick);
+        back_btn.setOnClickListener(onClick);
+
+        changeadapter = new ChangeAdapter(ChangeActivity.this,list);
+        listview.setAdapter(changeadapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String cid = list.get(position).getId();
+                String name  = list.get(position).getName();
+                Log.i("cid------->",""+cid);
+                Intent intent = new Intent(ChangeActivity.this,ChangeLvshiActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("cid",""+cid);
+                bundle.putString("name",""+name);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         edit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -105,10 +126,14 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
                 case R.id.search:
 
                     break;
+                case R.id.back_btn:
+                    finish();
+                    break;
             }
         }
     };
 
+    ChangeAdapter changeadapter;
     String company_id;
     private void getHttp(){
         MainApi.getInstance(this).getbglvshiApi(company_id, new GetResultCallBack() {
@@ -119,22 +144,8 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
                     List<ModelChange.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),
                             result,ModelChange.ResultBean.class);
                     list.addAll(resultBean);
-                    ChangeAdapter changeadapter = new ChangeAdapter(ChangeActivity.this,list);
-                    listview.setAdapter(changeadapter);
-                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            String cid = list.get(position).getId();
-                            String name  = list.get(position).getName();
-                            Log.i("cid------->",""+cid);
-                            Intent intent = new Intent(ChangeActivity.this,ChangeLvshiActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("cid",""+cid);
-                            bundle.putString("name",""+name);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
-                        }
-                    });
+
+                    changeadapter.notifyDataSetChanged();
                 }else BaseApi.showErrMsg(ChangeActivity.this,result);
             }
         });

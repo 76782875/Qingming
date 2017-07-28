@@ -13,13 +13,19 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/top1"
             android:scaleType="centerCrop"/>
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" -->
+            <!--android:src="@mipmap/logo"/>-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/qinmin"
-            android:textSize="55px"
-            android:layout_marginTop="80dp"
+            android:textSize="26sp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="80dp"
+            android:drawableTop="@mipmap/vls_03"
+            android:drawablePadding="15dp"
             android:gravity="center_horizontal"
             android:textColor="@color/black"/>
     </FrameLayout>
@@ -121,7 +127,7 @@
         android:background="@drawable/edit_blue"
         android:text="@string/login"
         android:textColor="@color/white"
-        android:textSize="36px" />
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/regster_btn"
@@ -129,7 +135,7 @@
         android:layout_height="wrap_content"
         android:text="@string/register"
         android:textColor="@color/white"
-        android:textSize="36px"
+        android:textSize="24sp"
         android:background="@drawable/edit_blue"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"

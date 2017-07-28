@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@mipmap/arraw_left" />
+            android:src="@mipmap/arrow_down" />
 
         <TextView
             android:layout_width="wrap_content"

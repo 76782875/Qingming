@@ -7,12 +7,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@color/cyan">
+        android:background="@color/blue">
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/arraw_left"
+            android:src="@mipmap/arrow_down"
             android:layout_centerInParent="true"
             android:layout_alignParentLeft="true"/>
         <TextView
@@ -21,7 +21,7 @@
             android:text="消息通知"
             android:layout_centerInParent="true"
             android:textSize="24sp"
-            android:textColor="@color/blue"/>
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
     <LinearLayout
@@ -79,10 +79,23 @@
             android:background="@color/blue"
             android:visibility="invisible"/>
     </LinearLayout>
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/list_message"
-        android:dividerHeight="1dp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_message"
+            android:dividerHeight="1dp"
+            android:visibility="gone"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/list_message2"
+            android:dividerHeight="1dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
 
 </LinearLayout>

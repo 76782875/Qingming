@@ -41,7 +41,7 @@
                     android:text="添加案件"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:drawableTop="@mipmap/list_05"
+                    android:drawableTop="@mipmap/list_07"
                     android:drawablePadding="10dp"
                     android:gravity="center_horizontal"/>
 
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="10dp"
-                    android:drawableTop="@mipmap/list_06"
+                    android:drawableTop="@mipmap/list_ys"
                     android:gravity="center_horizontal"
                     android:text="预收案"
                     android:textColor="@color/black"
@@ -65,7 +65,7 @@
                     android:text="审批中"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:drawableTop="@mipmap/list_09"
+                    android:drawableTop="@mipmap/list_sp"
                     android:drawablePadding="10dp"
                     android:gravity="center_horizontal"/>
                 <TextView
@@ -76,7 +76,7 @@
                     android:text="办案中"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:drawableTop="@mipmap/list_09"
+                    android:drawableTop="@mipmap/list_ba"
                     android:drawablePadding="10dp"
                     android:gravity="center_horizontal"/>
 
@@ -95,7 +95,7 @@
                     android:text="已结案"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:drawableTop="@mipmap/list_09"
+                    android:drawableTop="@mipmap/list_ja"
                     android:drawablePadding="10dp"
                     android:gravity="center_horizontal"/>
                 <TextView
@@ -117,7 +117,7 @@
                     android:text="律所案件"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:drawableTop="@mipmap/list_23"
+                    android:drawableTop="@mipmap/list_05"
                     android:drawablePadding="10dp"
                     android:gravity="center_horizontal"/>
                 <TextView
@@ -164,7 +164,7 @@
                     android:text="收案审批"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:drawableTop="@mipmap/list_28"
+                    android:drawableTop="@mipmap/list_25"
                     android:drawablePadding="10dp"
                     android:gravity="center_horizontal"/>
 
@@ -174,7 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="10dp"
-                    android:drawableTop="@mipmap/list_24"
+                    android:drawableTop="@mipmap/list_26"
                     android:gravity="center_horizontal"
                     android:text="结案审批"
                     android:textColor="@color/black"
@@ -186,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="10dp"
-                    android:drawableTop="@mipmap/list_20"
+                    android:drawableTop="@mipmap/list_fp"
                     android:gravity="center_horizontal"
                     android:text="发票管理"
                     android:textColor="@color/black"
@@ -271,7 +271,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="10dp"
-                    android:drawableTop="@mipmap/list_20"
+                    android:drawableTop="@mipmap/list_23"
                     android:gravity="center_horizontal"
                     android:text="律所收支"
                     android:textColor="@color/black"
@@ -308,7 +308,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="10dp"
-                    android:drawableTop="@mipmap/list_28"
+                    android:drawableTop="@mipmap/list_dk"
                     android:gravity="center_horizontal"
                     android:text="考勤打卡"
                     android:textColor="@color/black"
@@ -320,7 +320,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="10dp"
-                    android:drawableTop="@mipmap/list_24"
+                    android:drawableTop="@mipmap/list_jl"
                     android:gravity="center_horizontal"
                     android:text="打卡记录"
                     android:textColor="@color/black"
@@ -333,7 +333,7 @@
                     android:layout_weight="1"
                     android:drawablePadding="10dp"
                     android:gravity="center_horizontal"
-                    android:drawableTop="@mipmap/list_24"
+                    android:drawableTop="@mipmap/gj08"
                     android:text="应用工具"
                     android:textColor="@color/black"
                     android:textSize="14sp" />

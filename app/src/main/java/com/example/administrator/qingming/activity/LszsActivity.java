@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,43 +67,154 @@ public class LszsActivity extends Activity {
             public void onItemClick(View view, int i) {
                 switch (i){
                     case 0:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",13);
+                        startActivity(intent);
                         break;
                     case 1:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",14);
+                        startActivity(intent);
                         break;
                     case 2:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",15);
+                        startActivity(intent);
                         break;
                     case 3:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",16);
+                        startActivity(intent);
                         break;
                     case 4:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",17);
+                        startActivity(intent);
                         break;
                     case 5:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",18);
+                        startActivity(intent);
                         break;
                     case 6:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",19);
+                        startActivity(intent);
                         break;
                     case 7:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",20);
+                        startActivity(intent);
                         break;
                     case 8:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",21);
+                        startActivity(intent);
                         break;
                     case 9:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",22);
+                        startActivity(intent);
                         break;
                     case 10:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",23);
+                        startActivity(intent);
                         break;
                     case 11:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",24);
+                        startActivity(intent);
                         break;
                     case 12:
-                        Toast.makeText(LszsActivity.this,"你点击了"+i,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",25);
+                        startActivity(intent);
+                        break;
+                    case 13:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",26);
+                        startActivity(intent);
+                        break;
+                    case 14:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",27);
+                        startActivity(intent);
+                        break;
+                    case 15:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",28);
+                        startActivity(intent);
+                        break;
+                    case 16:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",29);
+                        startActivity(intent);
+                        break;
+                    case 17:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",30);
+                        startActivity(intent);
+                        break;
+                    case 18:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",31);
+                        startActivity(intent);
+                        break;
+                    case 19:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",32);
+                        startActivity(intent);
+                        break;
+                    case 20:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",33);
+                        startActivity(intent);
+                        break;
+                    case 21:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",34);
+                        startActivity(intent);
+                        break;
+                    case 22:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",35);
+                        startActivity(intent);
+                        break;
+                    case 23:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",36);
+                        startActivity(intent);
+                        break;
+                    case 24:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",37);
+                        startActivity(intent);
+                        break;
+                    case 25:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",38);
+                        startActivity(intent);
+                        break;
+                    case 26:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",39);
+                        startActivity(intent);
+                        break;
+                    case 27:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",40);
+                        startActivity(intent);
+                        break;
+                    case 28:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",41);
+                        startActivity(intent);
+                        break;
+                    case 29:
+                        intent = new Intent(LszsActivity.this,FaLvActivity.class);
+                        intent.putExtra("conts_type",42);
+                        startActivity(intent);
                         break;
                 }
             }
@@ -124,8 +236,8 @@ public class LszsActivity extends Activity {
         jcy.setOnClickListener(onClickListener);
     }
 
+    Intent intent;
     View.OnClickListener onClickListener = new View.OnClickListener() {
-        Intent intent;
         @Override
         public void onClick(View v) {
             switch (v.getId()){
