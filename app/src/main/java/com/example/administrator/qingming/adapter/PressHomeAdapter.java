@@ -1,6 +1,7 @@
 package com.example.administrator.qingming.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,13 +60,13 @@ public class PressHomeAdapter extends BaseAdapter {
 //        viewHolder.type.setText(list.get(position).getInsert_time());
         viewHolder.people.setText(list.get(position).getInsert_name());
 
-//        String time = list.get(position).getInsert_time();
-//        //截取 月 和 日 字符串
-//        String year = time.substring(0, 4);
-//        String month = time.substring(5, 2);
-//        String day = time.substring(8, 2);
-//        viewHolder.days.setText(day);
-//        viewHolder.years.setText(year+"-"+month);
+        String time = list.get(position).getInsert_time();
+        //截取 月 和 日 字符串
+        String year = time.substring(0, 4);
+        String month = time.substring(5, 7);
+        String day = time.substring(8, 10);
+        viewHolder.days.setText(day);
+        viewHolder.years.setText(year+"-"+month);
         return convertView;
     }
 

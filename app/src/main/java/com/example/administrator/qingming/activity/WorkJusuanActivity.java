@@ -177,10 +177,16 @@ public class WorkJusuanActivity extends Activity {
                             scdj = 9;
                         } else if (sc.getText().toString().equals("十级")) {
                             scdj = 10;
-                        }else if(sc.getText().toString().equals("工伤")){
+                        }else if(sc.getText().toString().equals("工亡")){
                             scdj = 11;
                         }
-                        getScHttp();
+                        Log.e("===>>>",""+scdj);
+                        if(!TextUtils.isEmpty(ygz.getText())){
+                            getScHttp();
+                        }else {
+                            Toast.makeText(WorkJusuanActivity.this,"月工资不能为空",Toast.LENGTH_SHORT).show();
+                        }
+
                     }else {
                         jisuan();
                     }
@@ -201,7 +207,7 @@ public class WorkJusuanActivity extends Activity {
                     break;
                 case R.id.sc:
                     showDialog();
-                    final String[] strs = {"工伤","一级","二级","三级","四级","五级","六级","七级","八级","九级","十级"};
+                    final String[] strs = {"工亡","一级","二级","三级","四级","五级","六级","七级","八级","九级","十级"};
                     builder.setItems(strs, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
@@ -258,8 +264,8 @@ public class WorkJusuanActivity extends Activity {
                 if(!TextUtils.isEmpty(hkqx.getText())){
                     if(!TextUtils.isEmpty(lv.getText())){
                         dklx.setVisibility(View.VISIBLE);
-                        int a = Integer.valueOf(dkje.getText().toString());
-                        int b = Integer.valueOf(hkqx.getText().toString());
+                        double a = Double.parseDouble(dkje.getText().toString());
+                        double b = Double.parseDouble(hkqx.getText().toString());
                         double c = Integer.valueOf(lv.getText().toString()) * 0.01;
                         Log.e("====>", "" + a + "  " + b + "  " + c);
                         Log.e("====>", "" + a * b * c);
@@ -286,16 +292,19 @@ public class WorkJusuanActivity extends Activity {
                         double bj = Integer.valueOf(benjin.getText().toString());
                         int a = Integer.valueOf(lishi.getText().toString());
                         double c = Integer.valueOf(lilv.getText().toString())*0.01;
-                        double d = bj*a*c;
+                        double d = 0;
                         if(choose_lv.getText().toString().equals("天利率")){
+                            d = bj*a*c;
                             yqqx.setText(""+a);
                             lvv.setText(""+c);
                             wyjjs.setText("" + d);
                         }else if(choose_lv.getText().toString().equals("月利率")){
+                            d = bj*a*c;
                             yqqx.setText(""+a);
                             lvv.setText(""+c);
                             wyjjs.setText("" + d);
                         }else if(choose_lv.getText().toString().equals("年利率")){
+                            d = bj*a*c;
                             yqqx.setText(""+a);
                             lvv.setText(""+c);
                             wyjjs.setText("" + d);
@@ -351,6 +360,7 @@ public class WorkJusuanActivity extends Activity {
                 loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelScdj.ResultBean> resultbean = GsonUtil.fromJsonList(new Gson(),result,ModelScdj.ResultBean.class);
+                    list1.clear();
                     list1.addAll(resultbean);
                       wqhl = list1.get(0).getWqhl();//完全护理
                       dbfhl= list1.get(0).getDbfhl();//大部分护理
@@ -363,173 +373,79 @@ public class WorkJusuanActivity extends Activity {
                       pce= list1.get(0).getPce();//丧葬费
                       pcf= list1.get(0).getPcf();//供养亲属抚恤金（配偶）
                       pcg= list1.get(0).getPcg();//供养亲属抚恤金（其它金属）
-                    if(!TextUtils.isEmpty(ygz.getText())){
-//                        if(scdj == 11){
-//                            gspc.setVisibility(View.VISIBLE);
-//                            gspc1.setVisibility(View.GONE);
-//                            double a = g_avg * pch ;//一次性工亡补助金
-//                            int s = Integer.valueOf(ygz.getText().toString());//输入工资
-//                            if(s > cq_avg * 3){
-//                                s = cq_avg * 3;
-//                            }else {
-//                                s= Integer.valueOf(ygz.getText().toString());
-//                            }
-//                            double b = s * pce;//一丧葬补助金
-//                            double c = s * pcf;//配偶金
-//                            double d = s * pcg ;//其他亲属补助金
-//                            double sum = a+b;
-//                            count.setText(""+sum);
-//                            gwbzj.setText(""+a);
-//                            szbzj.setText(""+b);
-//                            po.setText(""+c);
-//                            qtqs.setText(""+d);
-//                        }else if(sc.getText().toString().equals("一级") || sc.getText().toString().equals("二级") ||
-//                                sc.getText().toString().equals("三级") || sc.getText().toString().equals("四级")){
-//                            gspc1.setVisibility(View.VISIBLE);
-//                            shenghuo.setVisibility(View.VISIBLE);
-//                            gspc.setVisibility(View.GONE);
-//                            one.setVisibility(View.GONE);
-//                            two.setVisibility(View.GONE);
-//                            double a = g_avg * pca;
-////                            if(sc.getText().toString().equals("一级")){
-////                                a = g_avg * pca ;//一次性工亡补助金
-////                            }else if(sc.getText().toString().equals("二级") ){
-////                                a = g_avg * pca;//一次性工亡补助金
-////                            }else if(sc.getText().toString().equals("三级") ){
-////                                a = g_avg * pca ;//一次性工亡补助金
-////                            }else if(sc.getText().toString().equals("四级") ){
-////                                a = g_avg * pca ;//一次性工亡补助金
-////                            }
-//                            int s = Integer.valueOf(ygz.getText().toString());//输入工资
-//                            if(s > cq_avg * 3){
-//                                s = cq_avg * 3;
-//                            }else {
-//                                s= Integer.valueOf(ygz.getText().toString());
-//                            }
-//                            int b = s * 6;//一丧葬补助金
-//                            double c = s * wqhl;//配偶金
-//                            double d = s * dbfhl;//其他亲属补助金
-//                            double e = s * bfhl;
-//                            double sum = a+b+c+d+e;
-//                            count1.setText(""+sum);
-//                            gwbzj1.setText(""+a);
-//                            szbzj1.setText(""+b);
-//                            po1.setText(""+c);
-//                            qtqs1.setText(""+d);
-//                            qtqs2.setText(""+d);
-//                        }else if(sc.getText().toString().equals("五级") || sc.getText().toString().equals("六级") ||
-//                                sc.getText().toString().equals("七级") || sc.getText().toString().equals("八级")){
-//                            gspc1.setVisibility(View.VISIBLE);
-//                            one.setVisibility(View.VISIBLE);
-//                            two.setVisibility(View.VISIBLE);
-//                            gspc.setVisibility(View.GONE);
-//                            shenghuo.setVisibility(View.GONE);
-//                            int a = 0;
-//                            if(sc.getText().toString().equals("五级")){
-//                                a = g_avg * 18 ;//一次性工亡补助金
-//                            }else if(sc.getText().toString().equals("六级") ){
-//                                a = g_avg * 16;//一次性工亡补助金
-//                            }else if(sc.getText().toString().equals("七级") ){
-//                                a = g_avg * 13 ;//一次性工亡补助金
-//                            }else if(sc.getText().toString().equals("八级") ){
-//                                a = g_avg * 11 ;//一次性工亡补助金
-//                            }
-//                            int s = Integer.valueOf(ygz.getText().toString());//输入工资
-//                            if(s > cq_avg * 3){
-//                                s = cq_avg * 3;
-//                            }else {
-//                                s= Integer.valueOf(ygz.getText().toString());
-//                            }
-//                            int b = s * 6;//一丧葬补助金
-//                            double c = s * 0.5;//配偶金
-//                            double d = s * 0.4;//其他亲属补助金
-//                            double e = s * 0.3;
-//                            double sum = a+b+c+d+e;
-//                            count1.setText(""+sum);
-//                            gwbzj1.setText(""+a);
-//                            szbzj1.setText(""+b);
-//                            po1.setText(""+c);
-//                            qtqs1.setText(""+d);
-//                            qtqs2.setText(""+d);
-//                        }
-//
-//
-                        if(scdj == 11){
-                            gspc.setVisibility(View.VISIBLE);
-                            gspc1.setVisibility(View.GONE);
-                            double a = g_avg * pch ;//一次性工亡补助金
-                            int s = Integer.valueOf(ygz.getText().toString());//输入工资
-                            if(s > cq_avg * 3){
-                                s = cq_avg * 3;
-                            }else {
-                                s= Integer.valueOf(ygz.getText().toString());
-                            }
-                            double b = s * pce;//一丧葬补助金
-                            double c = s * pcf;//配偶金
-                            double d = s * pcg ;//其他亲属补助金
-                            double sum = a+b;
-                            count.setText(""+sum);
-                            gwbzj.setText(""+a);
-                            szbzj.setText(""+b);
-                            po.setText(""+c);
-                            qtqs.setText(""+d);
+
+                    Log.e("===>>>",""+wqhl+dbfhl+bfhl+pch+pca+pcb+pcc+pcd+pce+pcf+pcg);
+                    if(scdj == 11){
+                        gspc.setVisibility(View.VISIBLE);
+                        gspc1.setVisibility(View.GONE);
+                        double a = g_avg * pch ;//一次性工亡补助金
+                        int s = Integer.valueOf(ygz.getText().toString());//输入工资
+                        if(s > cq_avg * 3){
+                            s = cq_avg * 3;
                         }else {
-                            gspc.setVisibility(View.GONE);
-                            gspc1.setVisibility(View.VISIBLE);
-                            int s = Integer.valueOf(ygz.getText().toString());//输入工资
-                            double a = s * bfhl;
-                            double b = s * dbfhl;
-                            double c = s * wqhl;
-                            if(wqhl != 0){
-                                shenghuo.setVisibility(View.VISIBLE);
-                                po1.setText(""+a);
-                                qtqs1.setText(""+b);
-                                qtqs2.setText(""+c);
-                            }
-                        //伤残津贴月数
-                            double d = s * pcb;
-                            if(pcb != 0){
-                                scjt.setVisibility(View.VISIBLE);
-                                szbzj1.setText(""+d);
-                            }else {
-                                scjt.setVisibility(View.GONE);
-                            }
-
-                            //一次性伤残补助金
-                            double e = s * pca;
-                            double f = s * pcc;
-                            double g = s*pcd;
-                            if(pca != 0){
-                                gwbzj1.setText(""+e);
-                                //一次性工伤医疗补助金
-                            }
-
-                            if(pcc != 0){
-                                one.setVisibility(View.VISIBLE);
-                                qtqs3.setText(""+f);
-                                Log.i("=====>","一次性工伤医疗补助金"+f);
-                            }else {
-                                two.setVisibility(View.GONE);
-                                Log.i("=====>","一次性工伤医疗补助金为空");
-                            }
-
-                            //一次性伤残就业补助金
-                            if(pcd != 0){
-                                two.setVisibility(View.VISIBLE);
-                                qtqs4.setText(""+g);
-                                Log.i("=====>","一次性伤残就业补助金"+g);
-                            }else {
-                                two.setVisibility(View.GONE);
-                                Log.i("=====>","一次性伤残就业补助金为空");
-                            }
-
-                            double sum = a+b+c+d+e+f+g;
-                            Log.i("=====>","sum"+sum);
-                            count1.setText(""+sum);
+                            s= Integer.valueOf(ygz.getText().toString());
                         }
+                        double b = g_avg * pce;//一丧葬补助金
+                        double c = s * pcf;//配偶金
+                        double d = s * pcg ;//其他亲属补助金
+                        double sum = a+b;
+                        count.setText(""+sum);
+                        gwbzj.setText(""+a);
+                        szbzj.setText(""+b);
+                        po.setText(""+c);
+                        qtqs.setText(""+d);
                     }else {
-                        Toast.makeText(WorkJusuanActivity.this,"月工资不能为空",Toast.LENGTH_SHORT).show();
+                        gspc.setVisibility(View.GONE);
+                        gspc1.setVisibility(View.VISIBLE);
+                        int s = Integer.valueOf(ygz.getText().toString());//输入工资
+                        double a = s * bfhl;
+                        double b = s * dbfhl;
+                        double c = s * wqhl;
+                        if(wqhl != 0.00){
+                            shenghuo.setVisibility(View.VISIBLE);
+                            po1.setText(""+a);
+                            qtqs1.setText(""+b);
+                            qtqs2.setText(""+c);
+                        }else {
+                            shenghuo.setVisibility(View.GONE);
+                        }
+                        //伤残津贴月数
+                        double d = s * pcb;
+                        if(pcb != 0.00){
+                            scjt.setVisibility(View.VISIBLE);
+                            szbzj1.setText(""+d);
+                        }else {
+                            scjt.setVisibility(View.GONE);
+                        }
+
+                        //一次性伤残补助金
+                        double e = s * pca;
+                        double f = s * pcc;
+                        double g = s*pcd;
+                        if(pca != 0.00){
+                            gwbzj1.setText(""+e);
+                            //一次性工伤医疗补助金
+                        }
+
+                        if(pcc != 0.00){
+                            one.setVisibility(View.VISIBLE);
+                            qtqs3.setText(""+f);
+                        }else {
+                            one.setVisibility(View.GONE);
+                        }
+
+                        //一次性伤残就业补助金
+                        if(pcd != 0.00){
+                            two.setVisibility(View.VISIBLE);
+                            qtqs4.setText(""+g);
+                        }else {
+                            two.setVisibility(View.GONE);
+                        }
+
+                        double sum = a+b+c+d+e+f+g;
+                        count1.setText(""+sum);
                     }
+
                 }else BaseApi.showErrMsg(WorkJusuanActivity.this,result);
             }
         });

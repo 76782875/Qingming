@@ -137,12 +137,13 @@ public class SsfJsActivity extends Activity {
     private void getlsfHttp(){
         loadingDialog.show();
         loadingDialog.setLoadingContent("正在查询...");
-        MainApi.getInstance(this).getlsfApi(1,fyflag,new GetResultCallBack() {
+        MainApi.getInstance(this).getlsfApi(0,fyflag,new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelLsf.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),result,ModelLsf.ResultBean.class);
+                    list2.clear();
                     list2.addAll(resultBean);
                     int s = Integer.valueOf(ssbdje.getText().toString());//输入工资
 

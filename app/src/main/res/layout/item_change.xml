@@ -6,83 +6,117 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/edit_blue"
+        android:background="@drawable/yinying"
         android:padding="10dp"
         android:layout_margin="5dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/blue"
+            android:layout_marginBottom="5dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="案号："
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:textColor="@color/transparent80"
+                android:textSize="16sp"
+                android:drawableLeft="@mipmap/bann_02"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"/>
             <TextView
                 android:id="@+id/numb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2017第0312号"
-                android:textColor="@color/white"
+                android:textColor="@color/transparent80"
                 android:textSize="16sp"/>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/transparent80"
+            android:alpha="0.1"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="委托人："
-                android:textColor="@color/white"
-                android:textSize="14sp"/>
+                android:textColor="@color/transparent80"
+                android:textSize="14sp"
+                android:drawableLeft="@mipmap/bann_03"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"/>
             <TextView
                 android:id="@+id/wtr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="44"
-                android:textColor="@color/white"
+                android:textColor="@color/transparent80"
                 android:textSize="14sp"/>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/transparent80"
+            android:alpha="0.1"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="对方当事人："
-                android:textColor="@color/white"
-                android:textSize="14sp"/>
+                android:textColor="@color/transparent80"
+                android:textSize="14sp"
+                android:drawableLeft="@mipmap/bann_03"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"/>
             <TextView
                 android:id="@+id/dfdsr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1204124"
-                android:textColor="@color/white"
+                android:textColor="@color/transparent80"
                 android:textSize="14sp"/>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/transparent80"
+            android:alpha="0.1"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="律师："
-                android:textColor="@color/white"
-                android:textSize="14sp"/>
+                android:textColor="@color/transparent80"
+                android:textSize="14sp"
+                android:drawableLeft="@mipmap/bann_05"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"/>
             <TextView
                 android:id="@+id/change_attorney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="后台管理员"
-                android:textColor="@color/white"
+                android:textColor="@color/transparent80"
                 android:textSize="14sp"/>
         </LinearLayout>
     </LinearLayout>

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,11 +41,12 @@ import java.util.Calendar;
 public class AddChargeActivity extends Activity {
     private TextView ah,date,fylx,zffs;
     private EditText jyje,beizhu;
-    private Button add,tg,zf;
+    private Button add,tg,zf,back_sf;
     private LoadingDialog loading;
     private String ah_number;
     int mYear,mMonth,mDay;
     private static final int DATE_DIALOG = 0;
+    private ImageView back_btn;
     int index;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,19 +66,110 @@ public class AddChargeActivity extends Activity {
             ah_number = bundle.getString("ah_number","");
             add.setVisibility(View.VISIBLE);
             add.setOnClickListener(onclick);
+
+            jyje.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    sfje = s.toString();
+                }
+            });
+            beizhu.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    bz = s.toString();
+                }
+            });
+            date.setOnClickListener(onclick);
+            fylx.setOnClickListener(onclick);
+            zffs.setOnClickListener(onclick);
         }else {
             sid = bundle.getString("id","");
             ah.setText(bundle.getString("an",""));
             date.setText(bundle.getString("skrq",""));
-            jyje.setText(bundle.getString("sf",""));
+            jyje.setText(""+bundle.getDouble("sf"));
             fylx.setText(bundle.getString("fylx",""));
             zffs.setText(bundle.getString("sffs",""));
             beizhu.setText(bundle.getString("bz",""));
+            int sftag = bundle.getInt("sftag");
+            Log.e("====>",""+sftag);
+            if(sftag == 0){
+                tg.setVisibility(View.VISIBLE);
+                zf.setVisibility(View.VISIBLE);
+                tg.setOnClickListener(onclick);
+                zf.setOnClickListener(onclick);
+                jyje.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            tg.setVisibility(View.VISIBLE);
-            zf.setVisibility(View.VISIBLE);
-            tg.setOnClickListener(onclick);
-            zf.setOnClickListener(onclick);
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        sfje = s.toString();
+                    }
+                });
+                beizhu.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        bz = s.toString();
+                    }
+                });
+                date.setOnClickListener(onclick);
+                fylx.setOnClickListener(onclick);
+                zffs.setOnClickListener(onclick);
+            }else if(sftag == 1){
+                back_sf.setVisibility(View.VISIBLE);
+                back_sf.setOnClickListener(onclick);
+                //设置不可编辑状态；
+                jyje.setFocusable(false);
+                jyje.setFocusableInTouchMode(false);
+                beizhu.setFocusable(false);
+                beizhu.setFocusableInTouchMode(false);
+            }else if(sftag == 2){
+                back_sf.setVisibility(View.VISIBLE);
+                back_sf.setOnClickListener(onclick);
+                //设置不可编辑状态；
+                jyje.setFocusable(false);
+                jyje.setFocusableInTouchMode(false);
+                beizhu.setFocusable(false);
+                beizhu.setFocusableInTouchMode(false);
+            }
+
         }
 
 
@@ -93,6 +186,7 @@ public class AddChargeActivity extends Activity {
     }
 
     private void initView() {
+        back_btn = (ImageView) findViewById(R.id.back_btn);
         ah = (TextView) findViewById(R.id.ah);
         date = (TextView) findViewById(R.id.date);
         fylx = (TextView) findViewById(R.id.fylx);
@@ -102,50 +196,19 @@ public class AddChargeActivity extends Activity {
         add = (Button) findViewById(R.id.add);
         tg = (Button) findViewById(R.id.tg);
         zf = (Button) findViewById(R.id.zf);
+        back_sf = (Button) findViewById(R.id.back_sf);
         loading = new LoadingDialog(this);
 
-
-        jyje.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                sfje = s.toString();
-            }
-        });
-        beizhu.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                bz = s.toString();
-            }
-        });
-        date.setOnClickListener(onclick);
-        fylx.setOnClickListener(onclick);
-        zffs.setOnClickListener(onclick);
+        back_btn.setOnClickListener(onclick);
     }
 
     View.OnClickListener onclick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
+                case R.id.back_btn:
+                    finish();
+                    break;
                 case R.id.fylx:
                     showDialog();
                     break;
@@ -211,6 +274,10 @@ public class AddChargeActivity extends Activity {
                     audit_name =create_name;
                     audit_time = date.getText().toString();
                     postxgHttp();
+                    break;
+                case R.id.back_sf:
+                    Intent intent = new Intent(AddChargeActivity.this,ShoufeiActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.date:
                     showDialog(DATE_DIALOG);

@@ -62,8 +62,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:text="请选择案件类型"
-                android:textColorHint="@color/transparent80"
+                android:text="诉讼费财产案件"
+                android:textColorHint="@color/black"
                 android:textSize="14sp"
                 android:paddingLeft="5dp"/>
 
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="请填写诉讼标的的金额"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textColorHint="@color/transparent80"
                 android:textSize="14sp"
                 android:paddingLeft="5dp"/>

@@ -19,14 +19,12 @@ import java.util.Calendar;
  */
 
 public class DateTimePickDialogUtil implements DatePicker.OnDateChangedListener, TimePicker.OnTimeChangedListener {
-
     private DatePicker datePicker;
     private TimePicker timePicker;
     private AlertDialog ad;
     private String dateTime;
     private String initDateTime;
     private Activity activity;
-
     public DateTimePickDialogUtil(String initDateTime, Activity activity) {
         this.initDateTime = initDateTime;
         this.activity = activity;

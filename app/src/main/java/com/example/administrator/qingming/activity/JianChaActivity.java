@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ import com.example.administrator.qingming.api.MainApi;
 import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
+import com.example.administrator.qingming.news.casedetails.CreateWorkActivity;
 
 import java.util.Calendar;
 
@@ -266,6 +268,8 @@ public class JianChaActivity extends Activity {
                             loadingDialog.dismiss();
                             Toast.makeText(JianChaActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
                             finish();
+//                            Intent intent = new Intent(JianChaActivity.this, CreateWorkActivity.class);
+//                            startActivity(intent);
                         }else BaseApi.showErrMsg(JianChaActivity.this,result);
                     }
                 });

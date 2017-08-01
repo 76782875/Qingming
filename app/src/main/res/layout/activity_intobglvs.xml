@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/back_btn"
@@ -36,14 +36,14 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_marginTop="15dp"
-                android:background="@color/bluedark">
+                android:background="@color/cyan">
                 <TextView
                     android:id="@+id/counsel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textSize="18sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/transparent80"
                     android:drawableLeft="@mipmap/journal"
                     android:drawablePadding="10dp"/>
             </RelativeLayout>
@@ -135,13 +135,13 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/bluedark">
+                android:background="@color/cyan">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="办案律师"
                     android:textSize="18sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/transparent80"
                     android:drawableLeft="@mipmap/costomer_one"
                     android:drawablePadding="10dp"/>
             </RelativeLayout>
@@ -175,13 +175,13 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/bluedark">
+                android:background="@color/cyan">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="变更律师"
                     android:textSize="18sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/transparent80"
                     android:drawableLeft="@mipmap/costomer_one"
                     android:drawablePadding="10dp"/>
             </RelativeLayout>
@@ -222,7 +222,7 @@
                 android:id="@+id/xuigai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/kuang_bluedark"
+                android:background="@drawable/center_blue"
                 android:paddingRight="10dp"
                 android:paddingLeft="10dp"
                 android:paddingBottom="10dp"

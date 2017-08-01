@@ -143,6 +143,7 @@ public class LsfjsActivity extends Activity {
                 loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelLsf.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),result,ModelLsf.ResultBean.class);
+                    list2.clear();
                     list2.addAll(resultBean);
                     int s = Integer.valueOf(ssbdje.getText().toString());//输入工资
 

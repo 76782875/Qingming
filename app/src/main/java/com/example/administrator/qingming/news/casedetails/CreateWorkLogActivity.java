@@ -79,7 +79,6 @@ public class CreateWorkLogActivity extends Activity {
         dfdsr = bundle.getString("dfdsr","");
         ay = bundle.getString("ay","");
         type = bundle.getInt("type");
-        Log.e("=============>",""+type);
 
         one.setText(ay);
         two.setText(ah_number);
@@ -168,28 +167,37 @@ public class CreateWorkLogActivity extends Activity {
                     showDialog(DATE_DIALOY);
                     break;
                 case R.id.submit_btn:
-                    start_date = logstart.getText().toString();
-                    stop_date = logfinish.getText().toString();
-                    if(logsort.getText().toString().equals("客户拜访")){
-                        log_type = "1";
-                    }else if(logsort.getText().toString().equals("商务谈判")){
-                        log_type = "2";
-                    }else if(logsort.getText().toString().equals("法律咨询")){
-                        log_type = "3";
-                    }else if(logsort.getText().toString().equals("案例/资料检索")){
-                        log_type = "4";
-                    }else if(logsort.getText().toString().equals("法律文书起草/修改")){
-                        log_type = "5";
-                    }else if(logsort.getText().toString().equals("调查取证")){
-                        log_type = "6";
-                    }else if(logsort.getText().toString().equals("刑案律师会见")){
-                        log_type = "7";
-                    }else if(logsort.getText().toString().equals("诉讼/仲裁出庭")){
-                        log_type = "8";
-                    }else if(logsort.getText().toString().equals("信访/社区/法援律师值")){
-                        log_type = "9";
+                    if(!logstart.getText().toString().equals("请选择开始时间")){
+                        if(!logfinish.getText().toString().equals("请选择结束时间")){
+                            start_date = logstart.getText().toString();
+                            stop_date = logfinish.getText().toString();
+                            Log.e("=======>",""+logstart.getText().toString());
+                            if(logsort.getText().toString().equals("客户拜访")){
+                                log_type = "1";
+                            }else if(logsort.getText().toString().equals("商务谈判")){
+                                log_type = "2";
+                            }else if(logsort.getText().toString().equals("法律咨询")){
+                                log_type = "3";
+                            }else if(logsort.getText().toString().equals("案例/资料检索")){
+                                log_type = "4";
+                            }else if(logsort.getText().toString().equals("法律文书起草/修改")){
+                                log_type = "5";
+                            }else if(logsort.getText().toString().equals("调查取证")){
+                                log_type = "6";
+                            }else if(logsort.getText().toString().equals("刑案律师会见")){
+                                log_type = "7";
+                            }else if(logsort.getText().toString().equals("诉讼/仲裁出庭")){
+                                log_type = "8";
+                            }else if(logsort.getText().toString().equals("信访/社区/法援律师值")){
+                                log_type = "9";
+                            }
+                            postHttp();
+                        }else {
+                            Toast.makeText(CreateWorkLogActivity.this,"请选择结束时间",Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(CreateWorkLogActivity.this,"请选择开始时间",Toast.LENGTH_SHORT).show();
                     }
-                    postHttp();
                     break;
 //                case R.id.create_choose:
 //                    intent = new Intent(CreateWorkLogActivity.this,CaseManageActivity.class);
@@ -221,8 +229,14 @@ public class CreateWorkLogActivity extends Activity {
             public void getResult(String result, int type) {
                 if(type == Constants.TYPE_SUCCESS){
                     loadingDialog.dismiss();
-                    Toast.makeText(CreateWorkLogActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
-                    finish();
+                    Intent intent = new Intent(CreateWorkLogActivity.this,CreateWorkActivity.class);
+                    intent.putExtra("id",glid);
+                    intent.putExtra("ah_number",ah_number);
+                    intent.putExtra("wtr",wtr);
+                    intent.putExtra("dfdsr",dfdsr);
+                    intent.putExtra("ay",ay);
+                    intent.putExtra("type",1);
+                    startActivity(intent);
                 }else BaseApi.showErrMsg(CreateWorkLogActivity.this,result);
             }
         });
@@ -249,6 +263,7 @@ public class CreateWorkLogActivity extends Activity {
             display();
         }
     };
+
     DatePickerDialog.OnDateSetListener monDateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

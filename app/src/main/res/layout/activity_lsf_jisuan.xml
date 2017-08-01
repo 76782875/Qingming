@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="请填写诉讼标的金额"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textColorHint="@color/transparent80"
                 android:textSize="14sp"
                 android:paddingLeft="5dp"/>

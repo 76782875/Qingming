@@ -113,10 +113,10 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
         zrja.setOnClickListener(onClickListener);
         news.setOnClickListener(onClickListener);
 
-        pressAdater = new PressAdater(list,getActivity());
-        listView.setAdapter(pressAdater);
-//        PressHomeAdapter pressHomeAdapter = new PressHomeAdapter(list,getActivity());
-//        listView.setAdapter(pressHomeAdapter);
+//        pressAdater = new PressAdater(list,getActivity());
+//        listView.setAdapter(pressAdater);
+        pressHomeAdapter = new PressHomeAdapter(list,getActivity());
+        listView.setAdapter(pressHomeAdapter);
 //                    setListViewHeightBasedOnChildren(listView);//计算listview的高度
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -232,6 +232,7 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
     private int product_brand =14 ;
     private String cid;
     PressAdater pressAdater;
+    PressHomeAdapter pressHomeAdapter;
     public void getString(){
         MainApi.getInstance(getActivity()).getNewsApi(gsid,new GetResultCallBack() {
             @Override
@@ -243,7 +244,8 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
                             result,ModelPress.ResultBean.class);
                     list.clear();
                     list.addAll(resultBeanList);
-                    pressAdater.notifyDataSetChanged();
+//                    pressAdater.notifyDataSetChanged();
+                    pressHomeAdapter.notifyDataSetChanged();
                 }else BaseApi.showErrMsg(getActivity(),result);
             }
         });

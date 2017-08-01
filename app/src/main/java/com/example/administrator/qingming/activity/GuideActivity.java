@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 
 import com.example.administrator.qingming.R;
 
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class GuideActivity extends Activity implements ViewPager.OnPageChangeListener{
     private ViewPager viewpager;
-    private List<Integer> list;
+    private List<ImageView> list;
     private int currentItem = 0;
     public GestureDetector mGestureDetector;
     private int flaggingWidth;
@@ -46,17 +47,33 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
 
     private void initView() {
         viewpager = (ViewPager) findViewById(R.id.viewpage);
+        ImageView view1 = new ImageView(this, null);
+        view1.setBackgroundResource(R.mipmap.aaa);
+        ImageView view2 = new ImageView(this, null);
+        view1.setBackgroundResource(R.mipmap.a98);
+        ImageView view3 = new ImageView(this, null);
+        view1.setBackgroundResource(R.mipmap.a99);
         list = new ArrayList<>();
         // 初始化图片资源
-        list.add(R.mipmap.aaa);
-        list.add(R.mipmap.a98);
-        list.add(R.mipmap.a99);
+        list.add(view1);
+        list.add(view2);
+        list.add(view3);
 
-        ViewPagerAdapter viewpagerAdapter = new ViewPagerAdapter();
+        ViewPagerAdapter viewpagerAdapter = new ViewPagerAdapter(GuideActivity.this,list);
+        viewpager.setAdapter(viewpagerAdapter);
+        viewpager.setCurrentItem(0);//设置默认显示
     }
 
 
     public class ViewPagerAdapter extends PagerAdapter {
+
+        private Context context;
+        private List<ImageView> mDatas;
+
+        public ViewPagerAdapter(Context context, List<ImageView> Datas) {
+            this.context = context;
+            this.mDatas = Datas;
+        }
 
         @Override
         public int getCount() {

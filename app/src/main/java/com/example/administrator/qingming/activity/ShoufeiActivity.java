@@ -106,6 +106,7 @@ public class ShoufeiActivity extends Activity implements SwipeRefreshLayout.OnRe
                 String bz = list.get(i).getBz();
                 Intent intent = new Intent(ShoufeiActivity.this,AddChargeActivity.class);
                 intent.putExtra("index",2);
+                intent.putExtra("sftag",sftag);
                 intent.putExtra("id",id);
                 intent.putExtra("an",an);
                 intent.putExtra("skrq",skrq);
@@ -167,14 +168,19 @@ public class ShoufeiActivity extends Activity implements SwipeRefreshLayout.OnRe
     };
 
     int index = 0;
+    int sftag = 0;
     private void setListData(){
         list.clear();
-        if (index == 0)
-            list .addAll( list1 );
-        else if(index == 1)
+        if (index == 0) {
+            sftag = 0;
+            list.addAll(list1);
+        } else if(index == 1) {
+            sftag = 1;
             list.addAll(list2);
-        else if(index == 2)
+        }else if(index == 2) {
+            sftag = 2;
             list.addAll(list3);
+        }
         shoufei.notifyDataSetChanged();
     }
 

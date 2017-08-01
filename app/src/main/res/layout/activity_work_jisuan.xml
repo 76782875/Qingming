@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="请输入贷款金额"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:paddingLeft="5dp"
                         android:textColorHint="@color/transparent80"
                         android:textSize="14sp" />
@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="请填写利率(分)"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:paddingLeft="5dp"
                         android:textColorHint="@color/transparent80"
                         android:textSize="14sp" />
@@ -219,7 +219,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
-                        android:text="工伤"
+                        android:text="工亡"
                         android:textColorHint="@color/black"
                         android:textSize="14sp" />
 
@@ -253,7 +253,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="请填写月工资"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:paddingLeft="5dp"
                         android:textColorHint="@color/transparent80"
                         android:textSize="14sp" />
@@ -299,7 +299,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="请输入本金"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:paddingLeft="5dp"
                         android:textColorHint="@color/transparent80"
                         android:textSize="14sp" />
@@ -368,7 +368,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="请填写利率(分)"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:paddingLeft="5dp"
                         android:textColorHint="@color/transparent80"
                         android:textSize="14sp" />
@@ -540,7 +540,7 @@
                         android:id="@+id/count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="65165"
+                        android:text="9999999"
                         android:textColor="@color/red"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -607,7 +607,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:text="5498498468"
+                            android:text="9999999"
                             android:textColor="@color/red"
                             android:textSize="16sp" />
 
@@ -687,7 +687,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:text="5498498468"
+                            android:text="9999999"
                             android:textColor="@color/red"
                             android:textSize="16sp" />
 
@@ -767,7 +767,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:text="5498498468"
+                            android:text="9999999"
                             android:textColor="@color/red"
                             android:textSize="16sp" />
 
@@ -826,7 +826,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:text="5498498468"
+                            android:text="9999999"
                             android:textColor="@color/red"
                             android:textSize="16sp" />
 
@@ -885,7 +885,7 @@
                         android:id="@+id/count1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="65165"
+                        android:text="99999"
                         android:textColor="@color/red"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -952,7 +952,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:text="5498498468"
+                            android:text="99999"
                             android:textColor="@color/red"
                             android:textSize="16sp" />
 
@@ -1250,7 +1250,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
-                                android:text="5498498468"
+                                android:text="99999"
                                 android:textColor="@color/red"
                                 android:textSize="16sp" />
 
@@ -1309,7 +1309,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
-                                android:text="5498498468"
+                                android:text="99999"
                                 android:textColor="@color/red"
                                 android:textSize="16sp" />
 
@@ -1368,7 +1368,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20dp"
-                                android:text="5498498468"
+                                android:text="99999"
                                 android:textColor="@color/red"
                                 android:textSize="16sp" />
 
