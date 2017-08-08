@@ -68,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
                         android:alpha="0.8"
-                        android:text=""
+                        android:text="无"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -101,21 +101,22 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="无"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:alpha="0.8"
                         android:layout_marginRight="15dp"/>
                     <ImageView
+                        android:id="@+id/call_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/phono"
                         android:layout_marginRight="15dp"/>
                     <ImageView
+                        android:id="@+id/message"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/message"
-                        />
+                        android:src="@mipmap/message" />
                 </LinearLayout>
             </LinearLayout>
             <View
@@ -145,7 +146,7 @@
                         android:id="@+id/company"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="无"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:alpha="0.8"
@@ -179,7 +180,7 @@
                         android:id="@+id/chuanzhen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="无"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:alpha="0.8"
@@ -213,7 +214,7 @@
                         android:id="@+id/email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="无"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:alpha="0.8"
@@ -247,7 +248,7 @@
                         android:id="@+id/home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="无"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:alpha="0.8"
@@ -281,7 +282,7 @@
                         android:id="@+id/bz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="无"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:alpha="0.8"

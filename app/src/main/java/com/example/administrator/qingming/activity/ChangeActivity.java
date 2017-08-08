@@ -39,7 +39,10 @@ import java.util.List;
 public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener{
     private SwipeRefreshLayout swipe;
     private ListView listview;
-    List<ModelChange.ResultBean> list;
+    private List<ModelChange.ResultBean> list;
+    private List<ModelChange.ResultBean> list1;
+    private List<ModelChange.ResultBean> list2;
+    private List<ModelChange.ResultBean> list3;
     private EditText edit;
     private TextView search,choose;
     private ImageView back_btn;
@@ -64,7 +67,6 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
         edit = (EditText) findViewById(R.id.edit);
         search = (TextView) findViewById(R.id.search);
         choose = (TextView) findViewById(R.id.choose);
-        edit = (EditText) findViewById(R.id.edit);
         back_btn = (ImageView) findViewById(R.id.back_btn);
 
         swipe.setOnRefreshListener(this);
@@ -113,7 +115,6 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
             switch (v.getId()){
                 case R.id.choose:
                     final String[] ch ={"客户(委托人)搜索","对方当事人搜索","案号搜索"};
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(ChangeActivity.this);
                     builder.setItems(ch, new DialogInterface.OnClickListener() {
                         @Override
@@ -124,7 +125,13 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
                     }).show();
                     break;
                 case R.id.search:
-
+                    if(choose.getText().toString().equals("客户(委托人)搜索")){
+                        getSearchwtr();
+                    }else if(choose.getText().toString().equals("对方当事人搜索")){
+                        getSearchdfdsr();
+                    }else if(choose.getText().toString().equals("案号搜索")){
+                        getSearchah();
+                    }
                     break;
                 case R.id.back_btn:
                     finish();
@@ -133,8 +140,70 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
         }
     };
 
+    int index = 0;
+//    private void setListData(){
+//        list4.clear();
+//        if (index == 0)
+//            list4 .addAll(list);
+//        else if(index == 1)
+//            list4.addAll(list1);
+//
+//        mAdapter.notifyDataSetChanged();
+//    }
+
     ChangeAdapter changeadapter;
     String company_id;
+    private void getSearchwtr(){
+        MainApi.getInstance(this).getbglvshicxApi(company_id,gjc, new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                swipe.setRefreshing(false);
+                if(type== Constants.TYPE_SUCCESS){
+                    List<ModelChange.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),
+                            result,ModelChange.ResultBean.class);
+                    list.clear();
+                    list.addAll(resultBean);
+
+                    changeadapter.notifyDataSetChanged();
+                }else BaseApi.showErrMsg(ChangeActivity.this,result);
+            }
+        });
+    }
+
+    private void getSearchdfdsr(){
+        MainApi.getInstance(this).getbglvshicxdApi(company_id,gjc, new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                swipe.setRefreshing(false);
+                if(type== Constants.TYPE_SUCCESS){
+                    List<ModelChange.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),
+                            result,ModelChange.ResultBean.class);
+                    list.clear();
+                    list.addAll(resultBean);
+
+                    changeadapter.notifyDataSetChanged();
+                }else BaseApi.showErrMsg(ChangeActivity.this,result);
+            }
+        });
+    }
+
+    private void getSearchah(){
+        MainApi.getInstance(this).getbglvshicxaApi(company_id,gjc, new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                swipe.setRefreshing(false);
+                if(type== Constants.TYPE_SUCCESS){
+                    List<ModelChange.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),
+                            result,ModelChange.ResultBean.class);
+                    list.clear();
+                    list.addAll(resultBean);
+
+                    changeadapter.notifyDataSetChanged();
+                }else BaseApi.showErrMsg(ChangeActivity.this,result);
+            }
+        });
+    }
+
     private void getHttp(){
         MainApi.getInstance(this).getbglvshiApi(company_id, new GetResultCallBack() {
             @Override
@@ -143,6 +212,7 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
                 if(type== Constants.TYPE_SUCCESS){
                     List<ModelChange.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),
                             result,ModelChange.ResultBean.class);
+                    list.clear();
                     list.addAll(resultBean);
 
                     changeadapter.notifyDataSetChanged();

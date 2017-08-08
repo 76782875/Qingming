@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="请填写还款期限(月)"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:paddingLeft="5dp"
                         android:textColorHint="@color/transparent80"
                         android:textSize="14sp" />

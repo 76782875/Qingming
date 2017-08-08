@@ -113,6 +113,18 @@ public class LsszActivity extends Activity implements SwipeRefreshLayout.OnRefre
                     showDialog(DATE_DIALOY);
                     break;
                 case R.id.search:
+                    if(!start_time.getText().equals("请选择开始时间")){
+                        if(!finish_time.getText().equals("请选择结束时间")){
+                            starttime = start_time.getText().toString();
+                            endtime = finish_time.getText().toString();
+                            searchHttp();
+                        }else {
+                            Toast.makeText(LsszActivity.this, "请选择时间", Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(LsszActivity.this, "请选择时间", Toast.LENGTH_SHORT).show();
+                    }
+
                     break;
             }
         }
@@ -168,6 +180,36 @@ public class LsszActivity extends Activity implements SwipeRefreshLayout.OnRefre
             @Override
             public void getResult(String result, int type) {
                 swipeRefreshLayout.setRefreshing(false);
+                if(type == Constants.TYPE_SUCCESS){
+                    List<ModelShouFei.ResultBean> resultbean = GsonUtil.fromJsonList(new Gson(),result,
+                            ModelShouFei.ResultBean.class);
+                    list.clear();
+                    list.addAll(resultbean);
+                    double sum = 0;
+                    double tfsum = 0;
+                    for(int i =0 ; i<resultbean.size(); i++){
+                        double sfje = resultbean.get(i).getSfje();
+                        String fylx = resultbean.get(i).getFylx();
+                        if(fylx.equals("4")){
+                            tfsum += sfje;
+                        }else {
+                            sum += sfje;
+                        }
+                    }
+                    sf.setText(""+sum);
+                    tf.setText(""+tfsum);
+                    lsszAdapter.notifyDataSetChanged();
+                }else BaseApi.showErrMsg(LsszActivity.this,result);
+            }
+        });
+    }
+
+    String starttime;
+    String endtime;
+    private void searchHttp(){
+        MainApi.getInstance(this).getlsszsApi(id,starttime,endtime, new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelShouFei.ResultBean> resultbean = GsonUtil.fromJsonList(new Gson(),result,
                             ModelShouFei.ResultBean.class);

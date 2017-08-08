@@ -140,9 +140,6 @@ public class LawJournalFragment extends Fragment implements SwipeRefreshLayout.O
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             cid = datelist.get(position).getId();
-                            Log.e("---------->",""+cid);
-                            Log.e("+++++++++++",""+sourceDateList.get(0).getId());
-                            Log.e("==========>",""+datelist.get(0).getId());
                             Intent intent = new Intent(getActivity(),ContactDetailsActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putString("cid",""+cid);

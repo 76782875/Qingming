@@ -55,9 +55,17 @@ public class PressHomeAdapter extends BaseAdapter {
             convertView.setTag(viewHolder);
         }
         viewHolder = (ViewHolder) convertView.getTag();
-//        viewHolder.title1.setText(list.get(position).getProduct_name());
+        if(list.get(position).getProduct_brand().equals("14")){
+            viewHolder.title1.setText("公司新闻");
+            viewHolder.type.setText("公司新闻");
+        }else if(list.get(position).getProduct_brand().equals("15")){
+            viewHolder.title1.setText("司法局资讯");
+            viewHolder.type.setText("司法局资讯");
+        }else if(list.get(position).getProduct_brand().equals("16")){
+            viewHolder.title1.setText("系统资讯");
+            viewHolder.type.setText("系统资讯");
+        }
         viewHolder.title2.setText(list.get(position).getProduct_name());
-//        viewHolder.type.setText(list.get(position).getInsert_time());
         viewHolder.people.setText(list.get(position).getInsert_name());
 
         String time = list.get(position).getInsert_time();

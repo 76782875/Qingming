@@ -180,7 +180,6 @@ public class WorkJusuanActivity extends Activity {
                         }else if(sc.getText().toString().equals("工亡")){
                             scdj = 11;
                         }
-                        Log.e("===>>>",""+scdj);
                         if(!TextUtils.isEmpty(ygz.getText())){
                             getScHttp();
                         }else {

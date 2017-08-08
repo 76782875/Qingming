@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="5dp"
         android:background="@color/blue">
         <ImageView
             android:id="@+id/back_btn"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="@string/law_journal"
             android:layout_centerInParent="true"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textColor="@color/white"/>
     </RelativeLayout>
     <View
@@ -39,10 +39,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/input_box_white"
             android:hint="@string/input_name"
+            android:textSize="14sp"
+            android:textColorHint="@color/transparent80"
             android:drawableLeft="@mipmap/search"
             android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:layout_margin="5dp"
             android:singleLine="true" />
 
     </LinearLayout>

@@ -16,7 +16,7 @@ import com.example.administrator.qingming.fragment.LawJournalFragment;
 import com.example.administrator.qingming.fragment.ApplicationFragment;
 import com.example.administrator.qingming.fragment.HomePageFragment;
 import com.example.administrator.qingming.fragment.MeFragment;
-import com.example.administrator.qingming.fragment.WorkFragment;
+import com.example.administrator.qingming.wuyong.WorkFragment;
 
 import java.util.ArrayList;
 

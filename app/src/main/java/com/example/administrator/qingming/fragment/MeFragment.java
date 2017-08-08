@@ -71,22 +71,6 @@ public class MeFragment extends Fragment {
 
         submit_btn.setOnClickListener(onclick);
         tuichu_btn.setOnClickListener(onclick);
-//        officename.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                myofficename = s.toString();
-//            }
-//        });//所属公司
         consignor.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

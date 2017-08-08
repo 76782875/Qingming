@@ -72,12 +72,33 @@ public class MainApi extends BaseApi {
     }
 
     /**
-     * 进入变更律师
+     * 变更律师
      */
     public void getbglvshiApi(String company_id,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("company_id", company_id + "");
         getLoad(BaseUrl.bglvshi, map, callBack);
+    }
+
+    public void getbglvshicxApi(String company_id,String wtr,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("company_id", company_id + "");
+        map.put("wtr", wtr + "");
+        getLoad(BaseUrl.bglvshicx, map, callBack);
+    }
+
+    public void getbglvshicxdApi(String company_id,String dfdsr,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("company_id", company_id + "");
+        map.put("dfdsr", dfdsr + "");
+        getLoad(BaseUrl.bglvshicxd, map, callBack);
+    }
+
+    public void getbglvshicxaApi(String company_id,String ah,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("company_id", company_id + "");
+        map.put("ah_number", ah + "");
+        getLoad(BaseUrl.bglvshicxa, map, callBack);
     }
 
     /**
@@ -824,7 +845,15 @@ public class MainApi extends BaseApi {
     public void getshoufeixqApi(String id, GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("company_id", id + "");
-        postLoad(BaseUrl.shoufeixq, map, callBack);
+        getLoad(BaseUrl.shoufeixq, map, callBack);
+    }
+
+    public void getlsszsApi(String id,String start_time,String end_time, GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("company_id", id + "");
+        map.put("start_time", start_time + "");
+        map.put("end_time", end_time + "");
+        getLoad(BaseUrl.lsszs, map, callBack);
     }
 
     /**
@@ -869,7 +898,7 @@ public class MainApi extends BaseApi {
      */
     public void getpjgzApi(GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
-        postLoad(BaseUrl.pjgz, map, callBack);
+        getLoad(BaseUrl.pjgz, map, callBack);
     }
 
     /**
@@ -879,7 +908,7 @@ public class MainApi extends BaseApi {
         Map<String, String> map = new HashMap<>();
         map.put("qmarea_id", qmarea_id + "");
         map.put("scdj", scdj + "");
-        postLoad(BaseUrl.gspc, map, callBack);
+        getLoad(BaseUrl.gspc, map, callBack);
     }
 
 
@@ -890,7 +919,7 @@ public class MainApi extends BaseApi {
         Map<String, String> map = new HashMap<>();
         map.put("df", df + "");
         map.put("fyflag", fyflag + "");
-        postLoad(BaseUrl.lsf, map, callBack);
+        getLoad(BaseUrl.lsf, map, callBack);
     }
 
     /**
@@ -947,5 +976,15 @@ public class MainApi extends BaseApi {
         map.put("create_id", create_id + "");
         map.put("update_date", update_date + "");
         postLoad(BaseUrl.xgls, map, callBack);
+    }
+
+    /**
+     * 查询法律
+     */
+    public void getcxfllApi(int id,String name,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("cons_type", id + "");
+        map.put("cons_name", name + "");
+        getLoad(BaseUrl.cxfll, map, callBack);
     }
 }

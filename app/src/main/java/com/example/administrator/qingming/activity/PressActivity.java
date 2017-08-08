@@ -78,6 +78,7 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
                 Log.i("cid","+++++"+cid);
                 Intent intent = new Intent(PressActivity.this,IntoPressActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putInt("index",1);
                 bundle.putString("cid",cid);
                 intent.putExtras(bundle);
                 startActivity(intent);

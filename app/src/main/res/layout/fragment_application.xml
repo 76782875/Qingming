@@ -40,9 +40,9 @@
                     android:layout_height="wrap_content"
                     android:text="添加案件"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:drawableTop="@mipmap/list_07"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
 
                 <TextView
@@ -50,12 +50,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:drawableTop="@mipmap/list_ys"
                     android:gravity="center_horizontal"
                     android:text="预收案"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/spz"
@@ -64,9 +64,9 @@
                     android:layout_height="wrap_content"
                     android:text="审批中"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:drawableTop="@mipmap/list_sp"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
                 <TextView
                     android:id="@+id/baz"
@@ -75,9 +75,9 @@
                     android:layout_height="wrap_content"
                     android:text="办案中"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:drawableTop="@mipmap/list_ba"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
 
 
@@ -86,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="5dp">
                 <TextView
                     android:id="@+id/yja"
                     android:layout_weight="1"
@@ -94,9 +94,9 @@
                     android:layout_height="wrap_content"
                     android:text="已结案"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:drawableTop="@mipmap/list_ja"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
                 <TextView
                     android:id="@+id/biangen"
@@ -105,9 +105,9 @@
                     android:layout_height="wrap_content"
                     android:text="变更律师"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:drawableTop="@mipmap/list_09"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
                 <TextView
                     android:id="@+id/lsaj"
@@ -116,20 +116,20 @@
                     android:layout_height="wrap_content"
                     android:text="律所案件"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:drawableTop="@mipmap/list_05"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
                 <TextView
                     android:id="@+id/gzsq"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
             <!--审批-->
             <LinearLayout
@@ -155,7 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="5dp">
                 <TextView
                     android:id="@+id/sasp"
                     android:layout_weight="1"
@@ -163,9 +163,9 @@
                     android:layout_height="wrap_content"
                     android:text="收案审批"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:drawableTop="@mipmap/list_25"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
 
                 <TextView
@@ -173,34 +173,34 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:drawableTop="@mipmap/list_26"
                     android:gravity="center_horizontal"
                     android:text="结案审批"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/fpgl"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:drawableTop="@mipmap/list_fp"
                     android:gravity="center_horizontal"
                     android:text="发票管理"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
                 <TextView
                     android:id="@+id/gzsp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
 
@@ -228,7 +228,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="5dp">
                 <TextView
                     android:id="@+id/cwsa"
                     android:layout_weight="1"
@@ -236,9 +236,9 @@
                     android:layout_height="wrap_content"
                     android:text="财务收案"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:drawableTop="@mipmap/list_28"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
 
                 <TextView
@@ -246,36 +246,36 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:drawableTop="@mipmap/list_24"
                     android:gravity="center_horizontal"
                     android:text="财务结案"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/sfsp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:drawableTop="@mipmap/list_sf"
                     android:gravity="center_horizontal"
                     android:text="收费审批"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/lssz"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:drawableTop="@mipmap/list_23"
                     android:gravity="center_horizontal"
                     android:text="律所收支"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <!--行政-->
@@ -300,43 +300,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/kqdk"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:drawableTop="@mipmap/list_dk"
                     android:gravity="center_horizontal"
                     android:text="考勤打卡"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/dkjl"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:drawableTop="@mipmap/list_jl"
                     android:gravity="center_horizontal"
                     android:text="打卡记录"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/zrsa"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"
                     android:drawableTop="@mipmap/gj08"
                     android:text="应用工具"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_weight="1"
@@ -344,8 +344,8 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:drawablePadding="10dp"
+                    android:textSize="12sp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
             </LinearLayout>
 
@@ -371,39 +371,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/lszs"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:drawableTop="@mipmap/list_28"
                     android:gravity="center_horizontal"
                     android:text="律师助手"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_weight="1"
@@ -411,8 +411,8 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:drawablePadding="10dp"
+                    android:textSize="12sp"
+                    android:drawablePadding="5dp"
                     android:gravity="center_horizontal"/>
             </LinearLayout>
         </LinearLayout>

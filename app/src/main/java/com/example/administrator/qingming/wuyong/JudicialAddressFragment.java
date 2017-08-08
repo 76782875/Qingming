@@ -1,4 +1,4 @@
-package com.example.administrator.qingming.fragment;
+package com.example.administrator.qingming.wuyong;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.example.administrator.qingming.contacts.CustomerAddressActivity;
 import com.example.administrator.qingming.R;
+import com.example.administrator.qingming.fragment.LawJournalFragment;
 
 import static com.example.administrator.qingming.R.id.law_journal;
 

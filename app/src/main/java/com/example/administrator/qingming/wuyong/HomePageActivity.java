@@ -1,4 +1,4 @@
-package com.example.administrator.qingming.activity;
+package com.example.administrator.qingming.wuyong;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,6 +15,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.administrator.qingming.activity.ChangeActivity;
+import com.example.administrator.qingming.activity.FilesActivity;
+import com.example.administrator.qingming.activity.MapActivity;
+import com.example.administrator.qingming.activity.MeActivity;
+import com.example.administrator.qingming.activity.MyCaseActivity;
+import com.example.administrator.qingming.activity.NewsActivity;
+import com.example.administrator.qingming.activity.PressActivity;
 import com.example.administrator.qingming.fragment.ApplicationFragment;
 import com.example.administrator.qingming.ExamineAndApproveActivity;
 import com.example.administrator.qingming.R;

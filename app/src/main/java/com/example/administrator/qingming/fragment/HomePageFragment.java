@@ -122,9 +122,9 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cid = list.get(position).getId();
-                Log.i("cid","+++++"+cid);
                 Intent intent = new Intent(getActivity(),IntoPressActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putInt("index",1);
                 bundle.putString("cid",cid);
                 intent.putExtras(bundle);
                 startActivity(intent);

@@ -252,8 +252,6 @@ public class CalendarActivity extends FragmentActivity {
         return null;
     }
 
-
-
     DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

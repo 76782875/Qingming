@@ -7,6 +7,10 @@ public class BaseUrl {
 
     public final static String baseurl = "http://192.168.188.122/index.php/home/index/";//根地址
 
+    public final static String anhao = "http://192.168.188.122:8080/955tao/mobile/web/getCaseNo?";//查询案号
+
+    public final static String xiaoxi ="http://192.168.188.122:8080/955tao/mobile/web/news?";//消息
+
     public final static String lvtxlurl = baseurl+"lvtxl?";//通讯录地址
 
     public final static String intolvtxlurl = baseurl+"intolvtxl?";//进入通讯录地址
@@ -16,6 +20,12 @@ public class BaseUrl {
     public final static String intonews = baseurl+"intonews?";//进入新闻资讯地址
 
     public final static String bglvshi = baseurl+"bglvshi?";//变更律师地址
+
+    public final static String bglvshicx = baseurl+"bglvshicx?";//查询变更律师地址（委托人）
+
+    public final static String bglvshicxd = baseurl+"bglvshicxd?";//查询变更律师地址（对方当事人）
+
+    public final static String bglvshicxa = baseurl+"bglvshicxa?";//查询变更律师地址（案号）
 
     public final static String intobglvshi = baseurl+"intobglvshi?";//进入变更律师地址
 
@@ -40,8 +50,6 @@ public class BaseUrl {
     public final static String xgmycase = baseurl+"xgmycase?";//修改案件
 
     public final static String mycase = baseurl+"mycase?";//我的案件
-
-    public final static String anhao = "http://192.168.188.122:8080/955tao/mobile/web/getCaseNo?";//查询案号
 
     public final static String lscase = baseurl+"lscase?";//律所案件
 
@@ -87,6 +95,8 @@ public class BaseUrl {
 
     public final static String shoufeixq = baseurl+"shoufeixq?";//收费记录
 
+    public final static String lsszs = baseurl+"lsszs?";//查询收费记录
+
     public final static String xgshoufeixq = baseurl+"xgshoufeixq?";//收费记录
 
     public final static String falvs = baseurl+"falvs?";//法律列表
@@ -99,11 +109,11 @@ public class BaseUrl {
 
     public final static String addxxtz = baseurl+"addxxtz?";//消息保存案件状态
 
-    public final static String xiaoxi ="http://192.168.188.122:8080/955tao/mobile/web/news?";//消息
-
     public final static String mycases = baseurl+"mycases?";//消息下个页面
 
     public final static String cls = baseurl+"cls?";//查询律师
 
     public final static String xgls = baseurl+"xgls?";//查询律师
+
+    public final static String cxfll = baseurl+"cxfll?";//查询律师
 }
