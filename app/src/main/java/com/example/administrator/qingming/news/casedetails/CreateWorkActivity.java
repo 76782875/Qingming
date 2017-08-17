@@ -22,6 +22,7 @@ import com.example.administrator.qingming.adapter.JianChaAdapter;
 import com.example.administrator.qingming.adapter.ZhenChaAdapter;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelFaYuan;
@@ -44,10 +45,11 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
     private List<ModelZhenCha.ResultBean> zhenchalist;
     private List<ModelJiancha.ResultBean> jianchalist;
     private List<ModelFaYuan.ResultBean> fayuanlist;
-    private String ah_number,id,wtr,dfdsr,ay;
-    CreateWorkAdapter createWorkAdapter;
-    ZhenChaAdapter zhenChaAdapter;
+    private String ah_number,glid,wtr,dfdsr,ay,dsr;
+    private CreateWorkAdapter createWorkAdapter;
+    private ZhenChaAdapter zhenChaAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private LoadingDialog loadingDialog;
     private TextView name;
     private int type;
     @Override
@@ -58,9 +60,10 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
 
         initView();
         Bundle bundle = getIntent().getExtras();
-        id = bundle.getString("id","");
+        glid = bundle.getString("id","");
         ah_number = bundle.getString("ah_number","");
         wtr = bundle.getString("wtr","");
+        dsr = bundle.getString("dsr","");
         dfdsr = bundle.getString("dfdsr","");
         ay = bundle.getString("ay","");
         type = bundle.getInt("type");
@@ -82,6 +85,7 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this);
         list = new ArrayList<>();
         zhenchalist = new ArrayList<>();
         jianchalist = new ArrayList<>();
@@ -117,9 +121,10 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
                         intent = new Intent(CreateWorkActivity.this, FaYuanActivity.class);
                     }
                     intent.putExtra("zid",1);
-                    intent.putExtra("id",id);
+                    intent.putExtra("id",glid);
                     intent.putExtra("ah_number",ah_number);
                     intent.putExtra("wtr",wtr);
+                    intent.putExtra("dsr",dsr);
                     intent.putExtra("dfdsr",dfdsr);
                     intent.putExtra("ay",ay);
                     startActivity(intent);
@@ -129,11 +134,14 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
     };
 
     private void getHttp(){
-        MainApi.getInstance(this).getrizhiApi(id, new GetResultCallBack() {
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("加载中...");
+        MainApi.getInstance(this).getrizhiApi(glid, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
+                loadingDialog.dismiss();
+                swipeRefreshLayout.setRefreshing(false);
                 if(type == Constants.TYPE_SUCCESS){
-                    swipeRefreshLayout.setRefreshing(false);
                     List<CreateModel.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,
                             CreateModel.ResultBean.class);
                     list.clear();
@@ -148,11 +156,14 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
     }
 
     private void getZhenChaHttp(){
-        MainApi.getInstance(this).getzhenchaApi(id, new GetResultCallBack() {
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("加载中...");
+        MainApi.getInstance(this).getzhenchaApi(glid, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
+                loadingDialog.dismiss();
+                swipeRefreshLayout.setRefreshing(false);
                 if(type == Constants.TYPE_SUCCESS){
-                    swipeRefreshLayout.setRefreshing(false);
                     List<ModelZhenCha.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,
                             ModelZhenCha.ResultBean.class);
                     zhenchalist.clear();
@@ -181,8 +192,10 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
                             String ecbczc_end = zhenchalist.get(position).getEcbczc_end();
                             intent.putExtra("zid",2);
                             intent.putExtra("aid",cid);
+                            intent.putExtra("id",glid);
                             intent.putExtra("ah_number",ah_number);
                             intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             intent.putExtra("bajg",bajg);
@@ -202,7 +215,8 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
                             startActivity(intent);
                         }
                     });
-                    createWorkAdapter.notifyDataSetChanged();
+
+                    zhenChaAdapter.notifyDataSetChanged();
                 }else BaseApi.showErrMsg(CreateWorkActivity.this,result);
             }
         });
@@ -210,11 +224,14 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
 
     JianChaAdapter jianChaAdapter;
     private void getJianChaHttp(){
-        MainApi.getInstance(this).getjianchaApi(id, new GetResultCallBack() {
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("加载中...");
+        MainApi.getInstance(this).getjianchaApi(glid, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
+                loadingDialog.dismiss();
+                swipeRefreshLayout.setRefreshing(false);
                 if(type == Constants.TYPE_SUCCESS){
-                    swipeRefreshLayout.setRefreshing(false);
                     List<ModelJiancha.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,
                             ModelJiancha.ResultBean.class);
                     jianchalist.clear();
@@ -237,8 +254,10 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
                             String scqs_end = jianchalist.get(position).getScqs_end();
                             intent.putExtra("zid",2);
                             intent.putExtra("aid",cid);
+                            intent.putExtra("id",glid);
                             intent.putExtra("ah_number",ah_number);
                             intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             intent.putExtra("bajg",bajg);
@@ -260,11 +279,14 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
 
     FaYuanAdapter faYuanAdapter;
     private void getFaYuan(){
-        MainApi.getInstance(this).getfayuanApi(id, new GetResultCallBack() {
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("加载中...");
+        MainApi.getInstance(this).getfayuanApi(glid, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
+                loadingDialog.dismiss();
+                swipeRefreshLayout.setRefreshing(false);
                 if(type == Constants.TYPE_SUCCESS){
-                    swipeRefreshLayout.setRefreshing(false);
                     List<ModelFaYuan.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,
                             ModelFaYuan.ResultBean.class);
                     fayuanlist.clear();
@@ -294,8 +316,10 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
 //                            String ah_number= fayuanlist.get(position).getAh_number();
                             intent.putExtra("zid",2);
                             intent.putExtra("aid",cid);
+                            intent.putExtra("id",glid);
                             intent.putExtra("ah_number",ah_number);
                             intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             intent.putExtra("spcx",spcx);

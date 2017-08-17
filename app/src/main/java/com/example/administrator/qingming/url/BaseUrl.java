@@ -5,11 +5,11 @@ package com.example.administrator.qingming.url;
  */
 public class BaseUrl {
 
-    public final static String baseurl = "http://192.168.188.122/index.php/home/index/";//根地址
+    public final static String baseurl = "http://192.168.188.123/index.php/home/index/";//根地址
 
-    public final static String anhao = "http://192.168.188.122:8080/955tao/mobile/web/getCaseNo?";//查询案号
+    public final static String anhao = "http://192.168.188.123:8080/955tao/mobile/web/getCaseNo?";//查询案号
 
-    public final static String xiaoxi ="http://192.168.188.122:8080/955tao/mobile/web/news?";//消息
+    public final static String xiaoxi ="http://192.168.188.123:8080/955tao/mobile/web/news?";//消息
 
     public final static String lvtxlurl = baseurl+"lvtxl?";//通讯录地址
 

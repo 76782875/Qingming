@@ -265,7 +265,7 @@ public class WorkJusuanActivity extends Activity {
                         dklx.setVisibility(View.VISIBLE);
                         double a = Double.parseDouble(dkje.getText().toString());
                         double b = Double.parseDouble(hkqx.getText().toString());
-                        double c = Integer.valueOf(lv.getText().toString()) * 0.01;
+                        double c = Double.parseDouble(lv.getText().toString()) * 0.01;
                         Log.e("====>", "" + a + "  " + b + "  " + c);
                         Log.e("====>", "" + a * b * c);
                         qx.setText(hkqx.getText().toString());

@@ -64,7 +64,7 @@ public class ShouFeiAdapter extends RecyclerView.Adapter<ShouFeiAdapter.ViewHold
             ModelShouFei.ResultBean resultBean = list.get(position);
 //        1 预收费  2 追加费用 3尾款  4退款
             if (resultBean.getFylx().equals("1")) {
-                holder.case_item_type.setText("预收费");
+                holder.case_item_type.setText("预收款");
             } else if (resultBean.getFylx().equals("2")) {
                 holder.case_item_type.setText("追加费用");
             } else if (resultBean.getFylx().equals("3")) {

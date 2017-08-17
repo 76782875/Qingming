@@ -17,6 +17,7 @@ import com.example.administrator.qingming.activity.CaseShenPiActivity;
 import com.example.administrator.qingming.adapter.ShenPiAdapter;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.MyCaseModel;
@@ -38,8 +39,9 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
     private List<MyCaseModel.ResultBean> list1;
     private List<MyCaseModel.ResultBean> list2;
     private ListView mlistview;
-    ShenPiAdapter shenPiAdapter;
+    private ShenPiAdapter shenPiAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private LoadingDialog loadingDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,7 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
 
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this);
         list = new ArrayList<>();
         list1 = new ArrayList<>();
         list2 = new ArrayList<>();
@@ -117,7 +120,6 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
                 bundle.putInt("case_state",case_state);
                 bundle.putString("createid",createid);
                 intent.putExtras(bundle);
-                Log.e("bundle===>","+"+case_state);
                 startActivity(intent);
             }
         });
@@ -161,10 +163,13 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
     String company_id;
     int case_state ;
     private void getHttp(){
+        loadingDialog.setLoadingContent("加载中...");
+        loadingDialog.show();
         MainApi.getInstance(this).getsaspApi(company_id, case_state,new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipeRefreshLayout.setRefreshing(false);
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<MyCaseModel.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,MyCaseModel.ResultBean.class);
                     list.clear();

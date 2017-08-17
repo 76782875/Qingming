@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -15,38 +14,36 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * Created by Administrator on 2017/5/9 0009.
+ * Created by Administrator on 2017/8/15 0015.
  */
 
-public class DateTimePickDialogUtil implements DatePicker.OnDateChangedListener, TimePicker.OnTimeChangedListener {
+public class DatePickDialogUtil implements DatePicker.OnDateChangedListener{
     private DatePicker datePicker;
     private TimePicker timePicker;
     private AlertDialog ad;
     private String dateTime;
     private String initDateTime;
     private Activity activity;
-    public DateTimePickDialogUtil(String initDateTime, Activity activity) {
+    public DatePickDialogUtil(String initDateTime, Activity activity) {
         this.initDateTime = initDateTime;
         this.activity = activity;
     }
 
-    public void init(DatePicker datePicker, TimePicker timePicker) {
+    public void init(DatePicker datePicker) {
         Calendar calendar = Calendar.getInstance();
         if (!(null == initDateTime || "".equals(initDateTime))) {
             calendar = this.getCalendarByInintData(initDateTime);
         } else {
             initDateTime = calendar.get(Calendar.YEAR) + "-"
                     + calendar.get(Calendar.MONTH) + "-"
-                    + calendar.get(Calendar.DAY_OF_MONTH) + "- "
-                    + calendar.get(Calendar.HOUR_OF_DAY) + ":"
-                    + calendar.get(Calendar.MINUTE);
+                    + calendar.get(Calendar.DAY_OF_MONTH);
         }
 
         datePicker.init(calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH), this);
-        timePicker.setCurrentHour(calendar.get(Calendar.HOUR_OF_DAY));
-        timePicker.setCurrentMinute(calendar.get(Calendar.MINUTE));
+//        timePicker.setCurrentHour(calendar.get(Calendar.HOUR_OF_DAY));
+//        timePicker.setCurrentMinute(calendar.get(Calendar.MINUTE));
     }
 
     /**
@@ -57,12 +54,9 @@ public class DateTimePickDialogUtil implements DatePicker.OnDateChangedListener,
      * @return
      */
     public AlertDialog dateTimePicKDialog(final TextView inputDate) {
-        LinearLayout dateTimeLayout = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.common_datetime, null);
+        LinearLayout dateTimeLayout = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.common_date, null);
         datePicker = (DatePicker) dateTimeLayout.findViewById(R.id.datepicker);
-        timePicker = (TimePicker) dateTimeLayout.findViewById(R.id.timepicker);
-        init(datePicker, timePicker);
-        timePicker.setIs24HourView(true);
-        timePicker.setOnTimeChangedListener(this);
+        init(datePicker);
 
         ad = new AlertDialog.Builder(activity,AlertDialog.THEME_HOLO_LIGHT)
                 .setTitle(initDateTime)
@@ -75,6 +69,7 @@ public class DateTimePickDialogUtil implements DatePicker.OnDateChangedListener,
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         inputDate.setText("请选择时间");
+
                     }
                 }).show();
 
@@ -90,10 +85,9 @@ public class DateTimePickDialogUtil implements DatePicker.OnDateChangedListener,
      *            初始日期时间值 字符串型
      * @return Calendar
      */
-    private Calendar getCalendarByInintData(String initDateTime) {
-        Calendar calendar = Calendar.getInstance();
+    private Calendar getCalendarByInintData(String initDateTime) {Calendar calendar = Calendar.getInstance();
 
-        // 将初始日期时间2012年07月02日 16:45 拆分成年 月 日 时 分 秒
+        // 将初始日期时间2012年07月02日 拆分成年 月 日
         String date = spliteString(initDateTime, "-", "index", "front"); // 日期
         String time = spliteString(initDateTime, "-", "index", "back"); // 时间
 
@@ -103,17 +97,12 @@ public class DateTimePickDialogUtil implements DatePicker.OnDateChangedListener,
         String monthStr = spliteString(monthAndDay, "-", "index", "front"); // 月
         String dayStr = spliteString(monthAndDay, "-", "index", "back"); // 日
 
-        String hourStr = spliteString(time, ":", "index", "front"); // 时
-        String minuteStr = spliteString(time, ":", "index", "back"); // 分
 
         int currentYear = Integer.valueOf(yearStr.trim()).intValue();
         int currentMonth = Integer.valueOf(monthStr.trim()).intValue() - 1;
         int currentDay = Integer.valueOf(dayStr.trim()).intValue();
-        int currentHour = Integer.valueOf(hourStr.trim()).intValue();
-        int currentMinute = Integer.valueOf(minuteStr.trim()).intValue();
 
-        calendar.set(currentYear, currentMonth, currentDay, currentHour,
-                currentMinute);
+        calendar.set(currentYear, currentMonth, currentDay);
         return calendar;
     }
 
@@ -128,8 +117,7 @@ public class DateTimePickDialogUtil implements DatePicker.OnDateChangedListener,
      * @param frontOrBack
      * @return
      */
-    public static String spliteString(String srcStr, String pattern,
-                                      String indexOrLast, String frontOrBack) {
+    public static String spliteString(String srcStr, String pattern, String indexOrLast, String frontOrBack) {
         String result = "";
         int loc = -1;
         if (indexOrLast.equalsIgnoreCase("index")) {
@@ -153,10 +141,8 @@ public class DateTimePickDialogUtil implements DatePicker.OnDateChangedListener,
         // 获得日历实例
         Calendar calendar = Calendar.getInstance();
 
-        calendar.set(datePicker.getYear(), datePicker.getMonth(),
-                datePicker.getDayOfMonth(), timePicker.getCurrentHour(),
-                timePicker.getCurrentMinute());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         dateTime = sdf.format(calendar.getTime());
         ad.setTitle(dateTime);

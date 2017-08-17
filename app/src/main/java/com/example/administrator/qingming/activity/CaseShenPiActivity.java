@@ -53,31 +53,25 @@ public class CaseShenPiActivity extends Activity {
         wtr = bundle.getString("wtr","");
         dfdsr = bundle.getString("dfdsr","");
         id = bundle.getString("id","");
-        Log.e("id---------->",""+id);
         case_state = bundle.getInt("case_state");
         String createid = bundle.getString("createid","");
-        Log.e("case_state===>",""+case_state);
         if(case_state==2){
-            Log.e("case_state===>>","这是主任审批");
             //主任审批
             caiwu_btn.setVisibility(View.VISIBLE);
             caiwu_btn.setOnClickListener(onclicklisten);
             agree_btn.setOnClickListener(onclicklisten);
             noagree_btn.setOnClickListener(onclicklisten);
         }else if(case_state == 5){
-            Log.e("case_state===>>","这是主任审批");
             //主任审批
             caiwu_btn.setVisibility(View.VISIBLE);
             caiwu_btn.setOnClickListener(onclicklisten);
             agree_btn.setOnClickListener(onclicklisten);
             noagree_btn.setOnClickListener(onclicklisten);
         }else if(case_state==3){
-            Log.e("case_state===>|||","这是财务审批");
             //财务审批
             agree_btn.setOnClickListener(onclicklisten);
             noagree_btn.setOnClickListener(onclicklisten);
         }else if(case_state==6){
-            Log.e("case_state===>|||","这是财务审批");
             //财务审批
             agree_btn.setOnClickListener(onclicklisten);
             noagree_btn.setOnClickListener(onclicklisten);

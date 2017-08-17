@@ -31,16 +31,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@color/cyan"
+                android:padding="5dp"
                 android:text="民事案件"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:background="@color/bluedark"
-                android:padding="5dp"/>
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:id="@+id/zong"
@@ -121,10 +122,10 @@
                         android:id="@+id/textView4"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
                         android:text="收案日期 ："
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:textSize="14sp" />
 
                     <TextView
@@ -148,10 +149,10 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
                         android:text="案         由："
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:textSize="14sp" />
                     <EditText
                         android:id="@+id/brief"
@@ -174,9 +175,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="委   托   人："
                         android:textSize="14sp"/>
                     <EditText
@@ -201,9 +202,63 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
+                        android:text="联系电话："
+                        android:textSize="14sp"/>
+                    <EditText
+                        android:id="@+id/lxdh"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="请填写联系电话"
+                        android:textColorHint="@color/transparent80"
+                        android:background="@null"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/input_bluedark_white">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/cyan"
+                        android:padding="5dp"
+                        android:textColor="@color/transparent80"
+                        android:text="当  事  人："
+                        android:textSize="14sp"/>
+                    <EditText
+                        android:id="@+id/dsr"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="请填写当事人"
+                        android:textColorHint="@color/transparent80"
+                        android:background="@null"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/input_bluedark_white">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/cyan"
+                        android:padding="5dp"
+                        android:textColor="@color/transparent80"
                         android:text="对方当事人："
                         android:textSize="14sp"/>
                     <EditText
@@ -228,9 +283,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="受理部门："
                         android:textSize="14sp"/>
                     <EditText
@@ -255,9 +310,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="诉讼标的："
                         android:textSize="14sp"/>
                     <EditText
@@ -283,9 +338,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="收费方式："
                         android:textSize="14sp"/>
                     <TextView
@@ -314,9 +369,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="代  理  费 ："
                         android:textSize="14sp"/>
                     <EditText
@@ -326,7 +381,7 @@
                         android:textColorHint="@color/transparent80"
                         android:background="@null"
                         android:hint="请填写代理费"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:textSize="14sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -341,9 +396,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="杂      费 ："
                         android:textSize="14sp"/>
                     <EditText
@@ -354,7 +409,7 @@
                         android:textColorHint="@color/transparent80"
                         android:background="@null"
                         android:hint="请填写杂费"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:textSize="14sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -369,9 +424,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="诉讼阶段："
                         android:textSize="14sp"/>
                     <TextView
@@ -400,9 +455,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="诉讼地位："
                         android:textSize="14sp"/>
                     <TextView
@@ -440,10 +495,10 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:background="@color/bluedark"
+                            android:background="@color/cyan"
                             android:padding="5dp"
                             android:text="公        安："
-                            android:textColor="@color/white"
+                            android:textColor="@color/transparent80"
                             android:textSize="14sp"/>
                         <EditText
                             android:id="@+id/public_security"
@@ -466,10 +521,10 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:background="@color/bluedark"
+                            android:background="@color/cyan"
                             android:padding="5dp"
                             android:text="检  察  院 ："
-                            android:textColor="@color/white"
+                            android:textColor="@color/transparent80"
                             android:textSize="14sp"/>
                         <EditText
                             android:id="@+id/procuratorate"
@@ -492,10 +547,10 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:background="@color/bluedark"
+                            android:background="@color/cyan"
                             android:padding="5dp"
                             android:text="法        院 ："
-                            android:textColor="@color/white"
+                            android:textColor="@color/transparent80"
                             android:textSize="14sp"/>
 
                         <EditText
@@ -519,10 +574,10 @@
                         <TextView
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:background="@color/bluedark"
+                            android:background="@color/cyan"
                             android:padding="5dp"
                             android:text="看  守  所 ："
-                            android:textColor="@color/white"
+                            android:textColor="@color/transparent80"
                             android:textSize="14sp"/>
                         <EditText
                             android:id="@+id/detention_house"
@@ -550,10 +605,10 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
                         android:text="办案地区： "
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:textSize="14sp" />
 
                     <TextView
@@ -592,9 +647,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="案件备注："
                         android:textSize="14sp"
                         android:gravity="center_vertical"/>
@@ -634,7 +689,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/bluedark"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="服务类型："
                         android:textSize="14sp"/>
                     <TextView
@@ -661,7 +716,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/bluedark"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="服务时间："
                         android:textSize="14sp"/>
                     <EditText
@@ -688,7 +743,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/bluedark"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="服务人次："
                         android:textSize="14sp"/>
                     <EditText
@@ -715,7 +770,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/bluedark"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="服务费用："
                         android:textSize="14sp"/>
                     <EditText
@@ -742,7 +797,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/bluedark"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="委  托  人："
                         android:textSize="14sp"/>
                     <EditText
@@ -769,7 +824,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/bluedark"
                         android:padding="5dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:text="备注说明："
                         android:textSize="14sp"/>
                     <EditText
@@ -790,7 +845,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="确认提交"
-                android:textSize="28px"
+                android:textSize="18sp"
                 android:textColor="@color/white"
                 android:background="@drawable/edit_blue"
                 android:layout_margin="15dp"

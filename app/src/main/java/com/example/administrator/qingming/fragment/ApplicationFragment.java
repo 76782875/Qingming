@@ -31,7 +31,7 @@ import com.example.administrator.qingming.work.AddCaseActivity;
 
 public class ApplicationFragment extends Fragment {
     //办公按钮
-    private TextView ls_case,zixun,spz,baz,yja,biangen,lsaj;
+    private TextView ls_case,zixun,spz,baz,yja,biangen,lsaj,gzsq;
     //审批按钮
     private TextView sasp,jasp,fpgl;
     //财务统计按钮
@@ -67,7 +67,9 @@ public class ApplicationFragment extends Fragment {
         dkjl = (TextView) view.findViewById(R.id.dkjl);
         zrsa = (TextView) view.findViewById(R.id.zrsa);
         lszs = (TextView) view.findViewById(R.id.lszs);
+        gzsq = (TextView) view.findViewById(R.id.gzsq);
 
+        gzsq.setOnClickListener(onClickListener);
         ls_case.setOnClickListener(onClickListener);
         zixun.setOnClickListener(onClickListener);
         spz.setOnClickListener(onClickListener);

@@ -15,6 +15,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
@@ -62,15 +63,12 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
     private List<ModelFile.ResultBean> list1;
     private List<ModelFile.ResultBean> list2;
     private SwipeRefreshLayout swipe;
-    int tag ;
-    int mDrawerWidth;//抽屉全部拉出来时的宽度
-    float scrollWidth;//抽屉被拉出部分的宽度
     private DrawerLayout drawerlayout;
     private LinearLayout menucalendar;
     private FrameLayout frameLayout;
     private ImageView addbtn;
     private LoadingDialog loadingDialog;
-    String path;
+    private String path;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,10 +96,6 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
 
         initView();
         getHttp();
-
-        //测量抽屉的宽度和高度
-        measureView(menucalendar);
-        mDrawerWidth=menucalendar.getMeasuredWidth();
     }
 
     private void initView() {
@@ -115,7 +109,6 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
         examine_line1 = findViewById(R.id.examine_line1);
         examine_line2 = findViewById(R.id.line2);
         listView = (ListView) findViewById(R.id.listview);
-        drawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         menucalendar = (LinearLayout) findViewById(R.id.menu_calendar);
         frameLayout = (FrameLayout) findViewById(R.id.framelayout);
         addbtn = (ImageView) findViewById(R.id.add_btn);
@@ -125,34 +118,36 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
         examine3.setOnClickListener(onClickListener);
         addbtn.setOnClickListener(onClickListener);
         fileBaseAdapater = new FileBaseAdapater(list1,list2,FilesActivity.this,this);
+//        View view = LayoutInflater.from(this).inflate(R.layout.wu_footer,null);
+//        listView.addFooterView(view);
         listView.setAdapter(fileBaseAdapater);
 
         swipe.setOnRefreshListener(this);
-        drawerlayout.setDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(View view, float v) {
-                //因为arg1的范围是0.0-1.0，是一个相对整个抽屉宽度的比例
-                //所以要准换成
-                scrollWidth=v*mDrawerWidth;
-                //setScroll中的参数，正数表示向左移动，负数向右
-                frameLayout.setScrollX((int)(1*scrollWidth));
-            }
-
-            @Override
-            public void onDrawerOpened(View view) {
-
-            }
-
-            @Override
-            public void onDrawerClosed(View view) {
-
-            }
-
-            @Override
-            public void onDrawerStateChanged(int i) {
-
-            }
-        });
+//        drawerlayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+//            @Override
+//            public void onDrawerSlide(View view, float v) {
+//                //因为arg1的范围是0.0-1.0，是一个相对整个抽屉宽度的比例
+//                //所以要准换成
+//                scrollWidth=v*mDrawerWidth;
+//                //setScroll中的参数，正数表示向左移动，负数向右
+//                frameLayout.setScrollX((int)(1*scrollWidth));
+//            }
+//
+//            @Override
+//            public void onDrawerOpened(View view) {
+//
+//            }
+//
+//            @Override
+//            public void onDrawerClosed(View view) {
+//
+//            }
+//
+//            @Override
+//            public void onDrawerStateChanged(int i) {
+//
+//            }
+//        });
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -180,7 +175,6 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                     examine2.setTextColor(getResources().getColor(R.color.blue));
                     break;
                 case R.id.add_btn:
-//                    drawerlayout.openDrawer(Gravity.RIGHT);
                     choosefile();
                     break;
             }
@@ -194,10 +188,13 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
     List<ModelFile.ResultBean> resultBeen;
     FileBaseAdapater fileBaseAdapater;
     private void getHttp(){
+        loadingDialog.setLoadingContent("加载中");
+        loadingDialog.show();
         MainApi.getInstance(this).getcasefileApi(createid, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipe.setRefreshing(false);
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     resultBeen = GsonUtil.fromJsonList(new Gson(),result,ModelFile.ResultBean.class);
                     list1.clear();
@@ -350,35 +347,6 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                 downfile();
                 break;
         }
-    }
-
-
-
-    /**
-     * 此方法可以多次被不同的View对象调用。
-     * 在调用该方法后，
-     * 使用View对象的getMessuredHeight()获高度（单位px）
-     * @param child 需要测量高度和宽度的View对象，
-     */
-    private void measureView(View child) {
-        ViewGroup.LayoutParams params = child.getLayoutParams();
-        if (params == null) {
-            params = new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-        }
-        int childWidthSpec = ViewGroup.getChildMeasureSpec(0, 0 + 0,
-                params.width);
-        int lpHeight = params.height;
-        int childHeightSpec;
-        if (lpHeight > 0) {
-            childHeightSpec = View.MeasureSpec.makeMeasureSpec(lpHeight,
-                    View.MeasureSpec.EXACTLY);
-        } else {
-            childHeightSpec = View.MeasureSpec.makeMeasureSpec(0,
-                    View.MeasureSpec.UNSPECIFIED);
-        }
-        child.measure(childWidthSpec, childHeightSpec);
     }
 
 

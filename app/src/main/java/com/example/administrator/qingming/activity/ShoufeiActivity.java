@@ -20,6 +20,7 @@ import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.adapter.ShouFeiAdapter;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelPress;
@@ -43,8 +44,9 @@ public class ShoufeiActivity extends Activity implements SwipeRefreshLayout.OnRe
     private List<ModelShouFei.ResultBean> list2;
     private List<ModelShouFei.ResultBean> list3;
     private RecyclerView recyclerView;
-    SwipeRefreshLayout swipeRefreshLayout;
-    ShouFeiAdapter shoufei;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private ShouFeiAdapter shoufei;
+    private LoadingDialog loadingDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +91,7 @@ public class ShoufeiActivity extends Activity implements SwipeRefreshLayout.OnRe
                 double sf = list.get(i).getSfje();
                 String fylx = null;
                 if(list.get(i).getFylx().equals("1")){
-                    fylx = "预收费";
+                    fylx = "预收款";
                 }else if(list.get(i).getFylx().equals("2")){
                     fylx = "追加费用";
                 }else if(list.get(i).getFylx().equals("3")){
@@ -186,10 +188,13 @@ public class ShoufeiActivity extends Activity implements SwipeRefreshLayout.OnRe
 
     String gsid;
     private void getHttp(){
+        loadingDialog.setLoadingContent("加载中...");
+        loadingDialog.show();
         MainApi.getInstance(this).getshoufeixqApi(gsid, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipeRefreshLayout.setRefreshing(false);
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelShouFei.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),
                             result, ModelShouFei.ResultBean.class);

@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
 
+import com.example.administrator.qingming.wuyong.WorkLogModel;
+
 import java.util.List;
 
 /**

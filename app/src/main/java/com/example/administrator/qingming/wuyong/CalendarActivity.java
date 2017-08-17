@@ -26,7 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.qingming.R;
-import com.example.administrator.qingming.work.AddAffairActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;

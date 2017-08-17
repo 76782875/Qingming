@@ -4,91 +4,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/yinying"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@drawable/yinying">
+        android:padding="10dp">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/blue"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:background="@color/blue" />
+
         <TextView
             android:id="@+id/case_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="离婚后财产纠纷"
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/black"
-            android:alpha="0.1"
             android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="办案机关："
                 android:drawableLeft="@mipmap/llist_0011"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
-                android:textSize="12sp"/>
+                android:text="办案机关："
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/case_item_banan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="公安局"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/black"
-            android:alpha="0.1"
             android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="部       门："
                 android:drawableLeft="@mipmap/bann_05"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
-                android:textSize="12sp"/>
+                android:text="部       门："
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/case_item_bumeng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2017（民）第 0070 号"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/black"
-            android:alpha="0.1"
             android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView8"
@@ -98,27 +110,29 @@
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="承  办  人："
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/case_item_chengbanren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2017（民）第 0070 号"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/black"
-            android:alpha="0.1"
             android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -127,27 +141,29 @@
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="联系电话："
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/case_item_xingjuren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2017（民）第 0070 号"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/black"
-            android:alpha="0.1"
             android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -156,28 +172,29 @@
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="审查起诉日期："
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/start_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2017"
-                android:textSize="12sp"/>
+                android:text="                "
+                android:textSize="12sp" />
+
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="---"/>
+                android:text="---" />
+
             <TextView
                 android:id="@+id/finish_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2017"
-                android:textSize="12sp"/>
+                android:text=""
+                android:textSize="12sp" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>

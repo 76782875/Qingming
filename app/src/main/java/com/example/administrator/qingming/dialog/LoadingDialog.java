@@ -20,7 +20,7 @@ public class LoadingDialog extends Dialog {
     public LoadingDialog(Activity mActivity) {
         super(mActivity, R.style.dialog);
         this.mActivity = mActivity;
-        setCanceledOnTouchOutside(true);
+        setCanceledOnTouchOutside(false);
         setContentView(R.layout.dialog_loading);
         getWindow().setDimAmount(0.0f);//去除半透明效果
     }

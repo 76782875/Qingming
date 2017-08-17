@@ -60,11 +60,10 @@ import java.util.List;
  */
 
 public class CaseRegisterActivity extends Activity {
-    private static final int DATE_DIALOG = 1005;
-    private static final int DATE_DIALOY = 1006;
+    private String initStartDateTime ; // 初始化开始时间
     private TextView date_of_cognizance,lawsuit,locus_standi,shen,city,textView,shi,shoufei;
     private EditText brief,agency_fee,grant,consignor,dfdsr,slbm,ssbd,public_security,procuratorate,court,
-            detention_house,remark;
+            detention_house,remark,lxdh,dsr;
     private EditText stime,sfwrc,snumb,swtr,sbzsm;
     private ImageView backbtn;
     private Button submitbtn;
@@ -72,6 +71,8 @@ public class CaseRegisterActivity extends Activity {
     private CityPicker cityPicker ;
     LoadingDialog loadingDialog;
     private List<ModelCaseNo> list;
+    private int index;
+    private String cc;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,8 +85,9 @@ public class CaseRegisterActivity extends Activity {
 
         initView();
         Bundle bundle = this.getIntent().getExtras();
-        int index = bundle.getInt("index");
+        index = bundle.getInt("index");
         ajlx = bundle.getInt("ajlx");
+        cc = bundle.getString("cc","");
         Log.e("index",""+index);
         if(ajlx == 1){
             textView.setText("民事案件");
@@ -99,7 +101,7 @@ public class CaseRegisterActivity extends Activity {
         }else if(ajlx == 5){
             textView.setText("法律顾问");
         }else if(ajlx == 6){
-            textView.setText("法律援助");
+
         }else if(ajlx == 7){
             textView.setText("执行案件");
         }else if(ajlx == 8){
@@ -109,18 +111,18 @@ public class CaseRegisterActivity extends Activity {
         }else if(ajlx == 10){
             textView.setText("破产案件");
         }else if(ajlx == 11){
-            textView.setText("咨询代写文书");
-            wenshu.setVisibility(View.VISIBLE);
-            zong.setVisibility(View.GONE);
-            if(ajfl == 0){
-                shi.setText("口头法律咨询（人次）");
-            }else if(ajfl == 1){
-                shi.setText("书面法律咨询（人次）");
-            }else if(ajfl == 2){
-                shi.setText("代写法律文书");
-            }else {
-                shi.setText("口头法律咨询（人次）");
-            }
+//            textView.setText("咨询代写文书");
+//            wenshu.setVisibility(View.VISIBLE);
+//            zong.setVisibility(View.GONE);
+//            if(ajfl == 0){
+//                shi.setText("口头法律咨询（人次）");
+//            }else if(ajfl == 1){
+//                shi.setText("书面法律咨询（人次）");
+//            }else if(ajfl == 2){
+//                shi.setText("代写法律文书");
+//            }else {
+//                shi.setText("口头法律咨询（人次）");
+//            }
         }
 
         if(index == 101){
@@ -130,8 +132,10 @@ public class CaseRegisterActivity extends Activity {
             ay = bundle.getString("ay","");
             ah_number = bundle.getString("ah_number","");
             wtr = bundle.getString("wtr","");
+            mlxdh = bundle.getString("lxdh","");
+            mdsr = bundle.getString("dsr","");
             mdfdsr = bundle.getString("dfdsr","");
-            id = bundle.getString("id","");
+            mid = bundle.getString("id","");
             dlf = ""+bundle.getInt("dlf");
             zjf = ""+bundle.getInt("jzf");
             sffs = bundle.getString("sffs","");
@@ -237,6 +241,8 @@ public class CaseRegisterActivity extends Activity {
             date_of_cognizance.setText(sarq);
             brief.setText(ay);
             consignor.setText(wtr);
+            lxdh.setText(mlxdh);
+            dsr.setText(mdsr);
             dfdsr.setText(mdfdsr);
             slbm.setText(mslbm);
             ssbd.setText(mssbd);
@@ -264,6 +270,8 @@ public class CaseRegisterActivity extends Activity {
         date_of_cognizance = (TextView) findViewById(R.id.date_of_cognizance);//收案日期
         brief = (EditText) findViewById(R.id.brief);//案由
         consignor = (EditText) findViewById(R.id.consignor);//委托人
+        lxdh = (EditText) findViewById(R.id.lxdh);//联系电话
+        dsr = (EditText) findViewById(R.id.dsr);//当事人
         dfdsr = (EditText) findViewById(R.id.dfdsr);//对方当事人
         slbm = (EditText) findViewById(R.id.slbm);//受理部门
         ssbd = (EditText) findViewById(R.id.ssbd);//诉讼标的
@@ -311,6 +319,8 @@ public class CaseRegisterActivity extends Activity {
         detention_house.addTextChangedListener(new newtextwatch(detention_house));
         remark.addTextChangedListener(new newtextwatch(remark));
         consignor.addTextChangedListener(new newtextwatch(consignor));
+        lxdh.addTextChangedListener(new newtextwatch(lxdh));
+        dsr.addTextChangedListener(new newtextwatch(dsr));
         backbtn.setOnClickListener(onClickListener);
         submitbtn.setOnClickListener(onClickListener);
         lawsuit.setOnClickListener(onClickListener);
@@ -318,6 +328,7 @@ public class CaseRegisterActivity extends Activity {
         choose_city.setOnClickListener(onClickListener);
         shoufei.setOnClickListener(onClickListener);
     }
+
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -404,73 +415,190 @@ public class CaseRegisterActivity extends Activity {
                     cityPickerChoose();
                     break;
                 case R.id.date_of_cognizance:
-                    showDialog(DATE_DIALOG);
+                    date_of_cognizance.setText(initStartDateTime);
+                    date_of_cognizance.setTextColor(getResources().getColor(R.color.black));
+                    DatePickDialogUtil dateTimePickDialogUtil = new DatePickDialogUtil(initStartDateTime,CaseRegisterActivity.this);
+                    dateTimePickDialogUtil.dateTimePicKDialog(date_of_cognizance);
                     break;
                 case R.id.submit_btn:
-                    if(ajlx == 11){
-                        if(!TextUtils.isEmpty(stime.getText())){
-                            if(!TextUtils.isEmpty(sfwrc.getText())){
-                                if(!TextUtils.isEmpty(snumb.getText())){
-                                    if(!TextUtils.isEmpty(swtr.getText())){
-                                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
-                                        fwdate = format.format(new java.util.Date());
-                                        tgfwrc = sfwrc.getText().toString();
-                                        fwfy = snumb.getText().toString();
-                                        wtr = swtr.getText().toString();
-                                        bzsm = sbzsm.getText().toString();
-                                        fwtype = ajfl;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
-                                        create_date = format.format(new java.util.Date());//创建时间
-                                        postCase();
+                    if(index == 101){
+                        if(ajlx == 11){
+                            if(!TextUtils.isEmpty(stime.getText())){
+                                if(!TextUtils.isEmpty(sfwrc.getText())){
+                                    if(!TextUtils.isEmpty(snumb.getText())){
+                                        if(!TextUtils.isEmpty(swtr.getText())){
+                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                                            fwdate = format.format(new java.util.Date());
+                                            tgfwrc = sfwrc.getText().toString();
+                                            fwfy = snumb.getText().toString();
+                                            wtr = swtr.getText().toString();
+                                            bzsm = sbzsm.getText().toString();
+                                            fwtype = ajfl;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
+                                            create_date = format.format(new java.util.Date());//创建时间
+                                            postCase();
+                                        }else {
+                                            Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }else {
+                                        Toast.makeText(CaseRegisterActivity.this,"服务费用不能为空",Toast.LENGTH_SHORT).show();
+                                    }
+                                }else {
+                                    Toast.makeText(CaseRegisterActivity.this,"服务人次不能为空",Toast.LENGTH_SHORT).show();
+                                }
+                            }else {
+                                Toast.makeText(CaseRegisterActivity.this,"服务时间不能为空",Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            if(!date_of_cognizance.getText().toString().equals("请填写收案日期")){
+                                if(!TextUtils.isEmpty(brief.getText())){
+                                    if(!TextUtils.isEmpty(consignor.getText())){
+                                        if(!TextUtils.isEmpty(dsr.getText())){
+                                            if(!TextUtils.isEmpty(dfdsr.getText())){
+                                                if(!TextUtils.isEmpty(slbm.getText())){
+                                                    if(!TextUtils.isEmpty(ssbd.getText())){
+                                                        if(!shoufei.getText().toString().equals("请选择收费方式")){
+                                                            if(!TextUtils.isEmpty(agency_fee.getText())){
+                                                                if(!TextUtils.isEmpty(grant.getText())){
+                                                                    fangfa();
+                                                                    if(!TextUtils.isEmpty(lxdh.getText())){
+                                                                        if(isMobileNO(lxdh.getText().toString())){
+                                                                            mlxdh = lxdh.getText().toString();//联系电话
+                                                                            getHttp();
+                                                                        }else {
+                                                                            Toast.makeText(CaseRegisterActivity.this,"电话号码格式错误",Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    }else {
+                                                                        mlxdh = lxdh.getText().toString();//联系电话
+                                                                        getHttp();
+                                                                    }
+
+                                                                }else {
+                                                                    Toast.makeText(CaseRegisterActivity.this,"杂费不能为空",Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }else {
+                                                                Toast.makeText(CaseRegisterActivity.this,"代理费不能为空",Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }else {
+                                                            Toast.makeText(CaseRegisterActivity.this,"收费方式不能为空",Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }else {
+                                                        Toast.makeText(CaseRegisterActivity.this,"诉讼标的不能为空",Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }else {
+                                                    Toast.makeText(CaseRegisterActivity.this,"受理部门不能为空",Toast.LENGTH_SHORT).show();
+                                                }
+                                            }else {
+                                                Toast.makeText(CaseRegisterActivity.this,"对方当事人不能为空",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else {
+                                            Toast.makeText(CaseRegisterActivity.this,"当事人不能为空",Toast.LENGTH_SHORT).show();
+                                        }
                                     }else {
                                         Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
                                     }
                                 }else {
-                                    Toast.makeText(CaseRegisterActivity.this,"服务费用不能为空",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CaseRegisterActivity.this,"案由不能为空",Toast.LENGTH_SHORT).show();
                                 }
                             }else {
-                                Toast.makeText(CaseRegisterActivity.this,"服务人次不能为空",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CaseRegisterActivity.this,"收案日期不能为空",Toast.LENGTH_SHORT).show();
                             }
-                        }else {
-                            Toast.makeText(CaseRegisterActivity.this,"服务时间不能为空",Toast.LENGTH_SHORT).show();
                         }
-                    }else{
-                        if(!date_of_cognizance.getText().toString().equals("请填写收案日期")){
-                            if(!TextUtils.isEmpty(brief.getText())){
-                                if(!TextUtils.isEmpty(consignor.getText())){
-                                    if(!TextUtils.isEmpty(dfdsr.getText())){
-                                        if(!TextUtils.isEmpty(slbm.getText())){
-                                            if(!TextUtils.isEmpty(ssbd.getText())){
-                                                if(!shoufei.getText().toString().equals("请选择收费方式")){
-                                                    if(!TextUtils.isEmpty(agency_fee.getText())){
-                                                        if(!TextUtils.isEmpty(grant.getText())){
-                                                            fangfa();
-                                                            getHttp();
-                                                        }else {
-                                                            Toast.makeText(CaseRegisterActivity.this,"杂费不能为空",Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    }else {
-                                                        Toast.makeText(CaseRegisterActivity.this,"代理费不能为空",Toast.LENGTH_SHORT).show();
-                                                    }
-                                                }else {
-                                                    Toast.makeText(CaseRegisterActivity.this,"收费方式不能为空",Toast.LENGTH_SHORT).show();
-                                                }
-                                            }else {
-                                                Toast.makeText(CaseRegisterActivity.this,"诉讼标的不能为空",Toast.LENGTH_SHORT).show();
-                                            }
+                    }else if(index == 102){
+                        if(ajlx == 11){
+                            if(!TextUtils.isEmpty(stime.getText())){
+                                if(!TextUtils.isEmpty(sfwrc.getText())){
+                                    if(!TextUtils.isEmpty(snumb.getText())){
+                                        if(!TextUtils.isEmpty(swtr.getText())){
+                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                                            fwdate = format.format(new java.util.Date());
+                                            tgfwrc = sfwrc.getText().toString();
+                                            fwfy = snumb.getText().toString();
+                                            wtr = swtr.getText().toString();
+                                            bzsm = sbzsm.getText().toString();
+                                            fwtype = ajfl;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
+                                            create_date = format.format(new java.util.Date());//创建时间
+                                            postCase();
                                         }else {
-                                            Toast.makeText(CaseRegisterActivity.this,"受理部门不能为空",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
                                         }
                                     }else {
-                                        Toast.makeText(CaseRegisterActivity.this,"对方当事人不能为空",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CaseRegisterActivity.this,"服务费用不能为空",Toast.LENGTH_SHORT).show();
                                     }
                                 }else {
-                                    Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CaseRegisterActivity.this,"服务人次不能为空",Toast.LENGTH_SHORT).show();
                                 }
                             }else {
-                                Toast.makeText(CaseRegisterActivity.this,"案由不能为空",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CaseRegisterActivity.this,"服务时间不能为空",Toast.LENGTH_SHORT).show();
                             }
-                        }else {
-                            Toast.makeText(CaseRegisterActivity.this,"收案日期不能为空",Toast.LENGTH_SHORT).show();
+                        }else{
+                            if(!date_of_cognizance.getText().toString().equals("请填写收案日期")){
+                                if(!TextUtils.isEmpty(brief.getText())){
+                                    if(!TextUtils.isEmpty(consignor.getText())){
+                                        if(!TextUtils.isEmpty(dsr.getText())){
+                                            if(!TextUtils.isEmpty(dfdsr.getText())){
+                                                if(!TextUtils.isEmpty(slbm.getText())){
+                                                    if(!TextUtils.isEmpty(ssbd.getText())){
+                                                        if(!shoufei.getText().toString().equals("请选择收费方式")){
+                                                            if(!TextUtils.isEmpty(agency_fee.getText())){
+                                                                if(!TextUtils.isEmpty(grant.getText())){
+                                                                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:dd:ss");
+                                                                    create_date = format.format(new java.util.Date());//创建时间
+                                                                    sarq = date_of_cognizance.getText().toString();//收案日期
+                                                                    ay = brief.getText().toString();//案由
+                                                                    wtr = consignor.getText().toString();//委托人
+                                                                    mdsr = dsr.getText().toString();//对方当事人
+                                                                    mdfdsr = dfdsr.getText().toString();//对方当事人
+                                                                    mslbm = slbm.getText().toString();//受理部门
+                                                                    mssbd = ssbd.getText().toString();//诉讼标的
+                                                                    dlf = agency_fee.getText().toString();//代理费
+                                                                    zjf = grant.getText().toString();//杂费
+                                                                    badq= shen.getText().toString()+city.getText().toString();//办案地区
+                                                                    police= public_security.getText().toString();//公安
+                                                                    mprocuratorate= procuratorate.getText().toString();//检查院
+                                                                    mcourt= court.getText().toString();//法院
+                                                                    detention= detention_house.getText().toString();//看守所
+                                                                    remarks= remark.getText().toString();//备注说明
+                                                                    fangfa();
+                                                                    if(!TextUtils.isEmpty(lxdh.getText())){
+                                                                        if(isMobileNO(lxdh.getText().toString())){
+                                                                            mlxdh = lxdh.getText().toString();//联系电话
+                                                                            postxgmycase();
+                                                                        }else {
+                                                                            Toast.makeText(CaseRegisterActivity.this,"电话号码格式错误",Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    }else {
+                                                                        postxgmycase();
+                                                                    }
+                                                                }else {
+                                                                    Toast.makeText(CaseRegisterActivity.this,"杂费不能为空",Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }else {
+                                                                Toast.makeText(CaseRegisterActivity.this,"代理费不能为空",Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }else {
+                                                            Toast.makeText(CaseRegisterActivity.this,"收费方式不能为空",Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }else {
+                                                        Toast.makeText(CaseRegisterActivity.this,"诉讼标的不能为空",Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }else {
+                                                    Toast.makeText(CaseRegisterActivity.this,"受理部门不能为空",Toast.LENGTH_SHORT).show();
+                                                }
+                                            }else {
+                                                Toast.makeText(CaseRegisterActivity.this,"对方当事人不能为空",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else {
+                                            Toast.makeText(CaseRegisterActivity.this,"对方当事人不能为空",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }else {
+                                        Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
+                                    }
+                                }else {
+                                    Toast.makeText(CaseRegisterActivity.this,"案由不能为空",Toast.LENGTH_SHORT).show();
+                                }
+                            }else {
+                                Toast.makeText(CaseRegisterActivity.this,"收案日期不能为空",Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                     break;
@@ -584,13 +712,15 @@ public class CaseRegisterActivity extends Activity {
 
     int ajlx;
     int ajfl;
-    String id;
+    String id,mid;
     String cid;
     String ah_number;
     String sarq;
     String ay;
     String remarks;
     String wtr;
+    String mlxdh;
+    String mdsr;
     String mdfdsr;
     String mslbm;
     String mssbd;
@@ -607,7 +737,7 @@ public class CaseRegisterActivity extends Activity {
     public void postCaseRegister(){
         loadingDialog.show();
         loadingDialog.setLoadingContent("上传中...");
-        MainApi.getInstance(this).getpostcaseApi(id, cid, ajlx,ajfl,ah_number,sarq,ay,remarks, wtr,
+        MainApi.getInstance(this).getpostcaseApi(id, cid, ajlx,ajfl,ah_number,sarq,ay,remarks, wtr,mlxdh,mdsr,
                 mdfdsr, mslbm, mssbd,sffs , dlf,zjf,ssjd,ssdw,badq,police,mprocuratorate,mcourt,detention,create_date, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
@@ -623,13 +753,16 @@ public class CaseRegisterActivity extends Activity {
     public void postxgmycase(){
         loadingDialog.show();
         loadingDialog.setLoadingContent("上传中...");
-        MainApi.getInstance(this).getxgmycaseApi(id, cid, ajlx,ajfl,ah_number,sarq,ay,remarks, wtr,
+        MainApi.getInstance(this).getxgmycaseApi(mid, cid, ajlx,ajfl,ah_number,sarq,ay,remarks, wtr,mlxdh,mdsr,
                 mdfdsr, mslbm, mssbd,sffs , dlf,zjf,ssjd,ssdw,badq,police,mprocuratorate,mcourt,detention,create_date, new GetResultCallBack() {
                     @Override
                     public void getResult(String result, int type) {
                         if(type== Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
                             Toast.makeText(CaseRegisterActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(CaseRegisterActivity.this,MyCaseActivity.class);
+                            intent.putExtra("cc",cc);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
                     }
@@ -676,11 +809,12 @@ public class CaseRegisterActivity extends Activity {
                         e.printStackTrace();
                     }
                     Log.e("ah_number====>",""+ah_number);
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
                     create_date = format.format(new java.util.Date());//创建时间
                     sarq = date_of_cognizance.getText().toString();//收案日期
                     ay = brief.getText().toString();//案由
                     wtr = consignor.getText().toString();//委托人
+                    mdsr = dsr.getText().toString();//对方当事人
                     mdfdsr = dfdsr.getText().toString();//对方当事人
                     mslbm = slbm.getText().toString();//受理部门
                     mssbd = ssbd.getText().toString();//诉讼标的
@@ -705,33 +839,22 @@ public class CaseRegisterActivity extends Activity {
         builder.setTitle(str);
     }
 
-    int mYear,mMonth,mDay;
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG:
-                return new DatePickerDialog(this,onDateSetListener, mYear, mMonth, mDay);
-        }
-        return null;
-    }
-    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            display();
-        }
-    };
     /**
-     * 设置日期 利用StringBuffer追加
+     * 判断手机格式是否正确
+     * @param mobiles
+     * @return
+     * 移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
+     * 联通：130、131、132、152、155、156、185、186
+     * 电信：133、153、180、189、（1349卫通）
+     * 总结起来就是第一位必定为1，第二位必定为3或5或8，其他位置的可以为0-9
      */
-    public void display() {
-        date_of_cognizance.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        date_of_cognizance.setTextColor(getResources().getColor(R.color.black));
+    public static boolean isMobileNO(String mobiles) {
+        String telRegex = "[1][358]\\d{9}";//"[1]"代表第1位为数字1，"[358]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
+        if (TextUtils.isEmpty(mobiles)) return false;
+        else return mobiles.matches(telRegex);
     }
+
+    int mYear,mMonth,mDay;
 
     /**
      * 选择城市

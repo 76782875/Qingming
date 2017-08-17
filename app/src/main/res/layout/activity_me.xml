@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,7 +91,6 @@
             android:layout_height="wrap_content"
             android:hint="姓名"
             android:textSize="14sp"
-            android:textColorHint="@color/transparent80"
             android:textColor="@color/transparent80"
             android:background="@null"/>
     </LinearLayout>
@@ -121,7 +121,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="999999999"
+            android:hint="邮箱"
             android:textSize="14sp"
             android:textColorHint="@color/transparent80"
             android:textColor="@color/transparent80"
@@ -217,15 +217,14 @@
         android:padding="10dp"
         android:text="提交"
         android:textColor="@color/white"
-        android:textSize="24px"
-        />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tuichu_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="退出登录"
-        android:textSize="24px"
+        android:textSize="16sp"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"

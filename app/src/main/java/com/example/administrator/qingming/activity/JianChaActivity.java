@@ -28,20 +28,24 @@ import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.news.casedetails.CreateWorkActivity;
+import com.example.administrator.qingming.work.DatePickDialogUtil;
+import com.example.administrator.qingming.work.DateTimePickDialogUtil;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/7/5 0005.
  */
 
 public class JianChaActivity extends Activity {
-    private static final int DATE_DIALOG = 0;
-    private static final int DATE_DIALOY = 1;
+    private String initStartDateTime ; // 初始化开始时间
     LoadingDialog loadingDialog;
     int mYear,mMonth,mDay;
-    private String ah_number,wtr,dfdsr,ay;
-    private TextView one,two,three,fore,name;
+    private String ah_number,wtr,dfdsr,ay,dsr;
+    private TextView one,two,three,fore,name,five;
     private ImageView backbtn;
     private Button submit,xuigaibtn,delbtn;
     private LinearLayout aa;
@@ -63,6 +67,7 @@ public class JianChaActivity extends Activity {
         glid = bundle.getString("id","");
         ah_number = bundle.getString("ah_number","");
         wtr = bundle.getString("wtr","");
+        dsr = bundle.getString("dsr","");
         dfdsr = bundle.getString("dfdsr","");
         ay = bundle.getString("ay","");
         int zid = bundle.getInt("zid");
@@ -91,6 +96,7 @@ public class JianChaActivity extends Activity {
         two.setText(ah_number);
         three.setText(wtr);
         fore.setText(dfdsr);
+        five.setText(dsr);
 
         //获取日期
         final Calendar ca = Calendar.getInstance();
@@ -103,6 +109,7 @@ public class JianChaActivity extends Activity {
     }
 
     private void initView() {
+        five = (TextView) findViewById(R.id.five);
         loadingDialog = new LoadingDialog(this);
         aa = (LinearLayout) findViewById(R.id.aaa);
         one = (TextView) findViewById(R.id.one);
@@ -144,23 +151,44 @@ public class JianChaActivity extends Activity {
                         if(!TextUtils.isEmpty(bananjiguan.getText())){
                             if(!TextUtils.isEmpty(bumeng.getText())){
                                 if(!TextUtils.isEmpty(chengbanren.getText())){
-                                    if(!TextUtils.isEmpty(phone_num.getText())){
-                                        if(!time_start.getText().toString().equals("起始时间")&&
-                                                !time_finish.getText().toString().equals("截止时间")){
-                                            badd = baan_area.getText().toString();
-                                            bajg = bananjiguan.getText().toString();
-                                            bm = bumeng.getText().toString();
-                                            cbr = chengbanren.getText().toString();
-                                            tel = phone_num.getText().toString();
-                                            bz = edit_log.getText().toString();
-                                            scqs_star = time_start.getText().toString();
-                                            scqs_end= time_finish.getText().toString();
-                                            postjiancha();
+                                    if(!time_start.getText().toString().equals("请选择时间")&&
+                                            !time_finish.getText().toString().equals("请选择时间") ){
+                                        badd = baan_area.getText().toString();
+                                        bajg = bananjiguan.getText().toString();
+                                        bm = bumeng.getText().toString();
+                                        cbr = chengbanren.getText().toString();
+                                        tel = phone_num.getText().toString();
+                                        bz = edit_log.getText().toString();
+                                        scqs_star = time_start.getText().toString();
+                                        scqs_end = time_finish.getText().toString();
+                                        //判断时间
+                                        int result = 0;
+                                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                                        try {
+                                            Date date1 = format.parse(time_start.getText().toString());
+                                            Date date2 = format.parse(time_finish.getText().toString());
+                                            result = date1.compareTo(date2);
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
+                                        if (result ==0) {
+                                            Toast.makeText(JianChaActivity.this, "时间格式错误", Toast.LENGTH_SHORT).show();
+                                        } else if ( result < 0 ) {
+                                            //判断手机号输入
+                                            if(!TextUtils.isEmpty(phone_num.getText())){
+                                                if(isMobileNO(phone_num.getText().toString())){
+                                                    postjiancha();
+                                                }else {
+                                                    Toast.makeText(JianChaActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                                }
+                                            }else {
+                                                postjiancha();
+                                            }
                                         }else {
-                                            Toast.makeText(JianChaActivity.this,"请填写联系电话",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(JianChaActivity.this, "时间格式错误", Toast.LENGTH_SHORT).show();
                                         }
                                     }else {
-                                        Toast.makeText(JianChaActivity.this,"请填写联系电话",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(JianChaActivity.this,"请选择时间",Toast.LENGTH_SHORT).show();
                                     }
                                 }else {
                                     Toast.makeText(JianChaActivity.this,"请填写承办人",Toast.LENGTH_SHORT).show();
@@ -176,10 +204,16 @@ public class JianChaActivity extends Activity {
                     }
                     break;
                 case R.id.time_start:
-                    showDialog(DATE_DIALOG);
+                    time_start.setText(initStartDateTime);
+                    time_start.setTextColor(getResources().getColor(R.color.black));
+                    DatePickDialogUtil dateTimePickDialogUtil = new DatePickDialogUtil(initStartDateTime,JianChaActivity.this);
+                    dateTimePickDialogUtil.dateTimePicKDialog(time_start);
                     break;
                 case R.id.time_finish:
-                    showDialog(DATE_DIALOY);
+                    time_finish.setText(initStartDateTime);
+                    time_finish.setTextColor(getResources().getColor(R.color.black));
+                    DatePickDialogUtil dateTimePickDialogUtil1 = new DatePickDialogUtil(initStartDateTime,JianChaActivity.this);
+                    dateTimePickDialogUtil1.dateTimePicKDialog(time_finish);
                     break;
                 case R.id.del_btn:
                     deljiancha();
@@ -193,7 +227,32 @@ public class JianChaActivity extends Activity {
                     bz = edit_log.getText().toString();
                     scqs_star = time_start.getText().toString();
                     scqs_end= time_finish.getText().toString();
-                    xgjiancha();
+                    //判断时间
+                    int result = 0;
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                    try {
+                        Date date1 = format.parse(time_start.getText().toString());
+                        Date date2 = format.parse(time_finish.getText().toString());
+                        result = date1.compareTo(date2);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    if (result ==0) {
+                        Toast.makeText(JianChaActivity.this, "时间格式错误", Toast.LENGTH_SHORT).show();
+                    } else if ( result < 0 ) {
+                        //判断手机号输入
+                        if(!TextUtils.isEmpty(phone_num.getText())){
+                            if(isMobileNO(phone_num.getText().toString())){
+                                xgjiancha();
+                            }else {
+                                Toast.makeText(JianChaActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                            }
+                        }else {
+                            xgjiancha();
+                        }
+                    }else {
+                        Toast.makeText(JianChaActivity.this, "时间格式错误", Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case R.id.back_btn:
                     finish();
@@ -202,48 +261,20 @@ public class JianChaActivity extends Activity {
         }
     };
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG:
-                return new DatePickerDialog(this,onDateSetListener, mYear, mMonth, mDay);
-            case DATE_DIALOY:
-                return new DatePickerDialog(this,monDateSetListener, mYear, mMonth, mDay);
-        }
-        return null;
-    }
-
-    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            display();
-        }
-    };
-    DatePickerDialog.OnDateSetListener monDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            finplay();
-        }
-    };
 
     /**
-     * 设置日期 利用StringBuffer追加
+     * 判断手机格式是否正确
+     * @param mobiles
+     * @return
+     * 移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
+     * 联通：130、131、132、152、155、156、185、186
+     * 电信：133、153、180、189、（1349卫通）
+     * 总结起来就是第一位必定为1，第二位必定为3或5或8，其他位置的可以为0-9
      */
-    public void display() {
-        time_start.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        time_start.setTextColor(getResources().getColor(R.color.black));
-    }
-    public void finplay() {
-        time_finish.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        time_finish.setTextColor(getResources().getColor(R.color.black));
+    public static boolean isMobileNO(String mobiles) {
+        String telRegex = "[1][358]\\d{9}";//"[1]"代表第1位为数字1，"[358]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
+        if (TextUtils.isEmpty(mobiles)) return false;
+        else return mobiles.matches(telRegex);
     }
 
     String id;
@@ -267,9 +298,16 @@ public class JianChaActivity extends Activity {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
                             Toast.makeText(JianChaActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(JianChaActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",3);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
-//                            Intent intent = new Intent(JianChaActivity.this, CreateWorkActivity.class);
-//                            startActivity(intent);
                         }else BaseApi.showErrMsg(JianChaActivity.this,result);
                     }
                 });
@@ -285,6 +323,15 @@ public class JianChaActivity extends Activity {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
                             Toast.makeText(JianChaActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(JianChaActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",3);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(JianChaActivity.this,result);
                     }
@@ -303,6 +350,15 @@ public class JianChaActivity extends Activity {
                 if(type == Constants.TYPE_SUCCESS){
                     loadingDialog.dismiss();
                     Toast.makeText(JianChaActivity.this,"删除成功",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(JianChaActivity.this, CreateWorkActivity.class);
+                    intent.putExtra("type",3);
+                    intent.putExtra("id",glid);
+                    intent.putExtra("ah_number",ah_number);
+                    intent.putExtra("wtr",wtr);
+                    intent.putExtra("dsr",dsr);
+                    intent.putExtra("dfdsr",dfdsr);
+                    intent.putExtra("ay",ay);
+                    startActivity(intent);
                     finish();
                 }else BaseApi.showErrMsg(JianChaActivity.this,result);
             }

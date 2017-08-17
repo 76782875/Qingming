@@ -18,6 +18,7 @@ import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.adapter.PressAdater;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelPress;
@@ -40,8 +41,8 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
     private List<ModelPress.ResultBean> list2;
     private List<ModelPress.ResultBean> list3;
     private ListView listView;
-    SwipeRefreshLayout swipeRefreshLayout;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private LoadingDialog loadingDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this);
         list = new ArrayList<>();
         list1 = new ArrayList<>();
         list2 = new ArrayList<>();
@@ -149,10 +151,13 @@ public class PressActivity extends Activity implements SwipeRefreshLayout.OnRefr
     private String cid;
     PressAdater pressAdater;
     public void getString(){
+        loadingDialog.setLoadingContent("加载中");
+        loadingDialog.show();
         MainApi.getInstance(this).getNewsApi(gsid,new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipeRefreshLayout.setRefreshing(false);//刷新完成
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelPress.ResultBean> resultBeanList = GsonUtil.fromJsonList(new Gson(),
                             result,ModelPress.ResultBean.class);

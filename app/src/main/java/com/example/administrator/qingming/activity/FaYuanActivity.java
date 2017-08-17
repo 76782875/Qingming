@@ -26,6 +26,7 @@ import com.example.administrator.qingming.api.MainApi;
 import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
+import com.example.administrator.qingming.work.DateTimePickDialogUtil;
 
 import java.util.Calendar;
 
@@ -34,14 +35,11 @@ import java.util.Calendar;
  */
 
 public class FaYuanActivity extends Activity {
-    private static final int DATE_DIALOG = 0;
-    private static final int DATE_DIALOY = 1;
-    private static final int DATE_DIALOA = 2;
-    private static final int DATE_DIALOB= 3;
+    private String initStartDateTime ; // 初始化开始时间
     LoadingDialog loadingDialog;
-    int mYear,mMonth,mDay;
-    private String ah_number,wtr,dfdsr,ay;
-    private TextView one,two,three,fore,name;
+    int mYear,mMonth,mDay,mHour,mMinute;
+    private String ah_number,wtr,dfdsr,ay,dsr;
+    private TextView one,two,three,fore,name,five;
     private ImageView backbtn;
     private Button submit,xuigaibtn,delbtn;
     private LinearLayout aa;
@@ -64,6 +62,7 @@ public class FaYuanActivity extends Activity {
         ah_number = bundle.getString("ah_number","");
         wtr = bundle.getString("wtr","");
         dfdsr = bundle.getString("dfdsr","");
+        dsr = bundle.getString("dsr","");
         ay = bundle.getString("ay","");
         int zid = bundle.getInt("zid");
 
@@ -76,8 +75,16 @@ public class FaYuanActivity extends Activity {
             shenpan.setText(bundle.getString("spcx",""));
             lian.setText(bundle.getString("ladate",""));
             kaiting.setText(bundle.getString("ktdate",""));
-            xuanpan.setText(bundle.getString("spdate",""));
-            shangsu.setText(bundle.getString("ssdate",""));
+            if(bundle.getString("spdate","").equals("")){
+                xuanpan.setText("请选择时间");
+            }else {
+                xuanpan.setText(bundle.getString("spdate",""));
+            }
+            if(bundle.getString("ssdate","").equals("")){
+                shangsu.setText("请选择时间");
+            }else {
+                shangsu.setText(bundle.getString("ssdate",""));
+            }
             mspjg.setText(bundle.getString("spjg",""));
             fating.setText(bundle.getString("ft",""));
             faguan.setText(bundle.getString("zsfg",""));
@@ -95,18 +102,22 @@ public class FaYuanActivity extends Activity {
         two.setText(ah_number);
         three.setText(wtr);
         fore.setText(dfdsr);
+        five.setText(dsr);
 
         //获取日期
         final Calendar ca = Calendar.getInstance();
         mYear = ca.get(Calendar.YEAR);
         mMonth = ca.get(Calendar.MONTH);
         mDay = ca.get(Calendar.DAY_OF_MONTH);
+        mHour = ca.get(Calendar.HOUR_OF_DAY);
+        mMinute = ca.get(Calendar.MINUTE);
 
-        create_date = mYear+"-"+mMonth+"-"+mDay;
-        update_date = mYear+"-"+mMonth+"-"+mDay;
+        create_date = mYear+"-"+mMonth+"-"+mDay+" "+mHour+":"+mMinute;
+        update_date = mYear+"-"+mMonth+"-"+mDay+" "+mHour+":"+mMinute;
     }
 
     private void initView() {
+        five = (TextView) findViewById(R.id.five);
         loadingDialog = new LoadingDialog(this);
         aa = (LinearLayout) findViewById(R.id.aaa);
         one = (TextView) findViewById(R.id.one);
@@ -152,30 +163,111 @@ public class FaYuanActivity extends Activity {
                 case R.id.submit_btn:
                     if(!TextUtils.isEmpty(shenpan.getText())){
                         if(!TextUtils.isEmpty(fating.getText())){
-                            if(!lian.getText().toString().equals("请选择立案日期")){
-                                if(!kaiting.getText().toString().equals("请选择开庭时间")){
-                                    if(!xuanpan.getText().toString().equals("请选择宣判日期")){
-                                        if(!shangsu.getText().toString().equals("请选择上诉日期")){
-                                            ladate = lian.getText().toString();
-                                            ktdate = kaiting.getText().toString();
-                                            spdate = xuanpan.getText().toString();
-                                            ssdate = shangsu.getText().toString();
-                                            spcx = shenpan.getText().toString();
-                                            spjg = mspjg.getText().toString();
-                                            spjg = mspjg.getText().toString();
-                                            ft = fating.getText().toString();
-                                            zsfg = faguan.getText().toString();
-                                            zsfgtel = faguan_phone.getText().toString();
-                                            sjy = sujiyuan.getText().toString();
-                                            sjytel = zhushe_phone.getText().toString();
-                                            bz = edit_log.getText().toString();
-                                            postFaYuan();
+                            if(!lian.getText().toString().equals("请选择时间")){
+                                if(!kaiting.getText().toString().equals("请选择时间")){
+                                    ladate = lian.getText().toString();
+                                    ktdate = kaiting.getText().toString();
+                                    spdate = xuanpan.getText().toString();
+                                    ssdate = shangsu.getText().toString();
+                                    spcx = shenpan.getText().toString();
+                                    spjg = mspjg.getText().toString();
+                                    spjg = mspjg.getText().toString();
+                                    ft = fating.getText().toString();
+                                    zsfg = faguan.getText().toString();
+                                    zsfgtel = faguan_phone.getText().toString();
+                                    sjy = sujiyuan.getText().toString();
+                                    sjytel = zhushe_phone.getText().toString();
+                                    bz = edit_log.getText().toString();
+                                    if(xuanpan.getText().toString().equals("请选择时间") && shangsu.getText().toString().equals("请选择时间")){
+                                        if(!TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) && isMobileNO(sjytel)){
+                                                postFaYuan2();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(!TextUtils.isEmpty(faguan_phone.getText()) && TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) ){
+                                                postFaYuan2();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"法官联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(sjytel)){
+                                                postFaYuan2();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"书记员联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
                                         }else {
-                                            Toast.makeText(FaYuanActivity.this,"上诉日期不能为空",Toast.LENGTH_SHORT).show();
+                                            postFaYuan2();
+                                        }
+                                    }else if(xuanpan.getText().toString().equals("请选择时间") && !shangsu.getText().toString().equals("请选择时间")){
+                                        if(!TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) && isMobileNO(sjytel)){
+                                                postFaYuan4();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(!TextUtils.isEmpty(faguan_phone.getText()) && TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) ){
+                                                postFaYuan4();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"法官联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(sjytel)){
+                                                postFaYuan4();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"书记员联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else {
+                                            postFaYuan4();
+                                        }
+                                    }else if(!xuanpan.getText().toString().equals("请选择时间") && shangsu.getText().toString().equals("请选择时间")){
+                                        if(!TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) && isMobileNO(sjytel)){
+                                                postFaYuan1();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(!TextUtils.isEmpty(faguan_phone.getText()) && TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) ){
+                                                postFaYuan1();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"法官联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(sjytel)){
+                                                postFaYuan1();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"书记员联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else {
+                                            postFaYuan1();
                                         }
                                     }else {
-                                        Toast.makeText(FaYuanActivity.this,"宣判日期不能为空",Toast.LENGTH_SHORT).show();
+                                        if(!TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) && isMobileNO(sjytel)){
+                                                postFaYuan();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(!TextUtils.isEmpty(faguan_phone.getText()) && TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) ){
+                                                postFaYuan();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"法官联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(sjytel)){
+                                                postFaYuan();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"书记员联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else {
+                                            postFaYuan();
+                                        }
                                     }
+
                                 }else {
                                     Toast.makeText(FaYuanActivity.this,"开庭时间不能为空",Toast.LENGTH_SHORT).show();
                                 }
@@ -206,100 +298,157 @@ public class FaYuanActivity extends Activity {
                     sjy = sujiyuan.getText().toString();
                     sjytel = zhushe_phone.getText().toString();
                     bz = edit_log.getText().toString();
-                    xgjiancha();
+                    if(!TextUtils.isEmpty(shenpan.getText())){
+                        if(!TextUtils.isEmpty(fating.getText())){
+                            if(!lian.getText().toString().equals("请选择时间")){
+                                if(!kaiting.getText().toString().equals("请选择时间")){
+                                    ladate = lian.getText().toString();
+                                    ktdate = kaiting.getText().toString();
+                                    spdate = xuanpan.getText().toString();
+                                    ssdate = shangsu.getText().toString();
+                                    spcx = shenpan.getText().toString();
+                                    spjg = mspjg.getText().toString();
+                                    spjg = mspjg.getText().toString();
+                                    ft = fating.getText().toString();
+                                    zsfg = faguan.getText().toString();
+                                    zsfgtel = faguan_phone.getText().toString();
+                                    sjy = sujiyuan.getText().toString();
+                                    sjytel = zhushe_phone.getText().toString();
+                                    bz = edit_log.getText().toString();
+                                    if(xuanpan.getText().toString().equals("请选择时间") && shangsu.getText().toString().equals("请选择时间")){
+                                        if(!TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) && isMobileNO(sjytel)){
+                                                xgjiancha2();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(!TextUtils.isEmpty(faguan_phone.getText()) && TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) ){
+                                                xgjiancha2();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"法官联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(sjytel)){
+                                                xgjiancha2();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"书记员联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else {
+                                            xgjiancha2();
+                                        }
+                                    }else if(xuanpan.getText().toString().equals("请选择时间") && !shangsu.getText().toString().equals("请选择时间")){
+                                        if(!TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) && isMobileNO(sjytel)){
+                                                xgjiancha3();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(!TextUtils.isEmpty(faguan_phone.getText()) && TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) ){
+                                                xgjiancha3();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"法官联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(sjytel)){
+                                                xgjiancha3();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"书记员联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else {
+                                            xgjiancha3();
+                                        }
+                                    }else if(!xuanpan.getText().toString().equals("请选择时间") && shangsu.getText().toString().equals("请选择时间")){
+                                        if(!TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) && isMobileNO(sjytel)){
+                                                xgjiancha1();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(!TextUtils.isEmpty(faguan_phone.getText()) && TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) ){
+                                                xgjiancha1();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"法官联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(sjytel)){
+                                                xgjiancha1();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"书记员联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else {
+                                            xgjiancha1();
+                                        }
+                                    }else {
+                                        if(!TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) && isMobileNO(sjytel)){
+                                                xgjiancha();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(!TextUtils.isEmpty(faguan_phone.getText()) && TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(zsfgtel) ){
+                                                xgjiancha();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"法官联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else if(TextUtils.isEmpty(faguan_phone.getText()) && !TextUtils.isEmpty(zhushe_phone.getText())){
+                                            if(isMobileNO(sjytel)){
+                                                xgjiancha();
+                                            }else {
+                                                Toast.makeText(FaYuanActivity.this,"书记员联系电话格式错误",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else {
+                                            xgjiancha();
+                                        }
+                                    }
+
+                                }else {
+                                    Toast.makeText(FaYuanActivity.this,"开庭时间不能为空",Toast.LENGTH_SHORT).show();
+                                }
+                            }else {
+                                Toast.makeText(FaYuanActivity.this,"立案日期不能为空",Toast.LENGTH_SHORT).show();
+                            }
+                        }else {
+                            Toast.makeText(FaYuanActivity.this,"法庭不能为空",Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(FaYuanActivity.this,"审判程序不能为空",Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case R.id.back_btn:
                     finish();
                     break;
                 case R.id.lian:
-                    showDialog(DATE_DIALOG);
+                    lian.setText(initStartDateTime);
+                    lian.setTextColor(getResources().getColor(R.color.black));
+                    DateTimePickDialogUtil dateTimePickDialogUtil = new DateTimePickDialogUtil(initStartDateTime,FaYuanActivity.this);
+                    dateTimePickDialogUtil.dateTimePicKDialog(lian);
                     break;
                 case R.id.kaiting:
-                    showDialog(DATE_DIALOY);
+                    kaiting.setText(initStartDateTime);
+                    kaiting.setTextColor(getResources().getColor(R.color.black));
+                    DateTimePickDialogUtil dateTimePickDialogUtil1 = new DateTimePickDialogUtil(initStartDateTime,FaYuanActivity.this);
+                    dateTimePickDialogUtil1.dateTimePicKDialog(kaiting);
                     break;
                 case R.id.xuanpan:
-                    showDialog(DATE_DIALOA);
+                    xuanpan.setText(initStartDateTime);
+                    xuanpan.setTextColor(getResources().getColor(R.color.black));
+                    DateTimePickDialogUtil dateTimePickDialogUtil2 = new DateTimePickDialogUtil(initStartDateTime,FaYuanActivity.this);
+                    dateTimePickDialogUtil2.dateTimePicKDialog(xuanpan);
                     break;
                 case R.id.shangsu:
-                    showDialog(DATE_DIALOB);
+                    shangsu.setText(initStartDateTime);
+                    shangsu.setTextColor(getResources().getColor(R.color.black));
+                    DateTimePickDialogUtil dateTimePickDialogUtil3 = new DateTimePickDialogUtil(initStartDateTime,FaYuanActivity.this);
+                    dateTimePickDialogUtil3.dateTimePicKDialog(shangsu);
                     break;
             }
         }
     };
 
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG:
-                return new DatePickerDialog(this,onDateSetListener, mYear, mMonth, mDay);
-            case DATE_DIALOY:
-                return new DatePickerDialog(this,monDateSetListener, mYear, mMonth, mDay);
-            case DATE_DIALOA:
-                return new DatePickerDialog(this,monDateSetListener1, mYear, mMonth, mDay);
-            case DATE_DIALOB:
-                return new DatePickerDialog(this,monDateSetListener2, mYear, mMonth, mDay);
-        }
-        return null;
-    }
-
-    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            display();
-        }
-    };
-    DatePickerDialog.OnDateSetListener monDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            finplay();
-        }
-    };
-
-    DatePickerDialog.OnDateSetListener monDateSetListener1 = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            xuanpan.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                    append(mDay).append(" "));
-            xuanpan.setTextColor(getResources().getColor(R.color.black));
-        }
-    };
-
-    DatePickerDialog.OnDateSetListener monDateSetListener2 = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            shangsu.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                    append(mDay).append(" "));
-            shangsu.setTextColor(getResources().getColor(R.color.black));
-        }
-    };
-
-
-    /**
-     * 设置日期 利用StringBuffer追加
-     */
-    public void display() {
-        lian.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        lian.setTextColor(getResources().getColor(R.color.black));
-    }
-    public void finplay() {
-        kaiting.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        kaiting.setTextColor(getResources().getColor(R.color.black));
-    }
 
     String id;
     String cid;
@@ -333,10 +482,109 @@ public class FaYuanActivity extends Activity {
                 });
     }
 
+    private void postFaYuan4(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("上传中...");
+        MainApi.getInstance(this).postaddfayuanApi4(id, cid, glid, spcx, bz, spjg,
+                ladate, ktdate,ssdate, ft, zsfg, zsfgtel, sjy, sjytel,
+                create_date, new GetResultCallBack() {
+                    @Override
+                    public void getResult(String result, int type) {
+                        if(type == Constants.TYPE_SUCCESS){
+                            loadingDialog.dismiss();
+                            Toast.makeText(FaYuanActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else BaseApi.showErrMsg(FaYuanActivity.this,result);
+                    }
+                });
+    }
+
+    private void postFaYuan1(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("上传中...");
+        MainApi.getInstance(this).postaddfayuanApi1(id, cid, glid, spcx, bz, spjg,
+                ladate, ktdate, spdate,ft, zsfg, zsfgtel, sjy, sjytel,
+                create_date, new GetResultCallBack() {
+                    @Override
+                    public void getResult(String result, int type) {
+                        if(type == Constants.TYPE_SUCCESS){
+                            loadingDialog.dismiss();
+                            Toast.makeText(FaYuanActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else BaseApi.showErrMsg(FaYuanActivity.this,result);
+                    }
+                });
+    }
+
+    private void postFaYuan2(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("上传中...");
+        MainApi.getInstance(this).postaddfayuanApi2(id, cid, glid, spcx, bz, spjg,
+                ladate, ktdate, ft, zsfg, zsfgtel, sjy, sjytel,
+                create_date, new GetResultCallBack() {
+                    @Override
+                    public void getResult(String result, int type) {
+                        if(type == Constants.TYPE_SUCCESS){
+                            loadingDialog.dismiss();
+                            Toast.makeText(FaYuanActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else BaseApi.showErrMsg(FaYuanActivity.this,result);
+                    }
+                });
+    }
+
     private void xgjiancha(){
         loadingDialog.show();
         loadingDialog.setLoadingContent("上传中...");
         MainApi.getInstance(this).getxgfayuanApi(aid,spcx,bz,spjg,ladate,ktdate,spdate,ssdate,
+                ft,zsfg,zsfgtel,sjy,sjytel,update_date,new GetResultCallBack() {
+                    @Override
+                    public void getResult(String result, int type) {
+                        if(type == Constants.TYPE_SUCCESS){
+                            loadingDialog.dismiss();
+                            Toast.makeText(FaYuanActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else BaseApi.showErrMsg(FaYuanActivity.this,result);
+                    }
+                });
+    }
+
+    private void xgjiancha3(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("上传中...");
+        MainApi.getInstance(this).getxgfayuanApi3(aid,spcx,bz,spjg,ladate,ktdate,ssdate,
+                ft,zsfg,zsfgtel,sjy,sjytel,update_date,new GetResultCallBack() {
+                    @Override
+                    public void getResult(String result, int type) {
+                        if(type == Constants.TYPE_SUCCESS){
+                            loadingDialog.dismiss();
+                            Toast.makeText(FaYuanActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else BaseApi.showErrMsg(FaYuanActivity.this,result);
+                    }
+                });
+    }
+
+    private void xgjiancha1(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("上传中...");
+        MainApi.getInstance(this).getxgfayuanApi1(aid,spcx,bz,spjg,ladate,ktdate,spdate,
+                ft,zsfg,zsfgtel,sjy,sjytel,update_date,new GetResultCallBack() {
+                    @Override
+                    public void getResult(String result, int type) {
+                        if(type == Constants.TYPE_SUCCESS){
+                            loadingDialog.dismiss();
+                            Toast.makeText(FaYuanActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else BaseApi.showErrMsg(FaYuanActivity.this,result);
+                    }
+                });
+    }
+
+    private void xgjiancha2(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("上传中...");
+        MainApi.getInstance(this).getxgfayuanApi2(aid,spcx,bz,spjg,ladate,ktdate,
                 ft,zsfg,zsfgtel,sjy,sjytel,update_date,new GetResultCallBack() {
                     @Override
                     public void getResult(String result, int type) {
@@ -368,6 +616,20 @@ public class FaYuanActivity extends Activity {
         });
     }
 
+    /**
+     * 判断手机格式是否正确
+     * @param mobiles
+     * @return
+     * 移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
+     * 联通：130、131、132、152、155、156、185、186
+     * 电信：133、153、180、189、（1349卫通）
+     * 总结起来就是第一位必定为1，第二位必定为3或5或8，其他位置的可以为0-9
+     */
+    public static boolean isMobileNO(String mobiles) {
+        String telRegex = "[1][358]\\d{9}";//"[1]"代表第1位为数字1，"[358]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
+        if (TextUtils.isEmpty(mobiles)) return false;
+        else return mobiles.matches(telRegex);
+    }
 
     class  newtextWatcher implements TextWatcher {
         private EditText edit;

@@ -85,6 +85,7 @@ public class MyCaseModel {
         private String detention;
         private String slbm;
         private String ssbd;
+        private String tel;
 
         public String getCreate_id() {
             return create_id;
@@ -98,6 +99,7 @@ public class MyCaseModel {
         private String ssdw;
         private String bzsm;
         private String create_id;
+        private String dsr;
 
         public String getId() {
             return id;
@@ -137,6 +139,14 @@ public class MyCaseModel {
 
         public void setWtr(String wtr) {
             this.wtr = wtr;
+        }
+
+        public String getDsr() {
+            return dsr;
+        }
+
+        public void setDsr(String dsr) {
+            this.dsr = dsr;
         }
 
         public String getDfdsr() {
@@ -265,6 +275,14 @@ public class MyCaseModel {
 
         public void setBzsm(String bzsm) {
             this.bzsm = bzsm;
+        }
+
+        public String getTel() {
+            return tel;
+        }
+
+        public void setTel(String tel) {
+            this.tel = tel;
         }
     }
 }

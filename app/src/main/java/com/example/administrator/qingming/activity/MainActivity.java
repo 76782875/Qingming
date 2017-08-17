@@ -72,7 +72,6 @@ public class MainActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 phone = s.toString();
-                Log.i("inputname","===>"+phone);
             }
         });
 
@@ -90,7 +89,6 @@ public class MainActivity extends Activity {
             @Override
             public void afterTextChanged(Editable s) {
                 password = s.toString();
-                Log.i("inputpassword","===>"+password);
             }
         });
 
@@ -108,8 +106,8 @@ public class MainActivity extends Activity {
             Intent intent;
             switch (v.getId()){
                 case R.id.login_btn:
-                    intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
-                    startActivity(intent);
+//                    intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
+//                    startActivity(intent);
                     //通过
                     boolean CheckBoxLogin = checkBox.isChecked();
                     //按钮被选中，下次进入时会显示账号和密码
@@ -127,18 +125,18 @@ public class MainActivity extends Activity {
                         editor.putBoolean("checkboxBoolean", false);
                         editor.commit();
                     }
-//                    new Thread() {
-//                        @Override
-//                        public void run() {
-//                            try {
-//                                Looper.prepare();
-//                                getString();
-//                                Looper.loop();
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    }.start();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Looper.prepare();
+                                getString();
+                                Looper.loop();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }.start();
                     break;
 //                case R.id.regster_btn:
 //                    intent = new Intent(MainActivity.this,RegsterActivity.class);
@@ -156,7 +154,7 @@ public class MainActivity extends Activity {
     public void getString() throws IOException {
         //1 创建OkHttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient();
-        String url ="http://192.168.188.122:8080/955tao/mobile/web/login?";
+        String url ="http://192.168.188.123:8080/955tao/mobile/web/login?";
         //2 创建Request对象
         Request request = new Request.Builder().get().url(url+"username="+phone+"&password="+password).build();
         //3 创建回调对象

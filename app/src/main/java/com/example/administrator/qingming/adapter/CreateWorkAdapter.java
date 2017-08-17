@@ -55,7 +55,10 @@ public class CreateWorkAdapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.time.setText(list.get(position).getCreate_date());
+        String time = list.get(position).getCreate_date();
+        //截取 月 和 日 字符串
+        String year = time.substring(0, 10);
+        viewHolder.time.setText(year);
 
         viewHolder.numb.setText(list.get(position).getAh_number());
         viewHolder.content.setText(list.get(position).getBzsm());

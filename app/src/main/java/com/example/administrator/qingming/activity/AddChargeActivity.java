@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,8 @@ import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.news.casedetails.CaseDetailsActivity;
 import com.example.administrator.qingming.work.AddCaseActivity;
 import com.example.administrator.qingming.work.CaseManageActivity;
+import com.example.administrator.qingming.work.DatePickDialogUtil;
+import com.example.administrator.qingming.work.DateTimePickDialogUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,13 +42,13 @@ import java.util.Calendar;
  */
 
 public class AddChargeActivity extends Activity {
+    private String initStartDateTime ; // 初始化开始时间
     private TextView ah,date,fylx,zffs;
     private EditText jyje,beizhu;
     private Button add,tg,zf,back_sf;
     private LoadingDialog loading;
     private String ah_number;
     int mYear,mMonth,mDay;
-    private static final int DATE_DIALOG = 0;
     private ImageView back_btn;
     int index;
     @Override
@@ -111,47 +114,51 @@ public class AddChargeActivity extends Activity {
             zffs.setText(bundle.getString("sffs",""));
             beizhu.setText(bundle.getString("bz",""));
             int sftag = bundle.getInt("sftag");
-            Log.e("====>",""+sftag);
             if(sftag == 0){
                 tg.setVisibility(View.VISIBLE);
                 zf.setVisibility(View.VISIBLE);
                 tg.setOnClickListener(onclick);
                 zf.setOnClickListener(onclick);
-                jyje.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        sfje = s.toString();
-                    }
-                });
-                beizhu.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        bz = s.toString();
-                    }
-                });
+//                jyje.addTextChangedListener(new TextWatcher() {
+//                    @Override
+//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                    }
+//
+//                    @Override
+//                    public void afterTextChanged(Editable s) {
+//                        sfje = s.toString();
+//                    }
+//                });
+//                beizhu.addTextChangedListener(new TextWatcher() {
+//                    @Override
+//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                    }
+//
+//                    @Override
+//                    public void afterTextChanged(Editable s) {
+//                        bz = s.toString();
+//                    }
+//                });
                 date.setOnClickListener(onclick);
                 fylx.setOnClickListener(onclick);
                 zffs.setOnClickListener(onclick);
+                //设置不可编辑状态；
+                jyje.setFocusable(false);
+                jyje.setFocusableInTouchMode(false);
+                beizhu.setFocusable(false);
+                beizhu.setFocusableInTouchMode(false);
             }else if(sftag == 1){
                 back_sf.setVisibility(View.VISIBLE);
                 back_sf.setOnClickListener(onclick);
@@ -173,8 +180,8 @@ public class AddChargeActivity extends Activity {
         }
 
 
-//        //获取日期
-//        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd    hh:mm:ss");
+        //获取日期
+//        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd    HH:mm:ss");
 //        create_time = sDateFormat.format(new java.util.Date());
 
         //获取日期
@@ -213,74 +220,60 @@ public class AddChargeActivity extends Activity {
                     showDialog();
                     break;
                 case R.id.add:
-                    create_time = date.getText().toString();
-                    if(fylx.getText().toString().equals("预收款")){
-                        mfylx = "1";
-                    }else if(fylx.getText().toString().equals("追加费用")){
-                        mfylx = "2";
-                    }else if(fylx.getText().toString().equals("尾款")){
-                        mfylx = "3";
-                    }else {
-                        mfylx = "4";
-                    }
+                    if(!TextUtils.isEmpty(jyje.getText())){
+                        create_time = date.getText().toString();
+                        if(fylx.getText().toString().equals("预收款")){
+                            mfylx = "1";
+                        }else if(fylx.getText().toString().equals("追加费用")){
+                            mfylx = "2";
+                        }else if(fylx.getText().toString().equals("尾款")){
+                            mfylx = "3";
+                        }else if(fylx.getText().toString().equals("退款")){
+                            mfylx = "4";
+                        }
 
-                    if(zffs.getText().toString().equals("现金")){
-                        sflx = "1";
+                        if(zffs.getText().toString().equals("现金")){
+                            sflx = "1";
+                        }else {
+                            sflx ="2";
+                        }
+                        postHttp();
                     }else {
-                        sflx ="2";
+                        Toast.makeText(AddChargeActivity.this,"请填写交易金额",Toast.LENGTH_SHORT).show();
                     }
-                    postHttp();
                     break;
                 case R.id.tg:
-                    if(fylx.getText().toString().equals("预收款")){
-                        mfylx = "1";
-                    }else if(fylx.getText().toString().equals("追加费用")){
-                        mfylx = "2";
-                    }else if(fylx.getText().toString().equals("尾款")){
-                        mfylx = "3";
+                    if(!date.getText().toString().equals("请选择收款日期")){
+                        zt = "2";
+                        audit_id = id;
+                        audit_name =create_name;
+                        audit_time = date.getText().toString();
+                        postxgHttp();
                     }else {
-                        mfylx = "4";
+                        Toast.makeText(AddChargeActivity.this,"请选择收款日期",Toast.LENGTH_SHORT).show();
                     }
-
-                    if(zffs.getText().toString().equals("现金")){
-                        sflx = "1";
-                    }else {
-                        sflx ="2";
-                    }
-                    zt = "2";
-                    audit_id = id;
-                    audit_name =create_name;
-                    audit_time = date.getText().toString();
-                    postxgHttp();
                     break;
                 case R.id.zf:
-                    if(fylx.getText().toString().equals("预收款")){
-                        mfylx = "1";
-                    }else if(fylx.getText().toString().equals("追加费用")){
-                        mfylx = "2";
-                    }else if(fylx.getText().toString().equals("尾款")){
-                        mfylx = "3";
-                    }else {
-                        mfylx = "4";
-                    }
+                    if (!date.getText().toString().equals("请选择收款日期")) {
+                        zt = "3";
+                        audit_id = id;
+                        audit_name = create_name;
+                        audit_time = date.getText().toString();
+                        postxgHttp();
 
-                    if(zffs.getText().toString().equals("现金")){
-                        sflx = "1";
-                    }else {
-                        sflx ="2";
+                    } else {
+                        Toast.makeText(AddChargeActivity.this, "请选择收款日期", Toast.LENGTH_SHORT).show();
                     }
-                    zt = "3";
-                    audit_id = id;
-                    audit_name =create_name;
-                    audit_time = date.getText().toString();
-                    postxgHttp();
                     break;
                 case R.id.back_sf:
                     Intent intent = new Intent(AddChargeActivity.this,ShoufeiActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.date:
-                    showDialog(DATE_DIALOG);
+                    date.setText(initStartDateTime);
+                    date.setTextColor(getResources().getColor(R.color.black));
+                    DatePickDialogUtil dateTimePickDialogUtil = new DatePickDialogUtil(initStartDateTime,AddChargeActivity.this);
+                    dateTimePickDialogUtil.dateTimePicKDialog(date);
                     break;
                 case R.id.zffs:
                     showDialogs();
@@ -319,35 +312,6 @@ public class AddChargeActivity extends Activity {
         builder.show();
     }
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG:
-                return new DatePickerDialog(this,onDateSetListener, mYear, mMonth, mDay);
-        }
-        return null;
-    }
-
-
-    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            display();
-        }
-    };
-
-    /**
-     * 设置日期 利用StringBuffer追加
-     */
-    public void display() {
-        date.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        date.setTextColor(getResources().getColor(R.color.black));
-    }
-
     String id;
     String cid;
     String glid;
@@ -366,7 +330,11 @@ public class AddChargeActivity extends Activity {
             public void getResult(String result, int type) {
                 if(type == Constants.TYPE_SUCCESS){
                     loading.dismiss();
-                    Toast.makeText(AddChargeActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(AddChargeActivity.this,ChargeListActivity.class);
+//                    intent.putExtra("id",glid);
+//                    intent.putExtra("ah_number",ah_number);
+//                    intent.putExtra("ysje",ysje);
+//                    startActivity(intent);
                     finish();
                 }else BaseApi.showErrMsg(AddChargeActivity.this,result);
             }
@@ -382,13 +350,12 @@ public class AddChargeActivity extends Activity {
     private void postxgHttp(){
         loading.show();
         loading.setLoadingContent("上传中...");
-        MainApi.getInstance(this).getxgshoufeixqApi(sid, sfje, sflx, bz, mfylx, zt, audit_id,
+        MainApi.getInstance(this).getxgshoufeixqApi(sid,  zt, audit_id,
                 audit_name,audit_time, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 if(type == Constants.TYPE_SUCCESS){
                     loading.dismiss();
-                    Toast.makeText(AddChargeActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
                     finish();
                 }else BaseApi.showErrMsg(AddChargeActivity.this,result);
             }

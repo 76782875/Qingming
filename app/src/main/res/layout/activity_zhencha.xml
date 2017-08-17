@@ -48,35 +48,44 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
                         android:text="相关案件 ："
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:textSize="14sp" />
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
                         android:text="案       号 ："
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:textSize="14sp" />
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
                         android:padding="5dp"
                         android:text="委  托  人 ："
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluedark"
+                        android:background="@color/cyan"
+                        android:padding="5dp"
+                        android:text="当  事  人 ："
+                        android:textColor="@color/transparent80"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/cyan"
                         android:padding="5dp"
                         android:text="对方当事人 ："
-                        android:textColor="@color/white"
+                        android:textColor="@color/transparent80"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -131,6 +140,15 @@
                         android:background="@color/black" />
 
                     <TextView
+                        android:id="@+id/five"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
                         android:id="@+id/fore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -165,8 +183,8 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="办案机关："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
                     <TextView
                         android:id="@+id/bananjiguan"
@@ -192,8 +210,8 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="侦查案号："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
 
                     <EditText
@@ -220,8 +238,8 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="部        门："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
 
                     <EditText
@@ -246,9 +264,9 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="承包人："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:text="承  办  人："
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
 
                     <EditText
@@ -274,8 +292,8 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="联系电话："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
 
                     <EditText
@@ -302,8 +320,8 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="刑拘时间："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
 
                     <TextView
@@ -311,7 +329,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="请选择刑拘时间"
+                        android:text="请选择时间"
                         android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
 
@@ -328,8 +346,8 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="逮捕时间："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
 
                     <TextView
@@ -337,7 +355,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="请选择逮捕时间"
+                        android:text="请选择时间"
                         android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
                 </LinearLayout>
@@ -353,15 +371,15 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="侦查时间："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
                     <TextView
                         android:id="@+id/zhencha_start_time"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="起始时间"
+                        android:text="请选择时间"
                         android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
                     <TextView
@@ -375,7 +393,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="截止时间"
+                        android:text="请选择时间"
                         android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
 
@@ -392,15 +410,15 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="补充侦查："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
                     <TextView
                         android:id="@+id/buchong_start_time"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="起始时间"
+                        android:text="请选择时间"
                         android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
                     <TextView
@@ -409,14 +427,15 @@
                         android:text="- -"
                         android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
+
                     <TextView
                         android:id="@+id/buchong_finish_time"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="截止时间"
+                        android:text="请选择时间"
                         android:textColor="@color/transparent80"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -431,15 +450,15 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="二次补充："
-                        android:textColor="@color/white"
-                        android:background="@color/bluedark"
+                        android:textColor="@color/transparent80"
+                        android:background="@color/cyan"
                         android:padding="5dp"/>
                     <TextView
                         android:id="@+id/two_buchong_start"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="起始时间"
+                        android:text="请选择时间"
                         android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
                     <TextView
@@ -453,7 +472,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="截止时间"
+                        android:text="请选择时间"
                         android:textColor="@color/transparent80"
                         android:textSize="12sp"/>
 
@@ -523,8 +542,8 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="备注说明："
-                    android:textColor="@color/white"
-                    android:background="@color/bluedark"
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
                     android:padding="5dp"/>
 
                 <EditText
@@ -547,7 +566,7 @@
                 android:background="@drawable/edit_blue"
                 android:text="确认提交"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:visibility="visible"/>
             <LinearLayout
                 android:id="@+id/aaa"
@@ -564,7 +583,7 @@
                     android:background="@drawable/edit_blue"
                     android:text="修改"
                     android:textColor="@color/white"
-                    android:textSize="24px" />
+                    android:textSize="18sp" />
                 <Button
                     android:id="@+id/del_btn"
                     android:layout_weight="1"
@@ -574,7 +593,7 @@
                     android:background="@drawable/edit_blue"
                     android:text="删除"
                     android:textColor="@color/white"
-                    android:textSize="24px" />
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -63,8 +63,22 @@ public class ZhenChaAdapter extends BaseAdapter{
         viewHolder.zcha.setText(resultBeen.getZcah());
         viewHolder.bm.setText(resultBeen.getBm());
         viewHolder.cbr.setText(resultBeen.getCbr());
-        viewHolder.xjsj.setText(resultBeen.getXjsj());
-        viewHolder.dbsj.setText(resultBeen.getDbsj());
+        if( resultBeen.getXjsj()!=null){
+            String time = resultBeen.getXjsj();
+            //截取 月 和 日 字符串
+            String year = time.substring(0, 10);
+            viewHolder.xjsj.setText(year);
+        }else {
+            viewHolder.xjsj.setText(resultBeen.getXjsj());
+        }
+       if(resultBeen.getDbsj()!=null){
+           String time1 = resultBeen.getDbsj();
+           String year1 = time1.substring(0, 10);
+           viewHolder.dbsj.setText(year1);
+       }else {
+           viewHolder.dbsj.setText(resultBeen.getDbsj());
+       }
+
         return convertView;
     }
 

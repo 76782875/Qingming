@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 
 import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelIntoPress;
@@ -31,6 +32,7 @@ public class IntoPressActivity extends Activity implements SwipeRefreshLayout.On
     private WebView webView;
     List<ModelIntoPress.ResultBean> list;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private LoadingDialog loadingDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class IntoPressActivity extends Activity implements SwipeRefreshLayout.On
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this);
         webView = (WebView) findViewById(webview);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -60,8 +63,8 @@ public class IntoPressActivity extends Activity implements SwipeRefreshLayout.On
         //启用支持javascript
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-//        // 设置默认字体大小
-//        webSettings.setDefaultFontSize(16);
+        // 设置默认字体大小
+        webSettings.setDefaultFontSize(16);
         //设置自适应屏幕，两者合用
         webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
         webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
@@ -91,10 +94,13 @@ public class IntoPressActivity extends Activity implements SwipeRefreshLayout.On
     String id;
     String product_intr;
     private void getHttp(){
+        loadingDialog.show();
+        loadingDialog.setLoadingContent("加载中...");
         MainApi.getInstance(this).getIntoNewsApi(id, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipeRefreshLayout.setRefreshing(false);
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelIntoPress.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),
                             result,ModelIntoPress.ResultBean.class);

@@ -89,6 +89,7 @@ public class LsfjsActivity extends Activity {
                         } else if (ajlx.getText().toString().equals("行政")) {
                             fyflag = 8;
                         }
+                        max =""+ ssbdje.getText().toString();
                         getlsfHttp();
                     } else {
                         Toast.makeText(LsfjsActivity.this, "月工资不能为空", Toast.LENGTH_SHORT).show();
@@ -129,6 +130,7 @@ public class LsfjsActivity extends Activity {
     }
 
     int fyflag;
+    String max;
     private double fl;
     private double fwsfmin;
     private double fwsfmax;
@@ -137,7 +139,7 @@ public class LsfjsActivity extends Activity {
     private void getlsfHttp(){
         loadingDialog.show();
         loadingDialog.setLoadingContent("正在查询...");
-        MainApi.getInstance(this).getlsfApi(1,fyflag,new GetResultCallBack() {
+        MainApi.getInstance(this).getlsfApi(1,fyflag,max,new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 loadingDialog.dismiss();
@@ -145,30 +147,21 @@ public class LsfjsActivity extends Activity {
                     List<ModelLsf.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),result,ModelLsf.ResultBean.class);
                     list2.clear();
                     list2.addAll(resultBean);
-                    int s = Integer.valueOf(ssbdje.getText().toString());//输入工资
-
-                    for (int i = 0; i < list2.size(); i++) {
-                        double max = list2.get(i).getMax();
-                        if (s < max) {
-                            fl = list2.get(i).getFl();
-                            fwsfmin = list2.get(i).getFwsfmin();
-                            fwsfmax = list2.get(i).getFwsfmax();
-                            flmin = list2.get(i).getFlmin();
-                            flmax = list2.get(i).getFlmax();
-                            Log.e("max====>", "" + max);
-
-                            if (fl != 0) {
-                                double num = s * fl;
-                            } else if (fwsfmin != 0 && fwsfmax != 0) {
-                                lvshifei.setVisibility(View.VISIBLE);
-                                lsf_start.setText("" + fwsfmin);
-                                lsf_finish.setText("" + fwsfmax);
-                            } else if (flmin != 0 && flmax != 0) {
-                                lvshifei.setVisibility(View.VISIBLE);
-                                lsf_start.setText("" + s * flmin);
-                                lsf_finish.setText("" + s * flmax);
-                            }
-                        }
+                    double s = Double.parseDouble(ssbdje.getText().toString());//输入工资
+                    fl = list2.get(0).getFl();
+                    fwsfmin = list2.get(0).getFwsfmin();
+                    fwsfmax = list2.get(0).getFwsfmax();
+                    flmin = list2.get(0).getFlmin();
+                    flmax = list2.get(0).getFlmax();
+                    Log.e("",""+fl+fwsfmin+fwsfmax+flmin+flmax);
+                    double ss = fwsfmin+ s * flmin;
+                    double sss = fwsfmax+ s * flmax;
+                    if (fl != 0.0) {
+                        double num = s * fl;
+                    }else{
+                        lvshifei.setVisibility(View.VISIBLE);
+                        lsf_start.setText("" + ss);
+                        lsf_finish.setText("" + sss);
                     }
 
                 }else BaseApi.showErrMsg(LsfjsActivity.this,result);

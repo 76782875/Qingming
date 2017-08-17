@@ -1,6 +1,7 @@
 package com.example.administrator.qingming.api;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 
@@ -231,7 +232,7 @@ public class MainApi extends BaseApi {
      * 添加案件
      */
     public void getpostcaseApi(String id,String cid,int ajlx,int ajfl,String ah_number,String sarq,
-                               String ay,String remarks, String wtr, String dfdsr,String slbm,
+                               String ay,String remarks, String wtr,String lxdh,String dsr, String dfdsr,String slbm,
                                String ssbd,String sffs,String dlf,String zjf, int ssjd, int ssdw,
                                String badq, String police, String mprocuratorate, String mcourt,
                                String detention,String create_date,GetResultCallBack callBack) {
@@ -245,6 +246,8 @@ public class MainApi extends BaseApi {
         map.put("ay",ay + "");
         map.put("bzsm",remarks + "");
         map.put("wtr",wtr + "");
+        map.put("tel",lxdh + "");
+        map.put("dsr",dsr + "");
         map.put("dfdsr",dfdsr + "");
         map.put("slbm",slbm + "");
         map.put("ssbd",ssbd + "");
@@ -266,12 +269,12 @@ public class MainApi extends BaseApi {
      * 修改案件
      */
     public void getxgmycaseApi(String id,String cid,int ajlx,int ajfl,String ah_number,String sarq,
-                               String ay,String remarks, String wtr, String dfdsr,String slbm,
+                               String ay,String remarks, String wtr,String lxdh,String dsr, String dfdsr,String slbm,
                                String ssbd,String sffs,String dlf,String zjf, int ssjd, int ssdw,
                                String badq, String police, String mprocuratorate, String mcourt,
                                String detention,String create_date,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
-        map.put("create_id", id + "");
+        map.put("id", id + "");
         map.put("company_id",cid + "");
         map.put("ajlx", ajlx + "");
         map.put("ajfl",ajfl + "");
@@ -280,6 +283,8 @@ public class MainApi extends BaseApi {
         map.put("ay",ay + "");
         map.put("bzsm",remarks + "");
         map.put("wtr",wtr + "");
+        map.put("tel",lxdh + "");
+        map.put("dsr",dsr + "");
         map.put("dfdsr",dfdsr + "");
         map.put("slbm",slbm + "");
         map.put("ssbd",ssbd + "");
@@ -293,7 +298,7 @@ public class MainApi extends BaseApi {
         map.put("procuratorate",mprocuratorate + "");
         map.put("court",mcourt + "");
         map.put("detention",detention + "");
-        map.put("create_date",create_date + "");
+        map.put("update_date",create_date + "");
         postLoad(BaseUrl.xgmycase, map, callBack);
     }
 
@@ -324,7 +329,7 @@ public class MainApi extends BaseApi {
     public void getmycaseApi(String create_id, GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("create_id", create_id + "");
-        postLoad(BaseUrl.mycase, map, callBack);
+        getLoad(BaseUrl.mycase, map, callBack);
     }
     /**
      * 律所案件
@@ -332,7 +337,7 @@ public class MainApi extends BaseApi {
     public void getlscaseApi(String company_id, GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("company_id", company_id + "");
-        postLoad(BaseUrl.lscase, map, callBack);
+        getLoad(BaseUrl.lscase, map, callBack);
     }
 
     /**
@@ -341,7 +346,7 @@ public class MainApi extends BaseApi {
     public void getshoufeiApi(String id, GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("glid", id + "");
-        postLoad(BaseUrl.shoufei, map, callBack);
+        getLoad(BaseUrl.shoufei, map, callBack);
     }
 
     /**
@@ -386,144 +391,50 @@ public class MainApi extends BaseApi {
     public void getrizhiApi(String id,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("glid", id + "");
-        postLoad(BaseUrl.rizhi, map, callBack);
+        getLoad(BaseUrl.rizhi, map, callBack);
     }
 
 
-    /**
-     * 添加侦查机关
-     */
-    public void postaddzhenchaApi1(String id,String cid,String glid,String bajg,String bz,String zcah,
-                                String bm,String cbr,String tel,String create_date,GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("create_id", id + "");
-        map.put("company_id",cid + "");
-        map.put("glid", glid + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("create_date",create_date + "");
-        postLoad(BaseUrl.addzhencha, map, callBack);
-    }
-    /**
-     * 添加侦查机关（刑拘时间）
-     */
-    public void postaddzhenchaApi2(String id,String cid,String glid,String bajg,String bz,String zcah,
-                                  String bm,String cbr,String tel,String xjsj,String create_date,GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("create_id", id + "");
-        map.put("company_id",cid + "");
-        map.put("glid", glid + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("create_date",create_date + "");
-        postLoad(BaseUrl.addzhencha, map, callBack);
-    }
-    /**
-     * 添加侦查机关（刑拘时间、逮捕时间）
-     */
-    public void postaddzhenchaApi3(String id,String cid,String glid,String bajg,String bz,String zcah,
-                                  String bm,String cbr,String tel,String xjsj,String dbsj,
-                                  String create_date,GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("create_id", id + "");
-        map.put("company_id",cid + "");
-        map.put("glid", glid + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("dbsj",dbsj + "");
-        map.put("create_date",create_date + "");
-        postLoad(BaseUrl.addzhencha, map, callBack);
-    }
-    /**
-     * 添加侦查机关（刑拘时间、逮捕时间、侦查时间）
-     */
-    public void postaddzhenchaApi4(String id,String cid,String glid,String bajg,String bz,String zcah,
-                                   String bm,String cbr,String tel,String xjsj,String dbsj,String zcqx_star,
-                                   String zcqx_end, String create_date,GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("create_id", id + "");
-        map.put("company_id",cid + "");
-        map.put("glid", glid + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("dbsj",dbsj + "");
-        map.put("zcqx_star",zcqx_star + "");
-        map.put("zcqx_end",zcqx_end + "");
-        map.put("create_date",create_date + "");
-        postLoad(BaseUrl.addzhencha, map, callBack);
-    }
-    /**
-     * 添加侦查机关（刑拘时间、逮捕时间、侦查时间、补充侦查）
-     */
-    public void postaddzhenchaApi5(String id,String cid,String glid,String bajg,String bz,String zcah,
-                                   String bm,String cbr,String tel,String xjsj,String dbsj,String zcqx_star,
-                                   String zcqx_end, String bczcqx_star, String bczcqx_end, String create_date,
-                                   GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("create_id", id + "");
-        map.put("company_id",cid + "");
-        map.put("glid", glid + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("dbsj",dbsj + "");
-        map.put("zcqx_star",zcqx_star + "");
-        map.put("zcqx_end",zcqx_end + "");
-        map.put("bczcqx_star",bczcqx_star + "");
-        map.put("bczcqx_end",bczcqx_end + "");
-        map.put("create_date",create_date + "");
-        postLoad(BaseUrl.addzhencha, map, callBack);
-    }
     /**
      * 添加侦查机关（刑拘时间、逮捕时间、侦查时间、补充侦查、二次侦查）
      */
-    public void postaddzhenchaApi6(String id,String cid,String glid,String bajg,String bz,String zcah,
+    public void postaddzhenchaApi(String id,String cid,String glid,String bajg,String bz,String zcah,
                                    String bm,String cbr,String tel,String xjsj,String dbsj,String zcqx_star,
                                    String zcqx_end, String bczcqx_star, String bczcqx_end, String ecbczc_star,
                                    String ecbczc_end, String create_date,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
-        map.put("create_id", id + "");
-        map.put("company_id",cid + "");
-        map.put("glid", glid + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("dbsj",dbsj + "");
-        map.put("zcqx_star",zcqx_star + "");
-        map.put("zcqx_end",zcqx_end + "");
-        map.put("bczcqx_star",bczcqx_star + "");
-        map.put("bczcqx_end",bczcqx_end + "");
-        map.put("ecbczc_star",ecbczc_star + "");
-        map.put("ecbczc_star",ecbczc_star + "");
-        map.put("ecbczc_end",ecbczc_end + "");
-        map.put("create_date",create_date + "");
+        map.put("create_id", id );
+        map.put("company_id",cid );
+        map.put("glid", glid );
+        map.put("bajg",bajg );
+        map.put("bzsm",bz );
+        map.put("zcah",zcah );
+        map.put("cbr",cbr );
+        if(!TextUtils.isEmpty(bm)){
+            map.put("bm",bm );
+        }
+        if(!TextUtils.isEmpty(tel)){
+            map.put("tel",tel );
+        }
+        if(!TextUtils.isEmpty(xjsj)){
+            map.put("xjsj",xjsj );
+        }
+        if(!TextUtils.isEmpty(dbsj)){
+            map.put("dbsj",dbsj );
+        }
+        if(!TextUtils.isEmpty(zcqx_star)){
+            map.put("zcqx_star",zcqx_star);
+            map.put("zcqx_end",zcqx_end );
+        }
+        if(!TextUtils.isEmpty(bczcqx_star)){
+            map.put("bczcqx_star",bczcqx_star );
+            map.put("bczcqx_end",bczcqx_end );
+        }
+        if(!TextUtils.isEmpty(ecbczc_star)){
+            map.put("ecbczc_star",ecbczc_star );
+            map.put("ecbczc_end",ecbczc_end);
+        }
+        map.put("create_date",create_date);
         postLoad(BaseUrl.addzhencha, map, callBack);
     }
 
@@ -533,7 +444,7 @@ public class MainApi extends BaseApi {
     public void getzhenchaApi(String id,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("glid", id + "");
-        postLoad(BaseUrl.zhencha, map, callBack);
+        getLoad(BaseUrl.zhencha, map, callBack);
     }
 
     /**
@@ -542,7 +453,7 @@ public class MainApi extends BaseApi {
     public void getfayuanApi(String id,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("glid", id + "");
-        postLoad(BaseUrl.fayuan, map, callBack);
+        getLoad(BaseUrl.fayuan, map, callBack);
     }
 
     /**
@@ -560,7 +471,7 @@ public class MainApi extends BaseApi {
     public void getjianchaApi(String id,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("glid", id + "");
-        postLoad(BaseUrl.jiancha, map, callBack);
+        getLoad(BaseUrl.jiancha, map, callBack);
     }
 
 
@@ -572,108 +483,32 @@ public class MainApi extends BaseApi {
                                 String zcqx_end, String bczcqx_star, String bczcqx_end, String ecbczc_star,
                                 String ecbczc_end, String update_date,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
-        map.put("id", id + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("dbsj",dbsj + "");
-        map.put("zcqx_star",zcqx_star + "");
-        map.put("zcqx_end",zcqx_end + "");
-        map.put("bczcqx_star",bczcqx_star + "");
-        map.put("bczcqx_end",bczcqx_end + "");
-        map.put("ecbczc_star",ecbczc_star + "");
-        map.put("ecbczc_star",ecbczc_star + "");
-        map.put("ecbczc_end",ecbczc_end + "");
-        map.put("update_date",update_date + "");
-        postLoad(BaseUrl.xgzhencha, map, callBack);
-    }
-
-    public void getxgzhenchaApi1(String id,String bajg,String bz,String zcah,
-                                String bm,String cbr,String tel,String xjsj,String dbsj,String zcqx_star,
-                                String zcqx_end, String bczcqx_star, String bczcqx_end, String update_date,GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("dbsj",dbsj + "");
-        map.put("zcqx_star",zcqx_star + "");
-        map.put("zcqx_end",zcqx_end + "");
-        map.put("bczcqx_star",bczcqx_star + "");
-        map.put("bczcqx_end",bczcqx_end + "");
-        map.put("update_date",update_date + "");
-        postLoad(BaseUrl.xgzhencha, map, callBack);
-    }
-
-    public void getxgzhenchaApi2(String id,String bajg,String bz,String zcah,
-                                String bm,String cbr,String tel,String xjsj,String dbsj,String zcqx_star,
-                                String zcqx_end, String update_date,GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("dbsj",dbsj + "");
-        map.put("zcqx_star",zcqx_star + "");
-        map.put("zcqx_end",zcqx_end + "");
-        map.put("update_date",update_date + "");
-        postLoad(BaseUrl.xgzhencha, map, callBack);
-    }
-
-    public void getxgzhenchaApi3(String id,String bajg,String bz,String zcah,
-                                String bm,String cbr,String tel,String xjsj,String dbsj, String update_date,GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("dbsj",dbsj + "");
-        map.put("update_date",update_date + "");
-        postLoad(BaseUrl.xgzhencha, map, callBack);
-    }
-
-    public void getxgzhenchaApi4(String id,String bajg,String bz,String zcah,
-                                String bm,String cbr,String tel,String xjsj,String update_date,GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("xjsj",xjsj + "");
-        map.put("update_date",update_date + "");
-        postLoad(BaseUrl.xgzhencha, map, callBack);
-    }
-
-    public void getxgzhenchaApi5(String id,String bajg,String bz,String zcah,
-                                 String bm,String cbr,String tel,String update_date,GetResultCallBack callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("id", id + "");
-        map.put("bajg",bajg + "");
-        map.put("bzsm",bz + "");
-        map.put("zcah",zcah + "");
-        map.put("bm",bm + "");
-        map.put("cbr",cbr + "");
-        map.put("tel",tel + "");
-        map.put("update_date",update_date + "");
+        map.put("id", id );
+        map.put("bajg",bajg);
+        map.put("bzsm",bz );
+        map.put("zcah",zcah );
+        map.put("bm",bm );
+        map.put("cbr",cbr );
+        map.put("tel",tel );
+        if(!TextUtils.isEmpty(xjsj)){
+            map.put("xjsj",xjsj );
+        }
+        if(!TextUtils.isEmpty(dbsj)){
+            map.put("dbsj",dbsj );
+        }
+        if(!TextUtils.isEmpty(zcqx_star)){
+            map.put("zcqx_star",zcqx_star);
+            map.put("zcqx_end",zcqx_end );
+        }
+        if(!TextUtils.isEmpty(bczcqx_star)){
+            map.put("bczcqx_star",bczcqx_star );
+            map.put("bczcqx_end",bczcqx_end );
+        }
+        if(!TextUtils.isEmpty(ecbczc_star)){
+            map.put("ecbczc_star",ecbczc_star );
+            map.put("ecbczc_end",ecbczc_end);
+        }
+        map.put("update_date",update_date );
         postLoad(BaseUrl.xgzhencha, map, callBack);
     }
 
@@ -748,6 +583,65 @@ public class MainApi extends BaseApi {
         postLoad(BaseUrl.xgfayuan, map, callBack);
     }
 
+    public void getxgfayuanApi3(String id,String spcx,String bz,String spjg, String ladate,String ktdate,
+                                String ssdate,String ft, String zsfg,String zsfgtel,
+                               String sjy,String sjytel, String update_date, GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id + "");
+        map.put("spcx",spcx + "");
+        map.put("bzsm2",bz + "");
+        map.put("spjg",spjg + "");
+        map.put("ladate",ladate + "");
+        map.put("ktdate",ktdate + "");
+        map.put("ssdate",ssdate + "");
+        map.put("ft",ft + "");
+        map.put("zsfg",zsfg + "");
+        map.put("zsfgtel",zsfgtel + "");
+        map.put("sjy",sjy + "");
+        map.put("sjytel",sjytel + "");
+        map.put("update_date",update_date + "");
+        postLoad(BaseUrl.xgfayuan, map, callBack);
+    }
+
+    public void getxgfayuanApi1(String id,String spcx,String bz,String spjg, String ladate,String ktdate,
+                               String spdate,String ft, String zsfg,String zsfgtel,
+                               String sjy,String sjytel, String update_date, GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id + "");
+        map.put("spcx",spcx + "");
+        map.put("bzsm2",bz + "");
+        map.put("spjg",spjg + "");
+        map.put("ladate",ladate + "");
+        map.put("ktdate",ktdate + "");
+        map.put("spdate",spdate + "");
+        map.put("ft",ft + "");
+        map.put("zsfg",zsfg + "");
+        map.put("zsfgtel",zsfgtel + "");
+        map.put("sjy",sjy + "");
+        map.put("sjytel",sjytel + "");
+        map.put("update_date",update_date + "");
+        postLoad(BaseUrl.xgfayuan, map, callBack);
+    }
+
+    public void getxgfayuanApi2(String id,String spcx,String bz,String spjg, String ladate,String ktdate,
+                                String ft, String zsfg,String zsfgtel, String sjy,String sjytel,
+                                String update_date, GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id + "");
+        map.put("spcx",spcx + "");
+        map.put("bzsm2",bz + "");
+        map.put("spjg",spjg + "");
+        map.put("ladate",ladate + "");
+        map.put("ktdate",ktdate + "");
+        map.put("ft",ft + "");
+        map.put("zsfg",zsfg + "");
+        map.put("zsfgtel",zsfgtel + "");
+        map.put("sjy",sjy + "");
+        map.put("sjytel",sjytel + "");
+        map.put("update_date",update_date + "");
+        postLoad(BaseUrl.xgfayuan, map, callBack);
+    }
+
     /**
      * 添加检查机关
      */
@@ -789,6 +683,74 @@ public class MainApi extends BaseApi {
         map.put("ktdate",ktdate + "");
         map.put("spdate",spdate + "");
         map.put("ssdate",ssdate + "");
+        map.put("ft",ft + "");
+        map.put("zsfg",zsfg + "");
+        map.put("zsfgtel",zsfgtel + "");
+        map.put("sjy",sjy + "");
+        map.put("sjytel",sjytel + "");
+        map.put("create_date",create_date + "");
+        postLoad(BaseUrl.addfayuan, map, callBack);
+    }
+
+    public void postaddfayuanApi4(String id,String cid,String glid,String spcx,String bz,String spjg,
+                                 String ladate,String ktdate,String ssdate,String ft,
+                                 String zsfg,String zsfgtel,String sjy,String sjytel,
+                                 String create_date, GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", id + "");
+        map.put("company_id",cid + "");
+        map.put("glid", glid + "");
+        map.put("spcx",spcx + "");
+        map.put("bzsm2",bz + "");
+        map.put("spjg",spjg + "");
+        map.put("ladate",ladate + "");
+        map.put("ktdate",ktdate + "");
+        map.put("ssdate",ssdate + "");
+        map.put("ft",ft + "");
+        map.put("zsfg",zsfg + "");
+        map.put("zsfgtel",zsfgtel + "");
+        map.put("sjy",sjy + "");
+        map.put("sjytel",sjytel + "");
+        map.put("create_date",create_date + "");
+        postLoad(BaseUrl.addfayuan, map, callBack);
+    }
+
+    public void postaddfayuanApi1(String id,String cid,String glid,String spcx,String bz,String spjg,
+                                 String ladate,String ktdate,String spdate,String ft,
+                                 String zsfg,String zsfgtel,String sjy,String sjytel,
+                                 String create_date, GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", id + "");
+        map.put("company_id",cid + "");
+        map.put("glid", glid + "");
+        map.put("spcx",spcx + "");
+        map.put("bzsm2",bz + "");
+        map.put("spjg",spjg + "");
+        map.put("ladate",ladate + "");
+        map.put("ktdate",ktdate + "");
+        map.put("spdate",spdate + "");
+        map.put("ft",ft + "");
+        map.put("zsfg",zsfg + "");
+        map.put("zsfgtel",zsfgtel + "");
+        map.put("sjy",sjy + "");
+        map.put("sjytel",sjytel + "");
+        map.put("create_date",create_date + "");
+        postLoad(BaseUrl.addfayuan, map, callBack);
+    }
+
+    public void postaddfayuanApi2(String id,String cid,String glid,String spcx,String bz,String spjg,
+                                 String ladate,String ktdate,String ft,
+                                 String zsfg,String zsfgtel,String sjy,String sjytel,
+                                 String create_date, GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", id + "");
+        map.put("company_id",cid + "");
+        map.put("glid", glid + "");
+        map.put("spcx",spcx + "");
+        map.put("bzsm2",bz + "");
+        map.put("spjg",spjg + "");
+        map.put("ladate",ladate + "");
+        map.put("ktdate",ktdate + "");
         map.put("ft",ft + "");
         map.put("zsfg",zsfg + "");
         map.put("zsfgtel",zsfgtel + "");
@@ -859,14 +821,10 @@ public class MainApi extends BaseApi {
     /**
      * 收费
      */
-    public void getxgshoufeixqApi(String id,String sfje,String sflx,String bz,String fylx,String zt,String audit_id,
+    public void getxgshoufeixqApi(String id,String zt,String audit_id,
                                   String audit_name,String audit_time,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("id", id + "");
-        map.put("sfje", sfje + "");
-        map.put("sflx", sflx + "");
-        map.put("bz", bz + "");
-        map.put("fylx", fylx + "");
         map.put("zt", zt + "");
         map.put("audit_id", audit_id + "");
         map.put("audit_name", audit_name + "");
@@ -913,12 +871,13 @@ public class MainApi extends BaseApi {
 
 
     /**
-     * 伤残等级
+     * 律师费
      */
-    public void getlsfApi(int df,int fyflag,GetResultCallBack callBack) {
+    public void getlsfApi(int df,int fyflag,String max,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("df", df + "");
         map.put("fyflag", fyflag + "");
+        map.put("max", max + "");
         getLoad(BaseUrl.lsf, map, callBack);
     }
 

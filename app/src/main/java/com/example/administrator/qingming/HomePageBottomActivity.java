@@ -31,7 +31,7 @@ public class HomePageBottomActivity extends FragmentActivity{
     private RadioButton news;
     private RadioButton work;
     private ViewPager viewPager;
-    ArrayList<Fragment> fragmentArrayList;
+    private ArrayList<Fragment> fragmentArrayList;
     private HomePageFragment homePageFragment;
     private LawJournalFragment judicialAddressFragment;
     private ApplicationFragment applicationFragment;
@@ -50,7 +50,6 @@ public class HomePageBottomActivity extends FragmentActivity{
         if(bundle != null){
             Integer id = bundle.getInt("judicial_address");
             viewPager.setCurrentItem(1);
-            Log.i("judicial_address=====",""+id);
         }
     }
     //找到控件ID
@@ -67,7 +66,6 @@ public class HomePageBottomActivity extends FragmentActivity{
         applicationFragment = new ApplicationFragment();
         judicialAddressFragment=new LawJournalFragment();
         meFragment = new MeFragment();
-//        workFragment = new WorkFragment();
         fragmentArrayList.add(homePageFragment);
         fragmentArrayList.add(applicationFragment);
         fragmentArrayList.add(judicialAddressFragment);
@@ -76,8 +74,9 @@ public class HomePageBottomActivity extends FragmentActivity{
         QinMinPagerAdapter instantaneousPagerAdapter = new QinMinPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(instantaneousPagerAdapter);
         viewPager.setCurrentItem(0);//设置默认显示
+        homepage.setChecked(true);
         viewPager.setOffscreenPageLimit(fragmentArrayList.size());
-
+        homepage.setTextColor(getResources().getColor(R.color.blue));
         news.setOnClickListener(onClickListener);
         homepage.setOnClickListener(onClickListener);
         work.setOnClickListener(onClickListener);

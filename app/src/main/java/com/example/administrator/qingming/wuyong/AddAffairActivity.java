@@ -1,9 +1,8 @@
-package com.example.administrator.qingming.work;
+package com.example.administrator.qingming.wuyong;
 
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -16,15 +15,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.baidu.location.Poi;
 import com.example.administrator.qingming.R;
-
-import java.io.IOException;
-import java.util.List;
+import com.example.administrator.qingming.work.DatePickDialogUtil;
+import com.example.administrator.qingming.work.DateTimePickDialogUtil;
 
 /**
  * Created by Administrator on 2017/5/8 0008.
@@ -84,13 +77,13 @@ public class AddAffairActivity extends Activity {
                 case R.id.start_time:
                     starttime.setText(initStartDateTime);
                     starttime.setTextColor(getResources().getColor(R.color.black));
-                    DateTimePickDialogUtil dateTimePickDialogUtil = new DateTimePickDialogUtil(initStartDateTime,AddAffairActivity.this);
+                    DatePickDialogUtil dateTimePickDialogUtil = new DatePickDialogUtil(initStartDateTime,AddAffairActivity.this);
                     dateTimePickDialogUtil.dateTimePicKDialog(starttime);
                     break;
                 case R.id.finish_time:
                     finishtime.setText(initStartDateTime);
                     finishtime.setTextColor(getResources().getColor(R.color.black));
-                    DateTimePickDialogUtil mdateTimePickDialogUtil = new DateTimePickDialogUtil(initEndDateTime,AddAffairActivity.this);
+                    DatePickDialogUtil mdateTimePickDialogUtil = new DatePickDialogUtil(initEndDateTime,AddAffairActivity.this);
                     mdateTimePickDialogUtil.dateTimePicKDialog(finishtime);
                     break;
                 case R.id.back_btn:

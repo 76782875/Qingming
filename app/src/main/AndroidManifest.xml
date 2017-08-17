@@ -43,8 +43,7 @@
         </activity>
         <activity android:name="com.example.administrator.qingming.HomePageBottomActivity"/>
         <activity android:name=".activity.GuideActivity"/>
-        <activity android:name=".activity.MainActivity"/>
-        <!--<activity android:name=".fragment.LawJournalFragment"/>&lt;!&ndash;律所通讯录&ndash;&gt;-->
+        <activity android:name=".activity.MainActivity" android:windowSoftInputMode="stateVisible|adjustResize"  />
         <activity android:name=".contacts.CustomerAddressActivity"/><!--客户通讯录-->
         <activity android:name=".news.casedetails.CaseDetailsActivity"/><!--案件详情-->
         <activity android:name=".news.casedetails.CaseIntroduction"/><!--案件简介-->
@@ -53,12 +52,12 @@
         <activity android:name=".RegsterActivity"/><!--注册页面-->
         <activity android:name=".contacts.ContactDetailsActivity"/><!--联系人详情-->
         <activity android:name=".wuyong.CalendarActivity"/><!--日历页面-->
-        <activity android:name=".work.AddAffairActivity"/><!--新增事件页面-->
+        <activity android:name=".wuyong.AddAffairActivity"/><!--新增事件页面-->
         <activity android:name=".work.ConflictofInterestActivity"/><!--利益冲突预测页面-->
         <activity android:name=".work.AddCaseActivity"/><!--新增案件页面-->
         <activity android:name=".work.CaseRegisterActivity"/><!--案件登记页面-->
         <activity android:name=".work.CaseManageActivity"/><!--案件管理页面-->
-        <activity android:name=".work.WorkLogActivity"/><!--总工作日志页面-->
+        <activity android:name=".wuyong.WorkLogActivity"/><!--总工作日志页面-->
         <activity android:name=".news.casedetails.CreateWorkLogActivity"/><!--创建工作日志页面-->
         <activity android:name=".news.casedetails.CreateWorkActivity"/><!--工作日志页面-->
         <activity android:name=".activity.MyCaseActivity"/><!--我的案件页面-->

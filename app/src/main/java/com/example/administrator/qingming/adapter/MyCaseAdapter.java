@@ -66,6 +66,7 @@ public class MyCaseAdapter extends RecyclerView.Adapter<MyCaseAdapter.ViewHolder
             viewHolder.numb.setText(caseModel.getAh_number());
             viewHolder.consignor.setText(caseModel.getWtr());
             viewHolder.adversary.setText(caseModel.getDfdsr());
+            viewHolder.case_dsr.setText(caseModel.getDsr());
             if(caseModel.getCase_state().equals("-1")){
                 viewHolder.party.setText("收案返回");
             }else if(caseModel.getCase_state().equals("1")){
@@ -117,6 +118,7 @@ public class MyCaseAdapter extends RecyclerView.Adapter<MyCaseAdapter.ViewHolder
         TextView consignor;
         TextView party;
         TextView adversary;
+        TextView case_dsr;
         TextView tvFootView;
         public ViewHolder(View itemView,int viewtype) {
             super(itemView);
@@ -126,6 +128,7 @@ public class MyCaseAdapter extends RecyclerView.Adapter<MyCaseAdapter.ViewHolder
                 consignor = (TextView) itemView.findViewById(R.id.case_item_consignor);
                 party = (TextView) itemView.findViewById(R.id.case_item_party);
                 adversary = (TextView) itemView.findViewById(R.id.case_item_adversary);
+                case_dsr = (TextView) itemView.findViewById(R.id.case_dsr);
             }else {
                 tvFootView = (TextView) itemView.findViewById(R.id.default_footer_title);
             }

@@ -89,7 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:text="请选择收案日期"
+                    android:text="请选择收款日期"
                     android:textColorHint="@color/transparent80"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -235,6 +235,7 @@
                 android:layout_margin="10dp"
                 android:background="@color/blue"
                 android:text="发起申请"
+                android:textSize="16sp"
                 android:textColor="@color/white"
                 android:visibility="gone"/>
 
@@ -245,10 +246,12 @@
                 android:layout_margin="10dp"
                 android:background="@color/blue"
                 android:text="通过"
+                android:textSize="16sp"
                 android:textColor="@color/white"
                 android:visibility="gone"/>
             <Button
                 android:id="@+id/zf"
+                android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -263,6 +266,7 @@
                 android:layout_margin="10dp"
                 android:background="@color/blue"
                 android:text="返回"
+                android:textSize="16sp"
                 android:textColor="@color/white"
                 android:visibility="gone"/>
 

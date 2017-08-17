@@ -308,19 +308,20 @@
                     android:background="@drawable/edit_blue"
                     android:text="财务审批"
                     android:textColor="@color/white"
-                    android:textSize="24px"
+                    android:textSize="18sp"
                     android:visibility="gone"/>
+
                 <Button
                     android:id="@+id/agree_btn"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edit_blue"
                     android:text="通过"
                     android:textColor="@color/white"
-                    android:textSize="24px"
-                    />
+                    android:textSize="18sp" />
+
                 <Button
                     android:id="@+id/noagree_btn"
                     android:layout_weight="1"
@@ -330,7 +331,7 @@
                     android:background="@drawable/edit_blue"
                     android:text="不通过"
                     android:textColor="@color/white"
-                    android:textSize="24px"
+                    android:textSize="18sp"
                     />
             </LinearLayout>
 

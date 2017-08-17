@@ -23,6 +23,7 @@ import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.adapter.ChangeAdapter;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelChange;
@@ -46,7 +47,8 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
     private EditText edit;
     private TextView search,choose;
     private ImageView back_btn;
-    String gjc;
+    private LoadingDialog loadingDialog;
+    private String gjc;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this);
         swipe = (SwipeRefreshLayout) findViewById(R.id.swipe);
         listview = (ListView) findViewById(R.id.listview);
         list = new ArrayList<>();
@@ -205,10 +208,13 @@ public class ChangeActivity extends Activity implements SwipeRefreshLayout.OnRef
     }
 
     private void getHttp(){
+        loadingDialog.setLoadingContent("加载中...");
+        loadingDialog.show();
         MainApi.getInstance(this).getbglvshiApi(company_id, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipe.setRefreshing(false);
+                loadingDialog.dismiss();
                 if(type== Constants.TYPE_SUCCESS){
                     List<ModelChange.ResultBean> resultBean = GsonUtil.fromJsonList(new Gson(),
                             result,ModelChange.ResultBean.class);

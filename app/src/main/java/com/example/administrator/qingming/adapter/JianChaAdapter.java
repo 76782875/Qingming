@@ -64,8 +64,15 @@ public class JianChaAdapter extends BaseAdapter {
         viewHolder.tel.setText(resultBeen.getTel());
         viewHolder.bm.setText(resultBeen.getBm());
         viewHolder.cbr.setText(resultBeen.getCbr());
-        viewHolder.srart.setText(resultBeen.getScqs_star());
-        viewHolder.finish.setText(resultBeen.getScqs_end());
+        String srarttime = resultBeen.getScqs_star();
+        String finishtime = resultBeen.getScqs_end();
+        //截取 月 和 日 字符串
+        if(srarttime != null ){
+            String year = srarttime.substring(0, 10);
+            String years = finishtime.substring(0, 10);
+            viewHolder.srart.setText(year);
+            viewHolder.finish.setText(years);
+        }
         return convertView;
     }
 

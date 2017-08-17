@@ -48,7 +48,6 @@ public class ChargeListActivity extends Activity implements SwipeRefreshLayout.O
         id = bundle.getString("id","");
         ah_number = bundle.getString("ah_number","");
         ysje = bundle.getInt("ysje");
-        Log.i("=========>",""+ah_number+id);
 
         initView();
         getHttp();

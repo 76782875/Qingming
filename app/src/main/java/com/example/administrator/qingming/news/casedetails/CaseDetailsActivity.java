@@ -44,12 +44,13 @@ public class CaseDetailsActivity extends Activity{
     private TextView qx,xg,xglv,kh;
     private RelativeLayout worklog,charge_list,zhencha,jiancha,fayuan;
     private TextView name,ah,time,jssf,dlf,ls;
-    private String ah_number,id,wtr,dfdsr,ay;
+    private String ah_number,id,wtr,lxdh,dsr,dfdsr,ay;
     private int ysje;
     private LinearLayout sasq;
     private Button sabtn,ja_btn,zzbtn,agree_btn,noagree_btn,cwsp_btn;
     int mYear,mMonth,mDay;
     int ajlx,mdlf,jzf;
+    String cc;
     String sffs,mname,sarq,court,detention,police,procuratorate,slbm,bzsm,ssbd,ssjd,ssdw;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,9 +60,12 @@ public class CaseDetailsActivity extends Activity{
         init();
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
+            cc = bundle.getString("cc","");
             ay = bundle.getString("ay","");
             ah_number = bundle.getString("ah_number","");
             wtr = bundle.getString("wtr","");
+            lxdh = bundle.getString("lxdh","");
+            dsr = bundle.getString("dsr","");
             dfdsr = bundle.getString("dfdsr","");
             id = bundle.getString("id","");
             mdlf = bundle.getInt("dlf");
@@ -263,9 +267,12 @@ public class CaseDetailsActivity extends Activity{
                     bundle.putInt("index",102);
                     bundle.putInt("ajlx",ajlx);
                     bundle.putString("id",id);
+                    bundle.putString("cc",cc);
                     bundle.putString("ay",ay);
                     bundle.putString("ah_number",ah_number);
                     bundle.putString("wtr",wtr);
+                    bundle.putString("lxdh",lxdh);
+                    bundle.putString("dsr",dsr);
                     bundle.putString("dfdsr",dfdsr);
                     bundle.putString("sffs",sffs);
                     bundle.putString("name",mname);
@@ -316,6 +323,7 @@ public class CaseDetailsActivity extends Activity{
                     intent.putExtra("id",id);
                     intent.putExtra("ah_number",ah_number);
                     intent.putExtra("wtr",wtr);
+                    intent.putExtra("dsr",dsr);
                     intent.putExtra("dfdsr",dfdsr);
                     intent.putExtra("ay",ay);
                     startActivity(intent);
@@ -326,6 +334,7 @@ public class CaseDetailsActivity extends Activity{
                     intent.putExtra("id",id);
                     intent.putExtra("ah_number",ah_number);
                     intent.putExtra("wtr",wtr);
+                    intent.putExtra("dsr",dsr);
                     intent.putExtra("dfdsr",dfdsr);
                     intent.putExtra("ay",ay);
                     startActivity(intent);
@@ -336,6 +345,7 @@ public class CaseDetailsActivity extends Activity{
                     intent.putExtra("id",id);
                     intent.putExtra("ah_number",ah_number);
                     intent.putExtra("wtr",wtr);
+                    intent.putExtra("dsr",dsr);
                     intent.putExtra("dfdsr",dfdsr);
                     intent.putExtra("ay",ay);
                     startActivity(intent);
@@ -346,6 +356,7 @@ public class CaseDetailsActivity extends Activity{
                     intent.putExtra("id",id);
                     intent.putExtra("ah_number",ah_number);
                     intent.putExtra("wtr",wtr);
+                    intent.putExtra("dsr",dsr);
                     intent.putExtra("dfdsr",dfdsr);
                     intent.putExtra("ay",ay);
                     startActivity(intent);

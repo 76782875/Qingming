@@ -109,26 +109,6 @@ public class FileBaseAdapater extends BaseAdapter implements View.OnClickListene
         return convertView;
     }
 
-//    public void setOnClickListener(View.OnClickListener onClickListener){
-//        this.onClickListener = onClickListener;
-//    }
-
-//    View.OnClickListener onClickListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            if(onClickListener != null){
-//                int position = (int) v.getTag();
-//                switch (v.getId()){
-//                    case R.id.download:
-//                        Toast.makeText(context,"你点击了第"+position+"条下载",Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.del:
-//                        Toast.makeText(context,"你点击了删除",Toast.LENGTH_SHORT).show();
-//                        break;
-//                }
-//            }
-//        }
-//    };
 
     /**
      * 自定义接口，用于回调按钮点击事件到Activity

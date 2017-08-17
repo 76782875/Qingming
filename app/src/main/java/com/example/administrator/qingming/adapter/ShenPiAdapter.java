@@ -49,18 +49,18 @@ public class ShenPiAdapter extends BaseAdapter {
             viewHolder.numb = (TextView) convertView.findViewById(R.id.case_item_numb);
             viewHolder.consignor = (TextView) convertView.findViewById(R.id.case_item_consignor);
             viewHolder.adversary = (TextView) convertView.findViewById(R.id.case_item_adversary);
+            viewHolder.case_dsr = (TextView) convertView.findViewById(R.id.case_dsr);
             convertView.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         MyCaseModel.ResultBean bean = list.get(position);
 
-
         viewHolder.name.setText(bean.getAy());
         viewHolder.numb.setText(bean.getAh_number());
         viewHolder.consignor.setText(bean.getWtr());
         viewHolder.adversary.setText(bean.getDfdsr());
-
+        viewHolder.case_dsr.setText(bean.getDsr());
 
         return convertView;
     }
@@ -70,5 +70,6 @@ public class ShenPiAdapter extends BaseAdapter {
         TextView numb;
         TextView consignor;
         TextView adversary;
+        TextView case_dsr;
     }
 }

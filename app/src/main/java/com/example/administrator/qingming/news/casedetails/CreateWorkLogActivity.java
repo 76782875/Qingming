@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,25 +30,28 @@ import com.example.administrator.qingming.api.MainApi;
 import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
+import com.example.administrator.qingming.work.DatePickDialogUtil;
+import com.example.administrator.qingming.work.DateTimePickDialogUtil;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/5/16 0016.
  */
 
 public class CreateWorkLogActivity extends Activity {
-    private static final int DATE_DIALOG = 0;
-    private static final int DATE_DIALOY = 1;
     private EditText edit_log;
     int mYear,mMonth,mDay;
     private String initStartDateTime ; // 初始化开始时间
-    private String initEndDateTime ; // 初始化结束时间
     private ImageView backbtn;
     private TextView logtype,logsort,logstart,logfinish,createshoose;
-    private TextView one,two,three,fore,name;
+    private TextView one,two,three,fore,name,five;
     private Button submit;
-    LoadingDialog loadingDialog;
-    private String ah_number,wtr,dfdsr,ay;
+    private LoadingDialog loadingDialog;
+    private String ah_number,wtr,dfdsr,ay,dsr;
 
     private int type;
     @Override
@@ -77,6 +81,7 @@ public class CreateWorkLogActivity extends Activity {
         ah_number = bundle.getString("ah_number","");
         wtr = bundle.getString("wtr","");
         dfdsr = bundle.getString("dfdsr","");
+        dsr = bundle.getString("dsr","");
         ay = bundle.getString("ay","");
         type = bundle.getInt("type");
 
@@ -84,9 +89,11 @@ public class CreateWorkLogActivity extends Activity {
         two.setText(ah_number);
         three.setText(wtr);
         fore.setText(dfdsr);
+        five.setText(dsr);
     }
 
     private void initView() {
+        five = (TextView) findViewById(R.id.five);
         name = (TextView) findViewById(R.id.name);
         backbtn = (ImageView) findViewById(R.id.back_btn);
 //        logtype = (TextView) findViewById(R.id.log_type);
@@ -161,37 +168,59 @@ public class CreateWorkLogActivity extends Activity {
                     }).show();
                     break;
                 case R.id.log_start:
-                    showDialog(DATE_DIALOG);
+                    logstart.setText(initStartDateTime);
+                    logstart.setTextColor(getResources().getColor(R.color.black));
+                    DatePickDialogUtil dateTimePickDialogUtil = new DatePickDialogUtil(initStartDateTime,CreateWorkLogActivity.this);
+                    dateTimePickDialogUtil.dateTimePicKDialog(logstart);
                     break;
                 case R.id.log_finish:
-                    showDialog(DATE_DIALOY);
+                    logfinish.setText(initStartDateTime);
+                    logfinish.setTextColor(getResources().getColor(R.color.black));
+                    DatePickDialogUtil dateTimePickDialogUtil1 = new DatePickDialogUtil(initStartDateTime,CreateWorkLogActivity.this);
+                    dateTimePickDialogUtil1.dateTimePicKDialog(logfinish);
                     break;
                 case R.id.submit_btn:
-                    if(!logstart.getText().toString().equals("请选择开始时间")){
-                        if(!logfinish.getText().toString().equals("请选择结束时间")){
+                    if(!logstart.getText().toString().equals("请选择时间")){
+                        if(!logfinish.getText().toString().equals("请选择时间")){
                             start_date = logstart.getText().toString();
                             stop_date = logfinish.getText().toString();
-                            Log.e("=======>",""+logstart.getText().toString());
-                            if(logsort.getText().toString().equals("客户拜访")){
-                                log_type = "1";
-                            }else if(logsort.getText().toString().equals("商务谈判")){
-                                log_type = "2";
-                            }else if(logsort.getText().toString().equals("法律咨询")){
-                                log_type = "3";
-                            }else if(logsort.getText().toString().equals("案例/资料检索")){
-                                log_type = "4";
-                            }else if(logsort.getText().toString().equals("法律文书起草/修改")){
-                                log_type = "5";
-                            }else if(logsort.getText().toString().equals("调查取证")){
-                                log_type = "6";
-                            }else if(logsort.getText().toString().equals("刑案律师会见")){
-                                log_type = "7";
-                            }else if(logsort.getText().toString().equals("诉讼/仲裁出庭")){
-                                log_type = "8";
-                            }else if(logsort.getText().toString().equals("信访/社区/法援律师值")){
-                                log_type = "9";
+                            int result = 0;
+                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                            try {
+                                Date date1 = format.parse(start_date);
+                                Date date2 = format.parse(stop_date);
+                                result = date1.compareTo(date2);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
                             }
-                            postHttp();
+                            if (result == 0) {
+                                Toast.makeText(CreateWorkLogActivity.this, "时间格式错误", Toast.LENGTH_SHORT).show();
+                            } else if (result < 0) {
+                                Toast.makeText(CreateWorkLogActivity.this, "时间格式正确", Toast.LENGTH_SHORT).show();
+                                if(logsort.getText().toString().equals("客户拜访")){
+                                    log_type = "1";
+                                }else if(logsort.getText().toString().equals("商务谈判")){
+                                    log_type = "2";
+                                }else if(logsort.getText().toString().equals("法律咨询")){
+                                    log_type = "3";
+                                }else if(logsort.getText().toString().equals("案例/资料检索")){
+                                    log_type = "4";
+                                }else if(logsort.getText().toString().equals("法律文书起草/修改")){
+                                    log_type = "5";
+                                }else if(logsort.getText().toString().equals("调查取证")){
+                                    log_type = "6";
+                                }else if(logsort.getText().toString().equals("刑案律师会见")){
+                                    log_type = "7";
+                                }else if(logsort.getText().toString().equals("诉讼/仲裁出庭")){
+                                    log_type = "8";
+                                }else if(logsort.getText().toString().equals("信访/社区/法援律师值")){
+                                    log_type = "9";
+                                }
+                                postHttp();
+                            } else {
+                                Toast.makeText(CreateWorkLogActivity.this, "时间格式错误", Toast.LENGTH_SHORT).show();
+                            }
+
                         }else {
                             Toast.makeText(CreateWorkLogActivity.this,"请选择结束时间",Toast.LENGTH_SHORT).show();
                         }
@@ -242,51 +271,6 @@ public class CreateWorkLogActivity extends Activity {
         });
     }
 
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG:
-                return new DatePickerDialog(this,onDateSetListener, mYear, mMonth, mDay);
-            case DATE_DIALOY:
-                return new DatePickerDialog(this,monDateSetListener, mYear, mMonth, mDay);
-        }
-        return null;
-    }
-
-    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            display();
-        }
-    };
-
-    DatePickerDialog.OnDateSetListener monDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            finplay();
-        }
-    };
-
-    /**
-     * 设置日期 利用StringBuffer追加
-     */
-    public void display() {
-        logstart.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        logstart.setTextColor(getResources().getColor(R.color.black));
-    }
-    public void finplay() {
-        logfinish.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        logfinish.setTextColor(getResources().getColor(R.color.black));
-    }
 
     String title;
     AlertDialog.Builder builder;

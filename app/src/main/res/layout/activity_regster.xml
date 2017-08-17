@@ -28,13 +28,12 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="    手机号码:"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textColor="@color/black"/>
         <EditText
             android:id="@+id/inputPhoneEt_edit"
@@ -43,6 +42,7 @@
             android:hint="请输入手机号"
             android:textColorHint="#BBBBBB"
             android:layout_marginLeft="15dp"
+            android:textSize="14sp"
             android:padding="10dp"
             android:background="@drawable/pop_win"
             android:inputType="phone"
@@ -56,17 +56,16 @@
         android:alpha="0.3"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
         android:gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="        验证码:"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textColor="@color/black"/>
         <EditText
             android:id="@+id/inputPhone_edit"
@@ -74,6 +73,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="请输入验证码"
+            android:textSize="14sp"
             android:textColorHint="#BBBBBB"
             android:layout_marginLeft="15dp"
             android:padding="10dp"
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="获取验证码"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:padding="5dp"
             android:textColor="@color/white"
             android:background="@drawable/edit_blue"
@@ -96,17 +96,17 @@
         android:layout_height="0.1dp"
         android:background="@color/black"
         android:alpha="0.3"
-        android:layout_margin="15dp" />
+        android:layout_margin="10dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+
         android:gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="        新密码:"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textColor="@color/black"/>
         <EditText
             android:id="@+id/input_password_edit"
@@ -116,6 +116,7 @@
             android:textColorHint="#BBBBBB"
             android:layout_marginLeft="15dp"
             android:padding="10dp"
+            android:textSize="14sp"
             android:background="@drawable/pop_win"
             android:layout_marginRight="15dp"
             android:inputType="textPassword"
@@ -127,23 +128,24 @@
         android:layout_height="0.1dp"
         android:background="@color/black"
         android:alpha="0.3"
-        android:layout_margin="15dp" />
+        android:layout_margin="10dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="10dp"
         android:gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="新密码确认:"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textColor="@color/black"/>
         <EditText
             android:id="@+id/input_password_new_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="请输入新密码确认"
+            android:textSize="14sp"
             android:textColorHint="#BBBBBB"
             android:layout_marginLeft="15dp"
             android:padding="10dp"
@@ -159,13 +161,13 @@
         android:layout_height="0.1dp"
         android:background="@color/black"
         android:alpha="0.3"
-        android:layout_margin="15dp" />
+        android:layout_margin="10dp" />
     <Button
         android:id="@+id/ok_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="确定"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textColor="@color/white"
         android:background="@drawable/edit_blue"
         android:layout_margin="15dp"/>

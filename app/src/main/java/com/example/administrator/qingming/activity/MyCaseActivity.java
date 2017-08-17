@@ -62,7 +62,7 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
         Bundle bundle = getIntent().getExtras();
         cc = bundle.getString("cc",""); //获取上个页面传递的值，
         if(cc.equals("1")){
-//            值为1是我的案件页面，
+//            值为1是我的案件页面
             getHttp();
         }else {
 //            为2是律师案件页面
@@ -153,11 +153,13 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
                 String ay= list4.get(i).getAy();
                 String ah_number= list4.get(i).getAh_number();
                 String wtr= list4.get(i).getWtr();
+                String lxdh = list4.get(i).getTel();
+                String dsr = list4.get(i).getDsr();
                 String dfdsr= list4.get(i).getDfdsr();
                 int dlf= list4.get(i).getDlf();
                 int jzf= list4.get(i).getJzf();
                 int ajlx = list4.get(i).getAjlx();
-                Log.e("id----->>",""+id);
+                Log.e("getSffs----->>",""+list4.get(i).getSffs());
                 String sffs = null;
                 if(list4.get(i).getSffs().equals("0")){
                      sffs = "免费";
@@ -172,6 +174,8 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
                 }
                 String name = list4.get(i).getName();
                 String sarq =  list4.get(i).getSarq();
+                //截取 月 和 日 字符串
+                String year = sarq.substring(0, 10);
                 String court =  list4.get(i).getCourt();
                 String detention =  list4.get(i).getDetention();
                 String police =  list4.get(i).getPolice();
@@ -186,12 +190,15 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
                 Bundle bundle = new Bundle();
                 bundle.putString("id",id);
                 bundle.putString("ay",ay);
+                bundle.putString("cc",cc);
                 bundle.putString("ah_number",ah_number);
                 bundle.putString("wtr",wtr);
+                bundle.putString("lxdh",lxdh);
+                bundle.putString("dsr",dsr);
                 bundle.putString("dfdsr",dfdsr);
                 bundle.putString("sffs",sffs);
                 bundle.putString("name",name);
-                bundle.putString("sarq",sarq);
+                bundle.putString("sarq",year);
                 bundle.putString("court",court);
                 bundle.putString("detention",detention);
                 bundle.putString("police",police);

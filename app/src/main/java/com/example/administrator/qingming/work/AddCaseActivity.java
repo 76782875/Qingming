@@ -74,8 +74,6 @@ public class AddCaseActivity extends Activity {
                         bundle.putInt("ajfl",ajfl+1);
                         bundle.putString("name",name);
                         intent.putExtras(bundle);
-                        Log.e("ajlx====》",""+ajlx);
-                        Log.e("ajfl=======》",""+ajfl);
                         startActivity(intent);
                     }
                     break;
@@ -88,7 +86,7 @@ public class AddCaseActivity extends Activity {
     String name;
     int ajfl;
     int ajlx;
-    String[] clx={"民事案件","刑事案件","行政案件","非诉讼法律事务","法律顾问","法律援助","执行案件","中保案件","仲裁案件","破产案件","咨询代写文书"};
+    String[] clx={"民事案件","刑事案件","行政案件","非诉讼法律事务","法律顾问","执行案件","中保案件","仲裁案件","破产案件"};
     private void showworkDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(AddCaseActivity.this,AlertDialog.THEME_HOLO_LIGHT);
         builder.setTitle("请选择案件类型");
@@ -125,34 +123,24 @@ public class AddCaseActivity extends Activity {
                         cfl= getResources().getStringArray(R.array.five);
                         break;
                     case 5:
-                        ajlx = 6;
-                        name = "法律援助";
-                        cfl= getResources().getStringArray(R.array.six);
-                        break;
-                    case 6:
                         ajlx = 7;
                         name = "执行案件";
                         cfl= getResources().getStringArray(R.array.six);
                         break;
-                    case 7:
+                    case 6:
                         ajlx = 8;
                         name = "中保案件";
                         cfl= getResources().getStringArray(R.array.six);
                         break;
-                    case 8:
+                    case 7:
                         ajlx = 9;
                         name = "仲裁案件";
                         cfl= getResources().getStringArray(R.array.seven);
                         break;
-                    case 9:
+                    case 8:
                         ajlx = 10;
                         name = "破产案件";
                         cfl= getResources().getStringArray(R.array.eight);
-                        break;
-                    case 10:
-                        ajlx = 11;
-                        name = "咨询代写文书";
-                        cfl= getResources().getStringArray(R.array.nine);
                         break;
                 }
 
