@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_down" />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发票详情"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/zhencha_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:padding="15dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="案   号："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/ah"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="请选择"
+                    android:textColor="@color/black" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arraw" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="申请人："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+                <EditText
+                    android:id="@+id/edit_sqr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="委托人："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:id="@+id/edit_wtr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="案   由："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:id="@+id/edit_ay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="代理费："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:id="@+id/edit_dlf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="发票抬头："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+                <EditText
+                    android:id="@+id/edit_fptt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="已到款项："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:id="@+id/edit_ydkx"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="已开发票："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/edit_ykfp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="开票项目："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/kpxm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="律师代理费"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arraw" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="开票类型："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/kplx"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="个人"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arraw" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="发票类型："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/fplx"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="增值税专用发票"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arraw" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="开票金额："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_kpje"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="纳税人识别号："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_rsr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="基本户开户银行："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_khyh"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="基本户开户账号："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_khzh"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="注册场所地址："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="注册固定电话："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="收件人："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_sjr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="收件地址："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_sj_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="联系电话："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="申请备注："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_sqbz"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="发票号："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_fp_numb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint=""
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="开票日期："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/kprq"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="请选择"
+                    android:textSize="14sp"
+                    android:textColor="@color/transparent80" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arraw" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="备注说明："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <EditText
+                    android:id="@+id/edit_bz"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/input_black"
+                    android:gravity="left"
+                    android:hint="请填写备注"
+                    android:maxLength="140"
+                    android:textSize="14sp"
+                    android:padding="10dp"
+                    android:textColorHint="@color/transparent80" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edit_blue"
+                android:text="确认提交"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/aaa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <Button
+                    android:id="@+id/xuigai_btn"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/edit_blue"
+                    android:text="修改"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+                <Button
+                    android:id="@+id/del_btn"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/edit_blue"
+                    android:text="删除"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

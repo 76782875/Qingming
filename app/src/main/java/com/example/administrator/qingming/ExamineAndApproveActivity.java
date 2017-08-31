@@ -100,10 +100,23 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
                 }else if(list.get(i).getSffs().equals("4")){
                     sffs = "固定+风险代理收费";
                 }
-
                 String name = list.get(i).getName();
                 String sarq =  list.get(i).getSarq();
                 String createid = list.get(i).getCreate_id();
+                String lxdh = list.get(i).getTel();
+                String dsr = list.get(i).getDsr();
+                int ajlx = list.get(i).getAjlx();
+                //截取 月 和 日 字符串
+                String year = sarq.substring(0, 10);
+                String court =  list.get(i).getCourt();
+                String detention =  list.get(i).getDetention();
+                String police =  list.get(i).getPolice();
+                String procuratorate =  list.get(i).getProcuratorate();
+                String slbm =  list.get(i).getSlbm();
+                String bzsm =  list.get(i).getBzsm();
+                String ssdw =  list.get(i).getSsdw();
+                String ssbd =  list.get(i).getSsbd();
+                String ssjd =  list.get(i).getSsjd();
 
                 Intent intent = new Intent(ExamineAndApproveActivity.this, CaseShenPiActivity.class);
                 Bundle bundle = new Bundle();
@@ -119,6 +132,20 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
                 bundle.putInt("jzf",jzf);
                 bundle.putInt("case_state",case_state);
                 bundle.putString("createid",createid);
+                bundle.putString("cc","");
+                bundle.putString("lxdh",lxdh);
+                bundle.putString("dsr",dsr);
+                bundle.putString("sarq",year);
+                bundle.putString("court",court);
+                bundle.putString("detention",detention);
+                bundle.putString("police",police);
+                bundle.putString("procuratorate",procuratorate);
+                bundle.putString("slbm",slbm);
+                bundle.putString("bzsm",bzsm);
+                bundle.putString("ssdw",ssdw);
+                bundle.putString("ssbd",ssbd);
+                bundle.putString("ssjd",ssjd);
+                bundle.putInt("ajlx",ajlx);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

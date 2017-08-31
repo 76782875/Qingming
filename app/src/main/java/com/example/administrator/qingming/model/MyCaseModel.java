@@ -1,5 +1,7 @@
 package com.example.administrator.qingming.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -17,6 +19,8 @@ public class MyCaseModel {
     private int status;
     private String message;
     private List<ResultBean> result;
+    @SerializedName("result")
+    private List<ResultBean> resultX;
 
     public int getStatus() {
         return status;
@@ -42,29 +46,41 @@ public class MyCaseModel {
         this.result = result;
     }
 
+    public List<ResultBean> getResultX() {
+        return resultX;
+    }
+
+    public void setResultX(List<ResultBean> resultX) {
+        this.resultX = resultX;
+    }
+
     public static class ResultBean {
         /**
-         * id : 111
-         * case_state : 2
-         * ay : 路逃狱了
-         * ah_number : 2017(民)第 0071 号
-         * wtr : 张杰
-         * dfdsr : 谢娜
+         * id : 116
+         * case_state : 1
+         * ay : 测试
+         * ah_number : 2017(民)第004号
+         * wtr : 蒲祖辉
+         * tel : 15823903420
+         * dsr : 不知道
+         * dfdsr : 不明白
          * sffs : 1
-         * dlf : 151
-         * jzf : null
-         * name : 嫖老师
-         * sarq : 2017-07-04 00:00:00
+         * dlf : 2500
+         * jzf : 1500
+         * name : 测试主任
+         * sarq : 2017-08-22 00:00:00
          * ajlx : 1
          * police :
-         * procuratorate : null
+         * procuratorate :
          * court :
+         * badq : 11,110100,110105
          * detention :
-         * slbm : 公安
-         * ssbd : 51
+         * slbm : 铭轩
+         * ssbd : 23
          * ssjd : 0
          * ssdw : 0
-         * bzsm : null
+         * bzsm :
+         * create_id : b306900362b54ac78d9a987db793785b
          */
 
         private String id;
@@ -86,6 +102,16 @@ public class MyCaseModel {
         private String slbm;
         private String ssbd;
         private String tel;
+        private String badq;
+
+
+        public String getBadq() {
+            return badq;
+        }
+
+        public void setBadq(String badq) {
+            this.badq = badq;
+        }
 
         public String getCreate_id() {
             return create_id;
@@ -285,4 +311,6 @@ public class MyCaseModel {
             this.tel = tel;
         }
     }
+
+
 }

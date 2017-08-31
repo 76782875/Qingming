@@ -1,6 +1,8 @@
 package com.example.administrator.qingming.activity;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,10 +10,12 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Path;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -69,19 +73,24 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
     private ImageView addbtn;
     private LoadingDialog loadingDialog;
     private String path;
-
+    private Boolean  up=false;//默认false不刷新
+    boolean iszw;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file);
 
+        checkPermisson();
+
         SharedPreferences sharedPreferences = getSharedPreferences("qinmin", Context.MODE_PRIVATE);
         createid = sharedPreferences.getString("id","");
         createname = sharedPreferences.getString("name","");
         gsid = sharedPreferences.getString("cid","");
+        iszw = sharedPreferences.getBoolean("zhiwei",false);
+        Log.e("===>","zhiwei"+iszw);
 
         //获取日期
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd    hh:mm:ss");
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         createtime = sDateFormat.format(new java.util.Date());
         Calendar calendar = Calendar.getInstance();
         int y =calendar.get(Calendar.YEAR);
@@ -97,6 +106,22 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
         initView();
         getHttp();
     }
+
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if(up){
+//            getHttp();//向服务器发送请求
+//            up=false;//刷新一次即可，不需要一直刷新
+//        }
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        up=true;
+//    }
 
     private void initView() {
         loadingDialog = new LoadingDialog(this);
@@ -121,33 +146,7 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
 //        View view = LayoutInflater.from(this).inflate(R.layout.wu_footer,null);
 //        listView.addFooterView(view);
         listView.setAdapter(fileBaseAdapater);
-
         swipe.setOnRefreshListener(this);
-//        drawerlayout.setDrawerListener(new DrawerLayout.DrawerListener() {
-//            @Override
-//            public void onDrawerSlide(View view, float v) {
-//                //因为arg1的范围是0.0-1.0，是一个相对整个抽屉宽度的比例
-//                //所以要准换成
-//                scrollWidth=v*mDrawerWidth;
-//                //setScroll中的参数，正数表示向左移动，负数向右
-//                frameLayout.setScrollX((int)(1*scrollWidth));
-//            }
-//
-//            @Override
-//            public void onDrawerOpened(View view) {
-//
-//            }
-//
-//            @Override
-//            public void onDrawerClosed(View view) {
-//
-//            }
-//
-//            @Override
-//            public void onDrawerStateChanged(int i) {
-//
-//            }
-//        });
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -162,8 +161,8 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                     fileBaseAdapater.notifyDataSetChanged();
                     examine_line1.setVisibility(View.VISIBLE);
                     examine_line2.setVisibility(View.INVISIBLE);
-                    examine2.setTextColor(getResources().getColor(R.color.black));
-                    examine3.setTextColor(getResources().getColor(R.color.blue));
+                    examine2.setTextColor(getResources().getColor(R.color.blue));
+                    examine3.setTextColor(getResources().getColor(R.color.black));
                     break;
                 case R.id.examine3:
                     gsid = "-1";
@@ -171,8 +170,8 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                     fileBaseAdapater.notifyDataSetChanged();
                     examine_line2.setVisibility(View.VISIBLE);
                     examine_line1.setVisibility(View.INVISIBLE);
-                    examine3.setTextColor(getResources().getColor(R.color.black));
-                    examine2.setTextColor(getResources().getColor(R.color.blue));
+                    examine3.setTextColor(getResources().getColor(R.color.blue));
+                    examine2.setTextColor(getResources().getColor(R.color.black));
                     break;
                 case R.id.add_btn:
                     choosefile();
@@ -184,7 +183,7 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
     /**
      * 查询文件
      */
-    String createid;
+    private String createid;
     List<ModelFile.ResultBean> resultBeen;
     FileBaseAdapater fileBaseAdapater;
     private void getHttp(){
@@ -200,8 +199,12 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                     list1.clear();
                     list2.clear();
                     for (ModelFile.ResultBean bean:resultBeen){
+                        //判断是否是主任
+                        if(iszw){
+                            bean.setIszw(iszw);
+                        }
                         if(bean.getGsid().equals("-1"))//个人文件
-                        list2.add(bean);
+                            list2.add(bean);
                         else list1.add(bean);//会所文件
                     }
                     fileBaseAdapater.notifyDataSetChanged();
@@ -291,6 +294,7 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                             @Override
                             public void getResult(String result, int type) {
                                 loadingDialog.dismiss();
+                                getHttp();
                                 if(type == Constants.TYPE_SUCCESS){//上传成功返回当前数据源ok
 
                                 }else BaseApi.showErrMsg(FilesActivity.this,result);
@@ -304,8 +308,9 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
      * 下载文件
      */
     String downloadUrl;
+    Context context;
+    String versionName;
     private void downfile(){
-        downloadUrl =  "http://192.168.188.122/Public/Uploads/"+xzdz;
         loadingDialog.show();
         loadingDialog.setLoadingContent("下载文件。。。");
         MainApi.getInstance(this).getdownloadfileApi(downloadUrl,new GetResultCallBack() {
@@ -317,6 +322,7 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                 }else BaseApi.showErrMsg(FilesActivity.this,result);
             }
         });
+
     }
 
     String gsid ;
@@ -329,6 +335,7 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                     Log.i("=====》","你点击了会所文件删除");
                     id = list1.get(position).getId();
                     xzdz = list1.get(position).getXzdz();
+
                 }else {
                     Log.i("=====》","你点击了个人文件删除");
                     id = list2.get((Integer) v.getTag()).getId();
@@ -338,10 +345,12 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                 break;
             case R.id.download:
                 if(fileBaseAdapater.getadapterTag() == 1){
-                    Log.i("=====》","你点击了会所文件下载");
+                    downloadUrl =  "http://192.168.188.122/Public/Uploads/"+list1.get(position).getXzdz();
+                    Log.e("==>","downloadUrl"+downloadUrl);
                     xzdz = list1.get(position).getXzdz();
                 }else {
                     Log.i("=====》","你点击了个人文件下载");
+                    downloadUrl =  "http://192.168.188.122/Public/Uploads/"+list1.get(position).getXzdz();
                     xzdz = list2.get(position).getXzdz();
                 }
                 downfile();
@@ -349,5 +358,33 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
         }
     }
 
+
+    /**
+     * 动态权限的请求
+     */
+    public void checkPermisson() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            ActivityCompat.requestPermissions(this,//上下文
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_CALENDAR,
+                            Manifest.permission.READ_CALL_LOG,
+                            Manifest.permission.READ_CONTACTS,
+                            Manifest.permission.READ_PHONE_STATE,
+                            Manifest.permission.READ_SMS,
+                            Manifest.permission.RECORD_AUDIO,
+                            Manifest.permission.CAMERA,
+                    },//权限数组
+                    1001);
+        }
+    }
+
+    /**
+     * 动态权限的回调函数
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
 }

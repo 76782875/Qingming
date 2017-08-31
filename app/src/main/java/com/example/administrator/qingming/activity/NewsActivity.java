@@ -99,6 +99,7 @@ public class NewsActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(NewsActivity.this,FaYuanActivity.class);
                 String cid = fayuanlist.get(position).getId();
+                String glid = fayuanlist.get(position).getGlid();
                 String spcx = fayuanlist.get(position).getSpcx();
                 String spjg = fayuanlist.get(position).getSpjg();
                 String ladate= fayuanlist.get(position).getLadate();
@@ -117,6 +118,7 @@ public class NewsActivity extends Activity {
                 String ah_number= fayuanlist.get(position).getAh_number();
                 intent.putExtra("zid",2);
                 intent.putExtra("aid",cid);
+                intent.putExtra("id",glid);
                 intent.putExtra("ah_number",ah_number);
                 intent.putExtra("wtr",wtr);
                 intent.putExtra("dfdsr",dfdsr);

@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.qingming.R;
 
@@ -15,6 +17,7 @@ import com.example.administrator.qingming.R;
 
 public class WorkActivity extends Activity {
     private TextView dk,gs,rs,ls,ss,wyj;
+    private ImageView back_btn;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,7 @@ public class WorkActivity extends Activity {
     }
 
     private void initView() {
+        back_btn = (ImageView) findViewById(R.id.back_btn);
         dk = (TextView) findViewById(R.id.dk);
         gs = (TextView) findViewById(R.id.gs);
         rs = (TextView) findViewById(R.id.rs);
@@ -33,10 +37,11 @@ public class WorkActivity extends Activity {
 
         dk.setOnClickListener(onClickListener);
         gs.setOnClickListener(onClickListener);
-//        rs.setOnClickListener(onClickListener);
+        rs.setOnClickListener(onClickListener);
         ls.setOnClickListener(onClickListener);
         ss.setOnClickListener(onClickListener);
         wyj.setOnClickListener(onClickListener);
+        back_btn.setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -44,6 +49,9 @@ public class WorkActivity extends Activity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
+                case R.id.back_btn:
+                    finish();
+                    break;
                 case R.id.dk:
                     intent = new Intent(WorkActivity.this, WorkJusuanActivity.class);
                     intent.putExtra("index",1);
@@ -55,9 +63,10 @@ public class WorkActivity extends Activity {
                     startActivity(intent);
                     break;
                 case R.id.rs:
-                    intent = new Intent(WorkActivity.this, WorkJusuanActivity.class);
-                    intent.putExtra("index",3);
-                    startActivity(intent);
+//                    intent = new Intent(WorkActivity.this, WorkJusuanActivity.class);
+//                    intent.putExtra("index",3);
+//                    startActivity(intent);
+                    Toast.makeText(WorkActivity.this,"此功能暂未开通",Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.ls:
                     intent = new Intent(WorkActivity.this, LsfjsActivity.class);

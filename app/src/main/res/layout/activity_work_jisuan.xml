@@ -1426,11 +1426,12 @@
                         android:background="@color/black" />
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="逾期期限："
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textColor="@color/transparent80"
+                        android:textSize="16sp"
+                        android:padding="5dp"/>
 
                     <View
                         android:layout_width="1dp"
@@ -1442,6 +1443,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="65165"
+                        android:padding="5dp"
                         android:textColor="@color/red"
                         android:textSize="16sp"
                         android:layout_marginLeft="10dp"/>
@@ -1450,7 +1452,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="天"
-                        android:textColor="@color/black"
+                        android:textColor="@color/transparent80"
                         android:textSize="16sp" />
                     <View
                         android:layout_width="1dp"
@@ -1474,10 +1476,11 @@
                         android:background="@color/black" />
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="利率："
-                        android:textColor="@color/black"
+                        android:text="利        率："
+                        android:padding="5dp"
+                        android:textColor="@color/transparent80"
                         android:textSize="16sp" />
 
                     <View
@@ -1490,6 +1493,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="65165"
+                        android:padding="5dp"
                         android:textColor="@color/red"
                         android:textSize="16sp"
                         android:layout_marginLeft="10dp"/>
@@ -1498,7 +1502,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="每天"
-                        android:textColor="@color/black"
+                        android:textColor="@color/transparent80"
                         android:textSize="16sp" />
                     <View
                         android:layout_width="1dp"
@@ -1522,10 +1526,11 @@
                         android:background="@color/black" />
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="违约金："
-                        android:textColor="@color/black"
+                        android:text="违  约  金："
+                        android:padding="5dp"
+                        android:textColor="@color/transparent80"
                         android:textSize="16sp" />
 
                     <View
@@ -1538,6 +1543,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="65165"
+                        android:padding="5dp"
                         android:textColor="@color/red"
                         android:textSize="16sp"
                         android:layout_marginLeft="10dp"/>
@@ -1546,7 +1552,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="元"
-                        android:textColor="@color/black"
+                        android:textColor="@color/transparent80"
                         android:textSize="16sp" />
                     <View
                         android:layout_width="1dp"

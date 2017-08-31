@@ -10,7 +10,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -34,6 +37,8 @@ import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelCaseNo;
+import com.example.administrator.qingming.model.ModelCity;
+import com.example.administrator.qingming.qinminutils.CacheServerResponse;
 import com.example.administrator.qingming.qinminutils.GsonUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -47,12 +52,19 @@ import com.squareup.okhttp.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 
 /**
@@ -61,7 +73,7 @@ import java.util.List;
 
 public class CaseRegisterActivity extends Activity {
     private String initStartDateTime ; // 初始化开始时间
-    private TextView date_of_cognizance,lawsuit,locus_standi,shen,city,textView,shi,shoufei;
+    private TextView date_of_cognizance,lawsuit,locus_standi,shen,city,county,textView,shi,shoufei;
     private EditText brief,agency_fee,grant,consignor,dfdsr,slbm,ssbd,public_security,procuratorate,court,
             detention_house,remark,lxdh,dsr;
     private EditText stime,sfwrc,snumb,swtr,sbzsm;
@@ -69,10 +81,11 @@ public class CaseRegisterActivity extends Activity {
     private Button submitbtn;
     private LinearLayout choose_city,xinshi,zong,wenshu;
     private CityPicker cityPicker ;
-    LoadingDialog loadingDialog;
+    private LoadingDialog loadingDialog;
     private List<ModelCaseNo> list;
     private int index;
     private String cc;
+    private List<ModelCity.ResultBean> citylist;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,11 +97,14 @@ public class CaseRegisterActivity extends Activity {
         cid = sharedPreferences.getString("cid","");
 
         initView();
+
+        cxprovince();
+        cxcity();
+        cxcounty();
         Bundle bundle = this.getIntent().getExtras();
         index = bundle.getInt("index");
         ajlx = bundle.getInt("ajlx");
         cc = bundle.getString("cc","");
-        Log.e("index",""+index);
         if(ajlx == 1){
             textView.setText("民事案件");
         }else if(ajlx == 2){
@@ -100,8 +116,6 @@ public class CaseRegisterActivity extends Activity {
             textView.setText("非诉讼法律事务");
         }else if(ajlx == 5){
             textView.setText("法律顾问");
-        }else if(ajlx == 6){
-
         }else if(ajlx == 7){
             textView.setText("执行案件");
         }else if(ajlx == 8){
@@ -110,130 +124,172 @@ public class CaseRegisterActivity extends Activity {
             textView.setText("仲裁案件");
         }else if(ajlx == 10){
             textView.setText("破产案件");
-        }else if(ajlx == 11){
-//            textView.setText("咨询代写文书");
-//            wenshu.setVisibility(View.VISIBLE);
-//            zong.setVisibility(View.GONE);
-//            if(ajfl == 0){
-//                shi.setText("口头法律咨询（人次）");
-//            }else if(ajfl == 1){
-//                shi.setText("书面法律咨询（人次）");
-//            }else if(ajfl == 2){
-//                shi.setText("代写法律文书");
-//            }else {
-//                shi.setText("口头法律咨询（人次）");
-//            }
         }
+
+        //获取日期
+        final Calendar ca = Calendar.getInstance();
+        mYear = ca.get(Calendar.YEAR);
+        mMonth = ca.get(Calendar.MONTH)+1;
+        mDay = ca.get(Calendar.DAY_OF_MONTH);
 
         if(index == 101){
             ajfl = bundle.getInt("ajfl");
+            date_of_cognizance.setText(mYear+"-"+mMonth+"-"+mDay);
         }else {
             ajfl = bundle.getInt("ajfl");
-            ay = bundle.getString("ay","");
-            ah_number = bundle.getString("ah_number","");
-            wtr = bundle.getString("wtr","");
-            mlxdh = bundle.getString("lxdh","");
-            mdsr = bundle.getString("dsr","");
-            mdfdsr = bundle.getString("dfdsr","");
-            mid = bundle.getString("id","");
-            dlf = ""+bundle.getInt("dlf");
-            zjf = ""+bundle.getInt("jzf");
-            sffs = bundle.getString("sffs","");
-            sarq =bundle.getString("sarq","");
-            mcourt =bundle.getString("court","");
-            detention =bundle.getString("detention","");
-            police =bundle.getString("police","");
-            mprocuratorate =bundle.getString("procuratorate","");
-            mslbm =bundle.getString("slbm","");
-            bzsm =bundle.getString("bzsm","");
-            ssdw =bundle.getInt("ssdw");
-            mssbd =bundle.getString("ssbd","");
-            ssjd =bundle.getInt("ssjd");
+            ay = bundle.getString("ay", "");
+            ah_number = bundle.getString("ah_number", "");
+            wtr = bundle.getString("wtr", "");
+            mlxdh = bundle.getString("lxdh", "");
+            mdsr = bundle.getString("dsr", "");
+            mdfdsr = bundle.getString("dfdsr", "");
+            mid = bundle.getString("id", "");
+            dlf = "" + bundle.getInt("dlf");
+            zjf = "" + bundle.getInt("jzf");
+            sffs = bundle.getString("sffs", "");
+            sarq = bundle.getString("sarq", "");
+            mcourt = bundle.getString("court", "");
+            detention = bundle.getString("detention", "");
+            police = bundle.getString("police", "");
+            mprocuratorate = bundle.getString("procuratorate", "");
+            mslbm = bundle.getString("slbm", "");
+            bzsm = bundle.getString("bzsm", "");
+            ssdw = bundle.getString("ssdw");
+            mssbd = bundle.getString("ssbd", "");
+            ssjd = bundle.getString("ssjd");
+            badq = bundle.getString("badq");
+            if (!TextUtils.isEmpty(badq)) {
+                StringBuffer r = read();
+                StringBuffer r1 = read1();
+                StringBuffer r2 = read2();
+                StringBuffer r3 = read3();
+                StringBuffer r4 = read4();
+                StringBuffer r5 = read5();
 
-            if( sffs.equals("0")){
+                String[] countyidarray = r.toString().split(",");
+                String[] countynamearray = r1.toString().split(",");
+                String[] cityidarray = r3.toString().split(",");
+                String[] citynamearray = r2.toString().split(",");
+                String[] shenidarray = r5.toString().split(",");
+                String[] shennamearray = r4.toString().split(",");
+                String[] ssc = badq.split(",");
+                String p = "";
+                String s = "";
+                String c = "";
+                for (int i = 0; i < shenidarray.length; i++) {
+                    if (ssc[0].equals(shenidarray[i])) {
+                        p = shennamearray[i];
+
+                    }
+                }
+
+                for (int i = 0; i < cityidarray.length; i++) {
+                    if (ssc[1].equals(cityidarray[i]) ) {
+                        s = citynamearray[i];
+
+                    }
+                }
+
+                for (int i = 0; i < countyidarray.length; i++) {
+                    if (ssc[2].equals(countyidarray[i])) {
+                        c = countynamearray[i];
+
+                    }
+                }
+
+                shen.setText(p);
+                city.setText(s);
+                county.setText(c);
+                shen.setTextColor(getResources().getColor(R.color.black));
+                city.setTextColor(getResources().getColor(R.color.black));
+                county.setTextColor(getResources().getColor(R.color.black));
+            }
+
+            if (sffs.equals("0")) {
                 shoufei.setText("免费");
-            }else if(sffs.equals("1")){
+            } else if (sffs.equals("1")) {
                 shoufei.setText("计件收费");
-            }else if(sffs.equals("2")){
+            } else if (sffs.equals("2")) {
                 shoufei.setText("按标的比例收费");
-            }else if(sffs.equals("3")){
+            } else if (sffs.equals("3")) {
                 shoufei.setText("风险代理收费");
-            }else if(sffs.equals("4")){
+            } else if (sffs.equals("4")) {
                 shoufei.setText("固定+风险代理收费");
             }
 
-            if(ajlx == 2 ){
-                if(ssjd == 0){
+            if (ajlx == 2) {
+                if (ssjd.equals("0")) {
                     lawsuit.setText("侦查阶段");
-                }else if(ssjd == 1){
+                } else if (ssjd.equals("1")) {
                     lawsuit.setText("审查起诉");
-                }else if(ssjd == 2){
+                } else if (ssjd.equals("2")) {
                     lawsuit.setText("一审审理");
-                }else if(ssjd == 3){
+                } else if (ssjd.equals("3")) {
                     lawsuit.setText("二审审理");
-                }else if(ssjd == 4){
+                } else if (ssjd.equals("4")) {
                     lawsuit.setText("死刑复核");
-                }else if(ssjd == 5){
+                } else if (ssjd.equals("5")) {
                     lawsuit.setText("再审");
                 }
 
-                if( ssdw == 1){
+                if (ssdw.equals("1")) {
                     locus_standi.setText("原告人");
-                }else if(ssdw == 2){
+                } else if (ssdw.equals("2")) {
                     locus_standi.setText("犯罪嫌疑人");
-                }else if(ssdw == 3){
+                } else if (ssdw.equals("3")) {
                     locus_standi.setText("被告人/附带民事诉讼被告人");
-                }else if(ssdw == 4){
+                } else if (ssdw.equals("4")) {
                     locus_standi.setText("上诉人");
-                }else if(ssdw == 5){
+                } else if (ssdw.equals("5")) {
                     locus_standi.setText("被上诉人");
-                }else if(ssdw == 6){
+                } else if (ssdw.equals("6")) {
                     locus_standi.setText("自诉人");
-                }else if(ssdw == 7){
+                } else if (ssdw.equals("7")) {
                     locus_standi.setText("申诉人");
-                }else if(ssdw == 8){
+                } else if (ssdw.equals("8")) {
                     locus_standi.setText("被害人");
-                }else if(ssdw == 9){
+                } else if (ssdw.equals("9")) {
                     locus_standi.setText("其他");
                 }
+
 
                 public_security.setText(police);
                 procuratorate.setText(mprocuratorate);
                 court.setText(mcourt);
                 detention_house.setText(detention);
 
-            }else if(ajlx != 2 || ajlx != 11  ){
-                if (ssjd == 0) {
+            } else if (ajlx != 2 || ajlx != 11) {
+                if (ssjd.equals("0")) {
                     lawsuit.setText("调查取证");
-                } else if (ssjd == 1) {
+                } else if (ssjd.equals("1")) {
                     lawsuit.setText("一审");
-                } else if (ssjd == 2) {
+                } else if (ssjd.equals("2")) {
                     lawsuit.setText("二审");
-                } else if (ssjd == 3) {
+                } else if (ssjd.equals("3")) {
                     lawsuit.setText("执行");
-                } else if (ssjd == 4) {
+                } else if (ssjd.equals("4")) {
                     lawsuit.setText("再审");
                 }
 
-                if (ssdw == 0) {
+                if (ssdw.equals("0")) {
                     locus_standi.setText("原告");
-                } else if (ssdw == 1) {
+                } else if (ssdw.equals("1")) {
                     locus_standi.setText("被告");
-                } else if (ssdw == 2) {
+                } else if (ssdw.equals("2")) {
                     locus_standi.setText("上诉人");
-                } else if (ssdw == 3) {
+                } else if (ssdw.equals("3")) {
                     locus_standi.setText("被上诉人");
-                } else if (ssdw == 4) {
+                } else if (ssdw.equals("4")) {
                     locus_standi.setText("申请执行人");
-                } else if (ssdw == 5) {
+                } else if (ssdw.equals("5")) {
                     locus_standi.setText("被执行人");
-                } else if (ssdw == 6) {
+                } else if (ssdw.equals("6")) {
                     locus_standi.setText("申请人");
-                } else if (ssdw == 7) {
+                } else if (ssdw.equals("7")) {
                     locus_standi.setText("被申请人");
-                } else if (ssdw == 8) {
+                } else if (ssdw.equals("8")) {
                     locus_standi.setText("第三人");
-                } else if (ssdw == 9) {
+                } else if (ssdw.equals("9")) {
                     locus_standi.setText("其他");
                 }
             }
@@ -254,16 +310,14 @@ public class CaseRegisterActivity extends Activity {
             shoufei.setTextColor(getResources().getColor(R.color.black));
             lawsuit.setTextColor(getResources().getColor(R.color.black));
             locus_standi.setTextColor(getResources().getColor(R.color.black));
+
         }
-        //获取日期
-        final Calendar ca = Calendar.getInstance();
-        mYear = ca.get(Calendar.YEAR);
-        mMonth = ca.get(Calendar.MONTH);
-        mDay = ca.get(Calendar.DAY_OF_MONTH);
+
     }
 
     private void initView(){
         list = new ArrayList<>();
+        citylist = new ArrayList<>();
         loadingDialog = new LoadingDialog(this);
         shoufei = (TextView) findViewById(R.id.sffs);
         textView = (TextView) findViewById(R.id.textView);
@@ -288,6 +342,7 @@ public class CaseRegisterActivity extends Activity {
         locus_standi = (TextView) findViewById(R.id.locus_standi);//诉讼地位
         shen = (TextView) findViewById(R.id.sheng);//省
         city = (TextView) findViewById(R.id.city);//市
+        county = (TextView) findViewById(R.id.county);//县
         choose_city = (LinearLayout) findViewById(R.id.choose_city);
         xinshi = (LinearLayout) findViewById(R.id.xinshi);
         zong = (LinearLayout) findViewById(R.id.zong);
@@ -376,7 +431,6 @@ public class CaseRegisterActivity extends Activity {
                             {
                                 lawsuit.setText(jdd[which]);
                                 lawsuit.setTextColor(getResources().getColor(R.color.black));
-                                Log.e("","我是2");
                             }
                         }).show();
                     }
@@ -423,31 +477,31 @@ public class CaseRegisterActivity extends Activity {
                 case R.id.submit_btn:
                     if(index == 101){
                         if(ajlx == 11){
-                            if(!TextUtils.isEmpty(stime.getText())){
-                                if(!TextUtils.isEmpty(sfwrc.getText())){
-                                    if(!TextUtils.isEmpty(snumb.getText())){
-                                        if(!TextUtils.isEmpty(swtr.getText())){
-                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                                            fwdate = format.format(new java.util.Date());
-                                            tgfwrc = sfwrc.getText().toString();
-                                            fwfy = snumb.getText().toString();
-                                            wtr = swtr.getText().toString();
-                                            bzsm = sbzsm.getText().toString();
-                                            fwtype = ajfl;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
-                                            create_date = format.format(new java.util.Date());//创建时间
-                                            postCase();
-                                        }else {
-                                            Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
-                                        }
-                                    }else {
-                                        Toast.makeText(CaseRegisterActivity.this,"服务费用不能为空",Toast.LENGTH_SHORT).show();
-                                    }
-                                }else {
-                                    Toast.makeText(CaseRegisterActivity.this,"服务人次不能为空",Toast.LENGTH_SHORT).show();
-                                }
-                            }else {
-                                Toast.makeText(CaseRegisterActivity.this,"服务时间不能为空",Toast.LENGTH_SHORT).show();
-                            }
+//                            if(!TextUtils.isEmpty(stime.getText())){
+//                                if(!TextUtils.isEmpty(sfwrc.getText())){
+//                                    if(!TextUtils.isEmpty(snumb.getText())){
+//                                        if(!TextUtils.isEmpty(swtr.getText())){
+//                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+////                                            fwdate = format.format(new java.util.Date());
+////                                            tgfwrc = sfwrc.getText().toString();
+////                                            fwfy = snumb.getText().toString();
+////                                            wtr = swtr.getText().toString();
+////                                            bzsm = sbzsm.getText().toString();
+////                                            fwtype = ajfl;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
+////                                            create_date = format.format(new java.util.Date());//创建时间
+////                                            postCase();
+//                                        }else {
+//                                            Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }else {
+//                                        Toast.makeText(CaseRegisterActivity.this,"服务费用不能为空",Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }else {
+//                                    Toast.makeText(CaseRegisterActivity.this,"服务人次不能为空",Toast.LENGTH_SHORT).show();
+//                                }
+//                            }else {
+//                                Toast.makeText(CaseRegisterActivity.this,"服务时间不能为空",Toast.LENGTH_SHORT).show();
+//                            }
                         }else{
                             if(!date_of_cognizance.getText().toString().equals("请填写收案日期")){
                                 if(!TextUtils.isEmpty(brief.getText())){
@@ -505,31 +559,31 @@ public class CaseRegisterActivity extends Activity {
                         }
                     }else if(index == 102){
                         if(ajlx == 11){
-                            if(!TextUtils.isEmpty(stime.getText())){
-                                if(!TextUtils.isEmpty(sfwrc.getText())){
-                                    if(!TextUtils.isEmpty(snumb.getText())){
-                                        if(!TextUtils.isEmpty(swtr.getText())){
-                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                                            fwdate = format.format(new java.util.Date());
-                                            tgfwrc = sfwrc.getText().toString();
-                                            fwfy = snumb.getText().toString();
-                                            wtr = swtr.getText().toString();
-                                            bzsm = sbzsm.getText().toString();
-                                            fwtype = ajfl;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
-                                            create_date = format.format(new java.util.Date());//创建时间
-                                            postCase();
-                                        }else {
-                                            Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
-                                        }
-                                    }else {
-                                        Toast.makeText(CaseRegisterActivity.this,"服务费用不能为空",Toast.LENGTH_SHORT).show();
-                                    }
-                                }else {
-                                    Toast.makeText(CaseRegisterActivity.this,"服务人次不能为空",Toast.LENGTH_SHORT).show();
-                                }
-                            }else {
-                                Toast.makeText(CaseRegisterActivity.this,"服务时间不能为空",Toast.LENGTH_SHORT).show();
-                            }
+//                            if(!TextUtils.isEmpty(stime.getText())){
+//                                if(!TextUtils.isEmpty(sfwrc.getText())){
+//                                    if(!TextUtils.isEmpty(snumb.getText())){
+//                                        if(!TextUtils.isEmpty(swtr.getText())){
+//                                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+////                                            fwdate = format.format(new java.util.Date());
+////                                            tgfwrc = sfwrc.getText().toString();
+////                                            fwfy = snumb.getText().toString();
+////                                            wtr = swtr.getText().toString();
+////                                            bzsm = sbzsm.getText().toString();
+////                                            fwtype = ajfl;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
+////                                            create_date = format.format(new java.util.Date());//创建时间
+////                                            postCase();
+//                                        }else {
+//                                            Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }else {
+//                                        Toast.makeText(CaseRegisterActivity.this,"服务费用不能为空",Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }else {
+//                                    Toast.makeText(CaseRegisterActivity.this,"服务人次不能为空",Toast.LENGTH_SHORT).show();
+//                                }
+//                            }else {
+//                                Toast.makeText(CaseRegisterActivity.this,"服务时间不能为空",Toast.LENGTH_SHORT).show();
+//                            }
                         }else{
                             if(!date_of_cognizance.getText().toString().equals("请填写收案日期")){
                                 if(!TextUtils.isEmpty(brief.getText())){
@@ -552,7 +606,7 @@ public class CaseRegisterActivity extends Activity {
                                                                     mssbd = ssbd.getText().toString();//诉讼标的
                                                                     dlf = agency_fee.getText().toString();//代理费
                                                                     zjf = grant.getText().toString();//杂费
-                                                                    badq= shen.getText().toString()+city.getText().toString();//办案地区
+//                                                                    badq= shen.getText().toString()+city.getText().toString();//办案地区
                                                                     police= public_security.getText().toString();//公安
                                                                     mprocuratorate= procuratorate.getText().toString();//检查院
                                                                     mcourt= court.getText().toString();//法院
@@ -588,7 +642,7 @@ public class CaseRegisterActivity extends Activity {
                                                 Toast.makeText(CaseRegisterActivity.this,"对方当事人不能为空",Toast.LENGTH_SHORT).show();
                                             }
                                         }else {
-                                            Toast.makeText(CaseRegisterActivity.this,"对方当事人不能为空",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(CaseRegisterActivity.this,"当事人不能为空",Toast.LENGTH_SHORT).show();
                                         }
                                     }else {
                                         Toast.makeText(CaseRegisterActivity.this,"委托人不能为空",Toast.LENGTH_SHORT).show();
@@ -630,78 +684,78 @@ public class CaseRegisterActivity extends Activity {
             Log.e("","我是3");
             if(!lawsuit.getText().toString().equals("请选择诉讼阶段")){
                 if(lawsuit.getText().toString().equals("侦查阶段")){
-                    ssjd = 0;
+                    ssjd = "0";
                 }else if(lawsuit.getText().toString().equals("审查起诉")){
-                    ssjd = 1;
+                    ssjd = "1";
                 }else if(lawsuit.getText().toString().equals("一审审理")){
-                    ssjd = 2;
+                    ssjd = "2";
                 }else if(lawsuit.getText().toString().equals("二审审理")){
-                    ssjd = 3;
+                    ssjd = "3";
                 }else if(lawsuit.getText().toString().equals("死刑复核")){
-                    ssjd = 4;
+                    ssjd = "4";
                 }else if(lawsuit.getText().toString().equals("再审")){
-                    ssjd = 5;
+                    ssjd = "5";
                 }
             }
 
             if(!locus_standi.getText().toString().equals("请选择诉讼地位")){
                 if(locus_standi.getText().toString().equals("原告人")){
-                    ssdw = 0;
+                    ssdw = "0";
                 }else if(locus_standi.getText().toString().equals("犯罪嫌疑人")){
-                    ssdw = 1;
+                    ssdw = "1";
                 }else if(locus_standi.getText().toString().equals("被告人/附带民事诉讼被告人")){
-                    ssdw = 2;
+                    ssdw = "2";
                 }else if(locus_standi.getText().toString().equals("上诉人")){
-                    ssdw = 3;
+                    ssdw = "3";
                 }else if(locus_standi.getText().toString().equals("被上诉人")){
-                    ssdw = 4;
+                    ssdw = "4";
                 }else if(locus_standi.getText().toString().equals("自诉人")){
-                    ssdw = 5;
+                    ssdw = "5";
                 }else if(locus_standi.getText().toString().equals("申诉人")){
-                    ssdw = 6;
+                    ssdw = "6";
                 }else if(locus_standi.getText().toString().equals("被害人")){
-                    ssdw = 7;
+                    ssdw = "7";
                 }else if(locus_standi.getText().toString().equals("其他")){
-                    ssdw = 8;
+                    ssdw = "8";
                 }
             }
         }else {
             Log.e("","我是4");
             if(!lawsuit.getText().toString().equals("请选择诉讼阶段")){
                 if(lawsuit.getText().toString().equals("调查取证")){
-                    ssjd = 0;
+                    ssjd = "0";
                 }else if(lawsuit.getText().toString().equals("一审")){
-                    ssjd = 1;
+                    ssjd = "1";
                 }else if(lawsuit.getText().toString().equals("二审")){
-                    ssjd = 2;
+                    ssjd = "2";
                 }else if(lawsuit.getText().toString().equals("执行")){
-                    ssjd = 3;
+                    ssjd = "3";
                 }else if(lawsuit.getText().toString().equals("再审")){
-                    ssjd = 4;
+                    ssjd = "4";
                 }
             }
 
             if(!locus_standi.getText().toString().equals("请选择诉讼地位")){
                 if(locus_standi.getText().toString().equals("原告")){
-                    ssdw = 0;
+                    ssdw = "0";
                 }else if(locus_standi.getText().toString().equals("被告")){
-                    ssdw = 1;
+                    ssdw = "1";
                 }else if(locus_standi.getText().toString().equals("上诉人")){
-                    ssdw = 2;
+                    ssdw = "2";
                 }else if(locus_standi.getText().toString().equals("被上诉人")){
-                    ssdw = 3;
+                    ssdw = "3";
                 }else if(locus_standi.getText().toString().equals("申请执行人")){
-                    ssdw = 4;
+                    ssdw = "4";
                 }else if(locus_standi.getText().toString().equals("被执行人")){
-                    ssdw = 5;
+                    ssdw = "5";
                 }else if(locus_standi.getText().toString().equals("申请人")){
-                    ssdw = 6;
+                    ssdw = "6";
                 }else if(locus_standi.getText().toString().equals("被申请人")){
-                    ssdw = 7;
+                    ssdw = "7";
                 }else if(locus_standi.getText().toString().equals("第三人")){
-                    ssdw = 8;
+                    ssdw = "8";
                 }else if(locus_standi.getText().toString().equals("其他")){
-                    ssdw = 9;
+                    ssdw = "9";
                 }
             }
 
@@ -726,8 +780,8 @@ public class CaseRegisterActivity extends Activity {
     String mssbd;
     String dlf;
     String zjf;
-    int ssjd;
-    int ssdw;
+    String ssjd;
+    String ssdw;
     String badq;
     String police;
     String mprocuratorate;
@@ -769,29 +823,29 @@ public class CaseRegisterActivity extends Activity {
                 });
     }
 
-    String fwnr;//服务内容
-    String fwdate;//服务时间
-    int fwtype;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
-    String tgfwrc;//提供服务人次
-    String fwfy;//服务费用
+//    String fwnr;//服务内容
+//    String fwdate;//服务时间
+//    int fwtype;//0.口头法律咨询(人次) 1书面法律咨询(人次) 2代写法律文书(件)
+//    String tgfwrc;//提供服务人次
+//    String fwfy;//服务费用
     String bzsm ;//备注说明
     String create_date;//创建时间
-    public void postCase(){
-        loadingDialog.show();
-        loadingDialog.setLoadingContent("上传中...");
-        MainApi.getInstance(this).getpostcasezxApi(id, cid, fwnr,fwdate,ah_number,fwtype,tgfwrc,fwfy,
-                wtr, bzsm, create_date, new GetResultCallBack() {
-            @Override
-            public void getResult(String result, int type) {
-                if(type== Constants.TYPE_SUCCESS){
-                    loadingDialog.dismiss();
-                    Toast.makeText(CaseRegisterActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CaseRegisterActivity.this, MyCaseActivity.class);
-                    startActivity(intent);
-                }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
-            }
-        });
-    }
+//    public void postCase(){
+//        loadingDialog.show();
+//        loadingDialog.setLoadingContent("上传中...");
+//        MainApi.getInstance(this).getpostcasezxApi(id, cid, fwnr,fwdate,ah_number,fwtype,tgfwrc,fwfy,
+//                wtr, bzsm, create_date, new GetResultCallBack() {
+//            @Override
+//            public void getResult(String result, int type) {
+//                if(type== Constants.TYPE_SUCCESS){
+//                    loadingDialog.dismiss();
+//                    Toast.makeText(CaseRegisterActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(CaseRegisterActivity.this, MyCaseActivity.class);
+//                    startActivity(intent);
+//                }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
+//            }
+//        });
+//    }
 
     /**
      * 查询案号（有则+1，无则创建）
@@ -820,7 +874,7 @@ public class CaseRegisterActivity extends Activity {
                     mssbd = ssbd.getText().toString();//诉讼标的
                     dlf = agency_fee.getText().toString();//代理费
                     zjf = grant.getText().toString();//杂费
-                    badq= shen.getText().toString()+city.getText().toString();//办案地区
+//                    badq= shen.getText().toString()+city.getText().toString();//办案地区
                     police= public_security.getText().toString();//公安
                     mprocuratorate= procuratorate.getText().toString();//检查院
                     mcourt= court.getText().toString();//法院
@@ -860,14 +914,15 @@ public class CaseRegisterActivity extends Activity {
      * 选择城市
      */
     public void cityPickerChoose(){
-        cityPicker = new CityPicker.Builder(CaseRegisterActivity.this).textSize(16)
+        cityPicker = new CityPicker.Builder(CaseRegisterActivity.this).textSize(14)
                 .title("城市选择")
                 .titleBackgroundColor("#234Dfa")
                 .confirTextColor("#000000")
                 .cancelTextColor("#000000")
-                .onlyShowProvinceAndCity(true)//两级联动：省+市
+//                .onlyShowProvinceAndCity(true)//两级联动：省+市
                 .province("山东省")
                 .city("烟台市")
+                .district("长岛县")
                 .textColor(Color.parseColor("#000000"))
                 .provinceCyclic(false)
                 .cityCyclic(false)
@@ -881,13 +936,368 @@ public class CaseRegisterActivity extends Activity {
             public void onSelected(String... citySelected) {
                 String province = citySelected[0];
                 String cityi = citySelected[1];
+                String countyi = citySelected[2];
                 shen.setText(province);
                 shen.setTextColor(getResources().getColor(R.color.black));
                 city.setText(cityi);
                 city.setTextColor(getResources().getColor(R.color.black));
+                county.setText(countyi);
+                county.setTextColor(getResources().getColor(R.color.black));
+
+                String p="";
+                String s="";
+                String c="";
+                for(int i=0;i<cityalist.size();i++){
+                    if(shen.getText().toString().equals(cityalist.get(i))){
+                        p = parentidlist.get(i);
+                        Log.e("==>",""+cityalist.get(i)+"+++"+parentidlist.get(i));
+                    }
+                }
+
+
+                for(int i=0;i<cityalists.size();i++){
+                    if(city.getText().toString().equals(cityalists.get(i)) && parentidlists.get(i).equals(p)){
+                        s = idlists.get(i);
+                        Log.e("city==>",""+cityalists.get(i)+"+++"+idlists.get(i));
+                    }
+                }
+
+                for(int i=0;i<countylist.size();i++){
+                    if(county.getText().toString().equals(countylist.get(i)) && parentidlistss.get(i).equals(s)){
+                        c = idlistss.get(i);
+                        Log.e("count==>",""+countylist.get(i)+"+++"+parentidlistss.get(i));
+                    }
+                }
+
+                badq = p+","+s+","+c;
+                Log.e("地区==>",""+badq);
             }
         });
     }
+
+    private List<String> cityalist = new ArrayList<>();
+    private List<String> parentidlist = new ArrayList<>();
+    private void cxprovince(){
+        MainApi.getInstance(this).getcxcityApi(2,new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                if(type== Constants.TYPE_SUCCESS){
+                    List<ModelCity.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,ModelCity.ResultBean.class);
+                    citylist.addAll(resultBeen);
+                    for(int i=0;i<citylist.size();i++){
+                        String name = citylist.get(i).getName();
+                        String id = citylist.get(i).getId();
+                        cityalist.add(name);
+                        parentidlist.add(id);
+                    }
+
+                    save5(parentidlist);
+                    save4(cityalist);
+                }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
+            }
+        });
+    }
+
+
+    private List<String> cityalists = new ArrayList<>();
+    private List<String> idlists = new ArrayList<>();
+    private List<String> parentidlists = new ArrayList<>();
+    private void cxcity(){
+        MainApi.getInstance(this).getcxcityApi(3,new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                if(type== Constants.TYPE_SUCCESS){
+                    List<ModelCity.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,ModelCity.ResultBean.class);
+                    citylist.clear();
+                    citylist.addAll(resultBeen);
+                    for(int i=0;i<citylist.size();i++){
+                        String name = citylist.get(i).getName();
+                        String id = citylist.get(i).getId();
+                        String parent_id = citylist.get(i).getParent_id();
+                        cityalists.add(name);
+                        idlists.add(id);
+                        parentidlists.add(parent_id);
+                    }
+                    save3(idlists);
+                    save2(cityalists);
+                }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
+            }
+        });
+    }
+
+    private List<String> countylist = new ArrayList<>();
+    private List<String> idlistss = new ArrayList<>();
+    private List<String> parentidlistss = new ArrayList<>();
+    private void cxcounty(){
+        MainApi.getInstance(this).getcxcityApi(4,new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                if(type== Constants.TYPE_SUCCESS){
+                    List<ModelCity.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,ModelCity.ResultBean.class);
+                    citylist.clear();
+                    citylist.addAll(resultBeen);
+                    for(int i=0;i<citylist.size();i++){
+                        String name = citylist.get(i).getName();
+                        String id = citylist.get(i).getId();
+                        String parent_id = citylist.get(i).getParent_id();
+                        countylist.add(name);
+                        idlistss.add(id);
+                        parentidlistss.add(parent_id);
+                    }
+
+                    save(idlistss);
+                    save1(countylist);
+                }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
+            }
+        });
+    }
+
+
+    private final static String FILE1_NAME = "area.txt"; // 设置文件的名称
+    private final static String FILE2_NAME = "area2.txt";
+    private final static String FILE3_NAME = "area3.txt";
+    private final static String FILE4_NAME = "numb1.txt";
+    private final static String FILE5_NAME = "numb2.txt";
+    private final static String FILE6_NAME = "numb3.txt";
+    private StringBuffer read() {
+        FileInputStream in = null;
+        Scanner s = null;
+        StringBuffer sb = new StringBuffer();
+        try {
+            in = super.openFileInput(FILE1_NAME);
+            s = new Scanner(in);
+            while (s.hasNext()) {
+                sb.append(s.next());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb;
+    }
+
+    private StringBuffer read1() {
+        FileInputStream in = null;
+        Scanner s = null;
+        StringBuffer sb = new StringBuffer();
+        try {
+            in = super.openFileInput(FILE2_NAME);
+            s = new Scanner(in);
+            while (s.hasNext()) {
+                sb.append(s.next());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb;
+    }
+
+    private StringBuffer read2() {
+        FileInputStream in = null;
+        Scanner s = null;
+        StringBuffer sb = new StringBuffer();
+        try {
+            in = super.openFileInput(FILE3_NAME);
+            s = new Scanner(in);
+            while (s.hasNext()) {
+                sb.append(s.next());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb;
+    }
+
+    private StringBuffer read3() {
+        FileInputStream in = null;
+        Scanner s = null;
+        StringBuffer sb = new StringBuffer();
+        try {
+            in = super.openFileInput(FILE4_NAME);
+            s = new Scanner(in);
+            while (s.hasNext()) {
+                sb.append(s.next());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb;
+    }
+
+    private StringBuffer read4() {
+        FileInputStream in = null;
+        Scanner s = null;
+        StringBuffer sb = new StringBuffer();
+        try {
+            in = super.openFileInput(FILE5_NAME);
+            s = new Scanner(in);
+            while (s.hasNext()) {
+                sb.append(s.next());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb;
+    }
+
+    private StringBuffer read5() {
+        FileInputStream in = null;
+        Scanner s = null;
+        StringBuffer sb = new StringBuffer();
+        try {
+            in = super.openFileInput(FILE6_NAME);
+            s = new Scanner(in);
+            while (s.hasNext()) {
+                sb.append(s.next());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb;
+    }
+
+
+    private void save(List<String> data) {
+        FileOutputStream out = null;
+        PrintStream ps = null;
+        try {
+            out = super.openFileOutput(FILE1_NAME, Context.MODE_PRIVATE);
+            ps = new PrintStream(out);
+            ps.println(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                    ps.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void save1(List<String> data) {
+        FileOutputStream out = null;
+        PrintStream ps = null;
+        try {
+            out = super.openFileOutput(FILE2_NAME, Context.MODE_PRIVATE);
+            ps = new PrintStream(out);
+            ps.println(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                    ps.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void save2(List<String> data) {
+        FileOutputStream out = null;
+        PrintStream ps = null;
+        try {
+            out = super.openFileOutput(FILE3_NAME, Context.MODE_PRIVATE);
+            ps = new PrintStream(out);
+            ps.println(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                    ps.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void save3(List<String> data) {
+        FileOutputStream out = null;
+        PrintStream ps = null;
+        try {
+            out = super.openFileOutput(FILE4_NAME, Context.MODE_PRIVATE);
+            ps = new PrintStream(out);
+            ps.println(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                    ps.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void save4(List<String> data) {
+        FileOutputStream out = null;
+        PrintStream ps = null;
+        try {
+            out = super.openFileOutput(FILE5_NAME, Context.MODE_PRIVATE);
+            ps = new PrintStream(out);
+            ps.println(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                    ps.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void save5(List<String> data) {
+        FileOutputStream out = null;
+        PrintStream ps = null;
+        try {
+            out = super.openFileOutput(FILE6_NAME, Context.MODE_PRIVATE);
+            ps = new PrintStream(out);
+            ps.println(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                    ps.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    //判断文件是否存在
+    public boolean fileIsExists(String strFile) {
+        try {
+            File f=new File(strFile);
+            if(!f.exists()) {
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
 
     class newtextwatch implements TextWatcher{
         private EditText edit;

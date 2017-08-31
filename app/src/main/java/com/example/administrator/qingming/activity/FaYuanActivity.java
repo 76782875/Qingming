@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ import com.example.administrator.qingming.api.MainApi;
 import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
+import com.example.administrator.qingming.news.casedetails.CreateWorkActivity;
 import com.example.administrator.qingming.work.DateTimePickDialogUtil;
 
 import java.util.Calendar;
@@ -476,6 +478,15 @@ public class FaYuanActivity extends Activity {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
                             Toast.makeText(FaYuanActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(FaYuanActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",4);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
@@ -492,7 +503,15 @@ public class FaYuanActivity extends Activity {
                     public void getResult(String result, int type) {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
-                            Toast.makeText(FaYuanActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(FaYuanActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",4);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
@@ -509,7 +528,15 @@ public class FaYuanActivity extends Activity {
                     public void getResult(String result, int type) {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
-                            Toast.makeText(FaYuanActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(FaYuanActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",4);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
@@ -526,7 +553,15 @@ public class FaYuanActivity extends Activity {
                     public void getResult(String result, int type) {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
-                            Toast.makeText(FaYuanActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(FaYuanActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",4);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
@@ -542,7 +577,15 @@ public class FaYuanActivity extends Activity {
                     public void getResult(String result, int type) {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
-                            Toast.makeText(FaYuanActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(FaYuanActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",4);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
@@ -558,7 +601,15 @@ public class FaYuanActivity extends Activity {
                     public void getResult(String result, int type) {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
-                            Toast.makeText(FaYuanActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(FaYuanActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",4);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
@@ -574,7 +625,15 @@ public class FaYuanActivity extends Activity {
                     public void getResult(String result, int type) {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
-                            Toast.makeText(FaYuanActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(FaYuanActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",4);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
@@ -590,7 +649,15 @@ public class FaYuanActivity extends Activity {
                     public void getResult(String result, int type) {
                         if(type == Constants.TYPE_SUCCESS){
                             loadingDialog.dismiss();
-                            Toast.makeText(FaYuanActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(FaYuanActivity.this, CreateWorkActivity.class);
+                            intent.putExtra("type",4);
+                            intent.putExtra("id",glid);
+                            intent.putExtra("ah_number",ah_number);
+                            intent.putExtra("wtr",wtr);
+                            intent.putExtra("dsr",dsr);
+                            intent.putExtra("dfdsr",dfdsr);
+                            intent.putExtra("ay",ay);
+                            startActivity(intent);
                             finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
@@ -609,7 +676,15 @@ public class FaYuanActivity extends Activity {
             public void getResult(String result, int type) {
                 if(type == Constants.TYPE_SUCCESS){
                     loadingDialog.dismiss();
-                    Toast.makeText(FaYuanActivity.this,"删除成功",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(FaYuanActivity.this, CreateWorkActivity.class);
+                    intent.putExtra("type",4);
+                    intent.putExtra("id",glid);
+                    intent.putExtra("ah_number",ah_number);
+                    intent.putExtra("wtr",wtr);
+                    intent.putExtra("dsr",dsr);
+                    intent.putExtra("dfdsr",dfdsr);
+                    intent.putExtra("ay",ay);
+                    startActivity(intent);
                     finish();
                 }else BaseApi.showErrMsg(FaYuanActivity.this,result);
             }

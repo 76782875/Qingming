@@ -39,12 +39,11 @@ import java.util.Calendar;
 
 public class CaseDetailsActivity extends Activity{
     private ImageView backbtn;//返回按钮
-    private ImageView modifybtn;//编辑修改按钮
     private RelativeLayout counsel; //法律顾问
     private TextView qx,xg,xglv,kh;
     private RelativeLayout worklog,charge_list,zhencha,jiancha,fayuan;
     private TextView name,ah,time,jssf,dlf,ls;
-    private String ah_number,id,wtr,lxdh,dsr,dfdsr,ay;
+    private String ah_number,id,wtr,lxdh,dsr,dfdsr,ay,badq;
     private int ysje;
     private LinearLayout sasq;
     private Button sabtn,ja_btn,zzbtn,agree_btn,noagree_btn,cwsp_btn;
@@ -82,9 +81,8 @@ public class CaseDetailsActivity extends Activity{
             ssdw =bundle.getString("ssdw",ssdw);
             ssbd =bundle.getString("ssbd",ssbd);
             ssjd =bundle.getString("ssjd",ssjd);
-            Log.e("id---------->",""+id);
+            badq =bundle.getString("badq",badq);
             String case_state = bundle.getString("case_state","");
-            Log.e("case_state---------->",""+case_state);
 
             if(case_state.equals("-1")){
                 sabtn.setVisibility(View.VISIBLE);
@@ -114,9 +112,9 @@ public class CaseDetailsActivity extends Activity{
                 zzbtn.setVisibility(View.VISIBLE);
                 zzbtn.setOnClickListener(onClickListener);
             }else if(case_state.equals("7")){
-                Log.e("case_state---------->","没有按钮");
+
             }else if(case_state.equals("0")){
-                Log.e("case_state---------->","没有按钮");
+
             }else if(case_state.equals("-4")){
                 zzbtn.setVisibility(View.VISIBLE);
                 zzbtn.setOnClickListener(onClickListener);
@@ -130,9 +128,7 @@ public class CaseDetailsActivity extends Activity{
             String lsname = bundle.getString("name","");
             String sarq = bundle.getString("sarq","");
             int jzf = bundle.getInt("jzf");
-
             ysje = mdlf + jzf ;
-            Log.e("---------->",""+ysje);
 
             name.setText(ay);
             ah.setText(ah_number);
@@ -145,7 +141,7 @@ public class CaseDetailsActivity extends Activity{
         //获取日期
         final Calendar ca = Calendar.getInstance();
         mYear = ca.get(Calendar.YEAR);
-        mMonth = ca.get(Calendar.MONTH);
+        mMonth = ca.get(Calendar.MONTH)+1;
         mDay = ca.get(Calendar.DAY_OF_MONTH);
 
         update_date = mYear+"-"+mMonth+"-"+mDay;
@@ -153,7 +149,6 @@ public class CaseDetailsActivity extends Activity{
     private void init(){
         loadingDialog = new LoadingDialog(this);
         backbtn = (ImageView) findViewById(R.id.back_btn);
-        modifybtn= (ImageView) findViewById(R.id.modify_btn);
         counsel = (RelativeLayout) findViewById(R.id.counsel);
         worklog = (RelativeLayout) findViewById(R.id.work_log);
         zhencha = (RelativeLayout) findViewById(R.id.zhencha);
@@ -173,7 +168,6 @@ public class CaseDetailsActivity extends Activity{
         cwsp_btn = (Button) findViewById(R.id.cwsp_btn);
 
         backbtn.setOnClickListener(onClickListener);
-        modifybtn.setOnClickListener(onClickListener);
         counsel.setOnClickListener(onClickListener);
         worklog.setOnClickListener(onClickListener);
         charge_list.setOnClickListener(onClickListener);
@@ -258,9 +252,6 @@ public class CaseDetailsActivity extends Activity{
                 case R.id.back_btn:
                     finish();
                     break;
-//                case R.id.modify_btn:
-//                    getPopupwindow();
-//                    break;
                 case R.id.counsel://跳转到案件简介页面
                     intent = new Intent(CaseDetailsActivity.this,CaseRegisterActivity.class);
                     Bundle bundle = new Bundle();
@@ -286,9 +277,11 @@ public class CaseDetailsActivity extends Activity{
                     bundle.putString("ssdw",ssdw);
                     bundle.putString("ssbd",ssbd);
                     bundle.putString("ssjd",ssjd);
+                    bundle.putString("badq",badq);
                     bundle.putInt("dlf",mdlf);
                     bundle.putInt("jzf",jzf);
                     bundle.putInt("ajlx",ajlx);
+
                     intent.putExtras(bundle);
                     Log.e("ajlx====》",""+ajlx);
                     startActivity(intent);

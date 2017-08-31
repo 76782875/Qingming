@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.qingming.ExamineAndApproveActivity;
+import com.example.administrator.qingming.HomePageBottomActivity;
 import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.activity.ChangeActivity;
 import com.example.administrator.qingming.activity.FilesActivity;
@@ -39,6 +41,9 @@ import com.example.administrator.qingming.qinminutils.ScrollListview;
 import com.example.administrator.qingming.work.AddCaseActivity;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,6 +62,7 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
     private TextView company,username,officename,mycase,addcase,file,qiandao,ls_case,zixun,biangen,sfsp;
     private TextView cwsa,caja,zrsa,zrja;
     private ImageView news;
+    private LinearLayout one,two;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,10 +71,27 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("qinmin", Context.MODE_PRIVATE);
         id = sharedPreferences.getString("id","");
         gsid =sharedPreferences.getString("cid","");
+        boolean iszw = sharedPreferences.getBoolean("zhiwei",false);
 
         initView();
         getHttp();
         getString();
+
+        if(iszw){
+            one.setVisibility(View.VISIBLE);
+            two.setVisibility(View.GONE);
+            ls_case.setOnClickListener(onClickListener);
+            zixun.setOnClickListener(onClickListener);
+            biangen.setOnClickListener(onClickListener);
+            sfsp.setOnClickListener(onClickListener);
+            cwsa.setOnClickListener(onClickListener);
+            caja.setOnClickListener(onClickListener);
+            zrsa.setOnClickListener(onClickListener);
+            zrja.setOnClickListener(onClickListener);
+        }else {
+            one.setVisibility(View.GONE);
+            two.setVisibility(View.VISIBLE);
+        }
 
         return view;
     }
@@ -76,6 +99,8 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
     private void initView() {
         list = new ArrayList<>();
         list1 = new ArrayList<>();
+        one = (LinearLayout) view.findViewById(R.id.one);
+        two = (LinearLayout) view.findViewById(R.id.two);
         news = (ImageView) view.findViewById(R.id.news);
         listView = (ScrollListview) view.findViewById(R.id.listview);
         pullToRefreshView = (PullToRefreshView) view.findViewById(R.id.pulltore);
@@ -103,15 +128,8 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
         addcase.setOnClickListener(onClickListener);
         file.setOnClickListener(onClickListener);
         qiandao.setOnClickListener(onClickListener);
-        ls_case.setOnClickListener(onClickListener);
-        zixun.setOnClickListener(onClickListener);
-        biangen.setOnClickListener(onClickListener);
-        sfsp.setOnClickListener(onClickListener);
-        cwsa.setOnClickListener(onClickListener);
-        caja.setOnClickListener(onClickListener);
-        zrsa.setOnClickListener(onClickListener);
-        zrja.setOnClickListener(onClickListener);
         news.setOnClickListener(onClickListener);
+
 
         pressHomeAdapter = new PressHomeAdapter(list,getActivity());
         listView.setAdapter(pressHomeAdapter);
@@ -193,6 +211,7 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
                     intent.putExtra("case_state",5);
                     startActivity(intent);
                     break;
+
             }
         }
     };

@@ -1,11 +1,14 @@
 package com.example.administrator.qingming.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 
 import com.example.administrator.qingming.R;
 
@@ -29,6 +32,8 @@ public class SplashActivity extends Activity {
 
         init();
     }
+
+
 
     //由于不能在主线程中直接延时，所以用一个Handler来处理发送过来的消息
     Handler myHandler = new Handler() {

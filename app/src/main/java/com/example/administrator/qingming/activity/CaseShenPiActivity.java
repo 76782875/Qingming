@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.news.casedetails.CaseDetailsActivity;
 import com.example.administrator.qingming.news.casedetails.CreateWorkActivity;
+import com.example.administrator.qingming.work.CaseRegisterActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,12 +33,15 @@ import java.util.Calendar;
 
 public class CaseShenPiActivity extends Activity {
     private Button agree_btn,noagree_btn,caiwu_btn;
-    private String ah_number,id,wtr,dfdsr,ay;
+    private String ah_number,id,wtr,lxdh,dsr,dfdsr,ay,cc;
     private TextView name,ah,time,jssf,dlf,ls;
     private int ysje;
     int mYear,mMonth,mDay;
     private RelativeLayout worklog,charge_list,zhencha,jiancha,fayuan;
-    LoadingDialog loadingDialog;
+    private LoadingDialog loadingDialog;
+    private RelativeLayout counsel;
+    String sffs,mname,sarq,court,detention,police,procuratorate,slbm,bzsm,ssbd,ssjd,ssdw;
+    private int ajlx,mdlf,jzf;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +53,29 @@ public class CaseShenPiActivity extends Activity {
 
         initView();
         Bundle bundle = getIntent().getExtras();
+        cc = bundle.getString("cc","");
         ay = bundle.getString("ay","");
         ah_number = bundle.getString("ah_number","");
         wtr = bundle.getString("wtr","");
+        lxdh = bundle.getString("lxdh","");
+        dsr = bundle.getString("dsr","");
         dfdsr = bundle.getString("dfdsr","");
         id = bundle.getString("id","");
+        mdlf = bundle.getInt("dlf");
+        jzf = bundle.getInt("jzf");
+        sffs = bundle.getString("sffs",sffs);
+        mname =bundle.getString("name",mname);
+        sarq =bundle.getString("sarq",sarq);
+        court =bundle.getString("court",court);
+        detention =bundle.getString("detention",detention);
+        police =bundle.getString("police",police);
+        procuratorate =bundle.getString("procuratorate",procuratorate);
+        slbm =bundle.getString("slbm",slbm);
+        bzsm =bundle.getString("bzsm",bzsm);
+        ssdw =bundle.getString("ssdw",ssdw);
+        ssbd =bundle.getString("ssbd",ssbd);
+        ssjd =bundle.getString("ssjd",ssjd);
+
         case_state = bundle.getInt("case_state");
         String createid = bundle.getString("createid","");
         if(case_state==2){
@@ -99,11 +122,11 @@ public class CaseShenPiActivity extends Activity {
         //获取日期
         final Calendar ca = Calendar.getInstance();
         mYear = ca.get(Calendar.YEAR);
-        mMonth = ca.get(Calendar.MONTH);
+        mMonth = ca.get(Calendar.MONTH)+1;
         mDay = ca.get(Calendar.DAY_OF_MONTH);
 
         //获取日期
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd  hh:mm:ss");
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd  HH:mm:ss");
         update_date = sDateFormat.format(new java.util.Date());
         create_date = sDateFormat.format(new java.util.Date());
     }
@@ -112,7 +135,7 @@ public class CaseShenPiActivity extends Activity {
         loadingDialog = new LoadingDialog(this);
         agree_btn = (Button) findViewById(R.id.agree_btn);
         noagree_btn = (Button) findViewById(R.id.noagree_btn);
-//        counsel = (RelativeLayout) findViewById(R.id.counsel);
+        counsel = (RelativeLayout) findViewById(R.id.counsel);
         worklog = (RelativeLayout) findViewById(R.id.work_log);
         zhencha = (RelativeLayout) findViewById(R.id.zhencha);
         jiancha = (RelativeLayout) findViewById(R.id.jiancha);
@@ -131,6 +154,7 @@ public class CaseShenPiActivity extends Activity {
         zhencha.setOnClickListener(onclicklisten);
         jiancha.setOnClickListener(onclicklisten);
         fayuan.setOnClickListener(onclicklisten);
+        counsel.setOnClickListener(onclicklisten);
     }
 
     View.OnClickListener onclicklisten = new View.OnClickListener() {
@@ -138,6 +162,38 @@ public class CaseShenPiActivity extends Activity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
+                case R.id.counsel://跳转到案件简介页面
+                    intent = new Intent(CaseShenPiActivity.this,CaseRegisterActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("index",102);
+                    bundle.putInt("ajlx",ajlx);
+                    bundle.putString("id",id);
+                    bundle.putString("cc",cc);
+                    bundle.putString("ay",ay);
+                    bundle.putString("ah_number",ah_number);
+                    bundle.putString("wtr",wtr);
+                    bundle.putString("lxdh",lxdh);
+                    bundle.putString("dsr",dsr);
+                    bundle.putString("dfdsr",dfdsr);
+                    bundle.putString("sffs",sffs);
+                    bundle.putString("name",mname);
+                    bundle.putString("sarq",sarq);
+                    bundle.putString("court",court);
+                    bundle.putString("detention",detention);
+                    bundle.putString("police",police);
+                    bundle.putString("procuratorate",procuratorate);
+                    bundle.putString("slbm",slbm);
+                    bundle.putString("bzsm",bzsm);
+                    bundle.putString("ssdw",ssdw);
+                    bundle.putString("ssbd",ssbd);
+                    bundle.putString("ssjd",ssjd);
+                    bundle.putInt("dlf",mdlf);
+                    bundle.putInt("jzf",jzf);
+                    bundle.putInt("ajlx",ajlx);
+                    intent.putExtras(bundle);
+                    Log.e("ajlx====》",""+ajlx);
+                    startActivity(intent);
+                    break;
                 case R.id.charge_list://跳转到收款信息页面
                     intent = new Intent(CaseShenPiActivity.this, ChargeListActivity.class);
                     intent.putExtra("id",id);
@@ -249,8 +305,8 @@ public class CaseShenPiActivity extends Activity {
             glid = id ;
         }
         if (case_state==4) {
-            theme ="财务收案审批通过";
-            mcontent="您办理的《"+ah_number+"》财务收案审批通过！案件已收案！";
+            theme ="收案审批通过";
+            mcontent="您办理的《"+ah_number+"》收案审批通过！案件已收案！";
             glid = id ;
         }
         if (case_state==-1) {
@@ -264,8 +320,8 @@ public class CaseShenPiActivity extends Activity {
             glid = id ;
         }
         if (case_state==7) {
-            theme ="财务结案审批通过";
-            mcontent="您办理的《"+ah_number+"》财务结案审批通过！案件已结案！";
+            theme ="结案审批通过";
+            mcontent="您办理的《"+ah_number+"》结案审批通过！案件已结案！";
             glid = id ;
         }
         if (case_state==6) {

@@ -21,13 +21,7 @@
             android:layout_centerInParent="true"
             android:textSize="24sp"
             android:textColor="@color/white"/>
-        <ImageView
-            android:id="@+id/modify_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/modify"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+
 
     </RelativeLayout>
 

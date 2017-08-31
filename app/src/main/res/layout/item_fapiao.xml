@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/yinying"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/blue" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/llist_004"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="案号："
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/item_ah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="后台管理员"
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/llist_003"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="申请人："
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/item_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1204124"
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/llist_005"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="发票抬头："
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/item_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1204124"
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/bann_05"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="开票金额："
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/item_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1204124"
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:alpha="0.1"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/llist_002"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="开票日期："
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1204124"
+                android:textColor="@color/transparent80"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

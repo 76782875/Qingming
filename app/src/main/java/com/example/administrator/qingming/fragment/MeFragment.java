@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,11 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.qingming.HomePageBottomActivity;
 import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.activity.MainActivity;
 import com.example.administrator.qingming.activity.MeActivity;
@@ -45,7 +48,7 @@ public class MeFragment extends Fragment {
     private EditText consignor,weight,phone_num,gender;
     private TextView officename,submit_btn,tuichu_btn;
     String myofficename,myconsignor,myemail,myphone_num,bz;
-    View view;
+    View view, mRoot;
     private LoadingDialog loadingDialog;
     @Nullable
     @Override
@@ -58,6 +61,26 @@ public class MeFragment extends Fragment {
 
         initView();
         getHttp();
+
+        mRoot = getActivity().getWindow().getDecorView();
+
+        mRoot.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect rect = new Rect();
+                mRoot.getWindowVisibleDisplayFrame(rect);
+                int rootInvisibleHeight = mRoot.getRootView().getHeight()-rect.bottom;
+                View footerView = ((HomePageBottomActivity)getActivity()).homepagebtn;
+                if(rootInvisibleHeight>100){
+                    //显示
+                    footerView.setVisibility(View.GONE);
+                }else{
+                    //隐藏
+                    footerView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         return view;
     }
 

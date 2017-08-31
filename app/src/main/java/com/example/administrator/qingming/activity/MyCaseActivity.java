@@ -159,7 +159,6 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
                 int dlf= list4.get(i).getDlf();
                 int jzf= list4.get(i).getJzf();
                 int ajlx = list4.get(i).getAjlx();
-                Log.e("getSffs----->>",""+list4.get(i).getSffs());
                 String sffs = null;
                 if(list4.get(i).getSffs().equals("0")){
                      sffs = "免费";
@@ -185,6 +184,7 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
                 String ssdw =  list4.get(i).getSsdw();
                 String ssbd =  list4.get(i).getSsbd();
                 String ssjd =  list4.get(i).getSsjd();
+                String badq =  list4.get(i).getBadq();
 
                 Intent intent = new Intent(MyCaseActivity.this, CaseDetailsActivity.class);
                 Bundle bundle = new Bundle();
@@ -208,6 +208,7 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
                 bundle.putString("ssdw",ssdw);
                 bundle.putString("ssbd",ssbd);
                 bundle.putString("ssjd",ssjd);
+                bundle.putString("badq",badq);
                 bundle.putInt("dlf",dlf);
                 bundle.putInt("jzf",jzf);
                 bundle.putInt("ajlx",ajlx);

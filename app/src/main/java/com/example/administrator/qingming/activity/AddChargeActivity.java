@@ -187,7 +187,7 @@ public class AddChargeActivity extends Activity {
         //获取日期
         final Calendar ca = Calendar.getInstance();
         mYear = ca.get(Calendar.YEAR);
-        mMonth = ca.get(Calendar.MONTH);
+        mMonth = ca.get(Calendar.MONTH)+1;
         mDay = ca.get(Calendar.DAY_OF_MONTH);
 
     }

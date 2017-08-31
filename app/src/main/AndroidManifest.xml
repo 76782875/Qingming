@@ -43,7 +43,7 @@
         </activity>
         <activity android:name="com.example.administrator.qingming.HomePageBottomActivity"/>
         <activity android:name=".activity.GuideActivity"/>
-        <activity android:name=".activity.MainActivity" android:windowSoftInputMode="stateVisible|adjustResize"  />
+        <activity android:name=".activity.MainActivity" android:windowSoftInputMode="stateHidden|adjustResize"  />
         <activity android:name=".contacts.CustomerAddressActivity"/><!--客户通讯录-->
         <activity android:name=".news.casedetails.CaseDetailsActivity"/><!--案件详情-->
         <activity android:name=".news.casedetails.CaseIntroduction"/><!--案件简介-->
@@ -72,7 +72,7 @@
         <activity android:name=".activity.IntoPressActivity"/><!--进入新闻页面-->
         <activity android:name=".activity.ChangeActivity"/><!--变更律师页面-->
         <activity android:name=".activity.ChangeLvshiActivity"/><!--进入变更律师页面-->
-        <activity android:name=".activity.MapActivity"/>
+        <activity android:name=".activity.MapActivity"/><!--签到页面-->
         <activity android:name=".activity.ChargeListActivity"/><!--收款信息页面-->
         <activity android:name=".activity.AddChargeActivity"/><!--添加收款信息页面-->
         <activity android:name=".activity.ZhenChaActivity"/>
@@ -88,6 +88,7 @@
         <activity android:name=".activity.WorkJusuanActivity"/>
         <activity android:name=".activity.LsfjsActivity"/>
         <activity android:name=".activity.SsfJsActivity"/>
+        <activity android:name=".activity.AddFaPiaoActivity"/><!--发票详情页面-->
 
         <!--百度定位-->
         <service android:name="com.baidu.location.f"

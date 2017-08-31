@@ -135,56 +135,13 @@
             android:textSize="16sp" />
 
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="律师费："
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/lsf_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="65165"
-            android:textColor="@color/red"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="  元至  "
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/lsf_finish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="65165"
-            android:textColor="@color/red"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="元"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -194,6 +151,54 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/lsf_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="65165"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  元至  "
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/lsf_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="65165"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="律师费："
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/lsf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="65165"

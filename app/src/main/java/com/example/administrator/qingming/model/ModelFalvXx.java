@@ -82,6 +82,15 @@ public class ModelFalvXx {
         private String ah_number;
         private String ay;
         private String dfdsr;
+        private String glid;
+
+        public String getGlid() {
+            return glid;
+        }
+
+        public void setGlid(String glid) {
+            this.glid = glid;
+        }
 
         public String getId() {
             return id;

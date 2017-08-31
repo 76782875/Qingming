@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="5dp"
         android:background="@color/blue">
         <ImageView
             android:id="@+id/back_btn"
@@ -37,8 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/swipe">
-        <ListView
-            android:id="@+id/listview"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </android.support.v4.widget.SwipeRefreshLayout>

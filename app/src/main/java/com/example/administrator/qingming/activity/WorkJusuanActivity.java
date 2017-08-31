@@ -48,9 +48,9 @@ public class WorkJusuanActivity extends Activity {
     private TextView qx, llv, lx,area1,ajlx,lsf_start,lsf_finish;
     private TextView area,sc,count,gwbzj,szbzj,po,qtqs,count1,gwbzj1,szbzj1,po1,qtqs1,qtqs2,qtqs3,qtqs4;
     private EditText ygz,ssbdje;
-    List<ModelPjgz.ResultBean> list;
-    List<ModelScdj.ResultBean> list1;
-    List<ModelLsf.ResultBean> list2;
+    private List<ModelPjgz.ResultBean> list;
+    private List<ModelScdj.ResultBean> list1;
+    private List<ModelLsf.ResultBean> list2;
     int g_avg;
     int cq_avg;
     private LoadingDialog loadingDialog;
@@ -266,8 +266,6 @@ public class WorkJusuanActivity extends Activity {
                         double a = Double.parseDouble(dkje.getText().toString());
                         double b = Double.parseDouble(hkqx.getText().toString());
                         double c = Double.parseDouble(lv.getText().toString()) * 0.01;
-                        Log.e("====>", "" + a + "  " + b + "  " + c);
-                        Log.e("====>", "" + a * b * c);
                         qx.setText(hkqx.getText().toString());
                         llv.setText(lv.getText().toString() + "%");
                         lx.setText(""+a * b * c);
@@ -288,9 +286,9 @@ public class WorkJusuanActivity extends Activity {
                 if(!TextUtils.isEmpty(lishi.getText())){
                     if(!TextUtils.isEmpty(lilv.getText())){
                         wyj.setVisibility(View.VISIBLE);
-                        double bj = Integer.valueOf(benjin.getText().toString());
+                        double bj = Double.parseDouble(benjin.getText().toString());
                         int a = Integer.valueOf(lishi.getText().toString());
-                        double c = Integer.valueOf(lilv.getText().toString())*0.01;
+                        double c = Double.parseDouble(lilv.getText().toString())*0.01;
                         double d = 0;
                         if(choose_lv.getText().toString().equals("天利率")){
                             d = bj*a*c;
@@ -298,12 +296,12 @@ public class WorkJusuanActivity extends Activity {
                             lvv.setText(""+c);
                             wyjjs.setText("" + d);
                         }else if(choose_lv.getText().toString().equals("月利率")){
-                            d = bj*a*c;
+                            d = bj*a*c/30;
                             yqqx.setText(""+a);
                             lvv.setText(""+c);
                             wyjjs.setText("" + d);
                         }else if(choose_lv.getText().toString().equals("年利率")){
-                            d = bj*a*c;
+                            d = bj*a*c/365;
                             yqqx.setText(""+a);
                             lvv.setText(""+c);
                             wyjjs.setText("" + d);
@@ -374,25 +372,21 @@ public class WorkJusuanActivity extends Activity {
                       pcg= list1.get(0).getPcg();//供养亲属抚恤金（其它金属）
 
                     Log.e("===>>>",""+wqhl+dbfhl+bfhl+pch+pca+pcb+pcc+pcd+pce+pcf+pcg);
+                    java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
                     if(scdj == 11){
                         gspc.setVisibility(View.VISIBLE);
                         gspc1.setVisibility(View.GONE);
                         double a = g_avg * pch ;//一次性工亡补助金
                         int s = Integer.valueOf(ygz.getText().toString());//输入工资
-                        if(s > cq_avg * 3){
-                            s = cq_avg * 3;
-                        }else {
-                            s= Integer.valueOf(ygz.getText().toString());
-                        }
                         double b = g_avg * pce;//一丧葬补助金
                         double c = s * pcf;//配偶金
                         double d = s * pcg ;//其他亲属补助金
-                        double sum = a+b;
+                        double sum = a+b+c+d;
                         count.setText(""+sum);
-                        gwbzj.setText(""+a);
-                        szbzj.setText(""+b);
-                        po.setText(""+c);
-                        qtqs.setText(""+d);
+                        gwbzj.setText(""+df.format(a));
+                        szbzj.setText(""+df.format(b));
+                        po.setText(""+df.format(c));
+                        qtqs.setText(""+df.format(d));
                     }else {
                         gspc.setVisibility(View.GONE);
                         gspc1.setVisibility(View.VISIBLE);
@@ -402,9 +396,9 @@ public class WorkJusuanActivity extends Activity {
                         double c = s * wqhl;
                         if(wqhl != 0.00){
                             shenghuo.setVisibility(View.VISIBLE);
-                            po1.setText(""+a);
-                            qtqs1.setText(""+b);
-                            qtqs2.setText(""+c);
+                            po1.setText(""+df.format(a));
+                            qtqs1.setText(""+df.format(b));
+                            qtqs2.setText(""+df.format(c));
                         }else {
                             shenghuo.setVisibility(View.GONE);
                         }
@@ -418,17 +412,23 @@ public class WorkJusuanActivity extends Activity {
                         }
 
                         //一次性伤残补助金
-                        double e = s * pca;
+                        double e = 0;
                         double f = s * pcc;
                         double g = s*pcd;
-                        if(pca != 0.00){
-                            gwbzj1.setText(""+e);
-                            //一次性工伤医疗补助金
+                        if (pca != 0.00) {
+                            if (s > cq_avg * 3) {
+                                s = cq_avg * 3;
+                            } else {
+                                s = Integer.valueOf(ygz.getText().toString());
+                            }
+                            e = s * pca;
+                            gwbzj1.setText(""+df.format(e));
                         }
 
+                        //一次性工伤医疗补助金
                         if(pcc != 0.00){
                             one.setVisibility(View.VISIBLE);
-                            qtqs3.setText(""+f);
+                            qtqs3.setText(""+df.format(f));
                         }else {
                             one.setVisibility(View.GONE);
                         }
@@ -436,7 +436,7 @@ public class WorkJusuanActivity extends Activity {
                         //一次性伤残就业补助金
                         if(pcd != 0.00){
                             two.setVisibility(View.VISIBLE);
-                            qtqs4.setText(""+g);
+                            qtqs4.setText(""+df.format(g));
                         }else {
                             two.setVisibility(View.GONE);
                         }
@@ -471,6 +471,12 @@ public class WorkJusuanActivity extends Activity {
         @Override
         public void afterTextChanged(Editable s) {
             String msg4 = edit.getText().toString();
+            int len = s.toString().length();
+            if(len == 1 && msg4.equals(".")){
+                Toast.makeText(WorkJusuanActivity.this,"输入格式错误",Toast.LENGTH_SHORT).show();
+                s.clear();
+            }
+
             Log.i("", "" + msg4);
         }
     }

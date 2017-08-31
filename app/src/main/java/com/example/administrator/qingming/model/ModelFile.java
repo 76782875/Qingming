@@ -64,15 +64,15 @@ public class ModelFile {
         private String case_type;
         private String createname;
         private String case_ahnumber;
-//        private boolean Tag = true;
-//
-//        public boolean getTag() {
-//            return Tag;
-//        }
-//
-//        public void setTag(boolean tag) {
-//            Tag = tag;
-//        }
+        private boolean iszw = false;
+
+        public boolean iszw() {
+            return iszw;
+        }
+
+        public void setIszw(boolean iszw) {
+            this.iszw = iszw;
+        }
 
         public String getId() {
             return id;

@@ -12,11 +12,19 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.administrator.qingming.activity.MainActivity;
+import com.example.administrator.qingming.api.BaseApi;
+import com.example.administrator.qingming.api.MainApi;
 import com.example.administrator.qingming.fragment.LawJournalFragment;
 import com.example.administrator.qingming.fragment.ApplicationFragment;
 import com.example.administrator.qingming.fragment.HomePageFragment;
 import com.example.administrator.qingming.fragment.MeFragment;
+import com.example.administrator.qingming.interfaces.GetResultCallBack;
+import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.wuyong.WorkFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -25,7 +33,7 @@ import java.util.ArrayList;
  */
 
 public class HomePageBottomActivity extends FragmentActivity{
-    private RadioGroup homepagebtn;
+    public RadioGroup homepagebtn;
     private RadioButton me;
     private RadioButton homepage;
     private RadioButton news;
@@ -183,6 +191,7 @@ public class HomePageBottomActivity extends FragmentActivity{
             }
         }
     };
+
 
 
 

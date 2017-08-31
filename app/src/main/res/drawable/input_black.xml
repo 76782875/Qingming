@@ -2,5 +2,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <corners android:radius="10dp"/>    <!--圆角-->
     <!--边框线颜色、粗细-->
-    <stroke android:color="@color/black" android:width="1dp"/>
+    <stroke android:color="@color/transparent80" android:width="1dp"/>
 </shape>

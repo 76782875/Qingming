@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.administrator.qingming.qinminutils.MyLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,7 +55,7 @@
             android:textColor="@color/black" />
         <TextView
             android:id="@+id/officename"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
@@ -86,7 +87,7 @@
             android:textColor="@color/black" />
         <EditText
             android:id="@+id/consignor"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="姓名"
@@ -118,7 +119,7 @@
             android:textColor="@color/black" />
         <EditText
             android:id="@+id/weight"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="邮箱"
@@ -154,7 +155,7 @@
 
         <EditText
             android:id="@+id/phone_num"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="请输入手机号码"
@@ -191,7 +192,7 @@
             android:id="@+id/gender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@null"
             android:hint="备注"
             android:textColorHint="@color/transparent80"
@@ -233,4 +234,4 @@
         android:gravity="center"
         android:padding="10dp"
         />
-</LinearLayout>
+</com.example.administrator.qingming.qinminutils.MyLinearLayout>

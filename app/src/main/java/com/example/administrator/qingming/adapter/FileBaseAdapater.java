@@ -62,7 +62,6 @@ public class FileBaseAdapater extends BaseAdapter implements View.OnClickListene
             viewHolder.download = (TextView) convertView.findViewById(R.id.download);
             viewHolder.det = (TextView) convertView.findViewById(R.id.del);
 
-
             convertView.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -76,12 +75,18 @@ public class FileBaseAdapater extends BaseAdapter implements View.OnClickListene
 
         viewHolder.one.setVisibility(View.GONE);
         viewHolder.two.setVisibility(View.GONE);
+        viewHolder.det.setVisibility(View.GONE);
+
         if(tag == 1) {
-             bean= list1.get(position);
+            bean= list1.get(position);
+            if(bean.iszw()){
+                viewHolder.det.setVisibility(View.VISIBLE);
+            }
         }else {
             bean = list2.get(position);
             viewHolder.one.setVisibility(View.VISIBLE);
             viewHolder.two.setVisibility(View.VISIBLE);
+            viewHolder.det.setVisibility(View.VISIBLE);
         }
             viewHolder.item_name.setText(bean.getWjm());
             viewHolder.item_time.setText(bean.getCreatetime());
@@ -103,6 +108,7 @@ public class FileBaseAdapater extends BaseAdapter implements View.OnClickListene
                 viewHolder.gllx.setText("检查机关");
             } else {
                 viewHolder.gllx.setText("审批文件");
+                viewHolder.det.setVisibility(View.GONE);
             }
 
 

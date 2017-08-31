@@ -209,7 +209,7 @@ public class OkHttpClientManager {
 
     //=============便利的访问方式结束===============
 
-    private String guessMimeType(String path) {
+    private String  guessMimeType(String path) {
         FileNameMap fileNameMap = URLConnection.getFileNameMap();
         String contentTypeFor = fileNameMap.getContentTypeFor(path);
         if (contentTypeFor == null) {
@@ -811,7 +811,7 @@ public class OkHttpClientManager {
             if(params == null)
                 request = new Request.Builder().url(url).tag(tag).build();
             else
-            request= buildMultipartFormRequest(url,  params, tag);
+                request= buildMultipartFormRequest(url,  params, tag);
             if (callback == null) callback = DEFAULT_RESULT_CALLBACK;
             final ResultCallback resCallBack = callback;
             //UI thread

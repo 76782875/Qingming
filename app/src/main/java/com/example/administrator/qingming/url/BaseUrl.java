@@ -5,11 +5,11 @@ package com.example.administrator.qingming.url;
  */
 public class BaseUrl {
 
-    public final static String baseurl = "http://192.168.188.123/index.php/home/index/";//根地址
+    public final static String baseurl = "http://192.168.188.122/index.php/home/index/";//根地址
 
-    public final static String anhao = "http://192.168.188.123:8080/955tao/mobile/web/getCaseNo?";//查询案号
+    public final static String anhao = "http://192.168.188.122:8080/955tao/mobile/web/getCaseNo?";//查询案号
 
-    public final static String xiaoxi ="http://192.168.188.123:8080/955tao/mobile/web/news?";//消息
+    public final static String xiaoxi ="http://192.168.188.122:8080/955tao/mobile/web/news?";//消息
 
     public final static String lvtxlurl = baseurl+"lvtxl?";//通讯录地址
 
@@ -116,4 +116,22 @@ public class BaseUrl {
     public final static String xgls = baseurl+"xgls?";//查询律师
 
     public final static String cxfll = baseurl+"cxfll?";//查询律师
+
+    public final static String cxcity = baseurl+"cxcity?";//查询地区
+
+    public final static String cxcitys = baseurl+"cxcitys?";//查询地区
+
+    public final static String cxoffice = baseurl+"cxoffice?";//查询职位
+
+    public final static String cxfapiao = baseurl+"cxfapiao?";//查询发票
+
+    public final static String fapiaoxq = baseurl+"fapiaoxq?";//查询发票案号
+
+    public final static String fapiaoxqs = baseurl+"fapiaoxqs?";//查询发票案号
+
+    public final static String addfp = baseurl+"addfp?";//添加发票
+
+    public final static String delfp = baseurl+"delfp?";//删除发票
+
+    public final static String insert_fp = baseurl+"insert_fp?";//修改发票
 }

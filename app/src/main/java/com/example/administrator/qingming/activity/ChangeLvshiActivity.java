@@ -55,7 +55,6 @@ public class ChangeLvshiActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
         id = bundle.getString("cid");
         name = bundle.getString("name");
-        Log.i("id===>",""+id+name);
 
         initView();
         getHttp();

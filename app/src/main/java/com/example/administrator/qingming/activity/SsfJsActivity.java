@@ -39,9 +39,9 @@ public class SsfJsActivity extends Activity {
     private Button add;
     List<ModelLsf.ResultBean> list2;
     private LoadingDialog loadingDialog;
-    private TextView ajlx,lsf_start,lsf_finish;
+    private TextView ajlx,lsf_start,lsf_finish,lsf;
     private EditText ssbdje;
-    private LinearLayout lvshifei;
+    private LinearLayout lvshifei,one,two;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +52,9 @@ public class SsfJsActivity extends Activity {
     }
 
     private void initView() {
+        lsf = (TextView) findViewById(R.id.lsf);
+        one = (LinearLayout) findViewById(R.id.one);
+        two = (LinearLayout) findViewById(R.id.two);
         loadingDialog = new LoadingDialog(this);
         list2 = new ArrayList<>();
         back_btn = (ImageView) findViewById(R.id.back_btn);
@@ -153,16 +156,23 @@ public class SsfJsActivity extends Activity {
                     fwsfmax = list2.get(0).getFwsfmax();
                     flmin = list2.get(0).getFlmin();
                     flmax = list2.get(0).getFlmax();
-                    Log.e("max====>", "" + max);
 
                     if (fl != 0) {
+                        lvshifei.setVisibility(View.VISIBLE);
+                        two.setVisibility(View.VISIBLE);
+                        one.setVisibility(View.GONE);
                         double num = s * fl;
+                        lsf.setText(""+num);
                     } else if (fwsfmin != 0 && fwsfmax != 0) {
                         lvshifei.setVisibility(View.VISIBLE);
+                        two.setVisibility(View.GONE);
+                        one.setVisibility(View.VISIBLE);
                         lsf_start.setText("" + fwsfmin);
                         lsf_finish.setText("" + fwsfmax);
                     } else if (flmin != 0 && flmax != 0) {
                         lvshifei.setVisibility(View.VISIBLE);
+                        two.setVisibility(View.GONE);
+                        one.setVisibility(View.VISIBLE);
                         lsf_start.setText("" + s * flmin);
                         lsf_finish.setText("" + s * flmax);
                     }

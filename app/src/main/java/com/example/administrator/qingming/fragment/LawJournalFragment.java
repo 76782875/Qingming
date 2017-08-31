@@ -84,17 +84,20 @@ public class LawJournalFragment extends Fragment implements SwipeRefreshLayout.O
         sideBar.setTextView(dialog);
         swipeRefresh.setOnRefreshListener(this);//刷新接口
 
-        //设置右侧触摸监听
-        sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
-            @Override
-            public void onTouchingLetterChanged(String s) {
-                //该字母首次出现的位置
-                int position = adapter.getPositionForSection(s.charAt(0));
-                if(position != -1){
-                    sortListView.setSelection(position);
+        if(sourceDateList.size()!=0){
+            //设置右侧触摸监听
+            sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {
+                @Override
+                public void onTouchingLetterChanged(String s) {
+                    //该字母首次出现的位置
+                    int position = adapter.getPositionForSection(s.charAt(0));
+                    if(position != -1){
+                        sortListView.setSelection(position);
+                    }
                 }
-            }
-        });
+            });
+        }
+
         sortListView = (ListView) view.findViewById(R.id.country_lvcountry);
 
         editText = (EditText) view.findViewById(R.id.clearedit);

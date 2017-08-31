@@ -282,57 +282,57 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility="gone">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="10dp">
-
                         <TextView
-                            android:id="@+id/zixuntwo"
+                            android:id="@+id/ysa"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:drawablePadding="10dp"
-                            android:drawableTop="@mipmap/list_06"
+                            android:drawablePadding="5dp"
+                            android:drawableTop="@mipmap/list_ys"
                             android:gravity="center_horizontal"
-                            android:text="新闻咨询"
+                            android:text="预收案"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/spz"
+                            android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:drawablePadding="10dp"
-                            android:drawableTop="@mipmap/list_20"
-                            android:gravity="center_horizontal"
-                            android:text="案件数据"
+                            android:text="审批中"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp"
+                            android:drawableTop="@mipmap/list_sp"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_horizontal"/>
+                        <TextView
+                            android:id="@+id/baz"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="办案中"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:drawableTop="@mipmap/list_ba"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_horizontal"/>
 
                         <TextView
+                            android:id="@+id/yja"
+                            android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:drawablePadding="10dp"
-                            android:drawableTop="@mipmap/list_22"
-                            android:gravity="center_horizontal"
-                            android:text="法规查询"
+                            android:text="已结案"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:drawablePadding="10dp"
-                            android:drawableTop="@mipmap/list_23"
-                            android:gravity="center_horizontal"
-                            android:text="个人收支"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp"
+                            android:drawableTop="@mipmap/list_ja"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_horizontal"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -342,45 +342,51 @@
                         android:padding="10dp">
 
                         <TextView
+                            android:id="@+id/textView9"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:drawablePadding="10dp"
-                            android:drawableTop="@mipmap/list_12"
+                            android:drawableTop="@mipmap/list_06"
                             android:gravity="center_horizontal"
-                            android:text="工具"
+                            android:text="个人收支"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/yygj"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:drawablePadding="10dp"
+                            android:drawablePadding="5dp"
                             android:gravity="center_horizontal"
-                            android:text=""
+                            android:drawableTop="@mipmap/gj08"
+                            android:text="应用工具"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/lszs"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:drawablePadding="10dp"
+                            android:drawablePadding="5dp"
+                            android:drawableTop="@mipmap/list_28"
                             android:gravity="center_horizontal"
-                            android:text=""
+                            android:text="律师助手"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
-
+                            android:textSize="14sp" />
                         <TextView
+                            android:id="@+id/zixun1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:drawablePadding="10dp"
+                            android:drawableTop="@mipmap/list_06"
                             android:gravity="center_horizontal"
-                            android:text=""
+                            android:text="新闻咨询"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
 

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.qingming.ExamineAndApproveActivity;
 import com.example.administrator.qingming.R;
@@ -146,6 +147,7 @@ public class ApplicationFragment extends Fragment {
                 case R.id.fpgl:
                     intent = new Intent(getActivity(), FaPiaoActivity.class);
                     startActivity(intent);
+//                    Toast.makeText(getActivity(),"此功能暂不开通",Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.cwsa:
                     intent = new Intent(getActivity(), ExamineAndApproveActivity.class);

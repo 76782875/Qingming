@@ -180,15 +180,7 @@ public class MainApi extends BaseApi {
             @Override
             public void onResponse(String response) {
                 Log.e("--------------->",""+response);
-                try {
-                    if(OkHttpClientManager.isParse(response)){
-                        callBack.getResult(response,Constants.TYPE_SUCCESS);
-                    }else {
-                        callBack.getResult(response,Constants.TYPE_FAIL);
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                callBack.getResult(response,Constants.TYPE_SUCCESS);
             }
         }, mContext);
     }
@@ -233,35 +225,35 @@ public class MainApi extends BaseApi {
      */
     public void getpostcaseApi(String id,String cid,int ajlx,int ajfl,String ah_number,String sarq,
                                String ay,String remarks, String wtr,String lxdh,String dsr, String dfdsr,String slbm,
-                               String ssbd,String sffs,String dlf,String zjf, int ssjd, int ssdw,
+                               String ssbd,String sffs,String dlf,String zjf, String ssjd, String ssdw,
                                String badq, String police, String mprocuratorate, String mcourt,
                                String detention,String create_date,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
-        map.put("create_id", id + "");
-        map.put("company_id",cid + "");
+        map.put("create_id", id );
+        map.put("company_id",cid );
         map.put("ajlx", ajlx + "");
         map.put("ajfl",ajfl + "");
-        map.put("ah_number",ah_number + "");
-        map.put("sarq",sarq + "");
-        map.put("ay",ay + "");
-        map.put("bzsm",remarks + "");
-        map.put("wtr",wtr + "");
-        map.put("tel",lxdh + "");
-        map.put("dsr",dsr + "");
-        map.put("dfdsr",dfdsr + "");
-        map.put("slbm",slbm + "");
-        map.put("ssbd",ssbd + "");
-        map.put("sffs",sffs + "");
-        map.put("dlf",dlf + "");
-        map.put("jzf",zjf + "");
-        map.put("ssjd",ssjd + "");
-        map.put("ssdw",ssdw + "");
-        map.put("badq",badq + "");
-        map.put("police",police + "");
-        map.put("procuratorate",mprocuratorate + "");
-        map.put("court",mcourt + "");
-        map.put("detention",detention + "");
-        map.put("create_date",create_date + "");
+        map.put("ah_number",ah_number );
+        map.put("sarq",sarq );
+        map.put("ay",ay );
+        map.put("bzsm",remarks );
+        map.put("wtr",wtr );
+        map.put("tel",lxdh );
+        map.put("dsr",dsr );
+        map.put("dfdsr",dfdsr );
+        map.put("slbm",slbm );
+        map.put("ssbd",ssbd );
+        map.put("sffs",sffs );
+        map.put("dlf",dlf );
+        map.put("jzf",zjf );
+        map.put("ssjd",ssjd );
+        map.put("ssdw",ssdw );
+        map.put("badq",badq );
+        map.put("police",police );
+        map.put("procuratorate",mprocuratorate );
+        map.put("court",mcourt );
+        map.put("detention",detention );
+        map.put("create_date",create_date );
         postLoad(BaseUrl.postcase, map, callBack);
     }
 
@@ -270,35 +262,35 @@ public class MainApi extends BaseApi {
      */
     public void getxgmycaseApi(String id,String cid,int ajlx,int ajfl,String ah_number,String sarq,
                                String ay,String remarks, String wtr,String lxdh,String dsr, String dfdsr,String slbm,
-                               String ssbd,String sffs,String dlf,String zjf, int ssjd, int ssdw,
+                               String ssbd,String sffs,String dlf,String zjf, String ssjd, String ssdw,
                                String badq, String police, String mprocuratorate, String mcourt,
                                String detention,String create_date,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
-        map.put("id", id + "");
-        map.put("company_id",cid + "");
+        map.put("id", id);
+        map.put("company_id",cid);
         map.put("ajlx", ajlx + "");
         map.put("ajfl",ajfl + "");
-        map.put("ah_number",ah_number + "");
-        map.put("sarq",sarq + "");
-        map.put("ay",ay + "");
-        map.put("bzsm",remarks + "");
-        map.put("wtr",wtr + "");
-        map.put("tel",lxdh + "");
-        map.put("dsr",dsr + "");
-        map.put("dfdsr",dfdsr + "");
-        map.put("slbm",slbm + "");
-        map.put("ssbd",ssbd + "");
-        map.put("sffs",sffs + "");
-        map.put("dlf",dlf + "");
-        map.put("jzf",zjf + "");
-        map.put("ssjd",ssjd + "");
-        map.put("ssdw",ssdw + "");
-        map.put("badq",badq + "");
-        map.put("police",police + "");
-        map.put("procuratorate",mprocuratorate + "");
-        map.put("court",mcourt + "");
-        map.put("detention",detention + "");
-        map.put("update_date",create_date + "");
+        map.put("ah_number",ah_number );
+        map.put("sarq",sarq );
+        map.put("ay",ay );
+        map.put("bzsm",remarks );
+        map.put("wtr",wtr );
+        map.put("tel",lxdh );
+        map.put("dsr",dsr );
+        map.put("dfdsr",dfdsr );
+        map.put("slbm",slbm );
+        map.put("ssbd",ssbd );
+        map.put("sffs",sffs );
+        map.put("dlf",dlf );
+        map.put("jzf",zjf );
+        map.put("ssjd",ssjd );
+        map.put("ssdw",ssdw );
+        map.put("badq",badq );
+        map.put("police",police );
+        map.put("procuratorate",mprocuratorate );
+        map.put("court",mcourt );
+        map.put("detention",detention );
+        map.put("update_date",create_date );
         postLoad(BaseUrl.xgmycase, map, callBack);
     }
 
@@ -943,7 +935,186 @@ public class MainApi extends BaseApi {
     public void getcxfllApi(int id,String name,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("cons_type", id + "");
-        map.put("cons_name", name + "");
+        map.put("cons_name", name);
         getLoad(BaseUrl.cxfll, map, callBack);
+    }
+
+    /**
+     * 查询地区
+     */
+    public void getcxcityApi(int type,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", type + "");
+        getLoad(BaseUrl.cxcity, map, callBack);
+    }
+
+    public void getcxcitysApi(GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        getLoad(BaseUrl.cxcitys, map, callBack);
+    }
+
+    /**
+     * 查询职位
+     */
+    public void getcxofficeApi(String user_id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("user_id", user_id);
+        getLoad(BaseUrl.cxoffice, map, callBack);
+    }
+
+    /**
+     * 查询发票
+     */
+    public void getcxfapiaoApi(String create_id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", create_id);
+        getLoad(BaseUrl.cxfapiao, map, callBack);
+    }
+
+    /**
+     * 查询案号
+     */
+    public void getfapiaoxqApi(String company_id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("company_id", company_id);
+        getLoad(BaseUrl.fapiaoxq, map, callBack);
+    }
+
+    public void getfapiaoxqsApi(String create_id,String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", create_id);
+        map.put("id", id);
+        getLoad(BaseUrl.fapiaoxqs, map, callBack);
+    }
+    /**
+     * 添加发票
+     */
+    public void getaddfpApi(String create_id,String ah_id,String sqr,String fptt,String kpje,String kpxm,String kjlx,
+                            String fplx,String nsrsbh,String jbhkhyh,String jbhkhzh,String zccsdz,String zcgddh,
+                            String sjr,String sjdz,String lxdh,String sqbz,String fph,String kprq,
+                            String kpbz,String zt,String ah_num,String create_name,String create_time,
+                            GetResultCallBack callBack){
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", create_id);
+        map.put("ah_id", ah_id);
+        map.put("sqr", sqr);
+        map.put("fptt", fptt);
+        map.put("kpje", kpje);
+        map.put("kpxm", kpxm);
+        map.put("kjlx", kjlx);
+        map.put("fplx", fplx);
+        if(!TextUtils.isEmpty(nsrsbh)){
+            map.put("nsrsbh", nsrsbh);
+        }
+        if(!TextUtils.isEmpty(jbhkhyh)){
+            map.put("jbhkhyh", jbhkhyh);
+        }
+        if(!TextUtils.isEmpty(jbhkhzh)){
+            map.put("jbhkhzh", jbhkhzh);
+        }
+        if(!TextUtils.isEmpty(zccsdz)){
+            map.put("zccsdz", zccsdz);
+        }
+        if(!TextUtils.isEmpty(zcgddh)){
+            map.put("zcgddh", zcgddh);
+        }
+        if(!TextUtils.isEmpty(sjr)){
+            map.put("sjr", sjr);
+        }
+        if(!TextUtils.isEmpty(sjdz)){
+            map.put("sjdz", sjdz);
+        }
+        if(!TextUtils.isEmpty(lxdh)){
+            map.put("lxdh", lxdh);
+        }
+        if(!TextUtils.isEmpty(sqbz)){
+            map.put("sqbz", sqbz);
+        }
+        if(!TextUtils.isEmpty(fph)){
+            map.put("fph", fph);
+        }
+        if(!TextUtils.isEmpty(kprq)){
+            map.put("kprq", kprq);
+        }
+        if(!TextUtils.isEmpty(kpbz)){
+            map.put("kpbz", kpbz);
+        }
+        if(!TextUtils.isEmpty(zt)){
+            map.put("zt", zt);
+        }
+        map.put("ah_num", ah_num);
+        if(!TextUtils.isEmpty(create_name)){
+            map.put("create_name", create_name);
+        }
+        if(!TextUtils.isEmpty(create_time)){
+            map.put("create_time", create_time);
+        }
+        postLoad(BaseUrl.addfp, map, callBack);
+    }
+
+    /**
+     * 修改发票
+     */
+    public void getinsert_fpApi(String id,String sqr,String fptt,String kpje,String kpxm,String kjlx,
+                            String fplx,String nsrsbh,String jbhkhyh,String jbhkhzh,String zccsdz,String zcgddh,
+                            String sjr,String sjdz,String lxdh,String sqbz,String fph,String kprq,
+                            String kpbz,String zt,GetResultCallBack callBack){
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("sqr", sqr);
+        map.put("fptt", fptt);
+        map.put("kpje", kpje);
+        map.put("kpxm", kpxm);
+        map.put("kjlx", kjlx);
+        map.put("fplx", fplx);
+        if(!TextUtils.isEmpty(nsrsbh)){
+            map.put("nsrsbh", nsrsbh);
+        }
+        if(!TextUtils.isEmpty(jbhkhyh)){
+            map.put("jbhkhyh", jbhkhyh);
+        }
+        if(!TextUtils.isEmpty(jbhkhzh)){
+            map.put("jbhkhzh", jbhkhzh);
+        }
+        if(!TextUtils.isEmpty(zccsdz)){
+            map.put("zccsdz", zccsdz);
+        }
+        if(!TextUtils.isEmpty(zcgddh)){
+            map.put("zcgddh", zcgddh);
+        }
+        if(!TextUtils.isEmpty(sjr)){
+            map.put("sjr", sjr);
+        }
+        if(!TextUtils.isEmpty(sjdz)){
+            map.put("sjdz", sjdz);
+        }
+        if(!TextUtils.isEmpty(lxdh)){
+            map.put("lxdh", lxdh);
+        }
+        if(!TextUtils.isEmpty(sqbz)){
+            map.put("sqbz", sqbz);
+        }
+        if(!TextUtils.isEmpty(fph)){
+            map.put("fph", fph);
+        }
+        if(!TextUtils.isEmpty(kprq)){
+            map.put("kprq", kprq);
+        }
+        if(!TextUtils.isEmpty(kpbz)){
+            map.put("kpbz", kpbz);
+        }
+        if(!TextUtils.isEmpty(zt)){
+            map.put("zt", zt);
+        }
+        postLoad(BaseUrl.insert_fp, map, callBack);
+    }
+
+    /**
+     * 删除发票
+     */
+    public void getdelfpApi(String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id + "");
+        postLoad(BaseUrl.delfp, map, callBack);
     }
 }

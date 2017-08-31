@@ -14,16 +14,17 @@
             android:scaleType="centerCrop"/>
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawablePadding="15dp"
+            android:drawablePadding="5dp"
             android:drawableTop="@mipmap/vls_03"
             android:gravity="center_horizontal"
             android:text="@string/qinmin"
             android:textColor="@color/black"
-            android:textSize="26sp" />
+            android:textSize="18sp" />
+
     </FrameLayout>
 
 
@@ -96,7 +97,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp">
         <TextView
@@ -127,7 +128,35 @@
         android:background="@drawable/edit_blue"
         android:text="@string/login"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center|"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/qinmin_bottom_one"
+            android:textColor="@color/transparent80"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/qinmin_bottom_two"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/qinmin_bottom_three"
+        android:gravity="center"
+        android:textColor="@color/transparent80"
+        android:textSize="12sp"/>
 
     <!--<Button-->
         <!--android:id="@+id/regster_btn"-->

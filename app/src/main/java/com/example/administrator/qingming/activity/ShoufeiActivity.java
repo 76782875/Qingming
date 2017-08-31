@@ -59,6 +59,7 @@ public class ShoufeiActivity extends Activity implements SwipeRefreshLayout.OnRe
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this);
         list = new ArrayList<>();
         list1 = new ArrayList<>();
         list2 = new ArrayList<>();
