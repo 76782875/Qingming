@@ -42,6 +42,7 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
     private ShenPiAdapter shenPiAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private LoadingDialog loadingDialog;
+    private int index = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +53,36 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
         initView();
 
         Bundle bundle = getIntent().getExtras();
-        case_state = bundle.getInt("case_state");
+//        case_state = bundle.getInt("case_state");
+        index = bundle.getInt("index");
 
-        Log.e("case_state======>",""+case_state);
+        if(index == 1 ){
+            case_state = 3;
+            examine_line1.setVisibility(View.VISIBLE);
+            examine_line2.setVisibility(View.INVISIBLE);
+            examine2.setTextColor(getResources().getColor(R.color.blue));
+            examine3.setTextColor(getResources().getColor(R.color.black));
+        }else if(index == 3){
+            case_state = 6;
+            examine_line1.setVisibility(View.VISIBLE);
+            examine_line2.setVisibility(View.INVISIBLE);
+            examine2.setTextColor(getResources().getColor(R.color.blue));
+            examine3.setTextColor(getResources().getColor(R.color.black));
+        }else if(index == 2){
+            case_state = 2;
+            examine_line2.setVisibility(View.VISIBLE);
+            examine_line1.setVisibility(View.INVISIBLE);
+            examine3.setTextColor(getResources().getColor(R.color.blue));
+            examine2.setTextColor(getResources().getColor(R.color.black));
+        }else if(index == 4){
+            case_state = 5;
+            examine_line2.setVisibility(View.VISIBLE);
+            examine_line1.setVisibility(View.INVISIBLE);
+            examine3.setTextColor(getResources().getColor(R.color.blue));
+            examine2.setTextColor(getResources().getColor(R.color.black));
+        }
         getHttp();
+
     }
 
 
@@ -162,28 +189,19 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
                 case R.id.examine2:
                     examine_line1.setVisibility(View.VISIBLE);
                     examine_line2.setVisibility(View.INVISIBLE);
-                    examine2.setTextColor(getResources().getColor(R.color.black));
-                    examine3.setTextColor(getResources().getColor(R.color.blue));
+                    examine2.setTextColor(getResources().getColor(R.color.blue));
+                    examine3.setTextColor(getResources().getColor(R.color.black));
                     break;
                 case R.id.examine3:
                     examine_line2.setVisibility(View.VISIBLE);
                     examine_line1.setVisibility(View.INVISIBLE);
-                    examine3.setTextColor(getResources().getColor(R.color.black));
-                    examine2.setTextColor(getResources().getColor(R.color.blue));
+                    examine3.setTextColor(getResources().getColor(R.color.blue));
+                    examine2.setTextColor(getResources().getColor(R.color.black));
                     break;
             }
         }
     };
 
-    private int index = 0;
-    private void setListData(){
-        list2.clear();
-        if (index == 0)
-            list2 .addAll(list);
-        else if(index == 1)
-            list2.addAll(list1);
-        shenPiAdapter.notifyDataSetChanged();
-    }
     /**
      * 获取审批的数据
      */

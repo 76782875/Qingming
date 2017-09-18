@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/arrow_down" />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="公章使用申请"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="用印事项："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="公函"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arraw" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="委  托  人："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+                <EditText
+                    android:id="@+id/wtr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="请填写收函方/委托人"
+                    android:textColorHint="@color/transparent80"
+                    android:textSize="14sp"
+                    android:background="@null"
+                    android:paddingLeft="5dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="案        号："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/case_ah"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="请选择案号"
+                    android:textColor="@color/black" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arraw" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="文件上传："
+                android:textColor="@color/transparent80"
+                android:background="@color/cyan"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/choose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="选择文件"
+                    android:textSize="12sp"
+                    android:background="@drawable/kuang_bluedark"/>
+                <TextView
+                    android:id="@+id/filename"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="未选择文件"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"/>
+
+                <Button
+                    android:id="@+id/filepost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="上传"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:background="@drawable/edit_blue"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="领用日期："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="请选择时间"
+                    android:textSize="14sp"
+                    android:textColor="@color/black" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arraw" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/input_bluedark_white"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="领  用  人："
+                    android:textSize="14sp"
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+
+                <TextView
+                    android:id="@+id/lyr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="测试主任"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:background="@null"
+                    android:paddingLeft="5dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="备注说明："
+                    android:textColor="@color/transparent80"
+                    android:background="@color/cyan"
+                    android:padding="5dp"/>
+
+                <EditText
+                    android:id="@+id/edit_log"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/input_black"
+                    android:gravity="left"
+                    android:textSize="14sp"
+                    android:hint="请填写备注"
+                    android:padding="10dp"
+                    android:textColorHint="@color/transparent80" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="确认提交"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/edit_blue"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

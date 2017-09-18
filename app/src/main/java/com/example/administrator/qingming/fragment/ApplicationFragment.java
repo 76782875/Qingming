@@ -1,6 +1,8 @@
 package com.example.administrator.qingming.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,8 @@ import com.example.administrator.qingming.activity.LsszActivity;
 import com.example.administrator.qingming.activity.LszsActivity;
 import com.example.administrator.qingming.activity.MapActivity;
 import com.example.administrator.qingming.activity.MyCaseActivity;
+import com.example.administrator.qingming.activity.SealApplyForActivity;
+import com.example.administrator.qingming.activity.SealShenPiActivity;
 import com.example.administrator.qingming.activity.ShoufeiActivity;
 import com.example.administrator.qingming.activity.WorkActivity;
 import com.example.administrator.qingming.work.AddCaseActivity;
@@ -38,18 +43,52 @@ public class ApplicationFragment extends Fragment {
     //财务统计按钮
     private TextView cwsa,cwja,sfsp,lssz;
     //行政按钮
-    private TextView kqdk,dkjl,zrsa,lszs;
+    private TextView kqdk,dkjl,zrsa,lszs,gzsp;
+    private LinearLayout sp;
     View view;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_application, null);
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("qinmin", Context.MODE_PRIVATE);
+        boolean iszw = sharedPreferences.getBoolean("zhiwei",false);
+
         initView();
+        if(iszw){
+            biangen.setVisibility(View.VISIBLE);
+            lsaj.setVisibility(View.VISIBLE);
+            sp.setVisibility(View.VISIBLE);
+            cwsa.setVisibility(View.VISIBLE);
+            cwja.setVisibility(View.VISIBLE);
+            sfsp.setVisibility(View.VISIBLE);
+            gzsp.setVisibility(View.VISIBLE);
+
+            biangen.setOnClickListener(onClickListener);
+            lsaj.setOnClickListener(onClickListener);
+            cwsa.setOnClickListener(onClickListener);
+            cwja.setOnClickListener(onClickListener);
+            sfsp.setOnClickListener(onClickListener);
+            gzsp.setOnClickListener(onClickListener);
+            sasp.setOnClickListener(onClickListener);
+            jasp.setOnClickListener(onClickListener);
+            fpgl.setOnClickListener(onClickListener);
+        }else {
+            biangen.setVisibility(View.INVISIBLE);
+            lsaj.setVisibility(View.INVISIBLE);
+            sp.setVisibility(View.GONE);
+            cwsa.setVisibility(View.INVISIBLE);
+            cwja.setVisibility(View.INVISIBLE);
+            sfsp.setVisibility(View.INVISIBLE);
+            gzsp.setVisibility(View.INVISIBLE);
+            lssz.setText("个人收支");
+        }
         return view;
     }
 
     private void initView(){
+        gzsp = (TextView) view.findViewById(R.id.gzsp);
+        sp = (LinearLayout) view.findViewById(R.id.sp);
         ls_case = (TextView) view.findViewById(R.id.ls_case);
         zixun = (TextView) view.findViewById(R.id.zixun);
         spz = (TextView) view.findViewById(R.id.spz);
@@ -76,14 +115,6 @@ public class ApplicationFragment extends Fragment {
         spz.setOnClickListener(onClickListener);
         baz.setOnClickListener(onClickListener);
         yja.setOnClickListener(onClickListener);
-        biangen.setOnClickListener(onClickListener);
-        lsaj.setOnClickListener(onClickListener);
-        sasp.setOnClickListener(onClickListener);
-        jasp.setOnClickListener(onClickListener);
-        fpgl.setOnClickListener(onClickListener);
-        cwsa.setOnClickListener(onClickListener);
-        cwja.setOnClickListener(onClickListener);
-        sfsp.setOnClickListener(onClickListener);
         lssz.setOnClickListener(onClickListener);
         kqdk.setOnClickListener(onClickListener);
         dkjl.setOnClickListener(onClickListener);
@@ -125,6 +156,10 @@ public class ApplicationFragment extends Fragment {
                     intent.putExtra("index",3);
                     startActivity(intent);
                     break;
+                case R.id.gzsq:
+                    intent = new Intent(getActivity(), SealApplyForActivity.class);
+                    startActivity(intent);
+                    break;
                 case R.id.biangen:
                     intent = new Intent(getActivity(), ChangeActivity.class);
                     startActivity(intent);
@@ -137,26 +172,29 @@ public class ApplicationFragment extends Fragment {
                 case R.id.sasp:
                     intent = new Intent(getActivity(), ExamineAndApproveActivity.class);
                     intent.putExtra("case_state",2);
+                    intent.putExtra("index",1);
                     startActivity(intent);
                     break;
                 case R.id.jasp:
                     intent = new Intent(getActivity(), ExamineAndApproveActivity.class);
                     intent.putExtra("case_state",5);
+                    intent.putExtra("index",2);
                     startActivity(intent);
                     break;
                 case R.id.fpgl:
                     intent = new Intent(getActivity(), FaPiaoActivity.class);
                     startActivity(intent);
-//                    Toast.makeText(getActivity(),"此功能暂不开通",Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.cwsa:
                     intent = new Intent(getActivity(), ExamineAndApproveActivity.class);
                     intent.putExtra("case_state",3);
+                    intent.putExtra("index",3);
                     startActivity(intent);
                     break;
                 case R.id.cwja:
                     intent = new Intent(getActivity(), ExamineAndApproveActivity.class);
                     intent.putExtra("case_state",6);
+                    intent.putExtra("index",4);
                     startActivity(intent);
                     break;
                 case R.id.sfsp:
@@ -181,6 +219,10 @@ public class ApplicationFragment extends Fragment {
                     break;
                 case R.id.lszs:
                     intent = new Intent(getActivity(), LszsActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.gzsp:
+                    intent = new Intent(getActivity(), SealShenPiActivity.class);
                     startActivity(intent);
                     break;
             }

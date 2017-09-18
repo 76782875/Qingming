@@ -22,10 +22,12 @@ import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.adapter.LsszAdapter;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelShouFei;
 import com.example.administrator.qingming.qinminutils.GsonUtil;
+import com.example.administrator.qingming.work.DatePickDialogUtil;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -39,14 +41,15 @@ import java.util.List;
 public class LsszActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener{
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
-    List<ModelShouFei.ResultBean> list;
-    LsszAdapter lsszAdapter;
-    TextView sf,tf;
-    TextView start_time,finish_time,search;
-    private static final int DATE_DIALOG = 0;
-    private static final int DATE_DIALOY = 1;
-    int mYear,mMonth,mDay;
-    ImageView backbtn;
+    private List<ModelShouFei.ResultBean> list;
+    private LsszAdapter lsszAdapter;
+    private TextView sf,tf;
+    private TextView start_time,finish_time,search;
+    private String initStartDateTime ; // 初始化开始时间
+    private int mYear,mMonth,mDay;
+    private ImageView backbtn;
+    private LoadingDialog loadingDialog;
+    private boolean iszw;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,19 +57,26 @@ public class LsszActivity extends Activity implements SwipeRefreshLayout.OnRefre
         setContentView(R.layout.activity_lssz);
 
         SharedPreferences sharedPreferences = getSharedPreferences("qinmin", Context.MODE_PRIVATE);
-        id =sharedPreferences.getString("cid","");
+        id =sharedPreferences.getString("id","");
+        gsid =sharedPreferences.getString("cid","");
+        iszw = sharedPreferences.getBoolean("zhiwei",false);
 
         initView();
-        getHttp();
+        if(iszw){
+            getHttp();
+        }else {
+            getHttps();
+        }
 
         //获取日期
         final Calendar ca = Calendar.getInstance();
         mYear = ca.get(Calendar.YEAR);
-        mMonth = ca.get(Calendar.MONTH);
+        mMonth = ca.get(Calendar.MONTH)+1;
         mDay = ca.get(Calendar.DAY_OF_MONTH);
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this);
         backbtn = (ImageView) findViewById(R.id.back_btn);
         list = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
@@ -91,12 +101,6 @@ public class LsszActivity extends Activity implements SwipeRefreshLayout.OnRefre
         swipeRefreshLayout.setOnRefreshListener(this);//刷新接口
         lsszAdapter= new LsszAdapter(LsszActivity.this,list);
         recyclerView.setAdapter(lsszAdapter);
-        lsszAdapter.setOnItemClickListener(new LsszAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int i) {
-
-            }
-        });
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -107,17 +111,28 @@ public class LsszActivity extends Activity implements SwipeRefreshLayout.OnRefre
                     finish();
                     break;
                 case R.id.start_time:
-                    showDialog(DATE_DIALOG);
+                    start_time.setText(initStartDateTime);
+                    start_time.setTextColor(getResources().getColor(R.color.black));
+                    DatePickDialogUtil dateTimePickDialogUtil = new DatePickDialogUtil(initStartDateTime,LsszActivity.this);
+                    dateTimePickDialogUtil.dateTimePicKDialog(start_time);
                     break;
                 case R.id.finish_time:
-                    showDialog(DATE_DIALOY);
+                    finish_time.setText(initStartDateTime);
+                    finish_time.setTextColor(getResources().getColor(R.color.black));
+                    DatePickDialogUtil dateTimePickDialogUtil7 = new DatePickDialogUtil(initStartDateTime,LsszActivity.this);
+                    dateTimePickDialogUtil7.dateTimePicKDialog(finish_time);
                     break;
                 case R.id.search:
                     if(!start_time.getText().equals("请选择开始时间")){
                         if(!finish_time.getText().equals("请选择结束时间")){
                             starttime = start_time.getText().toString();
                             endtime = finish_time.getText().toString();
-                            searchHttp();
+                            if(iszw){
+                                searchHttp();
+                            }else {
+                                searchHttps();
+                            }
+
                         }else {
                             Toast.makeText(LsszActivity.this, "请选择时间", Toast.LENGTH_SHORT).show();
                         }
@@ -130,53 +145,40 @@ public class LsszActivity extends Activity implements SwipeRefreshLayout.OnRefre
         }
     };
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG:
-                return new DatePickerDialog(this,onDateSetListener, mYear, mMonth, mDay);
-            case DATE_DIALOY:
-                return new DatePickerDialog(this,monDateSetListener, mYear, mMonth, mDay);
-        }
-        return null;
-    }
 
-    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            display();
-        }
-    };
-    DatePickerDialog.OnDateSetListener monDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            mYear = year;
-            mMonth = month;
-            mDay = dayOfMonth;
-            finplay();
-        }
-    };
-
-    /**
-     * 设置日期 利用StringBuffer追加
-     */
-    public void display() {
-        start_time.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        start_time.setTextColor(getResources().getColor(R.color.black));
-    }
-    public void finplay() {
-        finish_time.setText(new StringBuffer().append(mYear).append("-").append(mMonth + 1).append("-").
-                append(mDay).append(" "));
-        finish_time.setTextColor(getResources().getColor(R.color.black));
-    }
-
-    String id;
+    private String gsid;
+    private String id;
     private void getHttp(){
-        MainApi.getInstance(this).getshoufeixqApi(id, new GetResultCallBack() {
+        MainApi.getInstance(this).getshoufeixqApi(gsid, new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                swipeRefreshLayout.setRefreshing(false);
+                if(type == Constants.TYPE_SUCCESS){
+                    List<ModelShouFei.ResultBean> resultbean = GsonUtil.fromJsonList(new Gson(),result,
+                            ModelShouFei.ResultBean.class);
+                    list.clear();
+                    list.addAll(resultbean);
+                    double sum = 0;
+                    double tfsum = 0;
+                    for(int i =0 ; i<resultbean.size(); i++){
+                        double sfje = resultbean.get(i).getSfje();
+                        String fylx = resultbean.get(i).getFylx();
+                        if(fylx.equals("4")){
+                            tfsum += sfje;
+                        }else {
+                            sum += sfje;
+                        }
+                    }
+                    sf.setText(""+sum);
+                    tf.setText(""+tfsum);
+                    lsszAdapter.notifyDataSetChanged();
+                }else BaseApi.showErrMsg(LsszActivity.this,result);
+            }
+        });
+    }
+
+    private void getHttps(){
+        MainApi.getInstance(this).getgrshoufeiApi(id, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 swipeRefreshLayout.setRefreshing(false);
@@ -207,9 +209,36 @@ public class LsszActivity extends Activity implements SwipeRefreshLayout.OnRefre
     String starttime;
     String endtime;
     private void searchHttp(){
-        MainApi.getInstance(this).getlsszsApi(id,starttime,endtime, new GetResultCallBack() {
+        loadingDialog.setLoadingContent("加载中");
+        loadingDialog.show();
+        MainApi.getInstance(this).getlsszsApi(gsid,starttime,endtime, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
+                loadingDialog.dismiss();
+                if(type == Constants.TYPE_SUCCESS){
+                    List<ModelShouFei.ResultBean> resultbean = GsonUtil.fromJsonList(new Gson(),result,
+                            ModelShouFei.ResultBean.class);
+                    list.clear();
+                    list.addAll(resultbean);
+                    double sum = 0;
+                    for(int i =0 ; i<resultbean.size(); i++){
+                        double sfje = resultbean.get(i).getSfje();
+                        sum += sfje;
+                    }
+                    sf.setText(""+sum);
+                    lsszAdapter.notifyDataSetChanged();
+                }else BaseApi.showErrMsg(LsszActivity.this,result);
+            }
+        });
+    }
+
+    private void searchHttps(){
+        loadingDialog.setLoadingContent("加载中");
+        loadingDialog.show();
+        MainApi.getInstance(this).getgrszsApi(id,starttime,endtime, new GetResultCallBack() {
+            @Override
+            public void getResult(String result, int type) {
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelShouFei.ResultBean> resultbean = GsonUtil.fromJsonList(new Gson(),result,
                             ModelShouFei.ResultBean.class);
@@ -229,6 +258,10 @@ public class LsszActivity extends Activity implements SwipeRefreshLayout.OnRefre
 
     @Override
     public void onRefresh() {
-        getHttp();
+        if(iszw){
+            getHttp();
+        }else {
+            getHttps();
+        }
     }
 }

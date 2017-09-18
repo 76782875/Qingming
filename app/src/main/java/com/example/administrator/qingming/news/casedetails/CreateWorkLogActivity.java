@@ -275,7 +275,7 @@ public class CreateWorkLogActivity extends Activity {
     String title;
     AlertDialog.Builder builder;
     private void showDialog() {
-        builder= new AlertDialog.Builder(CreateWorkLogActivity.this);
+        builder= new AlertDialog.Builder(CreateWorkLogActivity.this,AlertDialog.THEME_HOLO_LIGHT);
         builder.setTitle(title);
     }
 

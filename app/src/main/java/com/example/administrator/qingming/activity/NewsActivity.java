@@ -21,6 +21,7 @@ import com.example.administrator.qingming.adapter.FaYuanAdapter;
 import com.example.administrator.qingming.adapter.NewsFayuanAdapter;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelFaYuan;
@@ -54,6 +55,7 @@ public class NewsActivity extends Activity {
     private List<ModelNews.ListBean> list;
     private List<ModelFalvXx.ResultBean> fayuanlist;
     private List<MyCaseModel.ResultBean> caselist;
+    private LoadingDialog loadingDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +71,7 @@ public class NewsActivity extends Activity {
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this);
         list = new ArrayList<>();
         fayuanlist = new ArrayList<>();
         caselist = new ArrayList<>();
@@ -182,10 +185,12 @@ public class NewsActivity extends Activity {
             @Override
             public void getResult(String result, int type) {
                 if (type == Constants.TYPE_SUCCESS) {
-                    ModelNews  resultBeen = GsonUtil.fromJSONData(new Gson(), result,
-                            ModelNews.class);
+//                    ModelNews  resultBeen = GsonUtil.fromJSONData(new Gson(), result,
+//                            ModelNews.class);
+                    List<ModelNews.ListBean> listBeen = GsonUtil.fromJsonList(new Gson(), result,
+                            ModelNews.ListBean.class);
                     list.clear();
-                    list.addAll(resultBeen.getList());
+                    list.addAll(listBeen);
 
                     newsAdapater.notifyDataSetChanged();
                 } else BaseApi.showErrMsg(NewsActivity.this, result);
@@ -232,9 +237,12 @@ public class NewsActivity extends Activity {
     String ssbd;
     String ssjd;
     private void getcase(){
+        loadingDialog.setLoadingContent("请稍后...");
+        loadingDialog.show();
         MainApi.getInstance(this).getmycasesApi(glid, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<MyCaseModel.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,
                             MyCaseModel.ResultBean.class);

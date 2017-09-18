@@ -2,6 +2,7 @@ package com.example.administrator.qingming.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +78,9 @@ public class LsszAdapter extends RecyclerView.Adapter<LsszAdapter.ViewHolder> {
             holder.sz_bz.setText(resultBean.getBz());
             holder.sz_money.setText(""+resultBean.getSfje());
             holder.sz_person.setText(resultBean.getAudit_name());
-            holder.sz_date.setText(resultBean.getAudit_time());
+            if(!TextUtils.isEmpty(resultBean.getAudit_time())){
+                holder.sz_date.setText(resultBean.getAudit_time().substring(0,10));
+            }
 
             if (mOnItemClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {

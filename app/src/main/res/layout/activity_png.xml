@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/blue"-->
+        <!--android:padding="10dp"-->
+        <!--android:id="@+id/toplayout">-->
+        <!--<ImageView-->
+            <!--android:id="@+id/back_btn"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@mipmap/arrow_down" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="png显示"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="20sp" />-->
+    <!--</RelativeLayout>-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/containerView">
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    android:padding="2dp"/>
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/gz"
+                    android:layout_gravity="center"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                >
+                <Button
+                    android:id="@+id/company_seal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="公司公章"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:background="@drawable/edit_blue"/>
+                <Button
+                    android:id="@+id/cw_seal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="财务公章"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:background="@drawable/edit_blue"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="保存"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:background="@drawable/edit_blue"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

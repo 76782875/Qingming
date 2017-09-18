@@ -20,6 +20,7 @@ import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.RegsterActivity;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.fragment.HomePageFragment;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
@@ -48,6 +49,7 @@ public class MainActivity extends Activity {
     private Button regsterbtn;
     private CheckBox checkBox;
     SharedPreferences sp = null;
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class MainActivity extends Activity {
     }
     //找到控件，设置点击事件
     private void initview() {
+        loadingDialog = new LoadingDialog(this);
         inputname = (EditText) findViewById(R.id.input_name);
         inputpassword = (EditText) findViewById(R.id.input_password);
         loginbtn = (Button) findViewById(R.id.login_btn);
@@ -116,8 +119,8 @@ public class MainActivity extends Activity {
             Intent intent;
             switch (v.getId()){
                 case R.id.login_btn:
-                    intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
-                    startActivity(intent);
+//                    intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
+//                    startActivity(intent);
                     //通过
                     boolean CheckBoxLogin = checkBox.isChecked();
                     //按钮被选中，下次进入时会显示账号和密码
@@ -135,18 +138,18 @@ public class MainActivity extends Activity {
                         editor.putBoolean("checkboxBoolean", false);
                         editor.commit();
                     }
-//                    new Thread() {
-//                        @Override
-//                        public void run() {
-//                            try {
-//                                Looper.prepare();
-//                                getString();
-//                                Looper.loop();
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    }.start();
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Looper.prepare();
+                                getString();
+                                Looper.loop();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }.start();
                     break;
 //                case R.id.regster_btn:
 //                    intent = new Intent(MainActivity.this,RegsterActivity.class);
@@ -164,7 +167,7 @@ public class MainActivity extends Activity {
     public void getString() throws IOException {
         //1 创建OkHttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient();
-        String url ="http://192.168.188.122:8080/955tao/mobile/web/login?";
+        String url ="http://192.168.188.122:8080/yunlvsi/mobile/web/login?";
         //2 创建Request对象
         Request request = new Request.Builder().get().url(url+"username="+phone+"&password="+password).build();
         //3 创建回调对象
@@ -184,10 +187,6 @@ public class MainActivity extends Activity {
                     loginName = userBean.getLoginName();
                     name =userBean.getName();
                     cxoffice();
-                    Intent intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(MainActivity.this,"用户名或者密码错误",Toast.LENGTH_SHORT).show();
                 }
@@ -199,13 +198,21 @@ public class MainActivity extends Activity {
     String zhiwei;
     boolean iszw;
     private void cxoffice(){
+        loadingDialog.setLoadingContent("请稍后...");
+        loadingDialog.show();
         MainApi.getInstance(this).getcxofficeApi(id, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelZhiWei.ResultBean> resultBeen = GsonUtil.fromJsonList(new Gson(),result,
                             ModelZhiWei.ResultBean.class);
                     zhiwei = resultBeen.get(0).getName();
+                    Intent intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
+                    startActivity(intent);
+                    finish();
+                    Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                    Log.e("main=====",""+zhiwei);
                     if(zhiwei.equals("主任")){
                         iszw = true;
                     }

@@ -3,15 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/top1"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@mipmap/top1" />
 
         <TextView
             android:id="@+id/textView"
@@ -31,11 +33,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/input_box"
         android:orientation="horizontal"
-        android:padding="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:padding="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -57,66 +59,74 @@
             android:background="@null"
             android:hint="@string/hint_name"
             android:maxLength="16"
-            android:textSize="16sp"
-            android:textColorHint="#BBBBBB" />
+            android:textColorHint="#BBBBBB"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/input_box"
-        android:padding="5dp"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/input_box"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/mima"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            android:src="@mipmap/mima" />
+
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/blue"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:background="@color/blue" />
+
         <EditText
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:inputType="textPassword"
             android:hint="@string/hint_password"
+            android:inputType="textPassword"
             android:maxLength="16"
-            android:textSize="16sp"
-            android:textColorHint="#BBBBBB"/>
+            android:textColorHint="#BBBBBB"
+            android:textSize="16sp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="记住密码"/>
+            android:text="记住密码" />
+
         <CheckBox
+            android:id="@+id/login_checkbox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/login_checkbox"/>
+            android:layout_height="wrap_content" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/forget_password"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:text="@string/forget_password" />
     </LinearLayout>
 
     <Button
@@ -131,32 +141,36 @@
         android:textSize="18sp" />
 
     <LinearLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center|"
-        android:layout_marginTop="5dp">
+        android:layout_height="0dp"
+        android:gravity="center|bottom"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/qinmin_bottom_one"
             android:textColor="@color/transparent80"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/qinmin_bottom_two"
             android:textColor="@color/black"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/qinmin_bottom_three"
         android:gravity="center"
+        android:text="@string/qinmin_bottom_three"
         android:textColor="@color/transparent80"
-        android:textSize="12sp"/>
+        android:textSize="12sp"
+        android:layout_marginBottom="10dp"/>
+
 
     <!--<Button-->
         <!--android:id="@+id/regster_btn"-->

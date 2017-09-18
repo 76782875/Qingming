@@ -23,6 +23,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!--发短信-->
     <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -43,7 +44,7 @@
         </activity>
         <activity android:name="com.example.administrator.qingming.HomePageBottomActivity"/>
         <activity android:name=".activity.GuideActivity"/>
-        <activity android:name=".activity.MainActivity" android:windowSoftInputMode="stateHidden|adjustResize"  />
+        <activity android:name=".activity.MainActivity" android:windowSoftInputMode="adjustPan"  />
         <activity android:name=".contacts.CustomerAddressActivity"/><!--客户通讯录-->
         <activity android:name=".news.casedetails.CaseDetailsActivity"/><!--案件详情-->
         <activity android:name=".news.casedetails.CaseIntroduction"/><!--案件简介-->
@@ -89,6 +90,13 @@
         <activity android:name=".activity.LsfjsActivity"/>
         <activity android:name=".activity.SsfJsActivity"/>
         <activity android:name=".activity.AddFaPiaoActivity"/><!--发票详情页面-->
+        <activity android:name=".activity.SealApplyForActivity"/><!--公章申请页面-->
+        <activity android:name=".activity.SealApplyForDetailsActivity"/><!--公章申请修改页面-->
+        <activity android:name=".activity.SealApplyForDetailsPngListActivity"/>
+        <activity android:name=".activity.SealPngActivity"/>
+        <activity android:name=".activity.SealApplyForAddActivity"/>
+        <activity android:name=".activity.SealShenPiActivity"/><!--公章审批页面-->
+        <activity android:name=".activity.SealShenPiDetailsActivity"/>
 
         <!--百度定位-->
         <service android:name="com.baidu.location.f"

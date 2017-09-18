@@ -342,7 +342,7 @@
                         android:padding="10dp">
 
                         <TextView
-                            android:id="@+id/textView9"
+                            android:id="@+id/grsz"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

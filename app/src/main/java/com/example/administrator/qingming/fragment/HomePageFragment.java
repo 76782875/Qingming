@@ -22,11 +22,14 @@ import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.activity.ChangeActivity;
 import com.example.administrator.qingming.activity.FilesActivity;
 import com.example.administrator.qingming.activity.IntoPressActivity;
+import com.example.administrator.qingming.activity.LsszActivity;
+import com.example.administrator.qingming.activity.LszsActivity;
 import com.example.administrator.qingming.activity.MapActivity;
 import com.example.administrator.qingming.activity.MyCaseActivity;
 import com.example.administrator.qingming.activity.NewsActivity;
 import com.example.administrator.qingming.activity.PressActivity;
 import com.example.administrator.qingming.activity.ShoufeiActivity;
+import com.example.administrator.qingming.activity.WorkActivity;
 import com.example.administrator.qingming.adapter.PressAdater;
 import com.example.administrator.qingming.adapter.PressHomeAdapter;
 import com.example.administrator.qingming.api.BaseApi;
@@ -60,9 +63,10 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
     private List<PersonalDataModel.ResultBean> list1;
     private PullToRefreshView pullToRefreshView;
     private TextView company,username,officename,mycase,addcase,file,qiandao,ls_case,zixun,biangen,sfsp;
-    private TextView cwsa,caja,zrsa,zrja;
+    private TextView cwsa,caja,zrsa,zrja,ysa,spz,baz,yja,grsz,yygj,lszs,zixun1;
     private ImageView news;
     private LinearLayout one,two;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,6 +82,7 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
         getString();
 
         if(iszw){
+            //主任
             one.setVisibility(View.VISIBLE);
             two.setVisibility(View.GONE);
             ls_case.setOnClickListener(onClickListener);
@@ -89,8 +94,17 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
             zrsa.setOnClickListener(onClickListener);
             zrja.setOnClickListener(onClickListener);
         }else {
+            //律师
             one.setVisibility(View.GONE);
             two.setVisibility(View.VISIBLE);
+            ysa.setOnClickListener(onClickListener);
+            spz.setOnClickListener(onClickListener);
+            baz.setOnClickListener(onClickListener);
+            yja.setOnClickListener(onClickListener);
+            grsz.setOnClickListener(onClickListener);
+            yygj.setOnClickListener(onClickListener);
+            lszs.setOnClickListener(onClickListener);
+            zixun1.setOnClickListener(onClickListener);
         }
 
         return view;
@@ -119,6 +133,14 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
         caja = (TextView) view.findViewById(R.id.cwja);
         zrsa = (TextView) view.findViewById(R.id.zrsa);
         zrja = (TextView) view.findViewById(R.id.zrja);
+        ysa= (TextView) view.findViewById(R.id.ysa);
+        spz= (TextView) view.findViewById(R.id.spz);
+        baz= (TextView) view.findViewById(R.id.baz);
+        yja= (TextView) view.findViewById(R.id.yja);
+        grsz= (TextView) view.findViewById(R.id.grsz);
+        yygj= (TextView) view.findViewById(R.id.yygj);
+        lszs= (TextView) view.findViewById(R.id.lszs);
+        zixun1= (TextView) view.findViewById(R.id.zixun1);
 
         pullToRefreshView.setOnHeaderRefreshListener(this);
         pullToRefreshView.setOnFooterRefreshListener(this);
@@ -211,7 +233,46 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
                     intent.putExtra("case_state",5);
                     startActivity(intent);
                     break;
-
+                case R.id.ysa:
+                    intent = new Intent(getActivity(), MyCaseActivity.class);
+                    intent.putExtra("cc","1");
+                    intent.putExtra("index",0);
+                    startActivity(intent);
+                    break;
+                case R.id.spz:
+                    intent = new Intent(getActivity(), MyCaseActivity.class);
+                    intent.putExtra("cc","1");
+                    intent.putExtra("index",1);
+                    startActivity(intent);
+                    break;
+                case R.id.baz:
+                    intent = new Intent(getActivity(), MyCaseActivity.class);
+                    intent.putExtra("cc","1");
+                    intent.putExtra("index",2);
+                    startActivity(intent);
+                    break;
+                case R.id.yja:
+                    intent = new Intent(getActivity(), MyCaseActivity.class);
+                    intent.putExtra("cc","1");
+                    intent.putExtra("index",3);
+                    startActivity(intent);
+                    break;
+                case R.id.grsz:
+                    intent = new Intent(getActivity(), LsszActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.yygj:
+                    intent = new Intent(getActivity(), WorkActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.lszs:
+                    intent = new Intent(getActivity(), LszsActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.zixun1://跳转到新闻咨询页面
+                    intent = new Intent(getActivity(),PressActivity.class);
+                    startActivity(intent);
+                    break;
             }
         }
     };

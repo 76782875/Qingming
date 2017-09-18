@@ -18,6 +18,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -75,6 +77,7 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
     private String path;
     private Boolean  up=false;//默认false不刷新
     boolean iszw;
+    SimpleDateFormat sdf,sDateFormat;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,21 +93,18 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
         Log.e("===>","zhiwei"+iszw);
 
         //获取日期
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        sDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         createtime = sDateFormat.format(new java.util.Date());
-        Calendar calendar = Calendar.getInstance();
-        int y =calendar.get(Calendar.YEAR);
-        int M = calendar.get(Calendar.MONTH)+1;
-        int d = calendar.get(Calendar.DATE);
-        int h = calendar.get(Calendar.HOUR_OF_DAY);
-        int m = calendar.get(Calendar.MINUTE);
-        int s = calendar.get(Calendar.SECOND);
-        int mi = calendar.get(Calendar.MILLISECOND);
 
-        newwjm = ""+y+M+d+h+m+s+mi;
-
+        sdf = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
+        if(newwjm.equals("")){
+            newwjm = sdf.format(new Date());
+        }else {
+            newwjm = sdf.format(new Date());
+        }
         initView();
         getHttp();
+
     }
 
 
@@ -278,7 +278,7 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
      */
     String hzm;
     String del_flag = "0" ;
-    String newwjm;
+    String newwjm ="";
     String wjm;
     String xzdz;//下载地址
     String createtime;
@@ -296,7 +296,7 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                                 loadingDialog.dismiss();
                                 getHttp();
                                 if(type == Constants.TYPE_SUCCESS){//上传成功返回当前数据源ok
-
+                                    newwjm = sdf.format(new Date());
                                 }else BaseApi.showErrMsg(FilesActivity.this,result);
                             }
                         });
@@ -365,15 +365,7 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
     public void checkPermisson() {
         if (Build.VERSION.SDK_INT >= 23) {
             ActivityCompat.requestPermissions(this,//上下文
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            Manifest.permission.READ_CALENDAR,
-                            Manifest.permission.READ_CALL_LOG,
-                            Manifest.permission.READ_CONTACTS,
-                            Manifest.permission.READ_PHONE_STATE,
-                            Manifest.permission.READ_SMS,
-                            Manifest.permission.RECORD_AUDIO,
-                            Manifest.permission.CAMERA,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE
                     },//权限数组
                     1001);
         }

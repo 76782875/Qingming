@@ -7,9 +7,11 @@ public class BaseUrl {
 
     public final static String baseurl = "http://192.168.188.122/index.php/home/index/";//根地址
 
-    public final static String anhao = "http://192.168.188.122:8080/955tao/mobile/web/getCaseNo?";//查询案号
+    public final static String anhao = "http://192.168.188.122:8080/yunlvsi/mobile/web/getCaseNo?";//查询案号
 
-    public final static String xiaoxi ="http://192.168.188.122:8080/955tao/mobile/web/news?";//消息
+    public final static String xiaoxi =baseurl+"newsxxtz?";//消息
+
+    public final static String zhpng ="http://192.168.188.122:8080/yunlvsi/mobile/web/zhpng?";//转换图片
 
     public final static String lvtxlurl = baseurl+"lvtxl?";//通讯录地址
 
@@ -95,7 +97,11 @@ public class BaseUrl {
 
     public final static String shoufeixq = baseurl+"shoufeixq?";//收费记录
 
+    public final static String grshoufei = baseurl+"grshoufei?";//收费记录（个人收支）
+
     public final static String lsszs = baseurl+"lsszs?";//查询收费记录
+
+    public final static String grszs = baseurl+"grszs?";//查询收费记录(个人)
 
     public final static String xgshoufeixq = baseurl+"xgshoufeixq?";//收费记录
 
@@ -134,4 +140,32 @@ public class BaseUrl {
     public final static String delfp = baseurl+"delfp?";//删除发票
 
     public final static String insert_fp = baseurl+"insert_fp?";//修改发票
+
+    public final static String seal = baseurl+"seal?";//查询公章使用
+
+    public final static String sealshenpi = baseurl+"sealshenpi?";//查询公章审批
+
+    public final static String insertseal = baseurl+"insertseal?";//查询公章审批详情
+
+    public final static String insertsealid = baseurl+"insertsealid?";//查询公章审批详情（根据id查询文件）
+
+    public final static String pnglist = baseurl+"pnglist?";//查询公章图片列表
+
+    public final static String sealah = baseurl+"sealah?";//查询公章审批（案号）
+
+    public final static String addseal = baseurl+"addseal?";//添加公章
+
+    public final static String delseal = baseurl+"delseal?";//删除公章
+
+    public final static String submitseal = baseurl+"submitseal?";//添加公章(上传文件)
+
+    public final static String sealfileid = baseurl+"sealfileid?";//添加公章(上传文件)
+
+    public final static String insertsealfileid = baseurl+"insertsealfileid?";//修改公章(上传文件（修改id,seal_state）)
+
+    public final static String findseal = baseurl+"findseal?";//查询公章
+
+    public final static String saveseal = baseurl+"saveseal?";//上传盖章图片(修改状态)
+
+
 }

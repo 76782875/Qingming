@@ -19,6 +19,7 @@ import com.example.administrator.qingming.R;
 import com.example.administrator.qingming.adapter.FaLvAdapter;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
+import com.example.administrator.qingming.dialog.LoadingDialog;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelFalv;
@@ -56,6 +57,7 @@ public class FaLvActivity extends Activity implements SwipeRefreshLayout.OnRefre
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this);
         list = new ArrayList<>();
         list1 = new ArrayList<>();
         list2 = new ArrayList<>();
@@ -110,7 +112,6 @@ public class FaLvActivity extends Activity implements SwipeRefreshLayout.OnRefre
             @Override
             public void onItemClick(View view, int i) {
                 String cons_content = list2.get(i).getCons_content();
-
                 Intent intent = new Intent(FaLvActivity.this,IntoPressActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("index",2);
@@ -156,10 +157,14 @@ public class FaLvActivity extends Activity implements SwipeRefreshLayout.OnRefre
      * 查询法律列表
      */
     String name;
+    private LoadingDialog loadingDialog;
     private void getcxFalv(){
+        loadingDialog.setLoadingContent("加载中");
+        loadingDialog.show();
         MainApi.getInstance(this).getcxfllApi(cons_type, name, new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
+                loadingDialog.dismiss();
                 if(type == Constants.TYPE_SUCCESS){
                     List<ModelFalv.ResultBean> resultbean1 = GsonUtil.fromJsonList(new Gson(),result,
                             ModelFalv.ResultBean.class);

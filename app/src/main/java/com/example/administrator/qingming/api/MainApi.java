@@ -802,12 +802,33 @@ public class MainApi extends BaseApi {
         getLoad(BaseUrl.shoufeixq, map, callBack);
     }
 
+    /**
+     * 个人收支
+     */
+    public void getgrshoufeiApi(String id, GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", id + "");
+        getLoad(BaseUrl.grshoufei, map, callBack);
+    }
+    /**
+     * 律所收支查询
+     */
     public void getlsszsApi(String id,String start_time,String end_time, GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("company_id", id + "");
         map.put("start_time", start_time + "");
         map.put("end_time", end_time + "");
         getLoad(BaseUrl.lsszs, map, callBack);
+    }
+    /**
+     * 个人收支查询
+     */
+    public void getgrszsApi(String id,String start_time,String end_time, GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("company_id", id + "");
+        map.put("start_time", start_time + "");
+        map.put("end_time", end_time + "");
+        getLoad(BaseUrl.grszs, map, callBack);
     }
 
     /**
@@ -896,7 +917,7 @@ public class MainApi extends BaseApi {
      */
     public void getxiaoxiApi(String accepterId,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
-        map.put("accepterId", accepterId + "");
+        map.put("accepter_id", accepterId + "");
         getLoad(BaseUrl.xiaoxi, map, callBack);
     }
 
@@ -1114,7 +1135,213 @@ public class MainApi extends BaseApi {
      */
     public void getdelfpApi(String id,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
-        map.put("id", id + "");
+        map.put("id", id );
         postLoad(BaseUrl.delfp, map, callBack);
+    }
+
+    /**
+     * 删除公章
+     */
+    public void getdelsealApi(String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id );
+        postLoad(BaseUrl.delseal, map, callBack);
+    }
+
+    /**
+     * 查询公章审批
+     */
+    public void getsealApi(String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", id );
+        getLoad(BaseUrl.seal, map, callBack);
+    }
+
+    public void getsealshenpiApi(String gsid,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("gsid", gsid );
+        getLoad(BaseUrl.sealshenpi, map, callBack);
+    }
+
+    /**
+     * 查询公章审批详情
+     */
+    public void getinsertsealApi(String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        getLoad(BaseUrl.insertseal, map, callBack);
+    }
+
+    public void insertsealidApi(String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        getLoad(BaseUrl.insertsealid, map, callBack);
+    }
+
+    /**
+     * 查询公章审批列表
+     */
+    public void getpnglistApi(String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("files_id", id);
+        getLoad(BaseUrl.pnglist, map, callBack);
+    }
+
+    /**
+     * 查询公章审批（案号）
+     */
+    public void getsealahApi(String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("create_id", id);
+        getLoad(BaseUrl.sealah, map, callBack);
+    }
+
+    /**
+     * 上传文件
+     */
+    public void submitsealApi(String createid,String newwjm,String wjm,String xzdz,String createname,
+                                    String createtime, String gsid,String case_ah,String case_type,String case_ahnumber,
+                                    String del_flag,String path, final GetResultCallBack callBack) {
+        OkHttpClientManager.getUploadDelegate().postAsyn(BaseUrl.submitseal , "file", new File(path),
+                new OkHttpClientManager.Param[]{new OkHttpClientManager.Param("gsid", gsid),
+                        new OkHttpClientManager.Param("newwjm", newwjm),
+                        new OkHttpClientManager.Param("wjm", wjm),
+                        new OkHttpClientManager.Param("xzdz", xzdz),
+                        new OkHttpClientManager.Param("createid", createid),
+                        new OkHttpClientManager.Param("createname", createname),
+                        new OkHttpClientManager.Param("createtime", createtime),
+                        new OkHttpClientManager.Param("case_ah", case_ah),
+                        new OkHttpClientManager.Param("case_type", case_type),
+                        new OkHttpClientManager.Param("case_ahnumber", case_ahnumber),
+                        new OkHttpClientManager.Param("del_flag", del_flag)},
+                new OkHttpClientManager.ResultCallback<String>() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e("onError","============"+request);
+                        callBack.getResult(request.toString(),Constants.TYPE_FAIL);
+                    }
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("onResponse","============"+response);
+                        try {
+                            if(OkHttpClientManager.isParse(response)){
+                                callBack.getResult(response,Constants.TYPE_SUCCESS);
+                            }else {
+                                callBack.getResult(response,Constants.TYPE_FAIL);
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                },mContext);
+    }
+    /**
+     * 添加公章审批
+     */
+    public void postsealApi(String seal_name,String official_seal,String wtr,String create_id,String gsid,
+                                String case_id,String ah_number,String files_id,String create_date,String bzsm,String seal_state,
+                                String lyr,GetResultCallBack callBack){
+        Map<String, String> map = new HashMap<>();
+        map.put("seal_name", seal_name);
+        map.put("official_seal", official_seal);
+        map.put("wtr", wtr);
+        map.put("create_id", create_id);
+        map.put("gsid", gsid);
+        map.put("case_id", case_id);
+        map.put("ah_number", ah_number);
+        map.put("files_id", files_id);
+        map.put("create_date", create_date);
+        map.put("seal_state", seal_state);
+        map.put("lyr", lyr);
+        if(!TextUtils.isEmpty(bzsm)){
+            map.put("bzsm", bzsm);
+        }
+        postLoad(BaseUrl.addseal, map, callBack);
+    }
+
+    /**
+     * 查询公章审批（文件id）
+     */
+    public void getsealfileidApi(String wjm,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("wjm", wjm);
+        getLoad(BaseUrl.sealfileid, map, callBack);
+    }
+
+    /**
+     * 查询公章审批（文件id）
+     */
+    public void insertsealfileidApi(String id,String files_id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("files_id", files_id);
+        postLoad(BaseUrl.insertsealfileid, map, callBack);
+    }
+
+    public void insertsealstateApi(String id,String seal_state,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("seal_state", seal_state);
+        postLoad(BaseUrl.insertsealfileid, map, callBack);
+    }
+
+
+    /**
+     * 转换图片
+     * @param xzdz   下载地址
+     * @param id   文件id
+     * @param sealid  公章id
+     * @param userid
+     * @param callBack
+     */
+    public void zhpngApi(String xzdz,String id,String sealid,String userid,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", id);
+        map.put("xzdz", xzdz);
+        map.put("sealid", sealid);
+        map.put("userid", userid);
+        getLoad(BaseUrl.zhpng, map, callBack);
+    }
+
+    /**
+     * 查找公章
+     * @param id
+     * @param callBack
+     */
+    public void findsealApi(String id,GetResultCallBack callBack) {
+        Map<String, String> map = new HashMap<>();
+        map.put("gsid", id);
+        postLoad(BaseUrl.findseal, map, callBack);
+    }
+
+    /**
+     * 上传文件
+     */
+    public void savesealApi(String id,String create_id,String new_filename,String png_state,String path, final GetResultCallBack callBack) {
+        OkHttpClientManager.getUploadDelegate().postAsyn(BaseUrl.saveseal , "file", new File(path),
+                new OkHttpClientManager.Param[]{new OkHttpClientManager.Param("id", id),
+                        new OkHttpClientManager.Param("create_id", create_id),
+                        new OkHttpClientManager.Param("new_filename", new_filename),
+                        new OkHttpClientManager.Param("png_state", png_state)},
+                new OkHttpClientManager.ResultCallback<String>() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        Log.e("onError","============"+request);
+                        callBack.getResult(request.toString(),Constants.TYPE_FAIL);
+                    }
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("onResponse","============"+response);
+                        try {
+                            if(OkHttpClientManager.isParse(response)){
+                                callBack.getResult(response,Constants.TYPE_SUCCESS);
+                            }else {
+                                callBack.getResult(response,Constants.TYPE_FAIL);
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                },mContext);
     }
 }
