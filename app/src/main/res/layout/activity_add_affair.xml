@@ -23,404 +23,470 @@
             android:textSize="24sp"
             android:textColor="@color/white"/>
     </RelativeLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp">
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="事件类型："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
                     android:id="@+id/affair"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="请选择事件类型"
-                    android:textColor="@color/transparent80"/>
+                    android:textColor="@color/transparent80" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/arraw"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/arraw" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="工作类别："
                     android:textColor="@color/black" />
+
                 <TextView
                     android:id="@+id/work"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="请选择工作类型"
-                    android:textColor="@color/transparent80"/>
+                    android:textColor="@color/transparent80" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/arraw"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/arraw" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="事件名称："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <EditText
                     android:id="@+id/edit_calendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/transparent80"
-                    android:background="@null"/>
+                    android:background="@null"
+                    android:textColorHint="@color/transparent80" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="开始时间："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
                     android:id="@+id/start_time"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="请选择开始时间"
-                    android:textColor="@color/transparent80"/>
+                    android:textColor="@color/transparent80" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/arraw"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/arraw" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="结束时间："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
                     android:id="@+id/finish_time"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="请选择结束时间"
-                    android:textColor="@color/transparent80"/>
+                    android:textColor="@color/transparent80" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/arraw"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/arraw" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="提前提醒："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
                     android:id="@+id/time_tx"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="45分钟"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/arraw"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/arraw" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="事件描述："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:hint="请填写备注"
-                    android:textColorHint="@color/transparent80"
-                    android:background="@drawable/input_box"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/input_box"
                     android:gravity="left"
-                    android:padding="10dp"/>
+                    android:hint="请填写备注"
+                    android:padding="10dp"
+                    android:textColorHint="@color/transparent80" />
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="事件地点："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <EditText
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/cyan"
-                    android:background="@null"/>
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:textColorHint="@color/cyan" />
+
                 <ImageView
                     android:id="@+id/add_adress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/adress"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/adress" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="对委托人公开："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
                     android:id="@+id/gk"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:text="公开"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:background="@null"/>
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="公开"
+                    android:textColor="@color/black" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/arraw"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/arraw" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="相关案件："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:text="请选择"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/cyan"
-                    android:background="@null"/>
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="请选择"
+                    android:textColor="@color/cyan" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/arraw"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/arraw" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="案         号："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:text="自动填充"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/cyan"
-                    android:background="@null"/>
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="自动填充"
+                    android:textColor="@color/cyan" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="委  托  人："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:text="自动填充"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/cyan"
-                    android:background="@null"/>
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="自动填充"
+                    android:textColor="@color/cyan" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="当  事  人："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:text="自动填充"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/cyan"
-                    android:background="@null"/>
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="自动填充"
+                    android:textColor="@color/cyan" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp">
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="主办律师："
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
+
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:text="自动填充"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/cyan"
-                    android:background="@null"/>
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="自动填充"
+                    android:textColor="@color/cyan" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/black"
+                android:layout_margin="10dp"
                 android:alpha="0.3"
-                android:layout_margin="10dp"/>
+                android:background="@color/black" />
+
             <Button
                 android:id="@+id/submit_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="确认提交"
-                android:textSize="28px"
-                android:textColor="@color/white"
-                android:background="@drawable/edit_blue"
                 android:layout_margin="15dp"
-                />
+                android:background="@drawable/edit_blue"
+                android:text="确认提交"
+                android:textColor="@color/white"
+                android:textSize="28px" />
 
         </LinearLayout>
     </ScrollView>

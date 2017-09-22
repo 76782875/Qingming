@@ -124,12 +124,15 @@ public class SealPngActivity extends Activity implements View.OnTouchListener {
                     image1.setVisibility(View.VISIBLE);
                     Glide.with(SealPngActivity.this).load(companyseal).asBitmap().override(120,120).
                             skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).
-                            placeholder(R.mipmap.ic_launcher).fitCenter().into(image1);
+                            fitCenter().into(image1);
                     break;
                 case R.id.cw_seal:
                     image1.setVisibility(View.VISIBLE);
-                    Glide.with(SealPngActivity.this).load(cwseal).asBitmap().override(120,120).skipMemoryCache(true).
-                            diskCacheStrategy(DiskCacheStrategy.NONE).placeholder(R.mipmap.ic_launcher).fitCenter().into(image1);
+                    if(cwseal == null){
+                        Toast.makeText(SealPngActivity.this,"请上传财务公章！",Toast.LENGTH_SHORT).show();
+                    }else {
+                        Glide.with(SealPngActivity.this).load(cwseal).asBitmap().override(120,120).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).fitCenter().into(image1);
+                    }
                     break;
                 case R.id.save:
 //                    imageView.setDrawingCacheEnabled(true);
@@ -178,7 +181,6 @@ public class SealPngActivity extends Activity implements View.OnTouchListener {
                 if (type == Constants.TYPE_SUCCESS) {
                     Intent intent = new Intent(SealPngActivity.this, SealShenPiActivity.class);
                     startActivity(intent);
-                    finish();
                 } else BaseApi.showErrMsg(SealPngActivity.this, result);
             }
         });

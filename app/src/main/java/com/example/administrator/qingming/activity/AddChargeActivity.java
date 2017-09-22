@@ -356,7 +356,6 @@ public class AddChargeActivity extends Activity {
             public void getResult(String result, int type) {
                 if(type == Constants.TYPE_SUCCESS){
                     loading.dismiss();
-                    finish();
                 }else BaseApi.showErrMsg(AddChargeActivity.this,result);
             }
         });

@@ -59,6 +59,12 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
 
 
         initView();
+        getbundle();
+
+    }
+
+    //从上个页面传递的数据
+    private void getbundle(){
         Bundle bundle = getIntent().getExtras();
         glid = bundle.getString("id","");
         ah_number = bundle.getString("ah_number","");
@@ -67,7 +73,6 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
         dfdsr = bundle.getString("dfdsr","");
         ay = bundle.getString("ay","");
         type = bundle.getInt("type");
-        Log.e("=============>",""+type);
         if(type == 1){
             name.setText("日志列表");
             getHttp();
@@ -81,7 +86,12 @@ public class CreateWorkActivity extends Activity implements SwipeRefreshLayout.O
             name.setText("法院开庭列表");
             getFaYuan();
         }
+    }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        getbundle();
+        super.onNewIntent(intent);
     }
 
     private void initView() {

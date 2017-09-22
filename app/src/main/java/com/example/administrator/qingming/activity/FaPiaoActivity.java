@@ -48,6 +48,12 @@ public class FaPiaoActivity extends Activity implements SwipeRefreshLayout.OnRef
         getHttp();
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        getHttp();
+    }
+
     private void initView() {
         list = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.recycle);

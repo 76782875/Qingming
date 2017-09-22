@@ -487,7 +487,6 @@ public class FaYuanActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
                 });
@@ -512,7 +511,6 @@ public class FaYuanActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
                 });
@@ -537,7 +535,6 @@ public class FaYuanActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
                 });
@@ -562,7 +559,6 @@ public class FaYuanActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
                 });
@@ -586,7 +582,6 @@ public class FaYuanActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
                 });
@@ -610,7 +605,6 @@ public class FaYuanActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
                 });
@@ -634,7 +628,6 @@ public class FaYuanActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
                 });
@@ -658,7 +651,6 @@ public class FaYuanActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(FaYuanActivity.this,result);
                     }
                 });
@@ -685,7 +677,6 @@ public class FaYuanActivity extends Activity {
                     intent.putExtra("dfdsr",dfdsr);
                     intent.putExtra("ay",ay);
                     startActivity(intent);
-                    finish();
                 }else BaseApi.showErrMsg(FaYuanActivity.this,result);
             }
         });

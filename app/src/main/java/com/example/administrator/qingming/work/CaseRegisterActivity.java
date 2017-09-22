@@ -798,7 +798,9 @@ public class CaseRegisterActivity extends Activity {
                 if(type== Constants.TYPE_SUCCESS){
                     loadingDialog.dismiss();
                     Toast.makeText(CaseRegisterActivity.this,"上传成功",Toast.LENGTH_SHORT).show();
-                    finish();
+                    Intent intent = new Intent(CaseRegisterActivity.this,MyCaseActivity.class);
+                    intent.putExtra("cc",cc);
+                    startActivity(intent);
                 }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
             }
         });
@@ -817,7 +819,6 @@ public class CaseRegisterActivity extends Activity {
                             Intent intent = new Intent(CaseRegisterActivity.this,MyCaseActivity.class);
                             intent.putExtra("cc",cc);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(CaseRegisterActivity.this,result);
                     }
                 });

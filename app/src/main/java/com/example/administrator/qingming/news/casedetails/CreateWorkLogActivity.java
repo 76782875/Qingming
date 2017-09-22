@@ -52,7 +52,6 @@ public class CreateWorkLogActivity extends Activity {
     private Button submit;
     private LoadingDialog loadingDialog;
     private String ah_number,wtr,dfdsr,ay,dsr;
-
     private int type;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -259,12 +258,12 @@ public class CreateWorkLogActivity extends Activity {
                 if(type == Constants.TYPE_SUCCESS){
                     loadingDialog.dismiss();
                     Intent intent = new Intent(CreateWorkLogActivity.this,CreateWorkActivity.class);
-                    intent.putExtra("id",glid);
-                    intent.putExtra("ah_number",ah_number);
-                    intent.putExtra("wtr",wtr);
-                    intent.putExtra("dfdsr",dfdsr);
-                    intent.putExtra("ay",ay);
-                    intent.putExtra("type",1);
+//                    intent.putExtra("id",glid);
+//                    intent.putExtra("ah_number",ah_number);
+//                    intent.putExtra("wtr",wtr);
+//                    intent.putExtra("dfdsr",dfdsr);
+//                    intent.putExtra("ay",ay);
+//                    intent.putExtra("type",1);
                     startActivity(intent);
                 }else BaseApi.showErrMsg(CreateWorkLogActivity.this,result);
             }
@@ -278,7 +277,5 @@ public class CreateWorkLogActivity extends Activity {
         builder= new AlertDialog.Builder(CreateWorkLogActivity.this,AlertDialog.THEME_HOLO_LIGHT);
         builder.setTitle(title);
     }
-
-
 
 }

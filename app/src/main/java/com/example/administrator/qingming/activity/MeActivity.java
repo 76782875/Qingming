@@ -47,8 +47,8 @@ public class MeActivity extends Activity implements View.OnClickListener{
     private Bitmap head;//头像Bitmap
     private static String path="/sdcard/myHead/";//sd路径
     private ImageView backbtn;
-    private TextView submitbtn,birth;
-    private EditText email,phone_num,gender,consignor,officename;
+    private TextView submitbtn,birth,officename;
+    private EditText email,phone_num,gender,consignor;
     String myofficename,myconsignor,myemail,myphone_num,bz;
     int mYear,mMonth,mDay;
     private LoadingDialog loadingDialog;
@@ -90,7 +90,7 @@ public class MeActivity extends Activity implements View.OnClickListener{
         email = (EditText) findViewById(R.id.weight);
         phone_num = (EditText) findViewById(R.id.phone_num);
         consignor = (EditText) findViewById(R.id.consignor);
-        officename = (EditText) findViewById(R.id.officename);
+        officename = (TextView) findViewById(R.id.officename);
 
         imageView.setOnClickListener(this);
         backbtn.setOnClickListener(this);

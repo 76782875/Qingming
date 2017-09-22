@@ -17,11 +17,9 @@ import android.widget.Toast;
 
 import com.example.administrator.qingming.HomePageBottomActivity;
 import com.example.administrator.qingming.R;
-import com.example.administrator.qingming.RegsterActivity;
 import com.example.administrator.qingming.api.BaseApi;
 import com.example.administrator.qingming.api.MainApi;
 import com.example.administrator.qingming.dialog.LoadingDialog;
-import com.example.administrator.qingming.fragment.HomePageFragment;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.model.ModelDate;
@@ -32,9 +30,6 @@ import com.squareup.okhttp.Call;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -210,7 +205,6 @@ public class MainActivity extends Activity {
                     zhiwei = resultBeen.get(0).getName();
                     Intent intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
                     startActivity(intent);
-                    finish();
                     Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                     Log.e("main=====",""+zhiwei);
                     if(zhiwei.equals("主任")){

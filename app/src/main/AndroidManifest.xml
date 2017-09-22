@@ -42,28 +42,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.administrator.qingming.HomePageBottomActivity"/>
+        <activity android:name="com.example.administrator.qingming.HomePageBottomActivity" android:launchMode="singleTop"/>
         <activity android:name=".activity.GuideActivity"/>
-        <activity android:name=".activity.MainActivity" android:windowSoftInputMode="adjustPan"  />
+        <activity android:name=".activity.MainActivity"/>
         <activity android:name=".contacts.CustomerAddressActivity"/><!--客户通讯录-->
         <activity android:name=".news.casedetails.CaseDetailsActivity"/><!--案件详情-->
         <activity android:name=".news.casedetails.CaseIntroduction"/><!--案件简介-->
         <activity android:name=".news.casedetails.CustomerDetailsActivity"/><!--客户详情-->
         <activity android:name=".news.casedetails.AddConsignorActivity"/><!--添加委托人页面-->
-        <activity android:name=".RegsterActivity"/><!--注册页面-->
         <activity android:name=".contacts.ContactDetailsActivity"/><!--联系人详情-->
-        <activity android:name=".wuyong.CalendarActivity"/><!--日历页面-->
-        <activity android:name=".wuyong.AddAffairActivity"/><!--新增事件页面-->
         <activity android:name=".work.ConflictofInterestActivity"/><!--利益冲突预测页面-->
         <activity android:name=".work.AddCaseActivity"/><!--新增案件页面-->
         <activity android:name=".work.CaseRegisterActivity"/><!--案件登记页面-->
         <activity android:name=".work.CaseManageActivity"/><!--案件管理页面-->
-        <activity android:name=".wuyong.WorkLogActivity"/><!--总工作日志页面-->
         <activity android:name=".news.casedetails.CreateWorkLogActivity"/><!--创建工作日志页面-->
-        <activity android:name=".news.casedetails.CreateWorkActivity"/><!--工作日志页面-->
-        <activity android:name=".activity.MyCaseActivity"/><!--我的案件页面-->
+        <activity android:name=".activity.AddChargeActivity"/><!--添加收款信息页面-->
+        <activity android:name=".activity.ZhenChaActivity" /><!--添加侦查机关页面-->
+        <activity android:name=".activity.JianChaActivity"/><!--添加检察机关页面-->
+        <activity android:name=".activity.FaYuanActivity"/><!--添加法院页面-->
+        <activity android:name=".news.casedetails.CreateWorkActivity" android:launchMode="singleTask"/><!--工作日志页面-->
+        <activity android:name=".activity.MyCaseActivity" android:launchMode="singleTask"/><!--我的案件页面-->
         <activity android:name=".work.ExamineActivity"/><!--进入审批页面-->
-        <activity android:name=".wuyong.HomePageActivity"/><!--主页-->
+
+        <!--<activity android:name=".wuyong.RegsterActivity"/>&lt;!&ndash;注册页面&ndash;&gt;-->
+        <!--<activity android:name=".wuyong.CalendarActivity"/>&lt;!&ndash;日历页面&ndash;&gt;-->
+        <!--<activity android:name=".wuyong.AddAffairActivity" />&lt;!&ndash;新增事件页面&ndash;&gt;-->
+        <!--<activity android:name=".wuyong.WorkLogActivity"/>&lt;!&ndash;总工作日志页面&ndash;&gt;-->
+        <!--<activity android:name=".wuyong.HomePageActivity"/>&lt;!&ndash;主页&ndash;&gt;-->
+
         <activity android:name=".activity.NewsActivity"/><!--消息页面-->
         <activity android:name=".activity.MeActivity"/><!--本人信息页面-->
         <activity android:name=".activity.FilesActivity"/><!--文件页面-->
@@ -75,13 +81,9 @@
         <activity android:name=".activity.ChangeLvshiActivity"/><!--进入变更律师页面-->
         <activity android:name=".activity.MapActivity"/><!--签到页面-->
         <activity android:name=".activity.ChargeListActivity"/><!--收款信息页面-->
-        <activity android:name=".activity.AddChargeActivity"/><!--添加收款信息页面-->
-        <activity android:name=".activity.ZhenChaActivity"/>
-        <activity android:name=".activity.JianChaActivity"/>
-        <activity android:name=".activity.FaYuanActivity"/>
         <activity android:name=".activity.CaseShenPiActivity"/>
         <activity android:name=".activity.KaoQinActivity"/>
-        <activity android:name=".activity.FaPiaoActivity"/>
+        <activity android:name=".activity.FaPiaoActivity" android:launchMode="singleTask"/>
         <activity android:name=".activity.ShoufeiActivity"/>
         <activity android:name=".activity.LszsActivity"/><!--律师助手页面-->
         <activity android:name=".activity.FaLvActivity"/>
@@ -95,7 +97,7 @@
         <activity android:name=".activity.SealApplyForDetailsPngListActivity"/>
         <activity android:name=".activity.SealPngActivity"/>
         <activity android:name=".activity.SealApplyForAddActivity"/>
-        <activity android:name=".activity.SealShenPiActivity"/><!--公章审批页面-->
+        <activity android:name=".activity.SealShenPiActivity" android:launchMode="singleTask"/><!--公章审批页面-->
         <activity android:name=".activity.SealShenPiDetailsActivity"/>
 
         <!--百度定位-->

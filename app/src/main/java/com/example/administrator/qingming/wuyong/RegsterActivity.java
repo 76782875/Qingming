@@ -1,4 +1,4 @@
-package com.example.administrator.qingming;
+package com.example.administrator.qingming.wuyong;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.administrator.qingming.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -475,7 +475,6 @@ public class AddFaPiaoActivity extends Activity {
                         if(type == Constants.TYPE_SUCCESS){
                             Intent intent = new Intent(AddFaPiaoActivity.this,FaPiaoActivity.class);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(AddFaPiaoActivity.this,result);
                     }
                 });
@@ -507,7 +506,6 @@ public class AddFaPiaoActivity extends Activity {
                         if(type == Constants.TYPE_SUCCESS){
                             Intent intent = new Intent(AddFaPiaoActivity.this,FaPiaoActivity.class);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(AddFaPiaoActivity.this,result);
                     }
                 });

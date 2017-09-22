@@ -54,6 +54,12 @@ public class SealShenPiActivity extends Activity implements SwipeRefreshLayout.O
         recycle.setLayoutManager(layoutManager);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        search();
+    }
+
     private void initView() {
         list = new ArrayList<>();
         back_btn = (ImageView) findViewById(R.id.back_btn);

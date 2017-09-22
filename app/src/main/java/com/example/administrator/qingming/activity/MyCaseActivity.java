@@ -59,6 +59,16 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
         company_id = sharedPreferences.getString("cid","");
 
         initView();
+        getbundle();
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        //设置垂直方向
+        layoutManager.setOrientation(OrientationHelper.VERTICAL);
+        // 设置布局管理器
+        recyclerView.setLayoutManager(layoutManager);
+}
+
+    private void getbundle(){
         Bundle bundle = getIntent().getExtras();
         cc = bundle.getString("cc",""); //获取上个页面传递的值，
         if(cc.equals("1")){
@@ -107,15 +117,13 @@ public class MyCaseActivity extends Activity implements SwipeRefreshLayout.OnRef
             line3.setVisibility(View.INVISIBLE);
             line1.setVisibility(View.INVISIBLE);
         }
-        Log.e("传递过来的index值：",""+index);
+    }
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        //设置垂直方向
-        layoutManager.setOrientation(OrientationHelper.VERTICAL);
-        // 设置布局管理器
-        recyclerView.setLayoutManager(layoutManager);
-
-}
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        getbundle();
+    }
 
     private void initView() {
         list = new ArrayList<>();

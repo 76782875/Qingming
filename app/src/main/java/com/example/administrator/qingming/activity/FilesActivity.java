@@ -332,24 +332,19 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
         switch (v.getId()){
             case R.id.del:
                 if(fileBaseAdapater.getadapterTag() == 1){
-                    Log.i("=====》","你点击了会所文件删除");
                     id = list1.get(position).getId();
                     xzdz = list1.get(position).getXzdz();
 
                 }else {
-                    Log.i("=====》","你点击了个人文件删除");
                     id = list2.get((Integer) v.getTag()).getId();
                 }
-                Log.i("id==========>",""+id);
                 getHttps(fileBaseAdapater.getadapterTag(),position);
                 break;
             case R.id.download:
                 if(fileBaseAdapater.getadapterTag() == 1){
                     downloadUrl =  "http://192.168.188.122/Public/Uploads/"+list1.get(position).getXzdz();
-                    Log.e("==>","downloadUrl"+downloadUrl);
                     xzdz = list1.get(position).getXzdz();
                 }else {
-                    Log.i("=====》","你点击了个人文件下载");
                     downloadUrl =  "http://192.168.188.122/Public/Uploads/"+list1.get(position).getXzdz();
                     xzdz = list2.get(position).getXzdz();
                 }

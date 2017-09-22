@@ -307,7 +307,6 @@ public class JianChaActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(JianChaActivity.this,result);
                     }
                 });
@@ -332,7 +331,6 @@ public class JianChaActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(JianChaActivity.this,result);
                     }
                 });
@@ -359,7 +357,6 @@ public class JianChaActivity extends Activity {
                     intent.putExtra("dfdsr",dfdsr);
                     intent.putExtra("ay",ay);
                     startActivity(intent);
-                    finish();
                 }else BaseApi.showErrMsg(JianChaActivity.this,result);
             }
         });

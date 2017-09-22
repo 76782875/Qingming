@@ -283,7 +283,6 @@ public class CaseDetailsActivity extends Activity{
                     bundle.putInt("ajlx",ajlx);
 
                     intent.putExtras(bundle);
-                    Log.e("ajlx====》",""+ajlx);
                     startActivity(intent);
                     break;
 //                case R.id.xuigai://跳转到案件简介页面

@@ -236,24 +236,48 @@ public class MainApi extends BaseApi {
         map.put("ah_number",ah_number );
         map.put("sarq",sarq );
         map.put("ay",ay );
-        map.put("bzsm",remarks );
         map.put("wtr",wtr );
-        map.put("tel",lxdh );
         map.put("dsr",dsr );
         map.put("dfdsr",dfdsr );
-        map.put("slbm",slbm );
-        map.put("ssbd",ssbd );
         map.put("sffs",sffs );
         map.put("dlf",dlf );
         map.put("jzf",zjf );
-        map.put("ssjd",ssjd );
-        map.put("ssdw",ssdw );
-        map.put("badq",badq );
-        map.put("police",police );
-        map.put("procuratorate",mprocuratorate );
-        map.put("court",mcourt );
-        map.put("detention",detention );
         map.put("create_date",create_date );
+        if(!TextUtils.isEmpty(remarks)){
+            map.put("bzsm",remarks );
+        }
+        if(!TextUtils.isEmpty(lxdh)){
+            map.put("tel",lxdh );
+        }
+        if(!TextUtils.isEmpty(slbm)){
+            map.put("slbm",slbm );
+        }
+        if(!TextUtils.isEmpty(ssbd)){
+            map.put("ssbd",ssbd );
+        }
+        if(!TextUtils.isEmpty(ssjd)){
+            map.put("ssjd",ssjd );
+        }
+        if(!TextUtils.isEmpty(ssdw)){
+            map.put("ssdw",ssdw );
+        }
+        if(!TextUtils.isEmpty(badq)){
+            map.put("badq",badq );
+        }
+        if(!TextUtils.isEmpty(police)){
+            map.put("police",police );
+        }
+        if(!TextUtils.isEmpty(mprocuratorate)){
+            map.put("procuratorate",mprocuratorate );
+        }
+        if(!TextUtils.isEmpty(mcourt)){
+            map.put("court",mcourt );
+        }
+        if(!TextUtils.isEmpty(detention)){
+            map.put("detention",detention );
+        }
+
+
         postLoad(BaseUrl.postcase, map, callBack);
     }
 

@@ -32,7 +32,7 @@
             android:src="@mipmap/add"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:padding="5dp"/>
+            />
     </RelativeLayout>
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"

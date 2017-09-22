@@ -474,7 +474,6 @@ public class ZhenChaActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(ZhenChaActivity.this,result);
                     }
                 });
@@ -502,7 +501,6 @@ public class ZhenChaActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(ZhenChaActivity.this,result);
                     }
                 });
@@ -531,7 +529,6 @@ public class ZhenChaActivity extends Activity {
                             intent.putExtra("dfdsr",dfdsr);
                             intent.putExtra("ay",ay);
                             startActivity(intent);
-                            finish();
                         }else BaseApi.showErrMsg(ZhenChaActivity.this,result);
                     }
                 });
