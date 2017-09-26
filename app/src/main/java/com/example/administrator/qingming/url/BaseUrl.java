@@ -5,13 +5,13 @@ package com.example.administrator.qingming.url;
  */
 public class BaseUrl {
 
-    public final static String baseurl = "http://192.168.188.122/index.php/home/index/";//根地址
+    public final static String baseurl = "http://211.149.157.223:8080/index.php/Home/index/";//根地址
 
-    public final static String anhao = "http://192.168.188.122:8080/yunlvsi/mobile/web/getCaseNo?";//查询案号
+    public final static String anhao = "http://yunlvsi.cn/qm/mobile/web/saveCaseNo?";//查询案号
 
     public final static String xiaoxi =baseurl+"newsxxtz?";//消息
 
-    public final static String zhpng ="http://192.168.188.122:8080/yunlvsi/mobile/web/zhpng?";//转换图片
+    public final static String zhpng ="http://yunlvsi.cn/qm/mobile/web/zhpng?";//转换图片
 
     public final static String lvtxlurl = baseurl+"lvtxl?";//通讯录地址
 

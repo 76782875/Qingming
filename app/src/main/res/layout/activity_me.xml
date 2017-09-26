@@ -23,18 +23,19 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:orientation="horizontal"
-        android:background="@color/bluedark">
+        android:background="@color/cyan">
         <com.example.administrator.qingming.CircleImageView
             android:id="@+id/head_image"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:src="@mipmap/ger"/>
         <TextView
+            android:id="@+id/me_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hyperion-零售商"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"/>
     </LinearLayout>
@@ -208,30 +209,37 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
 
-    <TextView
-        android:id="@+id/submit_btn"
+    <LinearLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:background="@drawable/edit_blue"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="提交"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="bottom">
+        <TextView
+            android:id="@+id/submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/edit_blue"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tuichu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="退出登录"
+            android:textSize="16sp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/white"
+            android:background="@drawable/edit_blue"
+            android:gravity="center"
+            android:padding="10dp"
+            />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tuichu_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="退出登录"
-        android:textSize="16sp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:textColor="@color/white"
-        android:background="@drawable/edit_blue"
-        android:gravity="center"
-        android:padding="10dp"
-        />
 </com.example.administrator.qingming.qinminutils.MyLinearLayout>

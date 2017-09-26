@@ -46,7 +46,7 @@ import static android.content.Context.ACTIVITY_SERVICE;
 public class MeFragment extends Fragment {
     private List<PersonalDataModel.ResultBean> list1;
     private EditText consignor,weight,phone_num,gender;
-    private TextView officename,submit_btn,tuichu_btn;
+    private TextView officename,submit_btn,tuichu_btn,me_name;
     String myofficename,myconsignor,myemail,myphone_num,bz;
     View view, mRoot;
     private LoadingDialog loadingDialog;
@@ -94,6 +94,7 @@ public class MeFragment extends Fragment {
         gender= (EditText) view.findViewById(R.id.gender);
         submit_btn= (TextView) view.findViewById(R.id.submit_btn);
         tuichu_btn = (TextView) view.findViewById(R.id.tuichu_btn);
+        me_name = (TextView) view.findViewById(R.id.me_name);
 
         submit_btn.setOnClickListener(onclick);
         tuichu_btn.setOnClickListener(onclick);
@@ -205,6 +206,7 @@ public class MeFragment extends Fragment {
                     remarks = list1.get(0).getRemarks();
 
                     consignor.setText(name1);
+                    me_name.setText(name1);
                     if(!TextUtils.isEmpty(consignor.getText())){
                         consignor.setTextColor(getResources().getColor(R.color.black));
                     }

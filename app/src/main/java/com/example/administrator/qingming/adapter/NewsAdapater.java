@@ -56,12 +56,12 @@ public class NewsAdapater extends BaseAdapter {
         }
 
         //将时间戳转换成时间
-        SimpleDateFormat sdr = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
-        @SuppressWarnings("unused")
-        long lcc = Long.valueOf(list.get(position).getCreateDate());
-        String times = sdr.format(new Date(lcc));
+//        SimpleDateFormat sdr = new SimpleDateFormat("yyyy年MM月dd日  HH:mm");
+//        @SuppressWarnings("unused")
+//        long lcc = Long.valueOf(list.get(position).getCreateDate());
+//        String times = sdr.format(new Date(lcc));
 
-        viewHolder.news_time.setText(times);
+        viewHolder.news_time.setText(list.get(position).getCreateDate());
         viewHolder.client.setText(list.get(position).getTheme());
         viewHolder.case_no.setText(list.get(position).getContent());
         return convertView;

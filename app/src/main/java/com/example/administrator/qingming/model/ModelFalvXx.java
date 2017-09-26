@@ -83,6 +83,15 @@ public class ModelFalvXx {
         private String ay;
         private String dfdsr;
         private String glid;
+        private String createdate;
+
+        public String getCreatedate() {
+            return createdate;
+        }
+
+        public void setCreatedate(String createdate) {
+            this.createdate = createdate;
+        }
 
         public String getGlid() {
             return glid;

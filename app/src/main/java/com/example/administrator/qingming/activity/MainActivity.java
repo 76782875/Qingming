@@ -55,6 +55,7 @@ public class MainActivity extends Activity {
 
         initview();
     }
+
     //找到控件，设置点击事件
     private void initview() {
         loadingDialog = new LoadingDialog(this);
@@ -162,7 +163,7 @@ public class MainActivity extends Activity {
     public void getString() throws IOException {
         //1 创建OkHttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient();
-        String url ="http://192.168.188.122:8080/yunlvsi/mobile/web/login?";
+        String url ="http://yunlvsi.cn/qm/mobile/web/login?";
         //2 创建Request对象
         Request request = new Request.Builder().get().url(url+"username="+phone+"&password="+password).build();
         //3 创建回调对象

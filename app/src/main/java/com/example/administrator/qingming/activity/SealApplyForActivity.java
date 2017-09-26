@@ -60,6 +60,12 @@ public class SealApplyForActivity extends Activity implements View.OnClickListen
         recyclerView.setLayoutManager(layoutManager);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        search();
+    }
+
     private void initView() {
         loadingDialog = new LoadingDialog(this);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(swipe);
@@ -137,6 +143,7 @@ public class SealApplyForActivity extends Activity implements View.OnClickListen
                             ModelSealApplyFor.ResultBean.class);
                     list.clear();
                     list.addAll(resultbean);
+                    Log.e("=====",""+list.size());
 
                     sealApply.notifyDataSetChanged();
                 }else BaseApi.showErrMsg(SealApplyForActivity.this,result);

@@ -76,13 +76,17 @@ public class SealShenPiAdapter extends RecyclerView.Adapter<SealShenPiAdapter.Vi
         if(resultBean.getSeal_state().equals("1")){
             holder.item_state.setText("审批中");
             holder.search.setVisibility(View.GONE);
+            holder.insert.setVisibility(View.VISIBLE);
         }else if(resultBean.getSeal_state().equals("2")){
-            holder.insert.setVisibility(View.INVISIBLE);
             holder.item_state.setText("审批通过");
+            holder.search.setVisibility(View.VISIBLE);
+            holder.insert.setVisibility(View.INVISIBLE);
         }else if(resultBean.getSeal_state().equals("3")){
             holder.item_state.setText("审批未通过");
             holder.insert.setVisibility(View.INVISIBLE);
+            holder.search.setVisibility(View.VISIBLE);
         }
+
         holder.insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

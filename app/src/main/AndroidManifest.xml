@@ -92,7 +92,7 @@
         <activity android:name=".activity.LsfjsActivity"/>
         <activity android:name=".activity.SsfJsActivity"/>
         <activity android:name=".activity.AddFaPiaoActivity"/><!--发票详情页面-->
-        <activity android:name=".activity.SealApplyForActivity"/><!--公章申请页面-->
+        <activity android:name=".activity.SealApplyForActivity" android:launchMode="singleTask"/><!--公章申请页面-->
         <activity android:name=".activity.SealApplyForDetailsActivity"/><!--公章申请修改页面-->
         <activity android:name=".activity.SealApplyForDetailsPngListActivity"/>
         <activity android:name=".activity.SealPngActivity"/>
@@ -107,6 +107,22 @@
         </service>
         <meta-data android:name="com.baidu.lbsapi.API_KEY"
             android:value="TgH2lpazSrePfGhk7ftmBUdnsvyYS56T"/>  <!--key:开发者申请的Key-->
+
+        <!--bugly-->
+        <!--<activity-->
+            <!--android:name="com.tencent.bugly.beta.ui.BetaActivity"-->
+            <!--android:configChanges="keyboardHidden|orientation|screenSize|locale"-->
+            <!--android:theme="@android:style/Theme.Translucent" />-->
+
+        <!--<provider-->
+            <!--android:name="android.support.v4.content.FileProvider"-->
+            <!--android:authorities="${applicationId}.fileProvider"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/provider_paths"/>-->
+        <!--</provider>-->
     </application>
 
 </manifest>

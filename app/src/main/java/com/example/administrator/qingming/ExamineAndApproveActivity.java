@@ -33,7 +33,7 @@ import java.util.List;
 
 public class ExamineAndApproveActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener{
     private ImageView backbtn;
-    private TextView examine2,examine3;
+    private TextView examine2,examine3,none;
     private View examine_line1,examine_line2;
     private List<MyCaseModel.ResultBean> list;
     private List<MyCaseModel.ResultBean> list1;
@@ -87,6 +87,7 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
 
 
     private void initView() {
+        none = (TextView) findViewById(R.id.none);
         loadingDialog = new LoadingDialog(this);
         list = new ArrayList<>();
         list1 = new ArrayList<>();
@@ -105,6 +106,7 @@ public class ExamineAndApproveActivity extends Activity implements SwipeRefreshL
         examine3.setOnClickListener(onClickListener);
         shenPiAdapter = new ShenPiAdapter(ExamineAndApproveActivity.this,list);
         mlistview.setAdapter(shenPiAdapter);
+        mlistview.setEmptyView(none);
         mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {

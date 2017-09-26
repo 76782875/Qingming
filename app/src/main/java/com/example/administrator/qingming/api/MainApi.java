@@ -881,10 +881,11 @@ public class MainApi extends BaseApi {
     /**
      * 案号
      */
-    public void getanhaoApi(String company_id,int ajlx,GetResultCallBack callBack) {
+    public void getanhaoApi(String company_id,int ajlx,String ssjd,GetResultCallBack callBack) {
         Map<String, String> map = new HashMap<>();
         map.put("companyId", company_id + "");
         map.put("ajlx", ajlx + "");
+        map.put("ssjd", ssjd);
         postLoad(BaseUrl.anhao, map, callBack);
     }
 

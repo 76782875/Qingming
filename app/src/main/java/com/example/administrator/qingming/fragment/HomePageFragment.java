@@ -216,21 +216,25 @@ public class HomePageFragment extends Fragment implements PullToRefreshView.OnHe
                 case R.id.cwsa://跳转到财务收案页面
                     intent = new Intent(getActivity(),ExamineAndApproveActivity.class);
                     intent.putExtra("case_state",3);
+                    intent.putExtra("index",1);
                     startActivity(intent);
                     break;
                 case R.id.cwja://跳转到财务结案页面
                     intent = new Intent(getActivity(),ExamineAndApproveActivity.class);
                     intent.putExtra("case_state",6);
+                    intent.putExtra("index",2);
                     startActivity(intent);
                     break;
                 case R.id.zrsa://跳转到主任收案页面
                     intent = new Intent(getActivity(),ExamineAndApproveActivity.class);
                     intent.putExtra("case_state",2);
+                    intent.putExtra("index",3);
                     startActivity(intent);
                     break;
                 case R.id.zrja://跳转到主任结案页面
                     intent = new Intent(getActivity(),ExamineAndApproveActivity.class);
                     intent.putExtra("case_state",5);
+                    intent.putExtra("index",4);
                     startActivity(intent);
                     break;
                 case R.id.ysa:

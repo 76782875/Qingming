@@ -72,4 +72,5 @@ public class ShenPiAdapter extends BaseAdapter {
         TextView adversary;
         TextView case_dsr;
     }
+
 }

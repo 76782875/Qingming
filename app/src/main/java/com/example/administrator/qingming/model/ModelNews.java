@@ -58,7 +58,7 @@ public class ModelNews {
         private int id;
         private String theme;
         private String content;
-        private long createDate;
+        private String create_date;
         private String companyId;
         private String createId;
         private String createName;
@@ -89,12 +89,12 @@ public class ModelNews {
             this.content = content;
         }
 
-        public long getCreateDate() {
-            return createDate;
+        public String getCreateDate() {
+            return create_date;
         }
 
-        public void setCreateDate(long createDate) {
-            this.createDate = createDate;
+        public void setCreateDate(String createDate) {
+            this.create_date = createDate;
         }
 
         public String getCompanyId() {

@@ -219,16 +219,10 @@ public class CaseRegisterActivity extends Activity {
 
             if (ajlx == 2) {
                 if (ssjd.equals("0")) {
-                    lawsuit.setText("侦查阶段");
+                    lawsuit.setText("初审");
                 } else if (ssjd.equals("1")) {
-                    lawsuit.setText("审查起诉");
+                    lawsuit.setText("二审");
                 } else if (ssjd.equals("2")) {
-                    lawsuit.setText("一审审理");
-                } else if (ssjd.equals("3")) {
-                    lawsuit.setText("二审审理");
-                } else if (ssjd.equals("4")) {
-                    lawsuit.setText("死刑复核");
-                } else if (ssjd.equals("5")) {
                     lawsuit.setText("再审");
                 }
 
@@ -852,7 +846,7 @@ public class CaseRegisterActivity extends Activity {
      * 查询案号（有则+1，无则创建）
      */
     private void getHttp(){
-        MainApi.getInstance(this).getanhaoApi(cid, ajlx,new GetResultCallBack() {
+        MainApi.getInstance(this).getanhaoApi(cid, ajlx,ssjd,new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 if(type== Constants.TYPE_SUCCESS){

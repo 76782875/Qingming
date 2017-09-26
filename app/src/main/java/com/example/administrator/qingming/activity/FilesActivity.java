@@ -334,7 +334,6 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                 if(fileBaseAdapater.getadapterTag() == 1){
                     id = list1.get(position).getId();
                     xzdz = list1.get(position).getXzdz();
-
                 }else {
                     id = list2.get((Integer) v.getTag()).getId();
                 }
@@ -342,10 +341,10 @@ public class FilesActivity extends Activity implements SwipeRefreshLayout.OnRefr
                 break;
             case R.id.download:
                 if(fileBaseAdapater.getadapterTag() == 1){
-                    downloadUrl =  "http://192.168.188.122/Public/Uploads/"+list1.get(position).getXzdz();
+                    downloadUrl =  "http://211.149.157.223:8080/Public/Uploads/"+list1.get(position).getXzdz();
                     xzdz = list1.get(position).getXzdz();
                 }else {
-                    downloadUrl =  "http://192.168.188.122/Public/Uploads/"+list1.get(position).getXzdz();
+                    downloadUrl =  "http://211.149.157.223:8080/Public/Uploads/"+list1.get(position).getXzdz();
                     xzdz = list2.get(position).getXzdz();
                 }
                 downfile();

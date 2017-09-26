@@ -2,6 +2,7 @@ package com.example.administrator.qingming.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ public class SealApplyForAdapter extends RecyclerView.Adapter<SealApplyForAdapte
         holder.item_ah.setText(resultBean.getAh_number());
         holder.item_person.setText(resultBean.getLyr());
         holder.item_wtr.setText(resultBean.getSealwtr());
+        holder.item_time.setText(resultBean.getCreate_date().substring(0,10));//截取年月日
 
         //用印事项(1：公函；2：介绍信；3：律师函；4：委托代理合同；5：其他；6：授权委托书；7：收案审批表；8：律师会见介绍信)
         if(resultBean.getOfficial_seal().equals("1")){
@@ -69,17 +71,20 @@ public class SealApplyForAdapter extends RecyclerView.Adapter<SealApplyForAdapte
             holder.item_yysx.setText("律师会见介绍信");
         }
 
-        holder.item_time.setText(resultBean.getCreate_date().substring(0,10));
         //审批（1、审批中；2、审批通过；3、审批未通过）
         if(resultBean.getSeal_state().equals("1")){
             holder.item_state.setText("审批中");
             holder.search.setVisibility(View.GONE);
+            holder.del.setVisibility(View.VISIBLE);
+            holder.insert.setVisibility(View.VISIBLE);
         }else if(resultBean.getSeal_state().equals("2")){
+            holder.item_state.setText("审批通过");
+            holder.search.setVisibility(View.VISIBLE);
             holder.del.setVisibility(View.INVISIBLE);
             holder.insert.setVisibility(View.INVISIBLE);
-            holder.item_state.setText("审批通过");
         }else if(resultBean.getSeal_state().equals("3")){
             holder.item_state.setText("审批未通过");
+            holder.search.setVisibility(View.VISIBLE);
             holder.del.setVisibility(View.INVISIBLE);
             holder.insert.setVisibility(View.INVISIBLE);
         }
@@ -107,6 +112,7 @@ public class SealApplyForAdapter extends RecyclerView.Adapter<SealApplyForAdapte
                 mOnItemClickListener.onItemClick(v,pos);
             }
         });
+
     }
 
     @Override
@@ -131,7 +137,6 @@ public class SealApplyForAdapter extends RecyclerView.Adapter<SealApplyForAdapte
             del = (TextView) itemView.findViewById(R.id.del);
             insert = (TextView) itemView.findViewById(R.id.insert);
             search = (TextView) itemView.findViewById(R.id.search);
-
         }
     }
 }

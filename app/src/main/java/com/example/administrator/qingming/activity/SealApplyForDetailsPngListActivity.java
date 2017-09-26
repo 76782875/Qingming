@@ -73,7 +73,6 @@ public class SealApplyForDetailsPngListActivity extends Activity {
                 Intent intent;
                 switch (view.getId()){
                     case R.id.look:
-                        //  http://yunlvsi.cn/files/b306900362b54ac78d9a987db793785b/png/2017072815244514_1.png
                         intent  = new Intent(SealApplyForDetailsPngListActivity.this,SealPngActivity.class);
                         intent.putExtra("dz",list.get(i).getPngdz());
                         intent.putExtra("index",1);
@@ -91,7 +90,6 @@ public class SealApplyForDetailsPngListActivity extends Activity {
                         startActivity(intent);
                         break;
                     case R.id.seal:
-                        //  http://yunlvsi.cn/files/b306900362b54ac78d9a987db793785b/png/2017072815244514_1.png
                         intent  = new Intent(SealApplyForDetailsPngListActivity.this,SealPngActivity.class);
                         intent.putExtra("dz",list.get(i).getPngdz());
                         intent.putExtra("file",list.get(i).getNew_filename());
