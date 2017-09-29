@@ -254,14 +254,10 @@ public class CaseRegisterActivity extends Activity {
 
             } else if (ajlx != 2 || ajlx != 11) {
                 if (ssjd.equals("0")) {
-                    lawsuit.setText("调查取证");
+                    lawsuit.setText("初审");
                 } else if (ssjd.equals("1")) {
-                    lawsuit.setText("一审");
-                } else if (ssjd.equals("2")) {
                     lawsuit.setText("二审");
-                } else if (ssjd.equals("3")) {
-                    lawsuit.setText("执行");
-                } else if (ssjd.equals("4")) {
+                } else if (ssjd.equals("2")) {
                     lawsuit.setText("再审");
                 }
 
@@ -402,32 +398,17 @@ public class CaseRegisterActivity extends Activity {
                     break;
                 case R.id.lawsuit:
                     str = "请填写诉讼阶段";
-                    if(ajlx ==2 ){
-                        final String[] jd = {"侦查阶段", "审查起诉", "一审审理", "二审审理", "死刑复核", "再审"};
-                        showsDialog();
-                        builder.setItems(jd, new DialogInterface.OnClickListener()
+                    final String[] jdd = {"初审", "二审", "再审"};
+                    showsDialog();
+                    builder.setItems(jdd, new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
                         {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                lawsuit.setText(jd[which]);
-                                lawsuit.setTextColor(getResources().getColor(R.color.black));
-                                Log.e("","我是1");
-                            }
-                        }).show();
-                    }else {
-                        final String[] jdd = {"调查取证", "一审", "二审", "执行", "再审"};
-                        showsDialog();
-                        builder.setItems(jdd, new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                lawsuit.setText(jdd[which]);
-                                lawsuit.setTextColor(getResources().getColor(R.color.black));
-                            }
-                        }).show();
-                    }
+                            lawsuit.setText(jdd[which]);
+                            lawsuit.setTextColor(getResources().getColor(R.color.black));
+                        }
+                    }).show();
 
                     break;
                 case R.id.locus_standi:
@@ -675,20 +656,13 @@ public class CaseRegisterActivity extends Activity {
         }
 
         if(ajlx == 2 ){
-            Log.e("","我是3");
             if(!lawsuit.getText().toString().equals("请选择诉讼阶段")){
-                if(lawsuit.getText().toString().equals("侦查阶段")){
+                if(lawsuit.getText().toString().equals("初审")){
                     ssjd = "0";
-                }else if(lawsuit.getText().toString().equals("审查起诉")){
+                }else if(lawsuit.getText().toString().equals("二审")){
                     ssjd = "1";
-                }else if(lawsuit.getText().toString().equals("一审审理")){
-                    ssjd = "2";
-                }else if(lawsuit.getText().toString().equals("二审审理")){
-                    ssjd = "3";
-                }else if(lawsuit.getText().toString().equals("死刑复核")){
-                    ssjd = "4";
                 }else if(lawsuit.getText().toString().equals("再审")){
-                    ssjd = "5";
+                    ssjd = "2";
                 }
             }
 
@@ -714,18 +688,13 @@ public class CaseRegisterActivity extends Activity {
                 }
             }
         }else {
-            Log.e("","我是4");
             if(!lawsuit.getText().toString().equals("请选择诉讼阶段")){
-                if(lawsuit.getText().toString().equals("调查取证")){
+                if(lawsuit.getText().toString().equals("初审")){
                     ssjd = "0";
-                }else if(lawsuit.getText().toString().equals("一审")){
-                    ssjd = "1";
                 }else if(lawsuit.getText().toString().equals("二审")){
-                    ssjd = "2";
-                }else if(lawsuit.getText().toString().equals("执行")){
-                    ssjd = "3";
+                    ssjd = "1";
                 }else if(lawsuit.getText().toString().equals("再审")){
-                    ssjd = "4";
+                    ssjd = "2";
                 }
             }
 
@@ -846,18 +815,16 @@ public class CaseRegisterActivity extends Activity {
      * 查询案号（有则+1，无则创建）
      */
     private void getHttp(){
-        MainApi.getInstance(this).getanhaoApi(cid, ajlx,ssjd,new GetResultCallBack() {
+        MainApi.getInstance(this).getanhaoApi(cid,ajlx,ssjd,new GetResultCallBack() {
             @Override
             public void getResult(String result, int type) {
                 if(type== Constants.TYPE_SUCCESS){
-                    Toast.makeText(CaseRegisterActivity.this,"获取成功",Toast.LENGTH_SHORT).show();
                     try {
                         JSONObject jsonObject = new JSONObject(result);
                         ah_number =jsonObject.getString("caseNo");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Log.e("ah_number====>",""+ah_number);
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
                     create_date = format.format(new java.util.Date());//创建时间
                     sarq = date_of_cognizance.getText().toString();//收案日期

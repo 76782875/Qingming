@@ -6,14 +6,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swipe">
-        <ScrollView
+        <WebView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <WebView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/webview"/>
-        </ScrollView>
+            android:layout_height="match_parent"
+            android:id="@+id/webview"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

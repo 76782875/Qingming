@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -41,10 +43,8 @@ public class IntoPressActivity extends Activity implements SwipeRefreshLayout.On
         initView();
         Bundle bundle = getIntent().getExtras();
         int index = bundle.getInt("index");
-        Log.e("===>",""+index);
         if(index == 1){
             id = bundle.getString("cid");
-            Log.e("===>",""+id);
             getHttp();
         }else {
             String cons_content = bundle.getString("cons_content");
@@ -60,17 +60,29 @@ public class IntoPressActivity extends Activity implements SwipeRefreshLayout.On
         swipeRefreshLayout.setOnRefreshListener(this);
         list =new ArrayList<>();
 
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);// 设置无边框
         //启用支持javascript
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        /**
+         * 用WebView显示图片，可使用这个参数 设置网页布局类型：
+         * 1、LayoutAlgorithm.NARROW_COLUMNS ：适应内容大小
+         * 2、LayoutAlgorithm.SINGLE_COLUMN:适应屏幕，内容将自动缩放
+         */
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         // 设置默认字体大小
-        webSettings.setDefaultFontSize(16);
+       // webSettings.setDefaultFontSize(22);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        if (dm.densityDpi > 240 ) {
+            webSettings.setDefaultFontSize(40); //可以取1-72之间的任意值，默认16
+        }
         //设置自适应屏幕，两者合用
         webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
         webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
         //缩放操作
         webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
-        webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放
+        webSettings.setBuiltInZoomControls(false); //设置内置的缩放控件。若为false，则该WebView不可缩放
         webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
         // 让JavaScript可以自动打开windows
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);

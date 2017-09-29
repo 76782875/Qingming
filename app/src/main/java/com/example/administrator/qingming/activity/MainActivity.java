@@ -206,8 +206,8 @@ public class MainActivity extends Activity {
                     zhiwei = resultBeen.get(0).getName();
                     Intent intent = new Intent(MainActivity.this, HomePageBottomActivity.class);
                     startActivity(intent);
+                    finish();
                     Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-                    Log.e("main=====",""+zhiwei);
                     if(zhiwei.equals("主任")){
                         iszw = true;
                     }

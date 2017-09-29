@@ -22,9 +22,7 @@ import com.example.administrator.qingming.fragment.MeFragment;
 import com.example.administrator.qingming.interfaces.GetResultCallBack;
 import com.example.administrator.qingming.model.Constants;
 import com.example.administrator.qingming.wuyong.WorkFragment;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.tencent.bugly.Bugly;
 
 import java.util.ArrayList;
 
@@ -49,6 +47,8 @@ public class HomePageBottomActivity extends FragmentActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hompage_bottom);
+
+        Bugly.init(getApplicationContext(), "849ea6511c", false);
 
         init();
 
