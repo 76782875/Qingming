@@ -49,7 +49,7 @@ public class ContactDetailsActivity extends Activity {
         Log.i("=====>",""+ id);
         initView();
         initHttp();
-//        checkPermisson();
+        checkPermisson();
     }
 
     private String id ;

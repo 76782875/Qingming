@@ -104,11 +104,16 @@ public class SealApplyForDetailsActivity extends Activity {
                 filepost.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(hzm.equals(".doc")||hzm.equals(".docx")){
-                            postfile();
+                        if(hzm != null){
+                            if(hzm.equals(".doc")||hzm.equals(".docx")){
+                                postfile();
+                            }else {
+                                Toast.makeText(SealApplyForDetailsActivity.this,"只能上传doc,docx文件",Toast.LENGTH_SHORT).show();
+                            }
                         }else {
-                            Toast.makeText(SealApplyForDetailsActivity.this,"只能上传doc,docx文件",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SealApplyForDetailsActivity.this,"请选择上传文件",Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
 

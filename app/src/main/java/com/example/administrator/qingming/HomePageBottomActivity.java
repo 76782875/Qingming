@@ -42,7 +42,6 @@ public class HomePageBottomActivity extends FragmentActivity{
     private LawJournalFragment judicialAddressFragment;
     private ApplicationFragment applicationFragment;
     private MeFragment meFragment;
-    WorkFragment workFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

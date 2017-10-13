@@ -76,7 +76,7 @@ public class SealPngActivity extends Activity implements View.OnTouchListener {
             index = bundle.getInt("index");
             filename = bundle.getString("file", "");
             id = bundle.getString("id", "");
-            dz = "http://192.168.188.122/Public/Uploads/" + dzz;
+            dz = "http://yunlvsi.cn/files/" + dzz;
                                                          //跳过内存缓存               //跳过硬盘缓存
             Glide.with(this).load(dz).asBitmap().centerCrop().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE)
                     .placeholder(R.mipmap.ic_launcher).fitCenter().into(imageView);
@@ -85,7 +85,6 @@ public class SealPngActivity extends Activity implements View.OnTouchListener {
                 company_seal.setVisibility(View.GONE);
                 cw_seal.setVisibility(View.GONE);
                 save.setVisibility(View.GONE);
-                Log.e("====", "" + dz);
             } else if (index == 2) {
                 company_seal.setOnClickListener(onClickListener);
                 cw_seal.setOnClickListener(onClickListener);
@@ -131,7 +130,9 @@ public class SealPngActivity extends Activity implements View.OnTouchListener {
                     if(cwseal == null){
                         Toast.makeText(SealPngActivity.this,"请上传财务公章！",Toast.LENGTH_SHORT).show();
                     }else {
-                        Glide.with(SealPngActivity.this).load(cwseal).asBitmap().override(120,120).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).fitCenter().into(image1);
+                        Glide.with(SealPngActivity.this).load(cwseal).asBitmap().override(120,120).
+                                skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).
+                                fitCenter().into(image1);
                     }
                     break;
                 case R.id.save:
